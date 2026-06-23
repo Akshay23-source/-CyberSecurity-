@@ -1,0 +1,290 @@
+# 🔐 Cybersecurity Bootcamp – Day 1
+
+## Module 1: Introduction to Cybersecurity
+
+> **Goal:** Understand what cybersecurity is, why it's important, and build the mindset of a security professional.
+
+---
+
+# 1. What is Cybersecurity?
+
+Cybersecurity is the practice of protecting:
+
+* 💻 Computers
+* 🌐 Networks
+* 📱 Mobile devices
+* ☁️ Cloud systems
+* 🗄️ Data
+
+from unauthorized access, attacks, theft, and damage.
+
+### Real-life Example
+
+Imagine your house:
+
+* Door Lock = Password
+* Security Guard = Firewall
+* CCTV = Monitoring System
+* Safe Locker = Encryption
+
+Cybersecurity is like protecting your digital house.
+
+---
+
+# 2. Why is Cybersecurity Important?
+
+Every day millions of cyberattacks occur.
+
+### Common attacks
+
+* Phishing emails
+* Ransomware
+* Password theft
+* Website hacking
+* Data breaches
+* Identity theft
+
+Examples:
+
+* Banks
+* Hospitals
+* Government
+* Colleges
+* Startups
+* Social media
+
+Everyone needs cybersecurity.
+
+---
+
+# 3. The CIA Triad
+
+The foundation of cybersecurity.
+
+### A. Confidentiality
+
+Only authorized people can access data.
+
+Example:
+Only you can access your Gmail.
+
+---
+
+### B. Integrity
+
+Data should not be modified by unauthorized people.
+
+Example:
+Your bank balance should never change without permission.
+
+---
+
+### C. Availability
+
+Systems should always be available when needed.
+
+Example:
+UPI payments should work 24×7.
+
+---
+
+# 4. Types of Hackers
+
+### 🤍 White Hat
+
+* Ethical hackers
+* Help companies improve security
+* Work legally
+
+### 🖤 Black Hat
+
+* Criminal hackers
+* Steal data
+* Spread malware
+
+### 🩶 Grey Hat
+
+* May find vulnerabilities without permission
+* Usually don't intend harm, but their actions may still be unauthorized
+
+---
+
+# 5. Basic Security Terms
+
+### Firewall
+
+Filters incoming and outgoing network traffic.
+
+### Encryption
+
+Converts readable data into unreadable ciphertext.
+
+### Malware
+
+Malicious software designed to damage or compromise systems.
+
+Examples:
+
+* Virus
+* Worm
+* Trojan
+* Ransomware
+* Spyware
+
+---
+
+# 6. Career Paths
+
+* SOC Analyst
+* Security Analyst
+* Ethical Hacker
+* Penetration Tester
+* Incident Responder
+* Malware Analyst
+* Cloud Security Engineer
+* Digital Forensics Analyst
+
+---
+
+# 7. Hands-on Lab (30 minutes)
+
+### Install:
+
+* Oracle VirtualBox or VMware Workstation Player
+* Kali Linux (Virtual Machine)
+* Ubuntu (optional)
+
+If you already have them installed, verify they boot correctly.
+
+---
+
+# 8. Mini Project
+
+Create a document titled:
+
+**"Top 20 Cybersecurity Threats in 2026"**
+
+Include:
+
+* Threat name
+* Description
+* Example attack
+* Prevention
+
+This will be your first portfolio document.
+
+---
+
+# 9. Interview Questions
+
+1. What is cybersecurity?
+2. Explain the CIA Triad.
+3. Difference between White Hat and Black Hat hackers?
+4. What is malware?
+5. What is a firewall?
+6. What is encryption?
+7. Why is cybersecurity important?
+8. What is confidentiality?
+9. What is integrity?
+10. What is availability?
+
+---
+
+# 10. Quiz (10 MCQs)
+
+**Q1.** CIA stands for?
+
+* A) Central Internet Agency
+* B) Confidentiality, Integrity, Availability
+* C) Cyber Internet Access
+* D) Confidential Internet Architecture
+
+**Q2.** Which hacker works legally?
+
+* A) Black Hat
+* B) White Hat
+* C) Grey Hat
+* D) Script Kiddie
+
+**Q3.** A firewall mainly:
+
+* A) Speeds up the internet
+* B) Filters network traffic
+* C) Deletes files
+* D) Installs software
+
+**Q4.** Malware is:
+
+* A) Hardware
+* B) Operating System
+* C) Malicious software
+* D) Browser
+
+**Q5.** Which part of the CIA Triad ensures data isn't altered?
+
+* A) Confidentiality
+* B) Integrity
+* C) Availability
+* D) Authentication
+
+**Q6.** Which of these is malware?
+
+* A) Virus
+* B) Trojan
+* C) Ransomware
+* D) All of the above
+
+**Q7.** Encryption converts:
+
+* A) Ciphertext → Plaintext
+* B) Plaintext → Ciphertext
+* C) Images → Videos
+* D) Files → Folders
+
+**Q8.** A SOC Analyst mainly:
+
+* A) Develops games
+* B) Monitors security events
+* C) Designs websites
+* D) Repairs hardware
+
+**Q9.** Availability means:
+
+* A) Data is always accessible to authorized users
+* B) Data is secret
+* C) Data cannot change
+* D) Passwords are strong
+
+**Q10.** Which is an example of confidentiality?
+
+* A) Public Wi-Fi
+* B) Locked Gmail account
+* C) Website uptime
+* D) Open database
+
+---
+
+# 11. Assignment
+
+1. Learn the CIA Triad thoroughly.
+2. Read about the three hacker types.
+3. Write definitions for:
+
+   * Firewall
+   * Malware
+   * Encryption
+4. Answer all 10 MCQs.
+5. Research one famous cyberattack (e.g., WannaCry) and summarize:
+
+   * What happened?
+   * Who was affected?
+   * What was the impact?
+   * How could it have been prevented?
+
+---
+
+# 12. Daily Motivation
+
+> **"A cybersecurity expert isn't someone who knows every attack—it's someone who knows how to think like a defender and keep learning."**
+
+Tomorrow (Day 2), we'll begin **Computer & Internet Fundamentals**, where you'll learn how computers, operating systems, memory, storage, browsers, and the internet work—the foundation needed before diving deeper into networking and security.
