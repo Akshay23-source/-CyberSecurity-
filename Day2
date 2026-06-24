@@ -1,0 +1,561 @@
+# 🔐 Cybersecurity Bootcamp – Day 2
+
+## Module 2: Computer & Internet Fundamentals
+
+> **Goal:** Understand how a computer works, how the internet functions, and why these concepts are essential for cybersecurity.
+
+> **Duration:** 2–3 hours (Theory + Hands-on + Project)
+
+---
+
+# 🎯 Today's Learning Outcomes
+
+By the end of today, you will be able to:
+
+* ✅ Explain how a computer boots.
+* ✅ Differentiate RAM, ROM, HDD, and SSD.
+* ✅ Understand the role of the CPU.
+* ✅ Explain how websites load.
+* ✅ Understand IP addresses and DNS.
+* ✅ Know the difference between HTTP and HTTPS.
+* ✅ Explain packets and ports at a basic level.
+
+---
+
+# Part 1: How Does a Computer Work?
+
+When you press the power button:
+
+```
+Power On
+     ↓
+BIOS/UEFI Starts
+     ↓
+Hardware Check (POST)
+     ↓
+Boot Loader
+     ↓
+Operating System Loads
+     ↓
+Login Screen
+     ↓
+Desktop
+```
+
+### Components
+
+### 🧠 CPU
+
+The "brain" of the computer.
+
+Responsible for:
+
+* Calculations
+* Running programs
+* Executing instructions
+
+Example:
+Opening Chrome → CPU processes instructions.
+
+---
+
+### 💾 RAM
+
+Temporary memory.
+
+* Fast
+* Volatile (erased when power is off)
+
+Example:
+When opening VS Code, it is loaded into RAM.
+
+---
+
+### 💿 Storage
+
+Stores files permanently.
+
+Types:
+
+* HDD
+* SSD
+* NVMe SSD
+
+Example:
+Your photos remain after restarting because they're stored on disk.
+
+---
+
+### ROM
+
+Contains firmware (BIOS/UEFI).
+
+It helps the computer start.
+
+---
+
+# Part 2: Operating System
+
+The OS connects hardware and software.
+
+Examples:
+
+* Windows
+* Linux
+* macOS
+
+Cybersecurity professionals often use Linux because it offers powerful networking and security tools.
+
+---
+
+# Part 3: Files and File Systems
+
+Everything on a computer is stored as files.
+
+Examples:
+
+```
+photo.jpg
+
+resume.pdf
+
+report.docx
+
+script.py
+
+movie.mp4
+```
+
+Folders organize files.
+
+Example:
+
+```
+Documents/
+     Resume.pdf
+
+Downloads/
+     Kali.iso
+
+Pictures/
+     Image.png
+```
+
+---
+
+# Part 4: What is the Internet?
+
+The Internet is a network of networks.
+
+Millions of computers communicate using protocols.
+
+Example:
+
+```
+Laptop
+     ↓
+WiFi
+     ↓
+Router
+     ↓
+ISP
+     ↓
+Internet
+     ↓
+Google Server
+```
+
+---
+
+# Part 5: What Happens When You Open Google?
+
+Suppose you type:
+
+```
+google.com
+```
+
+The steps are:
+
+```
+Browser
+     ↓
+DNS Lookup
+     ↓
+Gets IP Address
+     ↓
+Connects to Google Server
+     ↓
+Sends HTTP/HTTPS Request
+     ↓
+Server Responds
+     ↓
+Page Displays
+```
+
+---
+
+# Part 6: IP Address
+
+Every device has an address.
+
+Example:
+
+```
+192.168.1.15
+```
+
+Think of it as your house address.
+
+Without it, data wouldn't know where to go.
+
+---
+
+# Part 7: DNS (Domain Name System)
+
+Humans remember:
+
+```
+google.com
+```
+
+Computers need:
+
+```
+142.250.xxx.xxx
+```
+
+DNS translates domain names into IP addresses.
+
+It works like a phone contact list.
+
+---
+
+# Part 8: HTTP vs HTTPS
+
+### HTTP
+
+* Not encrypted
+* Data can be intercepted
+
+### HTTPS
+
+* Encrypted using TLS
+* Secure communication
+
+Always look for the 🔒 lock icon when entering passwords or payment details.
+
+---
+
+# Part 9: Packets
+
+Large data is split into smaller pieces called **packets**.
+
+Example:
+
+```
+Video
+↓
+
+Packet 1
+Packet 2
+Packet 3
+Packet 4
+
+↓
+
+Receiver
+
+↓
+
+Video Reconstructed
+```
+
+Packets make communication faster and more reliable.
+
+---
+
+# Part 10: Ports (Introduction)
+
+Think of a computer as an apartment building.
+
+IP Address = Building address
+
+Port = Apartment number
+
+Examples:
+
+| Port  | Service |
+| ----- | ------- |
+| 20/21 | FTP     |
+| 22    | SSH     |
+| 25    | SMTP    |
+| 53    | DNS     |
+| 80    | HTTP    |
+| 110   | POP3    |
+| 143   | IMAP    |
+| 443   | HTTPS   |
+
+We'll study ports in detail during the networking module.
+
+---
+
+# 🌍 Real-World Example
+
+When you log into your bank:
+
+```
+Browser
+↓
+
+DNS
+
+↓
+
+Bank Server
+
+↓
+
+HTTPS Connection
+
+↓
+
+Authentication
+
+↓
+
+Database
+
+↓
+
+Account Dashboard
+```
+
+Cybersecurity protects every stage of this process.
+
+---
+
+# 🛠 Hands-on Lab (45 Minutes)
+
+### Task 1: Find Your IP Address
+
+**Windows**
+
+```cmd
+ipconfig
+```
+
+**Linux**
+
+```bash
+ip addr
+```
+
+---
+
+### Task 2: Test Internet Connectivity
+
+```cmd
+ping google.com
+```
+
+Observe:
+
+* Packets sent
+* Packets received
+* Response time
+
+---
+
+### Task 3: View DNS Information
+
+```cmd
+nslookup google.com
+```
+
+Write down:
+
+* IP address returned
+* DNS server used
+
+---
+
+### Task 4: Trace the Route
+
+```cmd
+tracert google.com
+```
+
+(Linux)
+
+```bash
+traceroute google.com
+```
+
+Observe how many routers the packet passes through.
+
+---
+
+# 🐍 Mini Project
+
+## Project: System Information Reporter
+
+Write a Python script that displays:
+
+* OS Name
+* Hostname
+* IP Address
+* Processor
+* Python Version
+* Current User
+
+Example output:
+
+```text
+===== System Information =====
+OS          : Windows 11
+Hostname    : Akshay-PC
+IP Address  : 192.168.1.10
+Processor   : Intel Core i5
+Python      : 3.12
+User        : Akshay
+==============================
+```
+
+*Hint:* Use the `platform`, `socket`, and `getpass` modules.
+
+---
+
+# 💼 Industry Insight
+
+A cybersecurity analyst often starts by collecting system information before investigating an incident. Knowing the operating system, IP address, running services, and network path helps identify suspicious activity.
+
+---
+
+# 🎯 Interview Questions
+
+1. What is an Operating System?
+2. Difference between RAM and ROM?
+3. HDD vs SSD?
+4. What is an IP Address?
+5. What is DNS?
+6. What is HTTP?
+7. Difference between HTTP and HTTPS?
+8. What is a packet?
+9. What is a port?
+10. What happens when you type google.com into a browser?
+
+---
+
+# 📝 Quiz (10 MCQs)
+
+### Q1. RAM is:
+
+A. Permanent memory
+B. Temporary memory
+C. CPU
+D. Hard Disk
+
+### Q2. Which component performs calculations?
+
+A. SSD
+B. CPU
+C. RAM
+D. Router
+
+### Q3. DNS converts:
+
+A. IP → MAC
+B. Domain → IP
+C. HTTP → HTTPS
+D. Port → IP
+
+### Q4. HTTPS is:
+
+A. Unencrypted
+B. Encrypted
+C. Malware
+D. Firewall
+
+### Q5. Port 443 is used for:
+
+A. HTTP
+B. HTTPS
+C. FTP
+D. SSH
+
+### Q6. Which command shows your IP address on Windows?
+
+A. ping
+B. ipconfig
+C. nslookup
+D. netstat
+
+### Q7. Packets are:
+
+A. Programs
+B. Small units of transmitted data
+C. Firewalls
+D. Routers
+
+### Q8. Which stores data permanently?
+
+A. RAM
+B. Cache
+C. SSD/HDD
+D. CPU
+
+### Q9. What translates domain names into IP addresses?
+
+A. DHCP
+B. DNS
+C. FTP
+D. SMTP
+
+### Q10. Which protocol is more secure for websites?
+
+A. HTTP
+B. HTTPS
+C. FTP
+D. Telnet
+
+---
+
+# 🏠 Assignment
+
+1. Draw a diagram showing how a webpage loads from your browser.
+2. Run:
+
+   * `ipconfig` (or `ip addr`)
+   * `ping google.com`
+   * `nslookup google.com`
+3. Record the outputs in a notebook.
+4. Complete the Python mini project.
+5. Answer all 10 MCQs.
+
+---
+
+# 🌟 Bonus Challenge
+
+Research and answer:
+
+* What is a **MAC Address**?
+* How is it different from an **IP Address**?
+* Why does a computer need both?
+
+---
+
+## 📅 Tomorrow (Day 3)
+
+We'll begin **Networking Fundamentals**, including:
+
+* OSI Model (7 Layers)
+* TCP/IP Model
+* IP Addressing
+* Subnetting Basics
+* DNS & DHCP
+* Ports and Protocols
+* Packet Flow
+* Wireshark Introduction
+
+This is one of the most important modules in cybersecurity, so we'll cover it in depth with practical labs and network analysis.
