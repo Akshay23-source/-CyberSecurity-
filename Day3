@@ -1,0 +1,544 @@
+# 🔐 Cybersecurity Bootcamp – Day 3
+
+# Module 3 (Part 1): Networking Fundamentals – OSI Model & TCP/IP Model
+
+> **Mission of the Day:** Learn how computers communicate over a network. Networking is the backbone of cybersecurity. Every ethical hacker, SOC analyst, penetration tester, and security engineer must master it.
+
+**Estimated Time:** 2.5–3 hours
+
+---
+
+# 🏆 Learning Objectives
+
+By the end of today, you will be able to:
+
+* ✅ Explain what a computer network is.
+* ✅ Differentiate LAN, WAN, MAN, and PAN.
+* ✅ Understand network devices.
+* ✅ Explain the OSI 7-Layer Model.
+* ✅ Explain the TCP/IP Model.
+* ✅ Describe how data travels from one computer to another.
+
+---
+
+# 🔹 Level 1 – Beginner Explanation
+
+## What is a Network?
+
+A **network** is a group of devices connected together to share information.
+
+### Real-life Analogy
+
+Imagine your college classroom.
+
+* 👨‍🏫 Teacher = Server
+* 👨‍🎓 Students = Clients
+* 📚 Notes = Data
+* 🚪 Classroom Door = Network
+* 🗣️ Speaking = Communication Protocol
+
+Without communication, nobody can exchange information.
+
+The same is true for computers.
+
+---
+
+# Types of Networks
+
+## 1. PAN (Personal Area Network)
+
+Range: 1–10 meters
+
+Example:
+
+* Bluetooth headphones
+* Smartwatch connected to your phone
+
+---
+
+## 2. LAN (Local Area Network)
+
+Small area.
+
+Example:
+
+* Home Wi-Fi
+* College Computer Lab
+* Office
+
+---
+
+## 3. MAN (Metropolitan Area Network)
+
+Covers an entire city.
+
+Example:
+A city's public network connecting multiple campuses.
+
+---
+
+## 4. WAN (Wide Area Network)
+
+Covers countries or continents.
+
+Example:
+🌍 The Internet
+
+---
+
+# Network Devices
+
+## Router
+
+Connects different networks.
+
+Example:
+Your home router connects your home devices to the Internet.
+
+---
+
+## Switch
+
+Connects devices within the same LAN.
+
+Example:
+All computers in your college lab connected through a switch.
+
+---
+
+## Hub
+
+Broadcasts data to every connected device.
+
+Today, hubs are mostly obsolete because they are inefficient and less secure.
+
+---
+
+## Modem
+
+Connects your ISP to your router.
+
+---
+
+## Firewall
+
+Acts like a security guard.
+
+It checks incoming and outgoing traffic and blocks unauthorized access.
+
+---
+
+# 🔹 Level 2 – How Data Travels
+
+Imagine you send a WhatsApp message:
+
+```
+You
+ ↓
+Phone
+ ↓
+Wi-Fi Router
+ ↓
+ISP
+ ↓
+Internet
+ ↓
+WhatsApp Server
+ ↓
+Friend's ISP
+ ↓
+Friend's Router
+ ↓
+Friend's Phone
+```
+
+Your message doesn't travel as one large block. It is split into **packets**, which are sent across the network and reassembled at the destination.
+
+---
+
+# The OSI Model (7 Layers)
+
+Think of the OSI model as the journey of sending a parcel.
+
+```
+7. Application
+6. Presentation
+5. Session
+4. Transport
+3. Network
+2. Data Link
+1. Physical
+```
+
+---
+
+## Layer 7 – Application
+
+This is where users interact with applications.
+
+Examples:
+
+* Chrome
+* Gmail
+* WhatsApp
+* Outlook
+
+Protocols:
+
+* HTTP
+* HTTPS
+* FTP
+* SMTP
+* DNS
+
+---
+
+## Layer 6 – Presentation
+
+Responsible for:
+
+* Encryption
+* Compression
+* Translation
+
+Example:
+HTTPS encrypts data before transmission.
+
+---
+
+## Layer 5 – Session
+
+Creates, manages, and ends communication sessions.
+
+Example:
+Your video call remains active because of session management.
+
+---
+
+## Layer 4 – Transport
+
+Responsible for:
+
+* Reliability
+* Error checking
+* Flow control
+
+Protocols:
+
+* TCP
+* UDP
+
+Think of it as the delivery company ensuring your parcel reaches its destination.
+
+---
+
+## Layer 3 – Network
+
+Responsible for:
+
+* IP Addresses
+* Routing
+
+Devices:
+
+* Routers
+
+Protocol:
+
+* IP
+
+---
+
+## Layer 2 – Data Link
+
+Responsible for communication within the local network.
+
+Uses:
+
+* MAC Addresses
+
+Devices:
+
+* Switches
+
+---
+
+## Layer 1 – Physical
+
+Actual transmission of bits through:
+
+* Ethernet cables
+* Fiber optics
+* Wi-Fi radio signals
+
+---
+
+# Easy Memory Trick
+
+Remember:
+
+**"Please Do Not Throw Sausage Pizza Away."**
+
+* Physical
+* Data Link
+* Network
+* Transport
+* Session
+* Presentation
+* Application
+
+---
+
+# TCP/IP Model
+
+The Internet primarily uses the TCP/IP model.
+
+| TCP/IP Layer   | OSI Equivalent                       |
+| -------------- | ------------------------------------ |
+| Application    | Application + Presentation + Session |
+| Transport      | Transport                            |
+| Internet       | Network                              |
+| Network Access | Data Link + Physical                 |
+
+This simplified model is what you'll encounter most often in real-world networking.
+
+---
+
+# 🌍 Real-World Example
+
+When you visit your bank's website:
+
+1. Browser starts the request (Application Layer).
+2. Data is encrypted (Presentation Layer).
+3. A session is established.
+4. TCP ensures reliable delivery.
+5. IP routes packets to the bank's server.
+6. Ethernet or Wi-Fi carries the frames.
+7. Electrical/radio signals transmit the data.
+
+---
+
+# 🔹 Level 3 – Advanced Concepts
+
+### Why Attackers Target Different Layers
+
+* **Layer 7:** SQL Injection, Cross-Site Scripting (XSS)
+* **Layer 4:** TCP SYN Flood (DoS attack)
+* **Layer 3:** IP Spoofing
+* **Layer 2:** ARP Spoofing
+* **Layer 1:** Physical cable tampering
+
+Defenders must secure every layer, not just one.
+
+---
+
+# Common Beginner Mistakes
+
+❌ Memorizing layer names without understanding their roles.
+
+❌ Confusing MAC addresses with IP addresses.
+
+❌ Thinking routers and switches perform the same function.
+
+❌ Ignoring TCP vs. UDP differences.
+
+---
+
+# 🛠 Hands-on Lab
+
+### Task 1
+
+Open Command Prompt (Windows) or Terminal (Linux):
+
+```bash
+ipconfig
+```
+
+or
+
+```bash
+ip addr
+```
+
+Identify:
+
+* IP Address
+* Default Gateway
+* MAC Address
+
+---
+
+### Task 2
+
+Run:
+
+```bash
+ping google.com
+```
+
+Observe:
+
+* Packets sent
+* Packets received
+* Response time
+
+---
+
+### Task 3
+
+Run:
+
+```bash
+tracert google.com
+```
+
+(Linux)
+
+```bash
+traceroute google.com
+```
+
+Count how many hops (routers) your packets travel through.
+
+---
+
+# 💻 Mini Project
+
+Create a table in your notes with the following:
+
+| Device   | Function |
+| -------- | -------- |
+| Router   |          |
+| Switch   |          |
+| Hub      |          |
+| Firewall |          |
+| Modem    |          |
+
+Fill in the function of each device in your own words.
+
+---
+
+# 💼 Interview Questions
+
+1. What is a computer network?
+2. Differentiate LAN and WAN.
+3. What is a router?
+4. What is a switch?
+5. What is the OSI Model?
+6. Which OSI layer uses IP addresses?
+7. Which layer uses MAC addresses?
+8. What is the TCP/IP model?
+9. Why is the OSI model important?
+10. Explain how data travels from your computer to a website.
+
+---
+
+# 📝 Quiz (10 MCQs)
+
+**Q1.** Which device connects different networks?
+
+* A) Switch
+* B) Router
+* C) Hub
+* D) Repeater
+
+**Q2.** Which layer uses IP addresses?
+
+* A) Data Link
+* B) Network
+* C) Transport
+* D) Session
+
+**Q3.** Which layer uses MAC addresses?
+
+* A) Physical
+* B) Data Link
+* C) Network
+* D) Transport
+
+**Q4.** How many layers are in the OSI model?
+
+* A) 4
+* B) 5
+* C) 7
+* D) 8
+
+**Q5.** The Internet primarily uses:
+
+* A) OSI Model
+* B) TCP/IP Model
+* C) Bluetooth Model
+* D) Wi-Fi Model
+
+**Q6.** Which device connects computers within the same LAN?
+
+* A) Router
+* B) Switch
+* C) Modem
+* D) Firewall
+
+**Q7.** Which network covers a city?
+
+* A) LAN
+* B) PAN
+* C) MAN
+* D) WAN
+
+**Q8.** Which network covers the largest geographical area?
+
+* A) PAN
+* B) LAN
+* C) WAN
+* D) MAN
+
+**Q9.** Which OSI layer is responsible for encryption?
+
+* A) Session
+* B) Presentation
+* C) Transport
+* D) Physical
+
+**Q10.** A firewall primarily:
+
+* A) Stores files
+* B) Filters network traffic
+* C) Prints documents
+* D) Compiles programs
+
+---
+
+# 🏠 Assignment
+
+1. Draw the **OSI 7-Layer Model** and write the function of each layer.
+2. Draw the **TCP/IP Model** and compare it with the OSI Model.
+3. Write the differences between **Router, Switch, Hub, Modem, and Firewall**.
+4. Complete all 10 MCQs.
+5. Run the lab commands and note your observations.
+
+---
+
+# ⭐ Bonus Challenge
+
+Find answers to these questions:
+
+1. Why does a switch improve network performance compared to a hub?
+2. Why is the OSI model still taught even though the Internet uses TCP/IP?
+3. Why do cybersecurity professionals need strong networking knowledge before learning ethical hacking?
+
+---
+
+## 📅 Tomorrow (Day 4)
+
+We'll continue Networking Fundamentals with:
+
+* IPv4 and IPv6
+* Public vs. Private IP Addresses
+* MAC Addresses
+* Subnet Masks
+* DHCP
+* DNS (Deep Dive)
+* Ports and Protocols (Detailed)
+* TCP vs. UDP
+* Practical Wireshark packet capture
+
+This lesson will prepare you for using professional cybersecurity tools like **Wireshark**, **Nmap**, and **Burp Suite**.
