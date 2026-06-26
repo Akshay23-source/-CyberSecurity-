@@ -1,0 +1,598 @@
+# 🔐 Cybersecurity Bootcamp – Day 4
+
+# Module 3 (Part 2): IP Addressing, MAC Address, DNS, DHCP, Ports & Protocols
+
+> **Mission:** Today you'll learn how computers identify each other on a network and how data reaches the correct destination. This is one of the most important topics for networking, ethical hacking, and cybersecurity interviews.
+
+**Estimated Time:** 3–4 Hours
+
+---
+
+# 🎯 Today's Learning Outcomes
+
+By the end of today, you will be able to:
+
+* ✅ Explain IPv4 and IPv6.
+* ✅ Differentiate Public and Private IP addresses.
+* ✅ Understand MAC addresses.
+* ✅ Explain Subnet Masks.
+* ✅ Understand DHCP and DNS in detail.
+* ✅ Differentiate TCP and UDP.
+* ✅ Identify common network ports and their services.
+* ✅ Capture packets using Wireshark.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is an IP Address?
+
+An **IP (Internet Protocol) Address** is a unique number assigned to every device on a network.
+
+### 🏠 Analogy
+
+Think of sending a letter:
+
+* House Address = IP Address
+* Person = Computer
+* Post Office = Router
+* Letter = Data Packet
+
+Without a house address, the postman cannot deliver the letter. Similarly, without an IP address, devices cannot communicate.
+
+---
+
+# Types of IP Addresses
+
+## IPv4
+
+Most commonly used today.
+
+Example:
+
+```text
+192.168.1.10
+```
+
+* 32-bit
+* 4 octets
+* Range: 0–255 per octet
+
+Example:
+
+```text
+172.16.20.5
+```
+
+---
+
+## IPv6
+
+Created because IPv4 addresses are running out.
+
+Example:
+
+```text
+2001:0db8:85a3:0000:0000:8a2e:0370:7334
+```
+
+Advantages:
+
+* Huge number of addresses
+* Better security support
+* More efficient routing
+
+---
+
+# Public vs Private IP
+
+## Public IP
+
+Visible on the Internet.
+
+Assigned by your Internet Service Provider (ISP).
+
+Example:
+
+```text
+49.205.12.85
+```
+
+---
+
+## Private IP
+
+Used inside homes and offices.
+
+Cannot be accessed directly from the Internet.
+
+Private ranges:
+
+```text
+10.0.0.0 – 10.255.255.255
+
+172.16.0.0 – 172.31.255.255
+
+192.168.0.0 – 192.168.255.255
+```
+
+Example:
+
+```text
+192.168.1.15
+```
+
+---
+
+# 🌐 MAC Address
+
+MAC = **Media Access Control Address**
+
+A MAC address is the physical address of a network card.
+
+Example:
+
+```text
+00:1A:2B:3C:4D:5E
+```
+
+### Difference
+
+IP Address:
+
+* Can change
+* Logical address
+* Used for routing
+
+MAC Address:
+
+* Usually fixed by the manufacturer
+* Physical address
+* Used inside the local network
+
+---
+
+# 🟡 Level 2 – How It Works
+
+## What Happens When You Visit a Website?
+
+Suppose you type:
+
+```text
+www.google.com
+```
+
+The sequence is:
+
+```text
+Browser
+   ↓
+DNS Lookup
+   ↓
+IP Address Returned
+   ↓
+Router
+   ↓
+Internet
+   ↓
+Google Server
+   ↓
+HTTPS Response
+   ↓
+Webpage Loads
+```
+
+---
+
+# DHCP (Dynamic Host Configuration Protocol)
+
+Imagine a college hostel.
+
+Every student needs a room.
+
+Instead of choosing rooms randomly, the warden assigns one.
+
+DHCP works the same way—it automatically assigns:
+
+* IP Address
+* Subnet Mask
+* Default Gateway
+* DNS Server
+
+Without DHCP, you'd have to configure every device manually.
+
+---
+
+# DNS (Domain Name System)
+
+Humans remember names.
+
+Computers use numbers.
+
+DNS translates:
+
+```text
+google.com
+```
+
+into
+
+```text
+142.250.xx.xx
+```
+
+### Without DNS
+
+You would have to remember the IP address of every website!
+
+---
+
+# Subnet Mask
+
+A subnet mask tells your computer:
+
+* Which part of the IP identifies the **network**
+* Which part identifies the **host (device)**
+
+Example:
+
+```text
+IP Address:
+192.168.1.25
+
+Subnet Mask:
+255.255.255.0
+```
+
+This means:
+
+* Network: 192.168.1
+* Host: 25
+
+We'll study subnetting in greater depth later because it's a common interview topic.
+
+---
+
+# 🔵 TCP vs UDP
+
+## TCP (Transmission Control Protocol)
+
+Reliable.
+
+Checks if every packet arrives.
+
+Example:
+
+* Online Banking
+* Email
+* File Downloads
+
+Advantages:
+
+* Reliable
+* Ordered delivery
+* Error checking
+
+Disadvantage:
+
+* Slightly slower
+
+---
+
+## UDP (User Datagram Protocol)
+
+Fast.
+
+Does not guarantee delivery.
+
+Examples:
+
+* Online Games
+* Live Video Streaming
+* Voice Calls
+
+Advantages:
+
+* Very fast
+* Low latency
+
+Disadvantage:
+
+* Packets may be lost
+
+---
+
+# Easy Analogy
+
+TCP:
+
+> Sending an important legal document by registered courier and waiting for delivery confirmation.
+
+UDP:
+
+> Speaking over a walkie-talkie. If a word is missed, the conversation continues.
+
+---
+
+# Common Network Ports
+
+| Port  | Protocol | Purpose                 |
+| ----- | -------- | ----------------------- |
+| 20    | FTP      | Data Transfer           |
+| 21    | FTP      | Control                 |
+| 22    | SSH      | Secure Remote Login     |
+| 23    | Telnet   | Remote Login (Insecure) |
+| 25    | SMTP     | Sending Email           |
+| 53    | DNS      | Name Resolution         |
+| 67/68 | DHCP     | IP Assignment           |
+| 80    | HTTP     | Web Traffic             |
+| 110   | POP3     | Receive Email           |
+| 143   | IMAP     | Email Access            |
+| 443   | HTTPS    | Secure Web Traffic      |
+| 3306  | MySQL    | Database                |
+| 3389  | RDP      | Remote Desktop          |
+
+⭐ **Interview Tip:** Port numbers are frequently asked in interviews. Focus especially on **22, 53, 80, and 443**.
+
+---
+
+# 🟠 Level 3 – Advanced Concepts
+
+## ARP (Address Resolution Protocol)
+
+ARP maps an IP address to a MAC address within a local network.
+
+Example:
+
+* You know a device's IP.
+* ARP helps find its MAC address.
+
+### Security Risk
+
+Attackers can perform **ARP Spoofing** to intercept traffic on a LAN.
+
+---
+
+## NAT (Network Address Translation)
+
+Your home router allows many private devices to share one public IP address.
+
+Example:
+
+* Laptop
+* Phone
+* Smart TV
+
+All can access the Internet through the same public IP.
+
+---
+
+# 🧪 Hands-on Lab
+
+## Task 1: View IP Configuration
+
+**Windows**
+
+```cmd
+ipconfig /all
+```
+
+**Linux**
+
+```bash
+ip addr
+```
+
+Find:
+
+* IPv4 Address
+* MAC Address
+* Default Gateway
+* DNS Server
+
+---
+
+## Task 2: View ARP Table
+
+Windows:
+
+```cmd
+arp -a
+```
+
+Linux:
+
+```bash
+arp -a
+```
+
+Observe the mapping between IP and MAC addresses.
+
+---
+
+## Task 3: Check Open Connections
+
+Windows:
+
+```cmd
+netstat -ano
+```
+
+Linux:
+
+```bash
+netstat -tuln
+```
+
+Identify:
+
+* Local Address
+* Foreign Address
+* Port
+* Connection State
+
+---
+
+## Task 4: Install Wireshark
+
+1. Download and install Wireshark.
+2. Start a packet capture.
+3. Open a website.
+4. Stop the capture.
+5. Look for:
+
+   * DNS requests
+   * HTTP/HTTPS traffic
+   * TCP packets
+
+Don't worry if it seems overwhelming—we'll learn to analyze packets step by step over the coming days.
+
+---
+
+# 💻 Mini Project
+
+## Network Information Reporter (Python)
+
+Create a Python program that displays:
+
+* Hostname
+* IP Address
+* MAC Address
+* Default Gateway (research how to retrieve this for your OS)
+* DNS Server (optional challenge)
+
+Use modules such as:
+
+* `socket`
+* `uuid`
+* `platform`
+
+Save the project in a GitHub repository named:
+
+```
+network-info-tool
+```
+
+---
+
+# 💼 Interview Questions
+
+1. What is an IP address?
+2. Difference between IPv4 and IPv6?
+3. Public IP vs Private IP?
+4. What is a MAC address?
+5. What is DHCP?
+6. What is DNS?
+7. What is NAT?
+8. TCP vs UDP?
+9. Why is HTTPS preferred over HTTP?
+10. What is ARP?
+
+---
+
+# 📝 Quiz (10 MCQs)
+
+**Q1.** Which protocol automatically assigns IP addresses?
+
+* A) DNS
+* B) DHCP
+* C) FTP
+* D) SSH
+
+**Q2.** Which protocol translates domain names into IP addresses?
+
+* A) ARP
+* B) DNS
+* C) SMTP
+* D) DHCP
+
+**Q3.** Which port is used by HTTPS?
+
+* A) 80
+* B) 21
+* C) 443
+* D) 53
+
+**Q4.** Which protocol is connection-oriented?
+
+* A) UDP
+* B) TCP
+* C) ICMP
+* D) ARP
+
+**Q5.** Which protocol is generally faster?
+
+* A) TCP
+* B) UDP
+* C) FTP
+* D) HTTP
+
+**Q6.** A MAC address is associated with:
+
+* A) Domain Name
+* B) Network Interface Card
+* C) Router Configuration
+* D) Website
+
+**Q7.** Which is a private IP address?
+
+* A) 8.8.8.8
+* B) 192.168.1.100
+* C) 49.205.12.85
+* D) 172.40.1.1
+
+**Q8.** Which protocol helps map IP addresses to MAC addresses?
+
+* A) DHCP
+* B) DNS
+* C) ARP
+* D) SMTP
+
+**Q9.** NAT primarily:
+
+* A) Encrypts data
+* B) Assigns MAC addresses
+* C) Allows multiple private devices to share one public IP
+* D) Blocks malware
+
+**Q10.** Which protocol is commonly used for online video calls?
+
+* A) UDP
+* B) TCP
+* C) FTP
+* D) SMTP
+
+---
+
+# 🏠 Assignment
+
+1. Draw the flow of a DNS lookup from your browser to a website.
+2. Compare **TCP** and **UDP** in a table (speed, reliability, examples).
+3. Run all the lab commands and note your observations.
+4. Memorize the common port numbers.
+5. Complete the quiz and explain **why** each correct answer is right.
+
+---
+
+# 🌟 Bonus Challenge
+
+Research and answer:
+
+1. Why is **Telnet (Port 23)** considered insecure?
+2. Why does **SSH (Port 22)** replace Telnet in modern systems?
+3. Why do attackers often scan ports before attempting an attack?
+
+---
+
+## 📅 Tomorrow (Day 5)
+
+We'll move into **Network Communication in Action**, covering:
+
+* Packet encapsulation and decapsulation
+* TCP three-way handshake
+* ICMP, Ping, and Traceroute
+* Packet capture with Wireshark (deep dive)
+* Introduction to Nmap
+* Your first real network analysis exercise
+
+This is where networking starts to feel practical, and you'll begin thinking like a cybersecurity analyst.
