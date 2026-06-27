@@ -1,0 +1,559 @@
+# 🔐 Cybersecurity Bootcamp – Day 5
+
+# Module 3 (Part 3): Packet Flow, TCP Three-Way Handshake, ICMP, Wireshark & Nmap Basics
+
+> **Mission:** Today you'll learn how data actually travels across the network. By the end of this lesson, you'll understand what happens behind the scenes when you open a website or ping another computer.
+
+**Estimated Time:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today, you will be able to:
+
+* ✅ Explain packet encapsulation and decapsulation.
+* ✅ Understand the TCP Three-Way Handshake.
+* ✅ Explain ICMP and Ping.
+* ✅ Understand Traceroute.
+* ✅ Capture and inspect packets using Wireshark.
+* ✅ Perform basic host discovery with Nmap.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is a Packet?
+
+When you send a large file over the internet, it isn't sent as one giant block.
+
+Instead, it is divided into **small pieces called packets**.
+
+### 📦 Analogy
+
+Imagine sending a 500-page book by courier.
+
+Instead of one huge package, you divide it into 10 smaller boxes.
+
+Each box has:
+
+* Sender address
+* Receiver address
+* Page numbers
+
+The receiver reassembles the book.
+
+The Internet works in exactly the same way.
+
+---
+
+# Packet Encapsulation
+
+As data moves down the networking stack, each layer adds its own information (called a **header**).
+
+```text
+Application Data
+        ↓
+TCP Header Added
+        ↓
+IP Header Added
+        ↓
+Ethernet Header Added
+        ↓
+Bits Sent Across Network
+```
+
+At the destination, the reverse process (**decapsulation**) removes each header until the original data is recovered.
+
+---
+
+# 🟡 Level 2 – TCP Three-Way Handshake
+
+Before two computers exchange data using TCP, they establish a reliable connection.
+
+There are **three steps**:
+
+### Step 1: SYN
+
+Client:
+
+> "Hello, can we communicate?"
+
+---
+
+### Step 2: SYN-ACK
+
+Server:
+
+> "Yes, I received your request. I'm ready."
+
+---
+
+### Step 3: ACK
+
+Client:
+
+> "Great! Let's start communicating."
+
+```text
+Client                     Server
+
+SYN  --------------------->
+
+      <------------------  SYN + ACK
+
+ACK  --------------------->
+```
+
+Only after this handshake does actual data transfer begin.
+
+---
+
+## Why is this important?
+
+It ensures:
+
+* Both devices are reachable.
+* Both agree to communicate.
+* The connection is reliable.
+
+---
+
+# 🔴 TCP Connection Termination
+
+When communication ends:
+
+```text
+FIN
+ACK
+FIN
+ACK
+```
+
+This is called the **Four-Way Handshake** for closing a TCP connection.
+
+---
+
+# ICMP (Internet Control Message Protocol)
+
+ICMP is used for diagnostics and error reporting.
+
+Examples:
+
+* Ping
+* Destination Unreachable
+* Time Exceeded
+
+---
+
+## Ping
+
+Command:
+
+```bash
+ping google.com
+```
+
+Ping sends **ICMP Echo Requests**.
+
+The destination replies with **ICMP Echo Replies**.
+
+Example:
+
+```text
+You
+ ↓
+Echo Request
+ ↓
+Google
+
+Google
+ ↓
+Echo Reply
+ ↓
+You
+```
+
+---
+
+## Why Use Ping?
+
+* Check whether a device is reachable.
+* Measure response time (latency).
+* Troubleshoot connectivity issues.
+
+---
+
+# Traceroute
+
+Traceroute shows the path packets take from your computer to a destination.
+
+Example:
+
+```text
+Your PC
+ ↓
+Router
+ ↓
+ISP
+ ↓
+Regional Router
+ ↓
+Google Server
+```
+
+Each intermediate device is called a **hop**.
+
+---
+
+# 🟣 Level 3 – Advanced Concepts
+
+## TCP Flags
+
+Some important TCP flags are:
+
+* SYN – Start connection
+* ACK – Acknowledge received data
+* FIN – Close connection
+* RST – Reset connection
+* PSH – Push data immediately
+* URG – Urgent data
+
+These flags help control communication.
+
+---
+
+## SYN Flood Attack
+
+A common **Denial-of-Service (DoS)** attack.
+
+The attacker sends thousands of SYN requests but never completes the handshake.
+
+Result:
+
+* The server waits for responses.
+* Resources get exhausted.
+* Legitimate users cannot connect.
+
+This is why understanding the handshake is critical in cybersecurity.
+
+---
+
+# Wireshark
+
+Wireshark is one of the most widely used packet analyzers.
+
+It captures live network traffic so you can inspect packets.
+
+---
+
+## Basic Steps
+
+1. Open Wireshark.
+2. Select your active network interface (Wi-Fi or Ethernet).
+3. Start capturing.
+4. Open a website.
+5. Stop the capture.
+
+You will see hundreds of packets. That's normal.
+
+---
+
+## Useful Wireshark Filters
+
+Display only DNS traffic:
+
+```text
+dns
+```
+
+Only HTTP traffic:
+
+```text
+http
+```
+
+Only HTTPS traffic:
+
+```text
+tls
+```
+
+Only ICMP packets:
+
+```text
+icmp
+```
+
+Only TCP packets:
+
+```text
+tcp
+```
+
+Only UDP packets:
+
+```text
+udp
+```
+
+Learning filters is one of the fastest ways to become productive with Wireshark.
+
+---
+
+# Nmap (Network Mapper)
+
+Nmap is a popular network scanning tool used by administrators and ethical hackers.
+
+It helps identify:
+
+* Active hosts
+* Open ports
+* Running services
+* Operating systems (with advanced scans)
+
+---
+
+## Basic Commands
+
+### Scan a Host
+
+```bash
+nmap 192.168.1.1
+```
+
+---
+
+### Scan a Website
+
+```bash
+nmap scanme.nmap.org
+```
+
+(`scanme.nmap.org` is a public host provided by the Nmap project specifically for testing.)
+
+---
+
+### Scan a Specific Port
+
+```bash
+nmap -p 80 scanme.nmap.org
+```
+
+⚠️ **Only scan systems you own or have explicit permission to test.** Unauthorized scanning may violate policies or laws.
+
+---
+
+# 🛠 Hands-on Lab
+
+### Task 1
+
+Run:
+
+```bash
+ping google.com
+```
+
+Observe:
+
+* Packets sent
+* Packets received
+* Average latency
+
+---
+
+### Task 2
+
+Run:
+
+```bash
+tracert google.com
+```
+
+or on Linux:
+
+```bash
+traceroute google.com
+```
+
+Count the number of hops.
+
+---
+
+### Task 3
+
+Capture packets in Wireshark while:
+
+* Visiting a website
+* Running `ping`
+
+Use filters:
+
+* `icmp`
+* `dns`
+* `tcp`
+
+Note what you observe.
+
+---
+
+### Task 4
+
+If you have Nmap installed, scan **only**:
+
+```bash
+nmap scanme.nmap.org
+```
+
+Record:
+
+* Open ports
+* Service names
+
+---
+
+# 💻 Mini Project
+
+## Network Diagnostic Report
+
+Create a document that includes:
+
+* Your IP address
+* Default Gateway
+* DNS Server
+* Ping results
+* Traceroute observations
+* Wireshark screenshots (if possible)
+* Nmap scan summary (only using `scanme.nmap.org` or your own systems)
+
+This will become part of your cybersecurity portfolio.
+
+---
+
+# 💼 Interview Questions
+
+1. What is a packet?
+2. What is encapsulation?
+3. Explain the TCP Three-Way Handshake.
+4. What is ICMP?
+5. What is Ping?
+6. What is Traceroute?
+7. What is Wireshark?
+8. What is Nmap?
+9. What is a SYN Flood attack?
+10. Why should you only scan systems you own or have permission to test?
+
+---
+
+# 📝 Quiz (10 MCQs)
+
+### Q1. Which protocol uses the Three-Way Handshake?
+
+A) UDP
+B) TCP
+C) ICMP
+D) ARP
+
+### Q2. The first packet in a TCP connection is:
+
+A) ACK
+B) FIN
+C) SYN
+D) RST
+
+### Q3. Which protocol is used by Ping?
+
+A) TCP
+B) UDP
+C) ICMP
+D) FTP
+
+### Q4. Traceroute shows:
+
+A) Passwords
+B) Packet path (hops)
+C) Firewall rules
+D) MAC addresses only
+
+### Q5. Wireshark is used for:
+
+A) Writing code
+B) Packet analysis
+C) Image editing
+D) Database management
+
+### Q6. Which Wireshark filter shows only ICMP traffic?
+
+A) ping
+B) icmp
+C) tcp
+D) udp
+
+### Q7. Encapsulation means:
+
+A) Deleting packets
+B) Adding protocol headers as data moves through layers
+C) Encrypting all data
+D) Compressing files
+
+### Q8. Which TCP flag is used to acknowledge received data?
+
+A) SYN
+B) ACK
+C) FIN
+D) RST
+
+### Q9. A SYN Flood attack mainly targets:
+
+A) DNS Servers
+B) The TCP connection establishment process
+C) File systems
+D) USB devices
+
+### Q10. Nmap is primarily used for:
+
+A) Editing documents
+B) Network discovery and port scanning
+C) Encrypting files
+D) Creating backups
+
+---
+
+# 🏠 Assignment
+
+1. Draw the TCP Three-Way Handshake.
+2. Draw the packet encapsulation process.
+3. Capture packets with Wireshark and identify:
+
+   * DNS
+   * TCP
+   * ICMP
+4. Run `ping` and `traceroute` and explain the results.
+5. Complete the quiz.
+
+---
+
+# 🌟 Bonus Challenge
+
+Research these questions:
+
+1. Why doesn't UDP require a Three-Way Handshake?
+2. What are the advantages and disadvantages of TCP compared to UDP?
+3. Why do SOC analysts frequently use Wireshark during incident investigations?
+
+---
+
+## 📅 Tomorrow (Day 6)
+
+We'll complete the **Networking Fundamentals** module with:
+
+* Routing and Switching Basics
+* VLANs
+* Firewalls
+* NAT and PAT (deep dive)
+* VPNs
+* Proxy Servers
+* Network Security Best Practices
+* Network architecture used in real companies
+
+By the end of Day 6, you'll have a strong networking foundation—the most important prerequisite for ethical hacking, SOC analysis, and penetration testing.
