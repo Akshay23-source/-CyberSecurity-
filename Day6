@@ -1,0 +1,834 @@
+# 🔐 Cybersecurity Bootcamp – Day 6
+
+# Module 3 (Part 4 – Final): Routing, Switching, Firewalls, NAT, VPNs & Enterprise Network Security
+
+> **Mission:** Today you'll complete your Networking Fundamentals module. This lesson connects everything you've learned over the past few days and introduces the network architecture used in real companies.
+
+> **Time Required:** 3–4 Hours
+
+---
+
+# 🎯 Learning Objectives
+
+By the end of today's lesson, you'll be able to:
+
+* ✅ Explain how routers and switches work.
+* ✅ Understand routing and switching.
+* ✅ Learn VLANs and network segmentation.
+* ✅ Understand NAT & PAT.
+* ✅ Explain firewalls and ACLs.
+* ✅ Understand VPNs and Proxy Servers.
+* ✅ Design a basic enterprise network.
+* ✅ Analyze a real-world network attack.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## Imagine a City
+
+Think of a city.
+
+* 🏠 Houses = Computers
+* 🛣 Roads = Network Cables/Wi-Fi
+* 🚦 Traffic Police = Router
+* 🚪 Apartment Security = Switch
+* 👮 Security Checkpoint = Firewall
+* 🚇 Secret Tunnel = VPN
+
+Every packet travels through this city.
+
+---
+
+# Router
+
+## What is a Router?
+
+A router connects **different networks**.
+
+Example:
+
+```text
+Laptop
+      ↓
+WiFi Router
+      ↓
+Internet
+      ↓
+Google Server
+```
+
+A router decides:
+
+> "Which path should this packet take?"
+
+Just like Google Maps chooses the best road.
+
+---
+
+## Real Example
+
+At home:
+
+```
+Phone
+Laptop
+TV
+Printer
+
+↓
+
+WiFi Router
+
+↓
+
+Internet
+```
+
+Without a router, none of these devices could access the Internet.
+
+---
+
+# Switch
+
+A switch connects devices **inside the same network**.
+
+Example:
+
+```
+Computer 1
+Computer 2
+Computer 3
+
+↓
+
+Switch
+```
+
+Unlike a hub, a switch sends data **only to the intended device**, making it faster and more secure.
+
+---
+
+# Router vs Switch
+
+| Feature  | Router             | Switch       |
+| -------- | ------------------ | ------------ |
+| Connects | Different Networks | Same Network |
+| Uses     | IP Address         | MAC Address  |
+| Layer    | Layer 3            | Layer 2      |
+| Example  | Internet Access    | Office LAN   |
+
+---
+
+# 🟡 Level 2 – How It Works
+
+## Packet Journey
+
+```
+Laptop
+
+↓
+
+Switch
+
+↓
+
+Router
+
+↓
+
+ISP
+
+↓
+
+Internet
+
+↓
+
+Google
+
+↓
+
+Response
+
+↓
+
+Router
+
+↓
+
+Switch
+
+↓
+
+Laptop
+```
+
+Each device has a specific role in delivering your data.
+
+---
+
+# VLAN (Virtual LAN)
+
+Suppose your college has:
+
+* Students
+* Faculty
+* Administration
+
+Should all devices be on one network?
+
+❌ No.
+
+Instead:
+
+```
+Students VLAN
+
+Faculty VLAN
+
+Admin VLAN
+```
+
+Each VLAN is isolated, improving:
+
+* Security
+* Performance
+* Management
+
+---
+
+# Why Companies Use VLANs
+
+Example:
+
+Finance Department
+
+```
+HR
+Finance
+Development
+Security
+```
+
+Each department has its own VLAN.
+
+This prevents unnecessary access between departments.
+
+---
+
+# NAT (Network Address Translation)
+
+Suppose your home has:
+
+* Laptop
+* Mobile
+* TV
+* Tablet
+
+All use one public IP.
+
+How?
+
+```
+Private IPs
+
+↓
+
+Router (NAT)
+
+↓
+
+Public IP
+
+↓
+
+Internet
+```
+
+NAT translates private addresses into a public address.
+
+---
+
+# PAT (Port Address Translation)
+
+PAT is an extension of NAT.
+
+It allows many devices to share one public IP by using different port numbers.
+
+Example:
+
+```
+Laptop
+
+↓
+
+Public IP:203.x.x.x Port:4500
+
+Phone
+
+↓
+
+Public IP:203.x.x.x Port:5600
+```
+
+---
+
+# Firewall
+
+A firewall filters network traffic based on predefined rules.
+
+Think of it as a security guard checking everyone entering a building.
+
+Example Rules:
+
+* Allow HTTPS (Port 443)
+* Allow DNS (Port 53)
+* Block Telnet (Port 23)
+
+---
+
+# Types of Firewalls
+
+### Packet Filtering Firewall
+
+Checks:
+
+* IP Address
+* Port
+* Protocol
+
+---
+
+### Stateful Firewall
+
+Keeps track of active connections and only allows packets that belong to established sessions.
+
+---
+
+### Next-Generation Firewall (NGFW)
+
+Can inspect:
+
+* Applications
+* Users
+* Malware
+* Intrusion attempts
+
+Used by large organizations.
+
+---
+
+# ACL (Access Control List)
+
+ACLs are rules that tell routers and firewalls what traffic is allowed or denied.
+
+Example:
+
+```
+Allow
+
+192.168.1.0/24
+
+↓
+
+Internet
+
+Block
+
+10.0.0.5
+
+↓
+
+Internet
+```
+
+---
+
+# 🔵 VPN (Virtual Private Network)
+
+Imagine traveling through a secret tunnel instead of an open highway.
+
+Without VPN:
+
+```
+You
+
+↓
+
+Internet
+
+↓
+
+Website
+```
+
+With VPN:
+
+```
+You
+
+↓
+
+Encrypted Tunnel
+
+↓
+
+VPN Server
+
+↓
+
+Website
+```
+
+Benefits:
+
+* Encrypts your traffic.
+* Protects data on public Wi-Fi.
+* Hides your public IP from websites.
+
+---
+
+# Proxy Server
+
+A proxy acts as an intermediary.
+
+```
+You
+
+↓
+
+Proxy
+
+↓
+
+Website
+```
+
+Common uses:
+
+* Web filtering
+* Caching
+* Hiding client details
+
+### VPN vs Proxy
+
+| VPN                  | Proxy                                 |
+| -------------------- | ------------------------------------- |
+| Encrypts all traffic | Usually handles specific applications |
+| Better privacy       | Often used for content filtering      |
+| More secure          | Less comprehensive protection         |
+
+---
+
+# 🌍 Real-World Enterprise Network
+
+```
+Internet
+
+↓
+
+Firewall
+
+↓
+
+DMZ (Public Servers)
+
+↓
+
+Internal Firewall
+
+↓
+
+Core Router
+
+↓
+
+Switches
+
+↓
+
+Employee PCs
+
+↓
+
+Servers
+
+↓
+
+Database
+
+↓
+
+Backup Server
+```
+
+### DMZ (Demilitarized Zone)
+
+Public-facing services like:
+
+* Web Server
+* Email Server
+
+are placed in a DMZ so they are separated from the internal network.
+
+If a web server is compromised, attackers still face additional barriers before reaching sensitive internal systems.
+
+---
+
+# 🔴 Level 3 – Advanced Concepts
+
+## Zero Trust
+
+Modern organizations increasingly follow **Zero Trust**:
+
+> **"Never trust, always verify."**
+
+Key principles:
+
+* Verify every user and device.
+* Grant the minimum access required.
+* Continuously monitor activity.
+
+---
+
+## Network Segmentation
+
+Instead of one large network:
+
+```
+HR
+
+Finance
+
+Engineering
+
+SOC
+
+Guest Wi-Fi
+```
+
+Each segment has separate security controls, limiting the spread of attacks.
+
+---
+
+## Defense in Depth
+
+Use multiple layers of security:
+
+```
+Firewall
+
+↓
+
+IDS/IPS
+
+↓
+
+Antivirus
+
+↓
+
+Endpoint Detection
+
+↓
+
+MFA
+
+↓
+
+Backups
+
+↓
+
+Monitoring
+```
+
+If one layer fails, others continue to protect the system.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Thinking a firewall alone is enough.
+
+❌ Believing a VPN makes you anonymous.
+
+❌ Confusing NAT with encryption (NAT changes addresses; it does **not** encrypt data).
+
+❌ Putting all devices in one network without segmentation.
+
+---
+
+# 🛠 Hands-on Lab
+
+### Task 1: View the Routing Table
+
+**Windows**
+
+```cmd
+route print
+```
+
+**Linux**
+
+```bash
+ip route
+```
+
+Observe:
+
+* Default route
+* Gateway
+* Network routes
+
+---
+
+### Task 2: View the ARP Table
+
+```cmd
+arp -a
+```
+
+Notice how IP addresses map to MAC addresses.
+
+---
+
+### Task 3: Test Your Firewall
+
+* Open Windows Defender Firewall (or your Linux firewall tool).
+* View inbound and outbound rules.
+* Do **not** disable the firewall—just explore its configuration.
+
+---
+
+### Task 4: Identify Your Default Gateway
+
+Use:
+
+```cmd
+ipconfig
+```
+
+or
+
+```bash
+ip addr
+```
+
+Record:
+
+* Default Gateway
+* IPv4 Address
+* Subnet Mask
+
+---
+
+# 💻 Mini Project
+
+## Design a Secure Office Network
+
+Draw a diagram like this:
+
+```
+Internet
+
+↓
+
+Firewall
+
+↓
+
+Router
+
+↓
+
+Core Switch
+
+↓
+
+HR VLAN
+
+Finance VLAN
+
+Engineering VLAN
+
+Guest Wi-Fi
+
+↓
+
+Servers
+
+↓
+
+Database
+```
+
+Then explain:
+
+1. Why did you create separate VLANs?
+2. Where would you place the firewall?
+3. Why should the database not be directly accessible from the Internet?
+
+This is excellent practice for interviews.
+
+---
+
+# 💼 Interview Questions
+
+1. What is the difference between a router and a switch?
+2. Why do organizations use VLANs?
+3. Explain NAT and PAT.
+4. What is a firewall?
+5. What is an ACL?
+6. What is a VPN?
+7. VPN vs Proxy?
+8. What is a DMZ?
+9. What is Zero Trust?
+10. What is Defense in Depth?
+
+---
+
+# 📝 Quiz (10 MCQs)
+
+### Q1. Which device connects different networks?
+
+A. Switch
+B. Router
+C. Hub
+D. Bridge
+
+### Q2. Which device primarily uses MAC addresses?
+
+A. Router
+B. Switch
+C. Firewall
+D. Modem
+
+### Q3. NAT mainly:
+
+A. Encrypts data
+B. Translates IP addresses
+C. Filters packets
+D. Detects malware
+
+### Q4. PAT allows:
+
+A. Multiple public IPs per device
+B. Multiple devices to share one public IP using different ports
+C. Encryption of traffic
+D. Faster routing
+
+### Q5. A firewall is mainly used to:
+
+A. Store data
+B. Filter network traffic
+C. Increase RAM
+D. Compile code
+
+### Q6. VLANs help improve:
+
+A. Screen brightness
+B. Network segmentation and security
+C. CPU performance
+D. Internet speed only
+
+### Q7. A VPN primarily provides:
+
+A. File compression
+B. An encrypted connection
+C. Faster CPU performance
+D. Automatic backups
+
+### Q8. Which network area is commonly used for public-facing servers?
+
+A. LAN
+B. VLAN
+C. DMZ
+D. PAN
+
+### Q9. Zero Trust means:
+
+A. Trust all internal users
+B. Never trust, always verify
+C. Disable firewalls
+D. Allow all traffic
+
+### Q10. Defense in Depth means:
+
+A. Using one powerful firewall
+B. Using multiple layers of security controls
+C. Using only antivirus software
+D. Blocking all Internet access
+
+---
+
+# 🏠 Assignment
+
+1. Draw and explain an enterprise network with a DMZ, firewall, router, switches, and VLANs.
+2. Compare **Router vs Switch vs Firewall** in your own words.
+3. Compare **NAT vs PAT**.
+4. Explain **VPN vs Proxy** with examples.
+5. Complete the quiz and justify each correct answer.
+
+---
+
+# 🎯 Industry Challenge (Level 4)
+
+### Scenario
+
+You are a junior **SOC Analyst**.
+
+A company reports that:
+
+* Employees can browse the Internet.
+* Guests are accidentally able to access internal HR systems.
+* The company has only one flat network with no VLANs.
+
+**Your task:**
+
+1. Identify the security risks.
+2. Suggest how VLANs could separate departments.
+3. Explain where to place firewalls.
+4. Recommend how to protect remote employees (e.g., VPN).
+5. Describe how Defense in Depth would improve the company's security.
+
+Write your solution as if you're presenting it to an IT manager.
+
+---
+
+# 📚 Module 3 Complete! 🎉
+
+Congratulations! You have now completed **Networking Fundamentals**, one of the most important foundations in cybersecurity. You now understand:
+
+* Network types
+* OSI & TCP/IP models
+* IP addressing
+* DNS & DHCP
+* TCP & UDP
+* Packet flow
+* Wireshark basics
+* Nmap basics
+* Routing & switching
+* Firewalls
+* VLANs
+* NAT/PAT
+* VPNs
+* Enterprise network design
+
+These concepts will be used repeatedly throughout the rest of the course.
+
+# 🔜 Tomorrow (Day 7)
+
+We begin **Module 4: Cryptography**:
+
+* History of cryptography
+* Plaintext, ciphertext, keys
+* Caesar cipher
+* Symmetric vs. asymmetric encryption
+* Hashing
+* Digital signatures
+* Public Key Infrastructure (PKI)
+* TLS/SSL and HTTPS
+
+This is where you'll learn how modern systems keep data confidential and verify authenticity.
