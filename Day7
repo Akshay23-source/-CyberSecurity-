@@ -1,0 +1,489 @@
+# 🔐 Cybersecurity Bootcamp – Day 7
+
+# Module 4 (Part 1): Introduction to Cryptography
+
+> **Mission:** Today you'll begin one of the most important topics in cybersecurity—**Cryptography**. It protects passwords, online banking, WhatsApp messages, digital payments, and secure websites.
+
+**Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand what cryptography is.
+* ✅ Learn the goals of cryptography.
+* ✅ Understand Plaintext, Ciphertext, Encryption, and Decryption.
+* ✅ Learn Keys and Algorithms.
+* ✅ Understand the history of cryptography.
+* ✅ Perform your first encryption using the Caesar Cipher.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is Cryptography?
+
+**Cryptography** is the science of protecting information by converting it into a secret form so that only authorized people can read it.
+
+### 🏠 Real-Life Analogy
+
+Imagine you write a secret letter to your friend.
+
+Instead of writing:
+
+> **"Meet me at 5 PM."**
+
+You write:
+
+> **"Phhw ph dw 5 SP."**
+
+Anyone who sees it won't understand it unless they know the secret method.
+
+This is cryptography.
+
+---
+
+# Why Do We Need Cryptography?
+
+Without cryptography:
+
+* ❌ Passwords could be stolen.
+* ❌ Bank transactions could be read.
+* ❌ Credit card details could be intercepted.
+* ❌ Private chats would not be private.
+
+With cryptography:
+
+* ✅ Data stays confidential.
+* ✅ Data cannot be easily modified.
+* ✅ The sender can be verified.
+
+---
+
+# Goals of Cryptography
+
+## 1. Confidentiality
+
+Only authorized users can read the data.
+
+**Example:** Your Gmail password.
+
+---
+
+## 2. Integrity
+
+Ensure data has not been changed.
+
+**Example:** A downloaded software installer should not be modified by an attacker.
+
+---
+
+## 3. Authentication
+
+Verify the identity of the sender or receiver.
+
+**Example:** Logging into your bank using your credentials.
+
+---
+
+## 4. Non-Repudiation
+
+A sender cannot later deny sending a message.
+
+**Example:** Digitally signed legal documents.
+
+---
+
+# Important Terms
+
+### Plaintext
+
+Readable information.
+
+Example:
+
+```text
+Cybersecurity is fun
+```
+
+---
+
+### Ciphertext
+
+Encrypted, unreadable information.
+
+Example:
+
+```text
+Fbehuvhfxulwb lv ixq
+```
+
+---
+
+### Encryption
+
+Converting Plaintext → Ciphertext.
+
+---
+
+### Decryption
+
+Converting Ciphertext → Plaintext.
+
+---
+
+### Key
+
+A secret value used during encryption and decryption.
+
+Think of it as the key to a locker.
+
+Without the correct key, the data remains unreadable.
+
+---
+
+# 🟡 Level 2 – How Encryption Works
+
+```text
+Plaintext
+      ↓
+Encryption Algorithm
+      ↓
+Secret Key
+      ↓
+Ciphertext
+      ↓
+Internet
+      ↓
+Secret Key
+      ↓
+Decryption Algorithm
+      ↓
+Plaintext
+```
+
+---
+
+# History of Cryptography
+
+### Ancient Egypt
+
+Simple secret symbols.
+
+---
+
+### Julius Caesar
+
+Created the famous **Caesar Cipher**.
+
+Each letter is shifted by a fixed number.
+
+Example:
+
+Shift = 3
+
+```text
+A → D
+B → E
+C → F
+```
+
+Message:
+
+```text
+HELLO
+```
+
+Encrypted:
+
+```text
+KHOOR
+```
+
+---
+
+# Caesar Cipher Example
+
+Original:
+
+```text
+ATTACK
+```
+
+Shift = 3
+
+Encrypted:
+
+```text
+DWWDFN
+```
+
+Decrypt by shifting back 3 positions.
+
+---
+
+# 🟠 Level 3 – Advanced Concepts
+
+## Is Caesar Cipher Secure Today?
+
+❌ No.
+
+Why?
+
+* Only 25 possible shifts.
+* Easy to break using brute force.
+* Modern computers can crack it almost instantly.
+
+It is still useful for understanding the basic idea of encryption.
+
+---
+
+# Algorithms vs Keys
+
+Many beginners think the algorithm must be secret.
+
+Modern cryptography works differently.
+
+* ✅ The **algorithm** is public.
+* ✅ The **key** is secret.
+
+This principle allows trusted algorithms to be widely tested while security depends on protecting the key.
+
+---
+
+# Real-World Examples
+
+### WhatsApp
+
+Uses strong encryption so only the intended participants can read messages.
+
+---
+
+### Online Banking
+
+Uses encryption to protect your login credentials and transactions.
+
+---
+
+### UPI Payments
+
+Your payment information is encrypted while it travels across the network.
+
+---
+
+# Common Beginner Mistakes
+
+❌ Thinking encryption and hashing are the same.
+
+❌ Believing encrypted data cannot ever be broken (security depends on the algorithm, key strength, and implementation).
+
+❌ Using weak or predictable keys.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Caesar Cipher (Manual)
+
+Encrypt:
+
+```text
+CYBER
+```
+
+using a shift of **3**.
+
+---
+
+Decrypt:
+
+```text
+FBEHU
+```
+
+back to plaintext.
+
+---
+
+## Lab 2 – Python Caesar Cipher
+
+Create a Python program that:
+
+1. Accepts a message.
+2. Accepts a shift value.
+3. Encrypts the message.
+4. Decrypts the message.
+
+---
+
+# 💻 Mini Project
+
+## Caesar Cipher Tool
+
+Features:
+
+* User enters a message.
+* User enters a shift (1–25).
+* Display:
+
+  * Original Message
+  * Encrypted Message
+  * Decrypted Message
+
+⭐ **Portfolio Tip:** Upload this project to GitHub with a clear README explaining how the cipher works.
+
+---
+
+# 💼 Interview Questions
+
+1. What is cryptography?
+2. Why is cryptography important?
+3. What is plaintext?
+4. What is ciphertext?
+5. Difference between encryption and decryption?
+6. What is a cryptographic key?
+7. Explain confidentiality.
+8. Explain integrity.
+9. What is authentication?
+10. Why is the Caesar Cipher insecure today?
+
+---
+
+# 📝 Quiz (10 MCQs)
+
+### Q1. Cryptography is mainly used to:
+
+A. Speed up the CPU
+B. Protect information
+C. Increase RAM
+D. Compress files
+
+### Q2. Readable data is called:
+
+A. Ciphertext
+B. Plaintext
+C. Hash
+D. Packet
+
+### Q3. Encrypted data is called:
+
+A. Plaintext
+B. Ciphertext
+C. Password
+D. MAC Address
+
+### Q4. Encryption converts:
+
+A. Ciphertext → Plaintext
+B. Plaintext → Ciphertext
+C. Binary → Decimal
+D. Hex → Binary
+
+### Q5. Decryption converts:
+
+A. Plaintext → Ciphertext
+B. Ciphertext → Plaintext
+C. Hash → Password
+D. IP → MAC
+
+### Q6. The Caesar Cipher was created by:
+
+A. Alan Turing
+B. Julius Caesar
+C. Tim Berners-Lee
+D. Dennis Ritchie
+
+### Q7. Which property ensures only authorized users can read data?
+
+A. Integrity
+B. Confidentiality
+C. Availability
+D. Authentication
+
+### Q8. A cryptographic key is:
+
+A. A hardware device only
+B. A secret value used in encryption/decryption
+C. An IP address
+D. A network cable
+
+### Q9. Modern cryptography keeps the _____ secret.
+
+A. Algorithm
+B. Key
+C. CPU
+D. Operating System
+
+### Q10. Which of the following is a weakness of the Caesar Cipher?
+
+A. Uses a very small key space
+B. Too fast to encrypt
+C. Requires the Internet
+D. Uses public-key cryptography
+
+---
+
+# 🏠 Assignment
+
+1. Encrypt the following using a Caesar Cipher with a shift of **5**:
+
+   * CYBER
+   * SECURITY
+   * AKSHAY
+
+2. Decrypt:
+
+   * MJQQT
+   * XJHZWNYD
+
+3. Write Python code for the Caesar Cipher.
+
+4. Answer all interview questions.
+
+5. Complete the MCQ quiz.
+
+---
+
+# 🧠 Level 4 Challenge
+
+Imagine you are a security consultant for a company that stores customer passwords.
+
+The manager suggests:
+
+> "Let's encrypt passwords using the Caesar Cipher."
+
+**Your task:**
+
+1. Explain why this is not secure.
+2. Suggest a better approach (we'll study password hashing in upcoming lessons).
+3. Describe the risks if weak encryption is used.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+* **Cryptography** → Protects information.
+* **Plaintext** → Readable data.
+* **Ciphertext** → Encrypted data.
+* **Encryption** → Plaintext → Ciphertext.
+* **Decryption** → Ciphertext → Plaintext.
+* **Key** → Secret value used for encryption/decryption.
+* **CIA Goals** → Confidentiality, Integrity, Authentication, Non-Repudiation.
+
+---
+
+## 🚀 Tomorrow (Day 8)
+
+We'll continue Cryptography with:
+
+* Symmetric Encryption
+* Asymmetric Encryption
+* DES, 3DES, AES
+* RSA
+* Diffie–Hellman Key Exchange
+* Session Keys
+* Real-world examples from HTTPS and secure communication
+
+This is one of the most frequently asked topics in cybersecurity interviews and certifications.
