@@ -1,0 +1,625 @@
+# 🔐 Cybersecurity Bootcamp – Day 9
+
+# Module 4 (Part 3): Hashing, Digital Signatures, PKI, SSL/TLS & Password Security
+
+> **Mission:** Yesterday you learned how data is encrypted. Today you'll learn how systems verify that data hasn't been changed, how websites prove their identity, and why passwords should be **hashed, not encrypted**.
+
+**Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Hashing.
+* ✅ Differentiate Hashing, Encryption, and Encoding.
+* ✅ Learn SHA-256 and MD5.
+* ✅ Understand Digital Signatures.
+* ✅ Learn Public Key Infrastructure (PKI).
+* ✅ Understand SSL/TLS Certificates.
+* ✅ Learn password security best practices.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is Hashing?
+
+Hashing converts data into a **fixed-length value called a hash**.
+
+Unlike encryption:
+
+❌ It **cannot be reversed** to recover the original data.
+
+### 🏠 Analogy
+
+Imagine putting a document into a special machine.
+
+The machine produces a unique fingerprint.
+
+Example:
+
+```text
+Message:
+
+Cybersecurity
+
+↓
+
+Hash
+
+A4C8D9F4...
+```
+
+Even changing one letter creates a completely different hash.
+
+---
+
+# Example
+
+Original:
+
+```text
+Cybersecurity
+```
+
+SHA-256 Hash (example):
+
+```text
+8d969eef6ecad3c29...
+```
+
+Change one letter:
+
+```text
+CyberSecurity
+```
+
+New hash:
+
+```text
+F92A67D81B...
+```
+
+Completely different.
+
+---
+
+# Why Hashing?
+
+Used for:
+
+* Password Storage
+* File Verification
+* Digital Signatures
+* Blockchain
+* Software Downloads
+
+---
+
+# 🟡 Level 2 – How It Works
+
+## Password Storage
+
+Suppose your password is:
+
+```text
+Akshay@123
+```
+
+Bad practice:
+
+```text
+Database
+
+Akshay@123
+```
+
+If hacked:
+
+The attacker immediately knows your password.
+
+---
+
+Correct method:
+
+```text
+Password
+
+↓
+
+SHA-256 (or a password hashing algorithm)
+
+↓
+
+Hash Stored
+```
+
+The system stores the hash, **not the password**.
+
+---
+
+## Login Process
+
+You type:
+
+```text
+Akshay@123
+```
+
+↓
+
+Hash generated
+
+↓
+
+Compared with stored hash
+
+↓
+
+If both hashes match
+
+↓
+
+Login successful
+
+The actual password doesn't need to be stored.
+
+---
+
+# Common Hash Algorithms
+
+## MD5
+
+128-bit hash.
+
+Example:
+
+```text
+5f4dcc3b5aa765d61d8327deb882cf99
+```
+
+❌ No longer considered secure for security-sensitive uses because collisions can be found.
+
+---
+
+## SHA-1
+
+Better than MD5.
+
+❌ Also considered broken for collision resistance and not recommended for new security applications.
+
+---
+
+## SHA-256
+
+Part of the SHA-2 family.
+
+✅ Widely used and considered secure for many applications today.
+
+---
+
+# Encryption vs Hashing
+
+| Encryption               | Hashing                               |
+| ------------------------ | ------------------------------------- |
+| Reversible               | One-way                               |
+| Uses Keys                | No decryption key                     |
+| Protects Confidentiality | Verifies Integrity / Stores Passwords |
+| Example: AES             | Example: SHA-256                      |
+
+---
+
+# Encoding vs Encryption vs Hashing
+
+| Encoding          | Encryption               | Hashing                     |
+| ----------------- | ------------------------ | --------------------------- |
+| Changes format    | Protects confidentiality | Creates a fingerprint       |
+| Easily reversible | Reversible with key      | Not designed to be reversed |
+| Example: Base64   | Example: AES             | Example: SHA-256            |
+
+---
+
+# 🟠 Level 3 – Advanced Concepts
+
+## Password Salting
+
+Imagine two users both choose:
+
+```text
+password123
+```
+
+Without a salt:
+
+Both hashes are identical.
+
+Attackers can exploit this using precomputed lookup tables.
+
+---
+
+With a **random salt**:
+
+User 1:
+
+```text
+password123 + X7m!Q
+```
+
+User 2:
+
+```text
+password123 + p9#Lk
+```
+
+Now their stored hashes are different, even though the passwords are the same.
+
+Modern password hashing algorithms (such as **bcrypt**, **scrypt**, and **Argon2**) automatically incorporate salts.
+
+---
+
+## Rainbow Table Attack
+
+Attackers prepare huge databases of common password hashes.
+
+Salting makes these tables much less effective.
+
+---
+
+# Digital Signatures
+
+Encryption proves confidentiality.
+
+Digital Signatures prove:
+
+* Who sent the message.
+* That the message wasn't modified.
+
+---
+
+## How It Works
+
+Alice wants to send a document.
+
+She:
+
+* Calculates a hash.
+* Signs the hash with her **private key**.
+
+Bob:
+
+* Uses Alice's **public key** to verify the signature.
+* Recalculates the hash.
+* If both match, the document is authentic and unchanged.
+
+---
+
+# Public Key Infrastructure (PKI)
+
+PKI manages:
+
+* Public Keys
+* Private Keys
+* Certificates
+* Certificate Authorities (CAs)
+
+---
+
+## Certificate Authority (CA)
+
+A CA is a trusted organization that issues digital certificates.
+
+Examples include organizations that browsers trust to verify website identities.
+
+---
+
+# SSL/TLS Certificates
+
+When you visit:
+
+```text
+https://amazon.in
+```
+
+Your browser:
+
+1. Receives the website's certificate.
+2. Verifies it against trusted CAs.
+3. Establishes a secure encrypted connection (TLS).
+
+If the certificate is invalid or expired, browsers warn you.
+
+---
+
+# 🌍 Real-World Example
+
+When downloading software:
+
+Example:
+
+```text
+ubuntu.iso
+```
+
+The website often provides a SHA-256 checksum.
+
+You compute the file's SHA-256 hash after downloading.
+
+If the hashes match:
+
+✅ File is intact.
+
+If not:
+
+❌ The file may be corrupted or tampered with.
+
+---
+
+# Common Beginner Mistakes
+
+❌ Encrypting passwords instead of hashing them.
+
+❌ Using MD5 for password storage.
+
+❌ Assuming Base64 is encryption (it's encoding).
+
+❌ Using fast general-purpose hashes for passwords instead of dedicated password hashing algorithms like bcrypt or Argon2.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Generate a SHA-256 Hash (Python)
+
+```python
+import hashlib
+
+text = "Cybersecurity"
+
+hash_value = hashlib.sha256(text.encode()).hexdigest()
+
+print(hash_value)
+```
+
+Run it.
+
+Now change one character.
+
+Observe how completely the hash changes.
+
+---
+
+## Lab 2 – Verify a Download
+
+Find a software download that provides an official SHA-256 checksum.
+
+Compute the file's SHA-256 hash on your computer and compare it with the official value.
+
+If they match:
+
+The file is likely intact.
+
+---
+
+## Lab 3 – Explore a Certificate
+
+Open:
+
+```text
+https://www.google.com
+```
+
+Click the padlock icon.
+
+Explore:
+
+* Certificate validity
+* Issuer
+* Expiry date
+
+---
+
+# 💻 Mini Project
+
+## Password Hash Generator
+
+Build a Python program that:
+
+* Accepts a password.
+* Computes its SHA-256 hash.
+* Displays the hash.
+
+**Challenge:** Extend it to compare an entered password with a previously stored hash.
+
+> **Note:** In production systems, use **bcrypt** or **Argon2** for password storage rather than SHA-256.
+
+---
+
+# 💼 Interview Questions
+
+1. What is hashing?
+2. Difference between hashing and encryption?
+3. Difference between encoding and encryption?
+4. What is SHA-256?
+5. Why is MD5 not recommended?
+6. What is a digital signature?
+7. What is PKI?
+8. What is a Certificate Authority?
+9. Why are passwords hashed instead of encrypted?
+10. What is password salting?
+
+---
+
+# 📝 Quiz (10 MCQs)
+
+### Q1. Hashing is:
+
+A. Reversible
+B. One-way
+C. Encryption
+D. Compression
+
+---
+
+### Q2. Which algorithm is considered unsuitable for modern password storage?
+
+A. SHA-256
+B. bcrypt
+C. MD5
+D. Argon2
+
+---
+
+### Q3. Which is mainly used to verify data integrity?
+
+A. AES
+B. SHA-256
+C. RSA
+D. DES
+
+---
+
+### Q4. Passwords should ideally be stored using:
+
+A. Plaintext
+B. AES only
+C. bcrypt or Argon2
+D. Base64
+
+---
+
+### Q5. Digital signatures provide:
+
+A. Compression
+B. Authentication and Integrity
+C. Video Streaming
+D. Routing
+
+---
+
+### Q6. PKI stands for:
+
+A. Private Key Infrastructure
+B. Public Key Infrastructure
+C. Packet Key Integration
+D. Protected Kernel Interface
+
+---
+
+### Q7. A Certificate Authority:
+
+A. Assigns IP addresses
+B. Issues trusted digital certificates
+C. Encrypts Wi-Fi
+D. Creates passwords
+
+---
+
+### Q8. Which is **encoding**, not encryption?
+
+A. AES
+B. RSA
+C. Base64
+D. SHA-256
+
+---
+
+### Q9. Salting passwords mainly helps defend against:
+
+A. SQL Injection
+B. Rainbow Table Attacks
+C. DDoS Attacks
+D. ARP Spoofing
+
+---
+
+### Q10. HTTPS relies on:
+
+A. Digital Certificates
+B. Plaintext Passwords
+C. FTP
+D. Telnet
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare **Hashing vs Encryption vs Encoding**.
+2. Explain why passwords should be hashed.
+3. Research **bcrypt** and **Argon2**.
+4. Explain why digital signatures are important.
+
+### Practical
+
+* Write the Password Hash Generator in Python.
+* Generate SHA-256 hashes for:
+
+  * `Cybersecurity`
+  * `Akshay123`
+  * `FinalYear2026`
+
+Record and compare the outputs.
+
+---
+
+# 🧠 Level 4 – Real-World Challenge
+
+### Scenario
+
+You're a cybersecurity consultant.
+
+A company stores customer passwords in **plain text**.
+
+**Questions:**
+
+1. What are the risks?
+2. How would you redesign the authentication system?
+3. Which password hashing algorithm would you recommend?
+4. Should passwords ever be decrypted? Why or why not?
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept               | Key Point                                       |
+| --------------------- | ----------------------------------------------- |
+| Hashing               | One-way fingerprint of data                     |
+| SHA-256               | Secure hashing algorithm                        |
+| MD5                   | Legacy, not suitable for security-sensitive use |
+| Digital Signature     | Verifies identity and integrity                 |
+| PKI                   | Trust framework for certificates                |
+| Certificate Authority | Issues trusted certificates                     |
+| Salt                  | Random value added before password hashing      |
+| bcrypt / Argon2       | Recommended password hashing algorithms         |
+
+---
+
+# 📊 Progress Tracker
+
+✅ Module 1 – Introduction to Cybersecurity
+✅ Module 2 – Computer & Internet Fundamentals
+✅ Module 3 – Networking Fundamentals
+✅ Module 4 – Cryptography (Parts 1–3)
+
+**Course Progress:** **9/50 Days (18%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 10)
+
+We'll complete the **Cryptography** module with:
+
+* Digital Certificates in depth
+* SSL vs TLS
+* TLS Handshake (step by step)
+* Public Key Pinning
+* Common cryptographic attacks
+* Brute Force
+* Dictionary Attacks
+* Man-in-the-Middle (MITM)
+* Cryptography best practices
+
+We'll also finish with a **cryptography case study** and your first **comprehensive module revision test** to reinforce everything you've learned so far.
