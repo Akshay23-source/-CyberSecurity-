@@ -1,0 +1,709 @@
+# 🔐 Cybersecurity Bootcamp – Day 10
+
+# Module 4 (Part 4 – Final): SSL/TLS, Digital Certificates, HTTPS, MITM Attacks & Cryptography Best Practices
+
+> **Mission:** Today you'll complete the **Cryptography Module**. You'll understand **how HTTPS secures websites**, **how browsers trust websites**, and **how attackers try to break secure communication**.
+
+**Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand SSL and TLS.
+* ✅ Learn how HTTPS works.
+* ✅ Understand Digital Certificates.
+* ✅ Learn the TLS Handshake.
+* ✅ Understand Certificate Authorities (CAs).
+* ✅ Learn about Man-in-the-Middle (MITM) attacks.
+* ✅ Learn cryptography best practices.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## Imagine Online Banking
+
+You visit:
+
+```text
+https://bank.com
+```
+
+How do you know:
+
+* It is the **real bank**?
+* No hacker is reading your password?
+* Your money transfer is safe?
+
+The answer is:
+
+* **TLS**
+* **Digital Certificates**
+* **Certificate Authorities (CAs)**
+
+---
+
+# What is SSL?
+
+SSL = **Secure Sockets Layer**
+
+It was the original protocol used to secure internet communication.
+
+Today:
+
+❌ SSL is obsolete.
+
+Modern websites use **TLS (Transport Layer Security)** instead.
+
+However, people still commonly say "SSL certificate" even though most sites actually use TLS.
+
+---
+
+# What is TLS?
+
+TLS encrypts data sent between:
+
+```text
+Your Browser
+
+↓
+
+Internet
+
+↓
+
+Website Server
+```
+
+Without TLS:
+
+Anyone intercepting the traffic may be able to read sensitive information if no other protections exist.
+
+With TLS:
+
+The intercepted traffic appears encrypted and unreadable without the session keys.
+
+---
+
+# What is HTTPS?
+
+HTTP = Normal communication
+
+HTTPS = HTTP + TLS encryption
+
+Example:
+
+```text
+http://example.com
+```
+
+❌ Not encrypted
+
+---
+
+```text
+https://example.com
+```
+
+✅ Encrypted
+
+Always prefer HTTPS for sensitive communication.
+
+---
+
+# 🟡 Level 2 – How HTTPS Works
+
+Suppose you open:
+
+```text
+https://google.com
+```
+
+The simplified process is:
+
+```text
+Browser
+
+↓
+
+Requests Website
+
+↓
+
+Server Sends Certificate
+
+↓
+
+Browser Verifies Certificate
+
+↓
+
+TLS Handshake
+
+↓
+
+Session Key Created
+
+↓
+
+Encrypted Communication Begins
+```
+
+---
+
+# Digital Certificate
+
+Think of a digital certificate like a passport.
+
+It proves:
+
+* Website identity
+* Domain ownership
+* Public Key
+* Issuer (Certificate Authority)
+* Validity period
+
+Example:
+
+```text
+Website:
+google.com
+
+Issued By:
+Trusted CA
+
+Valid Until:
+2027
+```
+
+---
+
+# Certificate Authority (CA)
+
+A Certificate Authority is a trusted organization that verifies website identities and issues certificates.
+
+Browsers come with a list of trusted CAs.
+
+If a website presents a certificate signed by a trusted CA, the browser can verify its authenticity.
+
+---
+
+# The TLS Handshake (Simplified)
+
+```text
+Browser                     Server
+
+Hello  -------------------->
+
+         <------------------ Hello + Certificate
+
+Verify Certificate
+
+Exchange Key Material
+
+Secure Session Established
+
+Encrypted Communication Begins
+```
+
+**What happens?**
+
+1. Browser says hello.
+2. Server sends its certificate.
+3. Browser verifies the certificate.
+4. Both establish shared encryption keys.
+5. Secure communication begins.
+
+---
+
+# 🔵 Level 3 – Advanced Concepts
+
+# Certificate Validation
+
+Your browser checks:
+
+* Is the certificate expired?
+* Is it issued by a trusted CA?
+* Does the certificate match the domain name?
+* Has it been revoked?
+
+If any of these checks fail, you'll usually see a browser warning.
+
+---
+
+# Public Key Pinning
+
+Some applications remember or expect a specific public key for a server.
+
+This can help detect certain attacks if a different key is presented.
+
+> Note: Traditional HTTP Public Key Pinning (HPKP) is no longer recommended for browsers due to deployment risks, but the underlying concept of trusting expected keys is still important in some environments.
+
+---
+
+# Forward Secrecy
+
+Modern TLS commonly uses ephemeral key exchange.
+
+Even if the server's long-term private key is compromised later,
+
+Old encrypted sessions remain protected.
+
+---
+
+# 🌍 Real-World Example
+
+Imagine you buy a laptop online.
+
+Without HTTPS:
+
+A malicious actor on the network could potentially read or alter unencrypted traffic.
+
+With HTTPS:
+
+The payment details are encrypted, helping protect them from interception.
+
+---
+
+# 🔴 Common Cryptographic Attacks
+
+## 1. Brute Force Attack
+
+The attacker tries every possible password until one works.
+
+Example:
+
+```text
+aaaa
+
+aaab
+
+aaac
+
+...
+
+9999
+```
+
+### Prevention
+
+* Long passwords
+* Multi-Factor Authentication (MFA)
+* Account lockout or rate limiting
+
+---
+
+## 2. Dictionary Attack
+
+Instead of trying every combination,
+
+Attackers try common passwords like:
+
+```text
+password
+
+admin
+
+welcome123
+
+12345678
+```
+
+### Prevention
+
+Use long, unique passwords or passphrases.
+
+---
+
+## 3. Rainbow Table Attack
+
+Attackers compare stolen password hashes with precomputed tables.
+
+### Prevention
+
+* Salt passwords
+* Use bcrypt, scrypt, or Argon2
+
+---
+
+## 4. Man-in-the-Middle (MITM)
+
+Imagine this conversation:
+
+```text
+You
+
+↓
+
+Attacker
+
+↓
+
+Bank
+```
+
+You think you're talking to the bank.
+
+The attacker secretly intercepts or relays the communication.
+
+TLS certificate validation helps defend against many MITM attacks.
+
+---
+
+## 5. Replay Attack
+
+The attacker records a legitimate message and tries to send it again later.
+
+Modern secure protocols use techniques like nonces, timestamps, and session management to reduce this risk.
+
+---
+
+# Cryptography Best Practices
+
+✅ Use HTTPS everywhere.
+
+✅ Use modern algorithms like AES and TLS.
+
+✅ Use bcrypt or Argon2 for passwords.
+
+✅ Keep software updated.
+
+✅ Never hard-code secrets into source code.
+
+✅ Protect private keys.
+
+✅ Rotate keys when appropriate.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Inspect a Website Certificate
+
+Visit:
+
+```text
+https://www.microsoft.com
+```
+
+or
+
+```text
+https://www.google.com
+```
+
+Open the certificate details in your browser.
+
+Record:
+
+* Subject
+* Issuer
+* Expiry Date
+
+---
+
+## Lab 2 – HTTPS vs HTTP
+
+Visit:
+
+```text
+http://example.com
+```
+
+Then:
+
+```text
+https://example.com
+```
+
+Observe:
+
+* Lock icon
+* URL changes
+* Browser behavior
+
+---
+
+## Lab 3 – Password Strength
+
+Test several passwords using a password strength checker (offline or a trusted tool).
+
+Examples:
+
+```
+123456
+
+password
+
+Akshay@123
+
+Cyb3r!Secure#2026
+```
+
+Discuss why some are stronger than others.
+
+> Avoid entering your **real** passwords into online tools.
+
+---
+
+# 💻 Mini Project
+
+## Password Security Analyzer (Python)
+
+Build a Python program that checks:
+
+* Minimum length (12+ recommended)
+* Uppercase letters
+* Lowercase letters
+* Numbers
+* Special characters
+
+Output:
+
+```
+Password Strength
+
+Weak
+
+Medium
+
+Strong
+
+Very Strong
+```
+
+**Bonus:**
+
+Provide suggestions to improve weak passwords.
+
+---
+
+# 💼 Interview Questions
+
+1. What is SSL?
+2. What is TLS?
+3. Difference between HTTP and HTTPS?
+4. What is a Digital Certificate?
+5. What is a Certificate Authority?
+6. Explain the TLS Handshake.
+7. What is a Man-in-the-Middle attack?
+8. What is Forward Secrecy?
+9. Why should passwords be salted?
+10. Why should private keys never be shared?
+
+---
+
+# 📝 Quiz (10 MCQs)
+
+### Q1. HTTPS is:
+
+A. HTTP + TLS
+
+B. HTTP + FTP
+
+C. HTTP + SSH
+
+D. HTTP + SMTP
+
+---
+
+### Q2. TLS is mainly used for:
+
+A. Encrypting communication
+
+B. Compressing files
+
+C. Routing packets
+
+D. DNS lookups
+
+---
+
+### Q3. Which protocol replaced SSL?
+
+A. FTP
+
+B. TLS
+
+C. SSH
+
+D. SMTP
+
+---
+
+### Q4. A Digital Certificate proves:
+
+A. CPU speed
+
+B. Website identity
+
+C. RAM size
+
+D. Wi-Fi strength
+
+---
+
+### Q5. Certificate Authorities:
+
+A. Create passwords
+
+B. Issue trusted digital certificates
+
+C. Assign IP addresses
+
+D. Build routers
+
+---
+
+### Q6. Which attack tries every possible password?
+
+A. SQL Injection
+
+B. Brute Force
+
+C. XSS
+
+D. ARP Spoofing
+
+---
+
+### Q7. Which attack uses a list of common passwords?
+
+A. Dictionary Attack
+
+B. Replay Attack
+
+C. SYN Flood
+
+D. Buffer Overflow
+
+---
+
+### Q8. Password salting helps defend against:
+
+A. DDoS
+
+B. Rainbow Table Attacks
+
+C. ARP Spoofing
+
+D. DNS Poisoning
+
+---
+
+### Q9. In a MITM attack, the attacker:
+
+A. Compresses files
+
+B. Secretly intercepts communication
+
+C. Encrypts backups
+
+D. Assigns IP addresses
+
+---
+
+### Q10. Which practice is recommended?
+
+A. Use MD5 for passwords
+
+B. Share private keys with teammates
+
+C. Use HTTPS and modern cryptography
+
+D. Disable certificate validation
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Explain the TLS Handshake step by step.
+2. Draw the architecture of HTTPS.
+3. Compare SSL and TLS.
+4. Explain Brute Force, Dictionary, Rainbow Table, MITM, and Replay attacks.
+5. Write down five cryptography best practices.
+
+---
+
+### Practical
+
+Create the **Password Security Analyzer** in Python and upload it to GitHub with:
+
+* Source code
+* README
+* Sample screenshots
+
+---
+
+# 🧠 Level 4 – Real-World Challenge
+
+### Scenario
+
+You are a cybersecurity engineer for an e-commerce company.
+
+Customers report seeing a browser warning:
+
+> **"Your connection is not private."**
+
+**Your task:**
+
+1. List at least **five possible causes** (e.g., expired certificate, domain mismatch, untrusted CA).
+2. Explain how you would investigate the issue.
+3. Recommend steps to restore secure access.
+4. Describe how you would communicate the issue to customers while it is being resolved.
+
+---
+
+# 📖 Module 4 Revision Cheat Sheet
+
+| Topic             | Key Point                                  |
+| ----------------- | ------------------------------------------ |
+| Encryption        | Protects confidentiality                   |
+| Hashing           | One-way integrity check                    |
+| AES               | Fast symmetric encryption                  |
+| RSA               | Public/private key cryptography            |
+| Diffie-Hellman    | Secure key exchange                        |
+| TLS               | Secure communication protocol              |
+| HTTPS             | HTTP protected by TLS                      |
+| Certificate       | Proves website identity                    |
+| PKI               | Trust infrastructure                       |
+| Digital Signature | Verifies authenticity and integrity        |
+| Salt              | Random value added before password hashing |
+| bcrypt / Argon2   | Recommended for password storage           |
+
+---
+
+# 📊 Progress Tracker
+
+## ✅ Modules Completed
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography (Complete)
+
+**Overall Progress:** **10/50 Days (20%)**
+
+---
+
+# 🎯 Tomorrow (Day 11)
+
+We'll begin **Module 5: Malware & Cyber Threats**, including:
+
+* What is Malware?
+* Virus, Worm, Trojan
+* Ransomware
+* Spyware
+* Rootkits
+* Botnets
+* Keyloggers
+* Real-world malware case studies (e.g., WannaCry and Stuxnet)
+* Malware life cycle
+* Safe malware analysis concepts
+
+This marks the transition from foundational concepts into understanding real cyberattacks and how defenders detect and respond to them.
