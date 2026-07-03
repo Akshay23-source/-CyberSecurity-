@@ -1,0 +1,755 @@
+# 🔐 Cybersecurity Bootcamp – Day 11
+
+# Module 5 (Part 1): Introduction to Malware & Cyber Threats
+
+> **Mission:** Today you'll begin learning about one of the most dangerous aspects of cybersecurity—**malware**. By understanding how malware works, you'll learn how to detect, prevent, and respond to cyberattacks.
+
+> **Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today, you will:
+
+* ✅ Understand what malware is.
+* ✅ Learn the malware life cycle.
+* ✅ Differentiate Virus, Worm, Trojan, Ransomware, Spyware, Rootkits, and Adware.
+* ✅ Understand infection methods.
+* ✅ Learn basic malware detection techniques.
+* ✅ Analyze famous malware attacks.
+* ✅ Think like a SOC Analyst.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Malware?
+
+**Malware** stands for **Malicious Software**.
+
+It is any software intentionally created to:
+
+* Damage computers
+* Steal information
+* Spy on users
+* Encrypt files for ransom
+* Disrupt services
+* Give attackers unauthorized access
+
+---
+
+## 🏠 Real-Life Analogy
+
+Imagine your house.
+
+A burglar can:
+
+* Steal valuables
+* Secretly install cameras
+* Lock you out
+* Destroy furniture
+
+Malware behaves in similar ways inside a computer.
+
+---
+
+# Common Types of Malware
+
+| Malware    | Main Purpose                                             |
+| ---------- | -------------------------------------------------------- |
+| Virus      | Infects files and spreads when executed                  |
+| Worm       | Self-replicates across networks                          |
+| Trojan     | Disguises itself as legitimate software                  |
+| Ransomware | Encrypts files and demands payment                       |
+| Spyware    | Secretly collects user information                       |
+| Rootkit    | Hides malicious activity and maintains privileged access |
+| Adware     | Displays unwanted advertisements                         |
+
+---
+
+# How Malware Enters a Computer
+
+Common infection methods:
+
+📧 Phishing Emails
+
+⬇️ Fake Software Downloads
+
+💾 Infected USB Drives
+
+🌐 Malicious Websites
+
+📱 Fake Mobile Apps
+
+📂 Pirated Software
+
+⚠️ Unpatched Software Vulnerabilities
+
+---
+
+# 🟡 Level 2 – How Malware Works
+
+## Malware Life Cycle
+
+```text
+Creation
+     ↓
+Delivery
+     ↓
+Execution
+     ↓
+Installation
+     ↓
+Persistence
+     ↓
+Communication
+     ↓
+Payload
+```
+
+Let's understand each stage.
+
+---
+
+## Stage 1 – Creation
+
+An attacker writes malware using programming languages such as C, C++, Rust, or Python.
+
+Examples:
+
+* Banking trojans
+* Information stealers
+* Ransomware
+
+---
+
+## Stage 2 – Delivery
+
+The malware reaches the victim.
+
+Examples:
+
+* Email attachment
+* Fake invoice
+* USB drive
+* Fake software update
+* Compromised website
+
+---
+
+## Stage 3 – Execution
+
+The victim opens the infected file.
+
+Example:
+
+```text
+Invoice.pdf.exe
+```
+
+It may appear to be a PDF but is actually an executable program.
+
+---
+
+## Stage 4 – Installation
+
+The malware installs itself.
+
+It may:
+
+* Copy files
+* Create startup entries
+* Create scheduled tasks
+* Modify system settings
+
+---
+
+## Stage 5 – Persistence
+
+Persistence allows malware to survive reboots.
+
+Examples:
+
+* Registry Run keys (Windows)
+* Startup folders
+* Scheduled tasks
+* Services
+
+---
+
+## Stage 6 – Communication
+
+Many malware families contact a **Command and Control (C2)** server.
+
+```text
+Victim Computer
+
+↓
+
+Internet
+
+↓
+
+Command & Control Server
+
+↓
+
+Attacker
+```
+
+The attacker may send:
+
+* New commands
+* Updated malware
+* Instructions to steal files
+
+---
+
+## Stage 7 – Payload
+
+The malware performs its objective.
+
+Examples:
+
+* Encrypt files
+* Delete files
+* Capture passwords
+* Steal browser cookies
+* Record keystrokes
+
+---
+
+# 🟠 Level 3 – Malware Types in Detail
+
+# 1. Virus
+
+A virus needs a host file.
+
+Example:
+
+```text
+report.doc
+
+↓
+
+Virus attaches
+
+↓
+
+User opens file
+
+↓
+
+Virus executes
+```
+
+Characteristics:
+
+* Requires user action
+* Infects files
+* Spreads to other files
+
+---
+
+# 2. Worm
+
+A worm spreads automatically.
+
+Example:
+
+```text
+Computer A
+
+↓
+
+Computer B
+
+↓
+
+Computer C
+
+↓
+
+Entire Network
+```
+
+No user action is required once it finds vulnerable systems.
+
+---
+
+# 3. Trojan
+
+A Trojan pretends to be legitimate software.
+
+Example:
+
+```text
+Free Game.exe
+
+↓
+
+Actually Malware
+```
+
+Users install it voluntarily because it appears trustworthy.
+
+---
+
+# 4. Ransomware
+
+Encrypts files and demands payment.
+
+Example:
+
+```text
+Photos
+
+↓
+
+Encrypted
+
+↓
+
+"Pay $500"
+```
+
+Important:
+**Paying a ransom does not guarantee that your files will be recovered.**
+
+---
+
+# 5. Spyware
+
+Secretly collects information.
+
+Targets may include:
+
+* Browsing history
+* Credentials
+* Screenshots
+* Clipboard data
+
+---
+
+# 6. Rootkit
+
+A rootkit attempts to hide malware or unauthorized activity from the operating system and security software.
+
+Rootkits can make detection much more difficult.
+
+---
+
+# 7. Adware
+
+Shows unwanted advertisements.
+
+Often bundled with free software.
+
+Some adware also tracks user behavior.
+
+---
+
+# 🌍 Real-World Case Study
+
+## WannaCry (2017)
+
+One of the most famous ransomware attacks.
+
+### What happened?
+
+* Exploited a Windows vulnerability.
+* Spread rapidly like a worm.
+* Encrypted files.
+* Demanded Bitcoin payments.
+
+### Impact
+
+* Hospitals
+* Banks
+* Universities
+* Businesses
+
+Thousands of organizations were affected worldwide.
+
+### Lesson
+
+Applying security updates and patches promptly is essential.
+
+---
+
+# Common Signs of Malware
+
+Your computer suddenly:
+
+🐢 Becomes very slow
+
+📢 Shows many pop-ups
+
+🌐 Uses excessive network bandwidth
+
+💾 Creates unknown files
+
+🖱️ Mouse behaves strangely
+
+📁 Files disappear or become encrypted
+
+🔋 High CPU usage even when idle
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Downloading cracked software.
+
+❌ Opening unknown email attachments.
+
+❌ Ignoring software updates.
+
+❌ Disabling antivirus protection.
+
+❌ Reusing passwords everywhere.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Windows Security
+
+Open:
+
+```
+Windows Security
+```
+
+Explore:
+
+* Virus & Threat Protection
+* Firewall
+* Protection History
+* Security Intelligence Updates
+
+Do not disable any protection.
+
+---
+
+## Lab 2 – Task Manager
+
+Open Task Manager.
+
+Observe:
+
+* Running processes
+* CPU usage
+* Memory usage
+
+Think:
+**Do you recognize every process?**
+
+---
+
+## Lab 3 – Startup Programs
+
+Windows:
+
+```
+Task Manager
+
+↓
+
+Startup Apps
+```
+
+Observe which applications launch automatically.
+
+---
+
+## Lab 4 – VirusTotal (Safe Analysis)
+
+Visit the VirusTotal website.
+
+Upload **only a harmless file you created yourself** (such as a text file) or search for a known file hash.
+
+Observe:
+
+* Detection results
+* File metadata
+
+This demonstrates how analysts inspect files without executing them.
+
+---
+
+# 💻 Mini Project
+
+## Malware Research Report
+
+Choose **one** malware family:
+
+* WannaCry
+* Stuxnet
+* NotPetya
+* Emotet
+* Zeus
+
+Write a report including:
+
+* Year discovered
+* Target
+* Infection method
+* Impact
+* Prevention
+* Lessons learned
+
+Upload it to your GitHub portfolio.
+
+---
+
+# 💼 Interview Questions
+
+1. What is malware?
+2. Difference between a virus and a worm?
+3. What is a Trojan?
+4. What is ransomware?
+5. What is spyware?
+6. What is a rootkit?
+7. What is persistence?
+8. What is a Command and Control (C2) server?
+9. How can malware infect a system?
+10. How can malware be prevented?
+
+---
+
+# 📝 Quiz (15 MCQs)
+
+### Q1. Malware stands for:
+
+A. Managed Software
+B. Malicious Software
+C. Manual Software
+D. Multiple Software
+
+---
+
+### Q2. Which malware can spread without user action?
+
+A. Virus
+B. Worm
+C. Trojan
+D. Adware
+
+---
+
+### Q3. Which malware disguises itself as legitimate software?
+
+A. Worm
+B. Trojan
+C. Spyware
+D. Rootkit
+
+---
+
+### Q4. Ransomware mainly:
+
+A. Compresses files
+B. Encrypts files and demands payment
+C. Speeds up the computer
+D. Deletes the operating system immediately
+
+---
+
+### Q5. Spyware mainly:
+
+A. Displays ads
+B. Steals information
+C. Updates software
+D. Repairs files
+
+---
+
+### Q6. Rootkits are designed to:
+
+A. Improve performance
+B. Hide malicious activity
+C. Increase storage
+D. Scan networks
+
+---
+
+### Q7. Which is a common malware delivery method?
+
+A. Phishing email
+B. Software update from a trusted vendor
+C. Reading a PDF in a browser from a trusted site
+D. Changing wallpaper
+
+---
+
+### Q8. The purpose of persistence is:
+
+A. Increase RAM
+B. Survive system reboots
+C. Improve graphics
+D. Encrypt Wi-Fi
+
+---
+
+### Q9. C2 stands for:
+
+A. Command and Control
+B. Computer and Cable
+C. Central Computing
+D. Cyber Control
+
+---
+
+### Q10. WannaCry is:
+
+A. Antivirus
+B. Ransomware
+C. Firewall
+D. VPN
+
+---
+
+### Q11. Which is a sign of malware?
+
+A. Unexplained high CPU usage
+B. Faster boot time
+C. Lower electricity bill
+D. Increased monitor brightness
+
+---
+
+### Q12. Which action helps prevent malware?
+
+A. Ignore updates
+B. Install software patches
+C. Disable antivirus
+D. Download cracked software
+
+---
+
+### Q13. Which malware often displays unwanted advertisements?
+
+A. Spyware
+B. Adware
+C. Worm
+D. Virus
+
+---
+
+### Q14. Which malware needs a host file to spread?
+
+A. Worm
+B. Virus
+C. Rootkit
+D. Botnet
+
+---
+
+### Q15. Which of the following is the safest practice?
+
+A. Open every email attachment
+B. Reuse the same password everywhere
+C. Verify downloads and keep software updated
+D. Disable security features to improve performance
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare:
+
+   * Virus vs Worm
+   * Trojan vs Spyware
+   * Ransomware vs Rootkit
+
+2. Draw the Malware Life Cycle.
+
+3. Explain the WannaCry attack in your own words.
+
+---
+
+### Practical
+
+Create a comparison table for all malware types with:
+
+* Purpose
+* Infection Method
+* Symptoms
+* Prevention
+
+---
+
+# 🧩 Level 4 – SOC Analyst Challenge
+
+## Scenario
+
+You are a **Junior SOC Analyst**.
+
+An employee reports:
+
+* Computer has become extremely slow.
+* Files suddenly have a strange extension.
+* A message appears:
+
+> "Your files have been encrypted. Pay 2 Bitcoin."
+
+### Your Tasks
+
+1. Identify the likely malware type.
+2. What are the first **five actions** you should recommend?
+3. Should the computer remain connected to the network? Why?
+4. What evidence would you preserve for an incident response team?
+5. How could the organization reduce the impact of similar attacks in the future?
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Malware     | Main Characteristic                                   |
+| ----------- | ----------------------------------------------------- |
+| Virus       | Needs a host file and user action                     |
+| Worm        | Self-spreads over networks                            |
+| Trojan      | Pretends to be legitimate software                    |
+| Ransomware  | Encrypts files for ransom                             |
+| Spyware     | Secretly collects information                         |
+| Rootkit     | Hides malicious activity                              |
+| Adware      | Displays unwanted advertisements                      |
+| C2 Server   | Allows attackers to communicate with infected systems |
+| Persistence | Helps malware survive reboots                         |
+
+---
+
+# 📊 Progress Tracker
+
+## ✅ Modules Completed
+
+* ✔ Module 1 – Introduction to Cybersecurity
+* ✔ Module 2 – Computer & Internet Fundamentals
+* ✔ Module 3 – Networking Fundamentals
+* ✔ Module 4 – Cryptography
+* ✔ Module 5 (Part 1) – Malware & Cyber Threats
+
+**Overall Progress:** **11/50 Days (22%)** 🎉
+
+---
+
+# 🔜 Tomorrow (Day 12)
+
+We'll continue **Module 5 (Part 2)** with:
+
+* Malware infection techniques
+* Botnets
+* Keyloggers
+* Logic Bombs
+* Fileless Malware
+* Rootkits (advanced)
+* Indicators of Compromise (IOCs)
+* Malware detection methods
+* Static vs. Dynamic Malware Analysis
+* Introduction to YARA rules
+
+This is where you'll begin thinking like a malware analyst and incident responder.
