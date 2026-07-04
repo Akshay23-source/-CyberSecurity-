@@ -1,0 +1,600 @@
+# 🔐 Cybersecurity Bootcamp – Day 12
+
+# Module 5 (Part 2): Botnets, Keyloggers, Fileless Malware, Rootkits & Malware Detection
+
+> **Mission:** Today you'll dive deeper into modern malware. You'll learn how attackers control thousands of infected computers, how keyloggers steal passwords, what fileless malware is, and how security teams detect malware safely.
+
+**Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Botnets and Botmasters.
+* ✅ Learn how Keyloggers work.
+* ✅ Understand Logic Bombs and Fileless Malware.
+* ✅ Study Rootkits in depth.
+* ✅ Learn Indicators of Compromise (IOCs).
+* ✅ Understand Static vs Dynamic Malware Analysis.
+* ✅ Get introduced to YARA rules.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is a Botnet?
+
+A **Botnet** is a network of infected computers controlled by an attacker.
+
+Each infected computer is called a **Bot** or **Zombie**.
+
+### 🏠 Analogy
+
+Imagine a puppeteer controlling hundreds of puppets.
+
+* Puppeteer = Botmaster
+* Puppets = Infected Computers
+
+The puppets obey every command without the owner's knowledge.
+
+---
+
+## How a Botnet Works
+
+```text
+Attacker (Botmaster)
+          │
+          ▼
+Command & Control (C2) Server
+          │
+ ┌────────┼────────┐
+ ▼        ▼        ▼
+PC 1     PC 2     PC 3
+```
+
+The attacker can instruct all infected systems to perform tasks simultaneously.
+
+---
+
+## Common Uses of Botnets
+
+* DDoS attacks
+* Sending spam emails
+* Cryptocurrency mining
+* Credential theft
+
+---
+
+# What is a Keylogger?
+
+A **Keylogger** records keystrokes entered on a keyboard.
+
+Example:
+
+You type:
+
+```text
+Username: akshay
+Password: MySecure@123
+```
+
+A keylogger attempts to record these keystrokes and send them to an attacker.
+
+---
+
+## Types of Keyloggers
+
+### Software Keylogger
+
+Installed as malicious software.
+
+---
+
+### Hardware Keylogger
+
+A physical device connected between the keyboard and computer.
+
+---
+
+# Logic Bomb
+
+A **Logic Bomb** is malicious code that activates only when a specific condition is met.
+
+Example:
+
+> Delete files on **1 January**.
+
+or
+
+> Activate when a particular employee account is removed.
+
+---
+
+# 🟡 Level 2 – How It Works
+
+# Fileless Malware
+
+Unlike traditional malware, fileless malware often runs directly in memory and may use legitimate system tools.
+
+Example:
+
+```text
+Attacker
+     │
+     ▼
+PowerShell
+     │
+     ▼
+Memory
+     │
+     ▼
+Malicious Activity
+```
+
+Because it may leave fewer files on disk, it can be more difficult to detect.
+
+---
+
+# Why Fileless Malware Is Dangerous
+
+* Leaves fewer traces on disk.
+* Uses legitimate tools already present on the system.
+* Can evade some traditional antivirus approaches.
+
+---
+
+# Rootkits (Advanced)
+
+A **Rootkit** is designed to hide malicious activity.
+
+It may hide:
+
+* Files
+* Processes
+* Registry entries
+* Network connections
+
+This makes malware much harder to detect.
+
+---
+
+# Types of Rootkits
+
+### User Mode Rootkit
+
+Targets user-level applications.
+
+---
+
+### Kernel Mode Rootkit
+
+Targets the operating system kernel.
+
+More powerful and more difficult to detect.
+
+---
+
+### Bootkit
+
+Loads during system startup before the operating system is fully running.
+
+---
+
+# 🌍 Real-World Example
+
+Imagine a criminal hides inside a building.
+
+A rootkit is like someone secretly changing the building's security cameras and visitor log so the criminal appears invisible.
+
+---
+
+# 🟠 Level 3 – Malware Detection
+
+## Indicators of Compromise (IOCs)
+
+An IOC is evidence suggesting a system may have been compromised.
+
+Examples:
+
+* Unknown processes
+* Unexpected network connections
+* Suspicious registry changes
+* Unusual login activity
+* Unexpected scheduled tasks
+* Unknown files
+* Communication with suspicious domains
+
+---
+
+## Static Malware Analysis
+
+Analyze malware **without executing it**.
+
+Examples:
+
+* File name
+* File size
+* Hash values
+* Strings
+* Metadata
+
+Advantages:
+
+* Safer
+* Quick first look
+
+Limitations:
+
+* Doesn't show runtime behavior.
+
+---
+
+## Dynamic Malware Analysis
+
+Analyze malware **while it is running in a controlled environment**.
+
+Observe:
+
+* Processes
+* File changes
+* Registry modifications
+* Network connections
+* Memory usage
+
+⚠️ Always perform dynamic analysis in an isolated lab environment, never on your everyday computer.
+
+---
+
+# Static vs Dynamic Analysis
+
+| Static          | Dynamic                      |
+| --------------- | ---------------------------- |
+| No execution    | Executes safely in isolation |
+| Safer           | Reveals runtime behavior     |
+| Faster          | More comprehensive           |
+| Good first step | Good second step             |
+
+---
+
+# YARA Rules
+
+**YARA** helps analysts identify malware based on patterns.
+
+Example (conceptual):
+
+```text
+Rule Name:
+Detect_Malware
+
+Look For:
+- Specific text
+- File patterns
+- Hex signatures
+
+If matched
+
+↓
+
+Flag as suspicious
+```
+
+YARA is widely used by malware analysts and incident responders.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Running unknown programs on the main computer.
+
+❌ Ignoring unusual outbound network traffic.
+
+❌ Assuming antivirus catches every threat.
+
+❌ Downloading tools from unofficial sources.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Task Manager
+
+Open Task Manager.
+
+Look for:
+
+* Unknown processes
+* High CPU usage
+* High memory usage
+
+Research any process you don't recognize before assuming it's malicious.
+
+---
+
+## Lab 2 – Resource Monitor
+
+Open **Resource Monitor** (Windows).
+
+Observe:
+
+* Network activity
+* CPU usage
+* Disk activity
+
+Think:
+
+> Which applications are communicating over the network?
+
+---
+
+## Lab 3 – Process Explorer (Optional)
+
+Download **Process Explorer** from Microsoft's Sysinternals suite (official Microsoft source).
+
+Compare it with Task Manager.
+
+Observe:
+
+* Parent-child process relationships
+* Digital signatures
+* Running processes
+
+---
+
+## Lab 4 – Calculate File Hashes
+
+Windows PowerShell:
+
+```powershell
+Get-FileHash "C:\Path\To\File.exe" -Algorithm SHA256
+```
+
+Compare the hash with an official value if one is available.
+
+---
+
+# 💻 Mini Project
+
+## Malware Detection Checklist
+
+Create a document titled:
+
+**"10 Signs a Computer May Be Infected with Malware"**
+
+Include:
+
+* Symptom
+* Possible Cause
+* How to Investigate
+* Recommended Action
+
+Add it to your GitHub cybersecurity notes repository.
+
+---
+
+# 💼 Interview Questions
+
+1. What is a Botnet?
+2. Who is a Botmaster?
+3. What is a C2 server?
+4. What is a Keylogger?
+5. What is Fileless Malware?
+6. What is a Rootkit?
+7. What is an IOC?
+8. Difference between Static and Dynamic Malware Analysis?
+9. What is a YARA Rule?
+10. Why should malware analysis be performed in an isolated environment?
+
+---
+
+# 📝 Quiz (15 MCQs)
+
+### Q1. A Botnet is:
+
+A. A firewall
+B. A network of infected computers
+C. An antivirus
+D. A router
+
+### Q2. The attacker controlling a botnet is called:
+
+A. Root User
+B. Botmaster
+C. Analyst
+D. Hacker Kernel
+
+### Q3. A Keylogger mainly:
+
+A. Encrypts files
+B. Records keystrokes
+C. Deletes files
+D. Blocks malware
+
+### Q4. Fileless malware mainly runs:
+
+A. Only from USB drives
+B. Primarily in memory using legitimate tools
+C. Only on Linux
+D. Only on cloud servers
+
+### Q5. A Rootkit is designed to:
+
+A. Improve performance
+B. Hide malicious activity
+C. Compress files
+D. Speed up the CPU
+
+### Q6. IOC stands for:
+
+A. Indicator of Compromise
+B. Internet Operation Center
+C. Internal Operating Code
+D. Intelligent Online Connection
+
+### Q7. Static analysis means:
+
+A. Executing malware
+B. Analyzing without execution
+C. Deleting malware
+D. Installing malware
+
+### Q8. Dynamic analysis means:
+
+A. Looking only at file names
+B. Observing malware behavior in an isolated environment
+C. Compressing malware
+D. Encrypting malware
+
+### Q9. YARA is mainly used to:
+
+A. Route packets
+B. Detect malware patterns
+C. Encrypt files
+D. Manage databases
+
+### Q10. Which is an IOC?
+
+A. Unexpected outbound network traffic
+B. A high-resolution monitor
+C. A strong password
+D. A USB keyboard
+
+### Q11. Which malware commonly steals passwords?
+
+A. Keylogger
+B. Firewall
+C. VPN
+D. Router
+
+### Q12. Logic Bombs activate:
+
+A. Immediately after download
+B. When a predefined condition is met
+C. Only on weekends
+D. Only on Linux
+
+### Q13. Which malware type is generally harder to detect because it hides itself?
+
+A. Adware
+B. Rootkit
+C. Worm
+D. Virus
+
+### Q14. Before dynamic analysis, analysts often perform:
+
+A. Static analysis
+B. Formatting the disk
+C. Factory reset
+D. Reinstalling Windows
+
+### Q15. The safest place to analyze malware is:
+
+A. Your everyday laptop
+B. An isolated virtual lab
+C. Your work computer
+D. A public computer
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare:
+
+   * Botnet vs Worm
+   * Keylogger vs Spyware
+   * Static vs Dynamic Analysis
+
+2. Draw the architecture of a Botnet.
+
+3. Explain how a C2 server works.
+
+---
+
+### Practical
+
+Create a table with:
+
+| Malware | Goal | Detection Method | Prevention |
+| ------- | ---- | ---------------- | ---------- |
+
+Include:
+
+* Virus
+* Worm
+* Trojan
+* Ransomware
+* Spyware
+* Rootkit
+* Keylogger
+* Botnet
+
+---
+
+# 🧩 Level 4 – SOC Analyst Challenge
+
+## Scenario
+
+A company reports:
+
+* Employees complain that computers are slow.
+* The firewall logs show repeated connections to an unknown external IP address.
+* Antivirus finds nothing.
+* CPU usage spikes even when users are idle.
+
+### Your Tasks
+
+1. What malware types would you suspect?
+2. What Indicators of Compromise (IOCs) would you look for?
+3. What evidence would you collect before making changes?
+4. Would you disconnect affected systems from the network? Explain your reasoning.
+5. What long-term security improvements would you recommend?
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Topic            | Key Point                                        |
+| ---------------- | ------------------------------------------------ |
+| Botnet           | Network of attacker-controlled infected devices  |
+| Botmaster        | Controls the botnet                              |
+| C2 Server        | Sends commands to infected systems               |
+| Keylogger        | Records keystrokes                               |
+| Fileless Malware | Often runs in memory using legitimate tools      |
+| Rootkit          | Hides malicious activity                         |
+| IOC              | Evidence of compromise                           |
+| Static Analysis  | Analyze without execution                        |
+| Dynamic Analysis | Analyze in an isolated environment while running |
+| YARA             | Pattern-based malware detection                  |
+
+---
+
+# 📊 Progress Tracker
+
+### ✅ Completed
+
+* Module 1 – Introduction to Cybersecurity
+* Module 2 – Computer & Internet Fundamentals
+* Module 3 – Networking Fundamentals
+* Module 4 – Cryptography
+* Module 5 (Part 1–2) – Malware & Cyber Threats
+
+**Overall Progress:** **12/50 Days (24%)** 🎉
+
+---
+
+# 🔜 Tomorrow (Day 13)
+
+We'll continue **Module 5 (Part 3)** with:
+
+* Real-world malware case studies (Stuxnet, NotPetya, Emotet, Zeus)
+* Malware analysis workflow
+* Sandboxing concepts
+* Memory forensics introduction
+* Incident response lifecycle
+* SOC analyst investigation process
+* Malware prevention strategies used by enterprises
+
+This lesson will bring together everything you've learned so far and show how cybersecurity professionals investigate real malware incidents.
