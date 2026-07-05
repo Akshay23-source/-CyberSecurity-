@@ -1,0 +1,656 @@
+# 🔐 Cybersecurity Bootcamp – Day 13
+
+# Module 5 (Part 3): Real-World Malware Analysis, Sandboxing, Memory Forensics & Incident Response
+
+> **Mission:** Today you'll think like a **SOC Analyst** and **Malware Analyst**. You'll learn how cybersecurity professionals safely investigate malware, respond to incidents, and analyze famous cyberattacks.
+
+**Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today, you will:
+
+* ✅ Understand the malware analysis workflow.
+* ✅ Learn about sandboxing.
+* ✅ Get introduced to memory forensics.
+* ✅ Understand the Incident Response (IR) lifecycle.
+* ✅ Analyze famous malware campaigns.
+* ✅ Learn enterprise malware prevention strategies.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is Malware Analysis?
+
+Malware analysis is the process of studying malicious software to understand:
+
+* What it does
+* How it spreads
+* What damage it causes
+* How to detect and remove it
+
+### 🏠 Analogy
+
+Imagine a detective investigating a burglary.
+
+The detective asks:
+
+* How did the thief enter?
+* What was stolen?
+* What evidence was left behind?
+* How can we prevent it from happening again?
+
+A malware analyst asks the same questions about malicious software.
+
+---
+
+# Malware Analysis Workflow
+
+```text
+Suspicious File
+      ↓
+Collect Evidence
+      ↓
+Static Analysis
+      ↓
+Dynamic Analysis
+      ↓
+Behavior Analysis
+      ↓
+Create Detection Rules
+      ↓
+Report Findings
+```
+
+---
+
+# 🟡 Level 2 – How It Works
+
+## Static Analysis
+
+Study the file **without executing it**.
+
+Check:
+
+* File name
+* File size
+* File type
+* SHA-256 hash
+* Strings
+* Metadata
+* Digital signature
+
+### Common Tools
+
+* VirusTotal
+* PEStudio
+* Detect It Easy (DIE)
+* Strings utility
+
+---
+
+## Dynamic Analysis
+
+Run malware **only in an isolated lab environment**.
+
+Observe:
+
+* New files created
+* Registry changes
+* Network connections
+* Processes started
+* Services created
+
+### Common Tools
+
+* Any.Run (cloud sandbox)
+* Cuckoo Sandbox
+* Procmon (Process Monitor)
+* Process Explorer
+* Wireshark
+
+> ⚠️ Never execute suspected malware on your personal computer or production systems.
+
+---
+
+# Sandboxing
+
+A sandbox is a safe, isolated environment used to observe suspicious files.
+
+```text
+Suspicious File
+      ↓
+Sandbox
+      ↓
+Observe Behavior
+      ↓
+Generate Report
+```
+
+Benefits:
+
+* Protects your main system
+* Allows safe observation
+* Helps identify Indicators of Compromise (IOCs)
+
+---
+
+# 🟠 Level 3 – Memory Forensics
+
+## What is Memory Forensics?
+
+Memory forensics is the analysis of a computer's **RAM**.
+
+Why RAM?
+
+Some malware:
+
+* Never writes itself to disk
+* Runs only in memory
+* Disappears after shutdown
+
+Analyzing RAM can reveal:
+
+* Running processes
+* Network connections
+* Encryption keys
+* Injected code
+
+### Popular Tool
+
+* Volatility Framework
+
+---
+
+# Incident Response (IR)
+
+Every organization should have an Incident Response plan.
+
+### The 6 Phases
+
+```text
+Preparation
+      ↓
+Identification
+      ↓
+Containment
+      ↓
+Eradication
+      ↓
+Recovery
+      ↓
+Lessons Learned
+```
+
+---
+
+## 1. Preparation
+
+Before attacks happen:
+
+* Security policies
+* Backups
+* Training
+* Monitoring
+* Incident Response team
+
+---
+
+## 2. Identification
+
+Questions:
+
+* Is this really an incident?
+* Which systems are affected?
+* What type of attack is it?
+
+---
+
+## 3. Containment
+
+Goal:
+
+Stop the attack from spreading.
+
+Examples:
+
+* Isolate infected computers
+* Disable compromised accounts
+* Block malicious IP addresses
+
+---
+
+## 4. Eradication
+
+Remove:
+
+* Malware
+* Backdoors
+* Malicious accounts
+* Persistence mechanisms
+
+---
+
+## 5. Recovery
+
+Restore:
+
+* Systems
+* Applications
+* Backups
+
+Continue monitoring for signs of reinfection.
+
+---
+
+## 6. Lessons Learned
+
+After the incident:
+
+Ask:
+
+* What happened?
+* Why?
+* What worked?
+* What needs improvement?
+
+Document everything.
+
+---
+
+# 🌍 Real-World Case Studies
+
+## 1. Stuxnet
+
+**Target:** Industrial control systems
+
+**Year:** 2010
+
+### Key Facts
+
+* Targeted nuclear centrifuges.
+* Spread using infected USB drives.
+* Highly sophisticated.
+* Demonstrated that malware can cause physical damage.
+
+**Lesson:** Critical infrastructure needs strong cyber defenses.
+
+---
+
+## 2. NotPetya
+
+**Year:** 2017
+
+Initially appeared to be ransomware but caused widespread destruction.
+
+### Impact
+
+* Shipping
+* Healthcare
+* Manufacturing
+
+Billions of dollars in damages worldwide.
+
+**Lesson:** Regular backups and network segmentation are essential.
+
+---
+
+## 3. Emotet
+
+Originally a banking Trojan.
+
+Later evolved into a malware delivery platform.
+
+Used to distribute additional malware such as ransomware.
+
+---
+
+## 4. Zeus
+
+Focused on:
+
+* Banking credentials
+* Online financial fraud
+
+Often spread through phishing emails.
+
+---
+
+# Enterprise Malware Prevention
+
+Large organizations typically use multiple security layers:
+
+```text
+Email Security
+      ↓
+Firewall
+      ↓
+Endpoint Detection & Response (EDR)
+      ↓
+Antivirus
+      ↓
+SIEM Monitoring
+      ↓
+SOC Team
+```
+
+This layered approach is called **Defense in Depth**.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Analyzing malware on your everyday laptop.
+
+❌ Ignoring evidence before removing malware.
+
+❌ Rebooting an infected system before collecting important evidence (which may erase valuable information from memory).
+
+❌ Paying ransomware demands immediately without involving the incident response team.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Windows Event Viewer
+
+Open:
+
+```text
+Event Viewer
+```
+
+Explore:
+
+* Application Logs
+* Security Logs
+* System Logs
+
+Observe:
+
+* Login events
+* Errors
+* Warnings
+
+---
+
+## Lab 2 – Process Explorer
+
+Open **Process Explorer**.
+
+Look for:
+
+* Running processes
+* Parent-child relationships
+* Digital signatures
+
+---
+
+## Lab 3 – Network Connections
+
+Run:
+
+**Windows**
+
+```cmd
+netstat -ano
+```
+
+**Linux**
+
+```bash
+ss -tuln
+```
+
+Observe:
+
+* Listening ports
+* Established connections
+
+---
+
+## Lab 4 – Research IOC
+
+Research one IOC from a recent malware campaign.
+
+Examples:
+
+* Malicious domain
+* Suspicious file hash
+* Malicious IP address
+
+Write down:
+
+* Why it's suspicious
+* How defenders use it
+
+---
+
+# 💻 Mini Project
+
+## Incident Response Report
+
+Scenario:
+
+A company's employee opened a phishing email attachment.
+
+Create a professional report including:
+
+* Incident Summary
+* Systems Affected
+* Indicators of Compromise
+* Containment Actions
+* Eradication Steps
+* Recovery Plan
+* Lessons Learned
+
+This is an excellent portfolio artifact.
+
+---
+
+# 💼 Interview Questions
+
+1. What is malware analysis?
+2. Difference between static and dynamic analysis?
+3. What is sandboxing?
+4. Why is memory forensics important?
+5. What is the Incident Response lifecycle?
+6. What are Indicators of Compromise (IOCs)?
+7. What is Stuxnet?
+8. What is NotPetya?
+9. Why shouldn't malware be analyzed on a personal computer?
+10. What is Defense in Depth?
+
+---
+
+# 📝 Quiz (15 MCQs)
+
+### Q1. Static analysis means:
+
+A. Running malware on your PC
+B. Studying malware without executing it
+C. Deleting malware
+D. Encrypting malware
+
+### Q2. A sandbox is:
+
+A. A firewall
+B. An isolated environment for analysis
+C. A router
+D. A VPN
+
+### Q3. Memory forensics focuses on:
+
+A. SSD only
+B. RAM
+C. CPU
+D. GPU
+
+### Q4. Which tool is widely used for memory forensics?
+
+A. Wireshark
+B. Volatility
+C. Nmap
+D. Burp Suite
+
+### Q5. The first phase of Incident Response is:
+
+A. Recovery
+B. Preparation
+C. Containment
+D. Eradication
+
+### Q6. Which phase isolates affected systems?
+
+A. Preparation
+B. Identification
+C. Containment
+D. Recovery
+
+### Q7. Stuxnet primarily targeted:
+
+A. Social media
+B. Industrial control systems
+C. Banking websites
+D. Mobile phones
+
+### Q8. Emotet originally started as:
+
+A. Antivirus
+B. Banking Trojan
+C. Firewall
+D. VPN
+
+### Q9. Defense in Depth means:
+
+A. Using one security tool
+B. Multiple layers of security controls
+C. Disabling antivirus
+D. Blocking all internet access
+
+### Q10. Which command shows active network connections on Windows?
+
+A. ipconfig
+B. netstat -ano
+C. ping
+D. nslookup
+
+### Q11. Which artifact is an IOC?
+
+A. A suspicious file hash
+B. Monitor resolution
+C. Printer name
+D. Wallpaper
+
+### Q12. Dynamic analysis should be performed:
+
+A. On your main laptop
+B. In an isolated lab
+C. On a production server
+D. On a public computer
+
+### Q13. Which malware commonly spreads additional malware?
+
+A. Emotet
+B. Firewall
+C. Router
+D. Switch
+
+### Q14. Which IR phase removes malware from systems?
+
+A. Recovery
+B. Eradication
+C. Identification
+D. Preparation
+
+### Q15. The final Incident Response phase is:
+
+A. Preparation
+B. Lessons Learned
+C. Identification
+D. Containment
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Draw the **Incident Response Lifecycle**.
+2. Compare **Static vs Dynamic Malware Analysis**.
+3. Research either **Stuxnet** or **NotPetya** and summarize:
+
+   * Target
+   * Infection method
+   * Impact
+   * Lessons learned
+
+### Practical
+
+Create a one-page **Malware Analysis Workflow** diagram for your portfolio.
+
+---
+
+# 🧩 Level 4 – SOC Analyst Challenge
+
+## Scenario
+
+Your SOC receives an alert:
+
+* One employee clicked a phishing email.
+* Their computer begins connecting to an unknown external server every minute.
+* Antivirus reports no detections.
+
+### Your Tasks
+
+1. What are your first five investigation steps?
+2. What IOCs would you collect?
+3. Would you isolate the device? Explain why.
+4. What logs and evidence would you preserve?
+5. Which Incident Response phases would you follow from start to finish?
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Topic             | Key Point                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------- |
+| Static Analysis   | Study malware without running it                                                      |
+| Dynamic Analysis  | Observe malware safely in an isolated environment                                     |
+| Sandbox           | Secure environment for analysis                                                       |
+| Memory Forensics  | Analyze RAM for evidence                                                              |
+| IOC               | Indicator of Compromise                                                               |
+| Incident Response | Preparation → Identification → Containment → Eradication → Recovery → Lessons Learned |
+| Stuxnet           | Targeted industrial control systems                                                   |
+| NotPetya          | Destructive malware causing widespread disruption                                     |
+| Defense in Depth  | Multiple security layers working together                                             |
+
+---
+
+# 📊 Progress Tracker
+
+✅ Module 1 – Introduction to Cybersecurity
+✅ Module 2 – Computer & Internet Fundamentals
+✅ Module 3 – Networking Fundamentals
+✅ Module 4 – Cryptography (Complete)
+✅ Module 5 – Malware & Cyber Threats (Part 1–3)
+
+**Overall Progress:** **13/50 Days (26%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 14)
+
+We'll complete **Module 5: Malware & Cyber Threats** with:
+
+* Advanced malware evasion techniques
+* Endpoint Detection & Response (EDR)
+* Antivirus vs EDR
+* Threat Intelligence
+* MITRE ATT&CK Framework
+* Malware prevention strategies
+* Complete Module 5 revision
+* **50-question assessment** to test everything you've learned about malware and cyber threats.
