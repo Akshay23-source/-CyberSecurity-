@@ -1,0 +1,684 @@
+# 🔐 Cybersecurity Bootcamp – Day 14
+
+# Module 5 (Part 4 – Final): Endpoint Security, EDR, Threat Intelligence & MITRE ATT&CK
+
+> **Mission:** Today you'll complete the **Malware & Cyber Threats** module. You'll learn how modern organizations detect advanced attacks, respond to incidents, and defend endpoints using enterprise-grade security solutions.
+
+**Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today, you will:
+
+* ✅ Understand Endpoint Security.
+* ✅ Learn the difference between Antivirus and EDR.
+* ✅ Understand Threat Intelligence.
+* ✅ Learn the MITRE ATT&CK Framework.
+* ✅ Understand the Cyber Kill Chain.
+* ✅ Learn enterprise malware prevention.
+* ✅ Complete Module 5 revision.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is Endpoint Security?
+
+An **endpoint** is any device connected to a network.
+
+Examples:
+
+* 💻 Laptop
+* 🖥 Desktop
+* 📱 Mobile Phone
+* ☁️ Cloud VM
+* 🖨 Printer
+* 💳 POS Machine
+
+Endpoint Security protects these devices from cyber threats.
+
+---
+
+## Real-Life Analogy
+
+Imagine a company with 500 employees.
+
+Every employee enters through a door.
+
+Each door needs:
+
+* Security Guard
+* CCTV
+* ID Card Verification
+
+Similarly, every endpoint needs protection.
+
+---
+
+# Antivirus
+
+Traditional Antivirus mainly works by comparing files against **known malware signatures**.
+
+### Example
+
+Known malware signature:
+
+```text
+ABC123XYZ
+```
+
+If a file matches:
+
+➡️ Malware detected.
+
+### Advantages
+
+* Easy to use
+* Good against known malware
+* Low resource usage
+
+### Limitations
+
+* May miss new or unknown malware.
+* Signature updates are required.
+
+---
+
+# EDR (Endpoint Detection & Response)
+
+EDR continuously monitors endpoint activity.
+
+Instead of asking:
+
+> "Is this file known malware?"
+
+It asks:
+
+> "Is this behavior suspicious?"
+
+---
+
+### Example
+
+A process suddenly:
+
+* Creates hundreds of encrypted files
+* Connects to an unusual external IP
+* Attempts to disable security software
+
+EDR raises an alert even if the malware has never been seen before.
+
+---
+
+# Antivirus vs EDR
+
+| Antivirus                      | EDR                                      |
+| ------------------------------ | ---------------------------------------- |
+| Signature-based                | Behavior-based + Detection               |
+| Detects known threats          | Detects known and many unknown behaviors |
+| Limited visibility             | Continuous monitoring                    |
+| Usually no investigation tools | Supports investigation and response      |
+
+---
+
+# 🟡 Level 2 – Threat Intelligence
+
+## What is Threat Intelligence?
+
+Threat Intelligence is information about cyber threats that helps organizations prepare and defend.
+
+It answers questions like:
+
+* Who is attacking?
+* What tools are they using?
+* Which vulnerabilities are they exploiting?
+* Which industries are being targeted?
+
+---
+
+## Types of Threat Intelligence
+
+### Strategic
+
+For executives.
+
+Focus:
+
+* Business risks
+* Trends
+
+---
+
+### Tactical
+
+Focus:
+
+* Attack techniques
+* Tactics
+
+---
+
+### Operational
+
+Focus:
+
+* Active campaigns
+* Threat actors
+* Ongoing attacks
+
+---
+
+### Technical
+
+Examples:
+
+* Malicious IP addresses
+* File hashes
+* Domains
+* URLs
+
+These are often used as Indicators of Compromise (IOCs).
+
+---
+
+# 🟠 MITRE ATT&CK Framework
+
+MITRE ATT&CK is a globally recognized knowledge base of attacker tactics and techniques.
+
+It helps defenders understand **how attackers operate**.
+
+---
+
+## Simplified ATT&CK Flow
+
+```text
+Reconnaissance
+      ↓
+Initial Access
+      ↓
+Execution
+      ↓
+Persistence
+      ↓
+Privilege Escalation
+      ↓
+Defense Evasion
+      ↓
+Credential Access
+      ↓
+Discovery
+      ↓
+Lateral Movement
+      ↓
+Collection
+      ↓
+Command & Control
+      ↓
+Exfiltration
+      ↓
+Impact
+```
+
+---
+
+### Example
+
+Attacker:
+
+Phishing Email
+
+↓
+
+User clicks
+
+↓
+
+Malware runs
+
+↓
+
+Steals credentials
+
+↓
+
+Moves to another computer
+
+↓
+
+Steals sensitive files
+
+↓
+
+Uploads them to attacker
+
+MITRE maps every step.
+
+---
+
+# Cyber Kill Chain
+
+Another way to understand attacks.
+
+```text
+Reconnaissance
+↓
+
+Weaponization
+↓
+
+Delivery
+↓
+
+Exploitation
+↓
+
+Installation
+↓
+
+Command & Control
+
+↓
+
+Actions on Objectives
+```
+
+---
+
+# Difference
+
+| Cyber Kill Chain         | MITRE ATT&CK                   |
+| ------------------------ | ------------------------------ |
+| High-level attack stages | Detailed attacker techniques   |
+| Easier for beginners     | More detailed and used in SOCs |
+
+---
+
+# 🔵 Level 3 – Enterprise Protection
+
+## Defense in Depth
+
+Real companies don't rely on one security tool.
+
+```text
+Firewall
+
+↓
+
+Email Security
+
+↓
+
+Endpoint Protection
+
+↓
+
+EDR
+
+↓
+
+SIEM
+
+↓
+
+SOC Analysts
+
+↓
+
+Threat Intelligence
+
+↓
+
+Backups
+```
+
+If one layer fails,
+
+another layer continues protecting the organization.
+
+---
+
+# Zero Trust
+
+Modern principle:
+
+> **Never Trust. Always Verify.**
+
+Even internal users must prove:
+
+* Identity
+* Device health
+* Authorization
+
+before accessing resources.
+
+---
+
+# Indicators of Attack (IOAs) vs Indicators of Compromise (IOCs)
+
+| IOC                       | IOA                                                                  |
+| ------------------------- | -------------------------------------------------------------------- |
+| Evidence after compromise | Suspicious attacker behavior that may indicate an attack in progress |
+| File hash                 | PowerShell launching unexpected scripts                              |
+| Malicious IP              | Credential dumping attempt                                           |
+
+EDR products commonly use both.
+
+---
+
+# 🌍 Real-World Example
+
+Suppose an employee receives:
+
+```text
+Invoice.pdf.exe
+```
+
+EDR observes:
+
+* PowerShell launches unexpectedly
+* New scheduled task created
+* Suspicious outbound connection
+* Registry changes
+
+Even if the malware is unknown,
+
+EDR alerts the SOC team.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1
+
+Open Windows Security.
+
+Explore:
+
+* Virus Protection
+* Device Security
+* Firewall
+* Protection History
+
+---
+
+## Lab 2
+
+Open Task Manager.
+
+Observe:
+
+* Unknown processes
+* CPU spikes
+* Memory usage
+
+Think like an analyst:
+
+"Does this process behave normally?"
+
+---
+
+## Lab 3
+
+Research the MITRE ATT&CK website.
+
+Choose one technique.
+
+Write:
+
+* Technique Name
+* Purpose
+* Detection Idea
+
+---
+
+## Lab 4
+
+Research one recent ransomware group.
+
+Find:
+
+* Target industries
+* Initial access methods
+* Recommended defenses
+
+---
+
+# 💻 Mini Project
+
+## Enterprise Security Architecture
+
+Draw:
+
+```text
+Internet
+
+↓
+
+Firewall
+
+↓
+
+Email Security
+
+↓
+
+Web Proxy
+
+↓
+
+EDR
+
+↓
+
+SIEM
+
+↓
+
+SOC Team
+
+↓
+
+Threat Intelligence
+
+↓
+
+Incident Response
+```
+
+Explain each component in 2–3 lines.
+
+This will become part of your cybersecurity portfolio.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Endpoint Security?
+2. Difference between Antivirus and EDR?
+3. What is Threat Intelligence?
+4. Types of Threat Intelligence?
+5. What is MITRE ATT&CK?
+6. What is the Cyber Kill Chain?
+7. Difference between IOC and IOA?
+8. What is Zero Trust?
+9. What is Defense in Depth?
+10. Why is EDR important?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Endpoint means:
+
+A. Router only
+B. Any connected device
+C. Internet only
+D. Firewall
+
+### Q2. Traditional antivirus mainly uses:
+
+A. AI only
+B. Signature-based detection
+C. Cloud backups
+D. Passwords
+
+### Q3. EDR primarily focuses on:
+
+A. Screen resolution
+B. Behavioral detection and response
+C. Wi-Fi speed
+D. Database backups
+
+### Q4. Threat Intelligence helps organizations:
+
+A. Increase RAM
+B. Understand cyber threats
+C. Build websites
+D. Print documents
+
+### Q5. Which MITRE ATT&CK tactic involves stealing passwords?
+
+A. Credential Access
+B. Discovery
+C. Impact
+D. Reconnaissance
+
+### Q6. IOC stands for:
+
+A. Indicator of Compromise
+B. Internet Operating Center
+C. Internal Object Control
+D. Integrated Operations Command
+
+### Q7. IOA stands for:
+
+A. Indicator of Attack
+B. Internet of Applications
+C. Internal Office Access
+D. Intelligent Operating Agent
+
+### Q8. Which principle means "Never Trust, Always Verify"?
+
+A. Least Privilege
+B. Zero Trust
+C. CIA Triad
+D. VPN
+
+### Q9. Defense in Depth means:
+
+A. One security tool
+B. Multiple security layers
+C. No firewall
+D. One password
+
+### Q10. Which stage comes after Delivery in the Cyber Kill Chain?
+
+A. Reconnaissance
+B. Exploitation
+C. Impact
+D. Discovery
+
+### Q11–Q20 (Self-Practice)
+
+Write 10 additional MCQs based on today's lesson and answer them.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare Antivirus vs EDR.
+2. Compare MITRE ATT&CK vs Cyber Kill Chain.
+3. Explain IOC vs IOA.
+4. Explain Zero Trust with an example.
+5. Draw Defense in Depth.
+
+---
+
+### Practical
+
+Create a **Threat Intelligence Report** on one ransomware family, including:
+
+* Name
+* Target
+* Attack method
+* MITRE ATT&CK techniques (research)
+* Detection methods
+* Prevention
+
+---
+
+# 🧩 Level 4 – SOC Analyst Challenge
+
+## Scenario
+
+Your EDR generates an alert:
+
+* PowerShell starts unexpectedly.
+* A scheduled task is created.
+* The system contacts an unknown external IP.
+* Antivirus reports **no malware detected**.
+
+### Your Tasks
+
+1. Is this necessarily a false alarm? Explain.
+2. Which MITRE ATT&CK tactics might be involved?
+3. Which evidence (logs, processes, network data) would you collect?
+4. Would you isolate the endpoint? Why or why not?
+5. Write a short incident report (5–8 lines) summarizing your response.
+
+---
+
+# 📖 Module 5 Revision Cheat Sheet
+
+| Topic            | Key Point                            |
+| ---------------- | ------------------------------------ |
+| Virus            | Needs a host file                    |
+| Worm             | Self-spreads                         |
+| Trojan           | Disguised as legitimate software     |
+| Ransomware       | Encrypts files                       |
+| Spyware          | Steals information                   |
+| Rootkit          | Hides malicious activity             |
+| Botnet           | Network of infected devices          |
+| Keylogger        | Records keystrokes                   |
+| IOC              | Evidence of compromise               |
+| IOA              | Suspicious attacker behavior         |
+| EDR              | Behavioral detection and response    |
+| MITRE ATT&CK     | Maps attacker tactics and techniques |
+| Cyber Kill Chain | High-level attack lifecycle          |
+| Zero Trust       | Never Trust, Always Verify           |
+
+---
+
+# 📊 Progress Tracker
+
+## ✅ Completed Modules
+
+* ✔ Module 1 – Introduction to Cybersecurity
+* ✔ Module 2 – Computer & Internet Fundamentals
+* ✔ Module 3 – Networking Fundamentals
+* ✔ Module 4 – Cryptography (Complete)
+* ✔ Module 5 – Malware & Cyber Threats (Complete)
+
+**Overall Progress:** **14/50 Days (28%)** 🎉
+
+---
+
+# 🎯 Tomorrow (Day 15)
+
+We begin **Module 6: Network Security**, where you'll learn:
+
+* Firewalls (deep dive)
+* IDS vs IPS
+* Network Access Control (NAC)
+* DMZ architecture
+* Secure network design
+* VLAN security
+* Network segmentation
+* DDoS attacks and defenses
+* Enterprise network monitoring
+
+This module will prepare you for SOC Analyst, Network Security Engineer, and Penetration Testing roles.
