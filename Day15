@@ -1,0 +1,630 @@
+# 🔐 Cybersecurity Bootcamp – Day 15
+
+# Module 6 (Part 1): Network Security – Firewalls, IDS, IPS & Secure Network Architecture
+
+> **Mission:** Today you begin **Network Security**, one of the most important domains in cybersecurity. You'll learn how organizations protect their networks from attackers using firewalls, intrusion detection systems, and secure network design.
+
+**Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today, you will:
+
+* ✅ Understand Network Security.
+* ✅ Learn different types of Firewalls.
+* ✅ Understand IDS and IPS.
+* ✅ Learn about DMZ architecture.
+* ✅ Understand Network Segmentation.
+* ✅ Learn the Principle of Least Privilege.
+* ✅ Analyze a real enterprise network.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is Network Security?
+
+Network Security is the practice of protecting a computer network from:
+
+* Unauthorized access
+* Malware
+* Data theft
+* Hackers
+* Network attacks
+
+### 🏠 Real-Life Analogy
+
+Imagine a large apartment building.
+
+It has:
+
+* 🚪 Security Gate = Firewall
+* 🎥 CCTV = IDS
+* 👮 Security Guards = IPS
+* 🔑 Access Cards = Authentication
+* 🚧 Restricted Floors = Network Segmentation
+
+These layers work together to protect the building.
+
+---
+
+# What is a Firewall?
+
+A **Firewall** is a security device (hardware or software) that monitors and controls network traffic based on predefined rules.
+
+### Example Rules
+
+✅ Allow HTTPS (Port 443)
+
+✅ Allow DNS (Port 53)
+
+❌ Block Telnet (Port 23)
+
+---
+
+# Types of Firewalls
+
+## 1. Packet Filtering Firewall
+
+Checks:
+
+* Source IP
+* Destination IP
+* Port
+* Protocol
+
+Fast but limited.
+
+---
+
+## 2. Stateful Firewall
+
+Tracks active connections.
+
+Allows only packets belonging to valid sessions.
+
+Much smarter than simple packet filtering.
+
+---
+
+## 3. Next-Generation Firewall (NGFW)
+
+Can inspect:
+
+* Applications
+* Malware
+* Intrusion attempts
+* Users
+* SSL/TLS traffic (where configured)
+
+Widely used in enterprises.
+
+---
+
+# 🟡 Level 2 – IDS & IPS
+
+## IDS (Intrusion Detection System)
+
+IDS **detects** suspicious activity and alerts administrators.
+
+### Example
+
+```text
+Attacker
+
+↓
+
+IDS
+
+↓
+
+⚠ ALERT!
+
+↓
+
+SOC Analyst
+```
+
+IDS does **not** automatically block the attack.
+
+---
+
+## IPS (Intrusion Prevention System)
+
+IPS not only detects attacks but can also **take preventive action**, such as blocking malicious traffic.
+
+```text
+Attacker
+
+↓
+
+IPS
+
+↓
+
+❌ Attack Blocked
+```
+
+---
+
+# IDS vs IPS
+
+| IDS             | IPS                            |
+| --------------- | ------------------------------ |
+| Detects attacks | Detects and helps stop attacks |
+| Sends alerts    | Can block malicious traffic    |
+| Passive         | Inline with network traffic    |
+
+---
+
+# DMZ (Demilitarized Zone)
+
+A DMZ is a separate network that hosts **public-facing services**.
+
+Example:
+
+```text
+Internet
+
+↓
+
+Firewall
+
+↓
+
+DMZ
+
+↓
+
+Web Server
+
+Mail Server
+
+↓
+
+Internal Firewall
+
+↓
+
+Company Network
+```
+
+Why?
+
+If the web server is compromised,
+
+the attacker should **not** gain direct access to the internal network.
+
+---
+
+# 🟠 Level 3 – Network Segmentation
+
+Instead of one huge network:
+
+```text
+HR VLAN
+
+Finance VLAN
+
+Engineering VLAN
+
+Guest Wi-Fi
+
+Servers
+```
+
+Each network is isolated.
+
+Benefits:
+
+* Better security
+* Reduced attack spread
+* Easier management
+
+---
+
+# Principle of Least Privilege (PoLP)
+
+Users should receive **only the minimum permissions required** to perform their job.
+
+### Example
+
+An HR employee:
+
+✅ Access HR files
+
+❌ Cannot access Finance databases
+
+This limits damage if an account is compromised.
+
+---
+
+# 🌍 Real-World Example
+
+A company receives a phishing email.
+
+The employee accidentally downloads malware.
+
+Because the company uses:
+
+* VLANs
+* Firewalls
+* EDR
+* Least Privilege
+
+The malware cannot easily spread to critical servers.
+
+---
+
+# Defense in Depth
+
+```text
+Internet
+
+↓
+
+Firewall
+
+↓
+
+IDS/IPS
+
+↓
+
+EDR
+
+↓
+
+SIEM
+
+↓
+
+SOC
+
+↓
+
+Backups
+```
+
+Multiple security layers protect the organization.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Allowing all inbound traffic.
+
+❌ Using default firewall rules without review.
+
+❌ Placing databases directly on the Internet.
+
+❌ Giving administrator privileges to every employee.
+
+❌ Ignoring firewall logs.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Windows Firewall
+
+Open:
+
+**Windows Security → Firewall & Network Protection**
+
+Observe:
+
+* Domain Profile
+* Private Profile
+* Public Profile
+
+Do **not** disable the firewall.
+
+---
+
+## Lab 2 – View Firewall Rules
+
+Open:
+
+```text
+Windows Defender Firewall with Advanced Security
+```
+
+Observe:
+
+* Inbound Rules
+* Outbound Rules
+
+Identify one rule allowing HTTPS.
+
+---
+
+## Lab 3 – View Open Ports
+
+Run:
+
+**Windows**
+
+```cmd
+netstat -ano
+```
+
+**Linux**
+
+```bash
+ss -tuln
+```
+
+Identify:
+
+* Listening ports
+* Established connections
+
+---
+
+## Lab 4 – Draw a Secure Network
+
+Sketch:
+
+```text
+Internet
+
+↓
+
+Firewall
+
+↓
+
+DMZ
+
+↓
+
+Internal Firewall
+
+↓
+
+Switch
+
+↓
+
+HR
+
+Finance
+
+Engineering
+
+Servers
+```
+
+---
+
+# 💻 Mini Project
+
+## Secure Office Network Design
+
+Create a report containing:
+
+* Firewall placement
+* DMZ
+* VLANs
+* IDS
+* IPS
+* EDR
+* SIEM
+
+Explain why each component is necessary.
+
+Upload it to GitHub as:
+
+**Secure Enterprise Network Architecture**
+
+---
+
+# 💼 Interview Questions
+
+1. What is Network Security?
+2. What is a Firewall?
+3. Explain Packet Filtering Firewall.
+4. What is a Stateful Firewall?
+5. What is a Next-Generation Firewall?
+6. Difference between IDS and IPS?
+7. What is a DMZ?
+8. Why are VLANs important?
+9. Explain the Principle of Least Privilege.
+10. What is Defense in Depth?
+
+---
+
+# 📝 Quiz (15 MCQs)
+
+### Q1. A firewall mainly:
+
+A. Stores files
+B. Filters network traffic
+C. Encrypts passwords
+D. Creates backups
+
+### Q2. Which firewall tracks active sessions?
+
+A. Packet Filtering Firewall
+B. Stateful Firewall
+C. Proxy
+D. Router
+
+### Q3. IDS mainly:
+
+A. Blocks traffic
+B. Detects suspicious activity
+C. Encrypts traffic
+D. Creates users
+
+### Q4. IPS:
+
+A. Only logs attacks
+B. Can detect and block attacks
+C. Only scans files
+D. Assigns IP addresses
+
+### Q5. DMZ is used for:
+
+A. Password storage
+B. Public-facing servers
+C. Wi-Fi passwords
+D. RAM upgrades
+
+### Q6. VLANs help:
+
+A. Increase CPU speed
+B. Segment networks
+C. Increase storage
+D. Update Windows
+
+### Q7. Least Privilege means:
+
+A. Everyone is an administrator
+B. Users get only required permissions
+C. No passwords are required
+D. Firewalls are disabled
+
+### Q8. NGFW can inspect:
+
+A. Applications and threats
+B. Only cables
+C. Printers only
+D. RAM
+
+### Q9. Which device is typically placed between the Internet and an internal network?
+
+A. Firewall
+B. Keyboard
+C. Monitor
+D. Printer
+
+### Q10. Defense in Depth means:
+
+A. One strong password
+B. Multiple layers of security
+C. One antivirus only
+D. Disabling updates
+
+### Q11–Q15 (Self-Practice)
+
+Create five additional MCQs based on today's lesson and answer them.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare:
+
+   * Firewall vs Router
+   * IDS vs IPS
+   * Packet Filtering vs Stateful Firewall
+
+2. Draw a secure enterprise network.
+
+3. Explain the purpose of a DMZ.
+
+4. Explain the Principle of Least Privilege with an example.
+
+---
+
+### Practical
+
+Design a network for a company with:
+
+* 100 employees
+* HR Department
+* Finance Department
+* Engineering Team
+* Guest Wi-Fi
+* Web Server
+* Database Server
+
+Include:
+
+* Firewalls
+* VLANs
+* DMZ
+* IDS/IPS
+
+---
+
+# 🧩 Level 4 – Security Architect Challenge
+
+### Scenario
+
+You are the Network Security Engineer for a company.
+
+Current setup:
+
+* One flat network for everyone.
+* Web server and database are directly connected to the Internet.
+* Employees have administrator rights.
+* No IDS or IPS is deployed.
+
+### Your Tasks
+
+1. Identify **at least six security weaknesses**.
+2. Redesign the network architecture using:
+
+   * Firewall
+   * DMZ
+   * VLANs
+   * IDS
+   * IPS
+3. Explain how your design reduces risk.
+4. Recommend additional controls such as MFA, regular patching, and centralized logging.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept           | Key Point                                   |
+| ----------------- | ------------------------------------------- |
+| Firewall          | Controls network traffic                    |
+| Packet Filtering  | Filters by IP, Port, Protocol               |
+| Stateful Firewall | Tracks active sessions                      |
+| NGFW              | Advanced inspection and threat detection    |
+| IDS               | Detects attacks                             |
+| IPS               | Detects and helps stop attacks              |
+| DMZ               | Isolated network for public-facing services |
+| VLAN              | Network segmentation                        |
+| Least Privilege   | Minimum required permissions                |
+| Defense in Depth  | Multiple layers of protection               |
+
+---
+
+# 📊 Progress Tracker
+
+### ✅ Completed
+
+* Module 1 – Introduction to Cybersecurity
+* Module 2 – Computer & Internet Fundamentals
+* Module 3 – Networking Fundamentals
+* Module 4 – Cryptography
+* Module 5 – Malware & Cyber Threats
+* **Module 6 (Part 1) – Network Security**
+
+**Overall Progress:** **15/50 Days (30%)** 🎉
+
+---
+
+# 🎯 Tomorrow (Day 16)
+
+We'll continue **Module 6 (Part 2)** with:
+
+* Network Access Control (NAC)
+* AAA (Authentication, Authorization & Accounting)
+* VPN Security
+* Proxy Servers
+* Secure Wi-Fi (WPA2/WPA3)
+* Network Monitoring
+* SIEM Basics
+* Enterprise network defense strategies
+
+This will introduce you to technologies widely used by SOC Analysts, Network Security Engineers, and Blue Team professionals.
