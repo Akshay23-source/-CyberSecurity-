@@ -1,0 +1,696 @@
+# 🔐 Cybersecurity Bootcamp – Day 16
+
+# Module 6 (Part 2): Network Access Control (NAC), AAA, VPN Security, Wi-Fi Security & SIEM Basics
+
+> **Mission:** Today you'll learn how organizations control **who can access the network**, **how users are authenticated**, **how remote employees connect securely**, and **how Security Operations Centers (SOCs) monitor thousands of devices**.
+
+> **Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today, you will:
+
+* ✅ Understand Network Access Control (NAC).
+* ✅ Learn the AAA Security Model.
+* ✅ Understand VPN security.
+* ✅ Learn secure Wi-Fi standards.
+* ✅ Understand Proxy Servers.
+* ✅ Learn Security Information and Event Management (SIEM).
+* ✅ Analyze a real SOC monitoring scenario.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Network Access Control (NAC)?
+
+Imagine your college campus.
+
+Before entering:
+
+* Student shows ID Card ✅
+* Visitor signs register ✅
+* Unknown person is stopped ❌
+
+This is exactly how NAC works.
+
+It checks:
+
+* Who are you?
+* Is your device trusted?
+* Should you be allowed into the network?
+
+Only approved users and devices are granted access.
+
+---
+
+# Why NAC?
+
+Without NAC:
+
+Anyone connecting to your Wi-Fi could potentially access internal resources.
+
+With NAC:
+
+✔ Identity verified
+
+✔ Device checked
+
+✔ Correct permissions assigned
+
+---
+
+# The AAA Security Model
+
+AAA stands for:
+
+### Authentication
+
+> **Who are you?**
+
+Example:
+
+Username + Password
+
+Fingerprint
+
+Face Recognition
+
+MFA
+
+---
+
+### Authorization
+
+> **What are you allowed to access?**
+
+Example:
+
+HR Employee
+
+✅ HR Folder
+
+❌ Finance Folder
+
+---
+
+### Accounting
+
+> **What did you do?**
+
+Logs record:
+
+* Login time
+* Logout time
+* Files accessed
+* Commands executed
+
+Useful for audits and investigations.
+
+---
+
+# 🟡 Level 2 – VPN Security
+
+# What is a VPN?
+
+VPN = **Virtual Private Network**
+
+It creates an **encrypted tunnel** between your device and the VPN server.
+
+Without VPN
+
+```text
+Laptop
+
+↓
+
+Internet
+
+↓
+
+Company Server
+```
+
+With VPN
+
+```text
+Laptop
+
+↓
+
+Encrypted Tunnel
+
+↓
+
+VPN Server
+
+↓
+
+Company Network
+```
+
+---
+
+# Why Companies Use VPNs
+
+Employees working:
+
+* From home
+* While traveling
+* From hotels
+* Public Wi-Fi
+
+can securely connect to company resources.
+
+---
+
+# Benefits
+
+✅ Encryption
+
+✅ Remote Access
+
+✅ Better Privacy
+
+✅ Protection on Public Wi-Fi
+
+---
+
+# Common VPN Protocols
+
+* OpenVPN
+* WireGuard
+* IPsec
+* IKEv2
+
+---
+
+# Proxy Server
+
+A proxy acts as an intermediary between a user and the internet.
+
+```text
+You
+
+↓
+
+Proxy
+
+↓
+
+Website
+```
+
+Common Uses
+
+* Content filtering
+* Caching
+* Logging
+* Hiding internal IP addresses
+
+---
+
+# VPN vs Proxy
+
+| VPN                    | Proxy                                 |
+| ---------------------- | ------------------------------------- |
+| Encrypts all traffic   | Usually handles specific applications |
+| Better security        | Mainly traffic forwarding/filtering   |
+| Used for remote access | Often used for web filtering          |
+
+---
+
+# 🟠 Level 3 – Wi-Fi Security
+
+# Why Wi-Fi Needs Protection
+
+Without encryption:
+
+Nearby attackers may be able to capture wireless traffic or attempt unauthorized access.
+
+---
+
+# Wi-Fi Security Standards
+
+### WEP
+
+❌ Obsolete
+
+Very weak
+
+Should not be used.
+
+---
+
+### WPA
+
+Improved over WEP.
+
+Now considered outdated.
+
+---
+
+### WPA2
+
+Still widely used.
+
+Uses AES encryption.
+
+---
+
+### WPA3
+
+Current recommended standard.
+
+Provides stronger authentication and improved protection against password guessing attacks.
+
+---
+
+# Strong Wi-Fi Practices
+
+✔ Strong Password
+
+✔ WPA3 (or WPA2 if WPA3 isn't available)
+
+✔ Update Router Firmware
+
+✔ Change Default Admin Password
+
+✔ Disable WPS if not needed
+
+---
+
+# SIEM (Security Information and Event Management)
+
+Imagine a company with:
+
+* 300 Computers
+* 50 Servers
+* Firewalls
+* Routers
+* VPNs
+* Antivirus
+* EDR
+
+Every device creates logs.
+
+Millions every day.
+
+How can security teams monitor them?
+
+Using SIEM.
+
+---
+
+# SIEM Collects
+
+* Firewall Logs
+* Windows Logs
+* Linux Logs
+* VPN Logs
+* Authentication Logs
+* Antivirus Alerts
+* EDR Alerts
+
+---
+
+# SIEM Workflow
+
+```text
+Firewall
+
+↓
+
+Servers
+
+↓
+
+VPN
+
+↓
+
+Windows
+
+↓
+
+Linux
+
+↓
+
+SIEM
+
+↓
+
+SOC Analyst
+```
+
+The SIEM correlates events and raises alerts for suspicious activity.
+
+---
+
+# Popular SIEM Platforms
+
+* Splunk
+* Microsoft Sentinel
+* IBM QRadar
+* Elastic SIEM
+* Google Security Operations (formerly Chronicle)
+
+---
+
+# 🌍 Real-World Example
+
+A user:
+
+Logs in
+
+↓
+
+VPN Connection
+
+↓
+
+Downloads 20 GB of data
+
+↓
+
+Logs in from another country 5 minutes later
+
+↓
+
+SIEM detects unusual behavior
+
+↓
+
+SOC Analyst investigates
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Using WEP.
+
+❌ Weak Wi-Fi passwords.
+
+❌ Sharing VPN credentials.
+
+❌ Ignoring security logs.
+
+❌ Not enabling Multi-Factor Authentication (MFA).
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1
+
+Check your Wi-Fi Security.
+
+On your router or device settings:
+
+Find:
+
+* WPA2?
+* WPA3?
+
+Write down:
+
+* Security Type
+
+---
+
+## Lab 2
+
+Open Event Viewer.
+
+Look at:
+
+Security Logs
+
+Observe:
+
+* Login Success
+* Login Failure
+
+---
+
+## Lab 3
+
+Run
+
+**Windows**
+
+```cmd
+netsh wlan show profiles
+```
+
+This lists saved Wi-Fi profiles.
+
+---
+
+## Lab 4
+
+Research one SIEM.
+
+Choose:
+
+* Splunk
+* Microsoft Sentinel
+* IBM QRadar
+
+Write:
+
+* Main Features
+* Advantages
+* Where it is used
+
+---
+
+# 💻 Mini Project
+
+## Home Network Security Assessment
+
+Create a report including:
+
+* Wi-Fi Security Type
+* Router Password Changed? (Yes/No)
+* WPA2/WPA3 Enabled?
+* Guest Network Enabled?
+* Firmware Updated?
+* VPN Used? (If applicable)
+* Security Recommendations
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is NAC?
+2. Explain AAA.
+3. Authentication vs Authorization?
+4. What is Accounting?
+5. What is a VPN?
+6. VPN vs Proxy?
+7. Difference between WPA2 and WPA3?
+8. What is SIEM?
+9. Why do SOC Analysts use SIEM?
+10. Name three popular SIEM tools.
+
+---
+
+# 📝 Quiz (15 MCQs)
+
+### Q1. NAC stands for:
+
+A. Network Access Control
+B. Network Attack Center
+C. National Access Code
+D. Network Application Control
+
+---
+
+### Q2. Authentication answers:
+
+A. What can you access?
+B. Who are you?
+C. Where are you?
+D. Which router?
+
+---
+
+### Q3. Authorization determines:
+
+A. Identity
+B. Permissions
+C. IP Address
+D. Password Length
+
+---
+
+### Q4. Accounting mainly records:
+
+A. CPU Usage
+B. User Activities
+C. Wi-Fi Speed
+D. Screen Brightness
+
+---
+
+### Q5. VPN provides:
+
+A. Encrypted Communication
+B. Antivirus Protection
+C. More RAM
+D. Faster CPU
+
+---
+
+### Q6. Which Wi-Fi standard is considered obsolete?
+
+A. WPA3
+B. WPA2
+C. WEP
+D. WPA2 Enterprise
+
+---
+
+### Q7. WPA2 commonly uses:
+
+A. DES
+B. AES
+C. MD5
+D. SHA-1
+
+---
+
+### Q8. SIEM mainly:
+
+A. Collects and analyzes security logs
+B. Creates viruses
+C. Repairs hardware
+D. Increases bandwidth
+
+---
+
+### Q9. Which is a SIEM platform?
+
+A. Splunk
+B. Firefox
+C. VS Code
+D. VirtualBox
+
+---
+
+### Q10. VPN is especially useful when using:
+
+A. Public Wi-Fi
+B. Calculator
+C. Printer
+D. USB Drive
+
+---
+
+### Q11–Q15 (Self-Practice)
+
+Create five additional MCQs based on today's lesson.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare:
+
+   * VPN vs Proxy
+   * WPA2 vs WPA3
+   * Authentication vs Authorization
+
+2. Draw the AAA Model.
+
+3. Draw the SIEM Architecture.
+
+---
+
+### Practical
+
+Research **Splunk** and prepare:
+
+* What is Splunk?
+* Features
+* Advantages
+* Real-world uses
+* Why companies use it
+
+---
+
+# 🧩 Level 4 – SOC Analyst Challenge
+
+## Scenario
+
+A company's SIEM generates these alerts:
+
+* 50 failed login attempts from one IP.
+* A successful login immediately afterward.
+* The same user logs in from another country within 10 minutes.
+* Large amounts of sensitive data are downloaded.
+
+### Your Tasks
+
+1. Which suspicious activities do you observe?
+2. Which AAA components are involved?
+3. What logs would you examine first?
+4. Would you disable the account? Explain your reasoning.
+5. Write a short incident response plan (5–8 steps).
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept        | Key Point                                          |
+| -------------- | -------------------------------------------------- |
+| NAC            | Controls who and what can access the network       |
+| Authentication | Verifies identity                                  |
+| Authorization  | Grants permissions                                 |
+| Accounting     | Records user activities                            |
+| VPN            | Secure encrypted tunnel                            |
+| Proxy          | Intermediary for network traffic                   |
+| WEP            | Obsolete and insecure                              |
+| WPA2           | Secure Wi-Fi using AES                             |
+| WPA3           | Latest recommended Wi-Fi security standard         |
+| SIEM           | Centralized log collection, analysis, and alerting |
+
+---
+
+# 📊 Progress Tracker
+
+## ✅ Completed
+
+* Module 1 – Introduction to Cybersecurity
+* Module 2 – Computer & Internet Fundamentals
+* Module 3 – Networking Fundamentals
+* Module 4 – Cryptography
+* Module 5 – Malware & Cyber Threats
+* Module 6 (Part 1–2) – Network Security
+
+**Overall Progress:** **16/50 Days (32%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 17)
+
+We'll continue **Module 6 (Part 3)** with:
+
+* **DDoS (Distributed Denial-of-Service) attacks**
+* **DoS vs DDoS**
+* **ARP Spoofing**
+* **DNS Spoofing**
+* **MAC Flooding**
+* **DHCP Starvation**
+* **Network sniffing**
+* **Network attack detection and mitigation**
+
+This is where you'll start understanding **how attackers exploit networks** and how defenders detect and stop these attacks in real enterprise environments.
