@@ -1,0 +1,598 @@
+# 🔐 Cybersecurity Bootcamp – Day 17
+
+# Module 6 (Part 3): Network Attacks – DoS, DDoS, ARP Spoofing, DNS Spoofing & Packet Sniffing
+
+> **Mission:** Today you'll learn **how attackers target networks** and, more importantly, **how defenders detect and prevent these attacks**. This is essential knowledge for SOC Analysts, Network Security Engineers, and Ethical Hackers.
+
+> **Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today, you will:
+
+* ✅ Understand DoS and DDoS attacks.
+* ✅ Learn ARP Spoofing.
+* ✅ Understand DNS Spoofing.
+* ✅ Learn MAC Flooding and DHCP Starvation.
+* ✅ Understand Packet Sniffing.
+* ✅ Learn detection and mitigation strategies.
+* ✅ Analyze a real-world DDoS incident.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is a DoS Attack?
+
+**DoS (Denial of Service)** is an attack where a single system overwhelms a server with requests so legitimate users cannot access it.
+
+### 🏠 Analogy
+
+Imagine a restaurant with 50 seats.
+
+One person keeps reserving all 50 seats but never arrives.
+
+Real customers can't get in.
+
+That's a DoS attack.
+
+---
+
+## What is a DDoS Attack?
+
+**DDoS (Distributed Denial of Service)** uses **many compromised computers (botnets)** instead of one.
+
+```text
+Bot 1
+Bot 2
+Bot 3
+Bot 4
+   ↓
+Target Website
+```
+
+Thousands of systems send requests simultaneously.
+
+The server becomes overloaded.
+
+---
+
+# Difference Between DoS and DDoS
+
+| DoS                  | DDoS                   |
+| -------------------- | ---------------------- |
+| One attacking system | Many attacking systems |
+| Easier to block      | Harder to block        |
+| Smaller scale        | Massive scale          |
+
+---
+
+# Real Example
+
+A shopping website receives:
+
+Normally:
+
+```text
+100 Requests/Second
+```
+
+During DDoS:
+
+```text
+5,000,000 Requests/Second
+```
+
+The server becomes unavailable.
+
+---
+
+# 🟡 Level 2 – ARP Spoofing
+
+## What is ARP?
+
+ARP (Address Resolution Protocol) maps:
+
+**IP Address → MAC Address**
+
+Example:
+
+```text
+192.168.1.10
+
+↓
+
+00:11:22:33:44:55
+```
+
+---
+
+## What is ARP Spoofing?
+
+An attacker sends **fake ARP replies** so devices associate the attacker's MAC address with another device's IP address.
+
+Example:
+
+```text
+Victim
+
+↓
+
+Attacker
+
+↓
+
+Router
+```
+
+The attacker can intercept or modify traffic.
+
+---
+
+## Risks
+
+* Password theft
+* Session hijacking
+* Data interception
+
+---
+
+# DNS Spoofing
+
+DNS translates:
+
+```text
+google.com
+
+↓
+
+142.xxx.xxx.xxx
+```
+
+An attacker manipulates DNS responses so the victim is sent to a fake website.
+
+Example:
+
+You type:
+
+```text
+bank.com
+```
+
+But you are redirected to:
+
+```text
+fake-bank.com
+```
+
+You unknowingly enter your password.
+
+---
+
+# 🟠 Level 3 – Advanced Network Attacks
+
+## MAC Flooding
+
+A switch maintains a MAC address table.
+
+Attackers flood it with fake MAC addresses.
+
+Result:
+
+The switch may begin broadcasting traffic more widely, increasing the chance of interception.
+
+---
+
+## DHCP Starvation
+
+The attacker repeatedly requests IP addresses from the DHCP server.
+
+Eventually:
+
+* No addresses remain.
+* Legitimate users cannot obtain an IP address.
+
+---
+
+## Rogue DHCP Server
+
+After DHCP starvation,
+
+the attacker introduces a fake DHCP server.
+
+Victims receive:
+
+* Fake Gateway
+* Fake DNS
+* Fake Network Settings
+
+This can enable further attacks.
+
+---
+
+# Packet Sniffing
+
+Packet sniffing is capturing and analyzing network traffic.
+
+Administrators use it for troubleshooting.
+
+Attackers may misuse it to capture unencrypted traffic.
+
+### Common Tool
+
+**Wireshark**
+
+Legitimate uses:
+
+* Network troubleshooting
+* Performance analysis
+* Security investigations
+
+---
+
+# 🌍 Real-World Example
+
+## GitHub DDoS Attack (2018)
+
+Attackers launched one of the largest recorded DDoS attacks at the time.
+
+Traffic exceeded **1 Tbps**.
+
+GitHub recovered quickly using cloud-based DDoS mitigation.
+
+### Lesson
+
+Large organizations rely on:
+
+* DDoS protection services
+* Traffic filtering
+* Load balancing
+* Content Delivery Networks (CDNs)
+
+---
+
+# 🛡️ Defense Strategies
+
+## Against DDoS
+
+* Rate Limiting
+* Firewalls
+* Web Application Firewalls (WAF)
+* CDNs
+* Cloud DDoS Protection
+* Load Balancers
+
+---
+
+## Against ARP Spoofing
+
+* Static ARP entries (where practical)
+* Dynamic ARP Inspection (DAI)
+* Secure switches
+* Network segmentation
+
+---
+
+## Against DNS Spoofing
+
+* DNSSEC
+* HTTPS
+* Secure DNS servers
+* Certificate validation
+
+---
+
+## Against DHCP Attacks
+
+* DHCP Snooping
+* Port Security
+* Trusted Switch Ports
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Ignoring unusual network traffic.
+
+❌ Connecting to unknown public Wi-Fi.
+
+❌ Visiting websites without HTTPS.
+
+❌ Disabling network monitoring.
+
+❌ Believing every DNS response is trustworthy.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Capture Packets with Wireshark
+
+Open Wireshark.
+
+Capture traffic while:
+
+* Browsing websites
+* Running:
+
+```bash
+ping google.com
+```
+
+Filter:
+
+```text
+icmp
+```
+
+Observe:
+
+* Echo Request
+* Echo Reply
+
+---
+
+## Lab 2 – DNS Analysis
+
+Filter:
+
+```text
+dns
+```
+
+Visit several websites.
+
+Observe:
+
+* DNS Queries
+* DNS Responses
+
+---
+
+## Lab 3 – ARP Analysis
+
+Filter:
+
+```text
+arp
+```
+
+Observe:
+
+* ARP Requests
+* ARP Replies
+
+Understand how devices discover MAC addresses.
+
+---
+
+## Lab 4 – Network Connections
+
+Run:
+
+**Windows**
+
+```cmd
+netstat -ano
+```
+
+**Linux**
+
+```bash
+ss -tuln
+```
+
+Identify:
+
+* Listening ports
+* Established connections
+
+---
+
+# 💻 Mini Project
+
+## Home Network Security Audit
+
+Create a report covering:
+
+* Router model
+* WPA2/WPA3 enabled?
+* Default admin password changed?
+* Guest Wi-Fi enabled?
+* Firewall enabled?
+* Firmware updated?
+* DNS server used?
+* Recommendations to improve security
+
+Upload the report to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is a DoS attack?
+2. Difference between DoS and DDoS?
+3. What is ARP Spoofing?
+4. What is DNS Spoofing?
+5. What is MAC Flooding?
+6. What is DHCP Starvation?
+7. What is Packet Sniffing?
+8. Why is HTTPS important against spoofing attacks?
+9. Which tool is commonly used for packet analysis?
+10. How can organizations defend against DDoS attacks?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. DoS stands for:
+
+A. Data over Security
+B. Denial of Service
+C. Digital Operating System
+D. Domain Operation Service
+
+### Q2. DDoS uses:
+
+A. One attacker
+B. Multiple compromised systems
+C. One router
+D. One firewall
+
+### Q3. ARP maps:
+
+A. Domain → IP
+B. IP → MAC
+C. MAC → Domain
+D. Port → IP
+
+### Q4. DNS Spoofing redirects users to:
+
+A. Trusted websites
+B. Fake websites
+C. Printers
+D. Routers
+
+### Q5. Which tool is commonly used for packet analysis?
+
+A. Wireshark
+B. Notepad
+C. Paint
+D. Chrome
+
+### Q6. Packet sniffing means:
+
+A. Compressing packets
+B. Capturing and analyzing network traffic
+C. Encrypting packets
+D. Deleting packets
+
+### Q7. MAC Flooding targets:
+
+A. CPU
+B. Switch MAC address table
+C. Printer
+D. GPU
+
+### Q8. DHCP Starvation affects:
+
+A. IP address allocation
+B. Monitor brightness
+C. CPU temperature
+D. Storage capacity
+
+### Q9. Which helps protect against DDoS?
+
+A. CDN
+B. Firewall
+C. Rate Limiting
+D. All of the above
+
+### Q10. DNSSEC mainly helps:
+
+A. Improve graphics
+B. Protect DNS integrity
+C. Increase RAM
+D. Speed up processors
+
+### Q11–Q20 (Self-Practice)
+
+Create 10 additional MCQs based on today's lesson and answer them.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare:
+
+   * DoS vs DDoS
+   * ARP Spoofing vs DNS Spoofing
+   * MAC Flooding vs DHCP Starvation
+
+2. Draw a DDoS attack diagram.
+
+3. Explain how HTTPS helps reduce the risk of credential theft in DNS spoofing scenarios.
+
+---
+
+### Practical
+
+Use Wireshark to capture:
+
+* DNS traffic
+* ARP traffic
+* ICMP traffic
+
+Take screenshots (if possible) and explain what each packet represents.
+
+---
+
+# 🧩 Level 4 – SOC Analyst Challenge
+
+## Scenario
+
+Your company website suddenly becomes unavailable.
+
+Monitoring tools show:
+
+* Millions of incoming requests from thousands of different IP addresses.
+* High bandwidth usage.
+* Firewall alerts increasing rapidly.
+
+### Your Tasks
+
+1. What type of attack is likely occurring?
+2. What evidence would you collect first?
+3. Which immediate actions would you recommend?
+4. Which security devices or services (e.g., WAF, CDN, DDoS protection) could help?
+5. After recovery, what long-term improvements would you suggest?
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Attack          | Purpose                        | Defense                                 |
+| --------------- | ------------------------------ | --------------------------------------- |
+| DoS             | Overload a service             | Firewall, Rate Limiting                 |
+| DDoS            | Large-scale service disruption | CDN, DDoS Protection, WAF               |
+| ARP Spoofing    | Redirect local traffic         | Dynamic ARP Inspection                  |
+| DNS Spoofing    | Redirect users to fake sites   | DNSSEC, HTTPS                           |
+| MAC Flooding    | Overflow switch MAC table      | Port Security                           |
+| DHCP Starvation | Exhaust IP addresses           | DHCP Snooping                           |
+| Packet Sniffing | Capture network traffic        | Encryption (TLS/HTTPS), Secure Networks |
+
+---
+
+# 📊 Progress Tracker
+
+### ✅ Completed
+
+* Module 1 – Introduction to Cybersecurity
+* Module 2 – Computer & Internet Fundamentals
+* Module 3 – Networking Fundamentals
+* Module 4 – Cryptography
+* Module 5 – Malware & Cyber Threats
+* Module 6 (Part 1–3) – Network Security
+
+**Overall Progress:** **17/50 Days (34%)** 🎉
+
+---
+
+# 🎯 Tomorrow (Day 18)
+
+We'll complete **Module 6: Network Security** with:
+
+* Network Hardening
+* Secure Network Monitoring
+* Security Baselines
+* Zero Trust Network Access (ZTNA)
+* Secure Remote Administration
+* Network Security Best Practices
+* Enterprise Network Security Case Study
+* **Module 6 Comprehensive Revision & Assessment**
+
+After that, we'll move into **Module 7: Web Security**, where you'll start learning about **SQL Injection, Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF), Authentication attacks, and the OWASP Top 10**—some of the most important topics in ethical hacking and penetration testing.
