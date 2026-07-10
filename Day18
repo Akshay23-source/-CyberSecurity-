@@ -1,0 +1,731 @@
+# 🔐 Cybersecurity Bootcamp – Day 18
+
+# Module 6 (Part 4 – Final): Network Hardening, Zero Trust Network Access (ZTNA), Secure Remote Administration & Enterprise Network Security
+
+> **Mission:** Today you'll complete **Module 6: Network Security**. You'll learn how organizations proactively secure their networks before attackers get a chance to exploit them. This is a key skill for SOC Analysts, Network Security Engineers, and Blue Team professionals.
+
+**Duration:** 3–4 Hours
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today, you will:
+
+* ✅ Understand Network Hardening.
+* ✅ Learn Security Baselines.
+* ✅ Understand Zero Trust Network Access (ZTNA).
+* ✅ Learn Secure Remote Administration.
+* ✅ Understand enterprise network monitoring.
+* ✅ Learn Network Security Best Practices.
+* ✅ Complete Module 6 revision.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Network Hardening?
+
+**Network Hardening** means making a network as secure as possible by reducing unnecessary risks.
+
+### 🏠 Analogy
+
+Imagine buying a new house.
+
+Would you leave:
+
+* Doors unlocked? ❌
+* Windows open? ❌
+* Security cameras off? ❌
+
+No.
+
+You would:
+
+* Lock doors ✅
+* Install CCTV ✅
+* Use strong locks ✅
+* Install alarms ✅
+
+That's exactly what network hardening is.
+
+---
+
+# Examples of Network Hardening
+
+✔ Disable unused services
+
+✔ Close unused ports
+
+✔ Update firmware
+
+✔ Strong passwords
+
+✔ Multi-Factor Authentication (MFA)
+
+✔ Secure firewall rules
+
+✔ Network segmentation
+
+---
+
+# Security Baseline
+
+A **Security Baseline** is the minimum security standard every system must follow.
+
+Example:
+
+Every company laptop must have:
+
+* Antivirus installed
+* Firewall enabled
+* Disk encryption enabled
+* Automatic updates enabled
+* Strong password policy
+* Screen lock after 5 minutes
+
+Every new laptop starts from this secure baseline.
+
+---
+
+# 🟡 Level 2 – Zero Trust Network Access (ZTNA)
+
+## Traditional Security Model
+
+Old approach:
+
+```text
+Internet
+
+↓
+
+Firewall
+
+↓
+
+Trusted Network
+```
+
+Once inside,
+
+everyone was often trusted.
+
+---
+
+## Zero Trust
+
+Modern approach:
+
+> **Never Trust. Always Verify.**
+
+Every access request is checked.
+
+Questions asked:
+
+* Who are you?
+* Is your device secure?
+* Are you using MFA?
+* Are you allowed to access this resource?
+* Is your behavior normal?
+
+---
+
+# Example
+
+Employee logs in.
+
+System checks:
+
+✅ Identity
+
+✅ Device health
+
+✅ Location
+
+✅ Time
+
+✅ MFA
+
+Only then is access granted.
+
+---
+
+# Principle of Least Privilege
+
+Every user receives only the permissions needed.
+
+Example:
+
+Intern
+
+✅ Read documents
+
+❌ Delete database
+
+---
+
+# 🟠 Level 3 – Secure Remote Administration
+
+Administrators often manage servers remotely.
+
+### Secure Method
+
+SSH (Secure Shell)
+
+Port:
+
+```text
+22
+```
+
+Used mainly on Linux/Unix systems.
+
+---
+
+### Insecure Method
+
+Telnet
+
+Port:
+
+```text
+23
+```
+
+Problems:
+
+* No encryption
+* Passwords sent in plaintext
+
+Modern organizations avoid Telnet.
+
+---
+
+# Remote Desktop Protocol (RDP)
+
+Port:
+
+```text
+3389
+```
+
+Used for Windows remote administration.
+
+### Best Practices
+
+✔ MFA
+
+✔ VPN
+
+✔ Strong passwords
+
+✔ Restrict access
+
+✔ Monitor logs
+
+---
+
+# Enterprise Network Monitoring
+
+Large organizations monitor:
+
+* Firewalls
+* VPNs
+* Servers
+* Routers
+* Switches
+* Authentication logs
+* DNS
+* DHCP
+* Endpoints
+
+Using:
+
+* SIEM
+* EDR
+* IDS
+* IPS
+
+---
+
+# 🌍 Real-World Example
+
+Suppose an employee logs in:
+
+09:00 AM
+
+Bangalore
+
+Then:
+
+09:05 AM
+
+New York
+
+Impossible.
+
+The SIEM flags this as **Impossible Travel**.
+
+SOC analysts investigate immediately.
+
+---
+
+# Defense in Depth (Review)
+
+```text
+Internet
+
+↓
+
+Firewall
+
+↓
+
+IDS/IPS
+
+↓
+
+VPN
+
+↓
+
+EDR
+
+↓
+
+SIEM
+
+↓
+
+SOC Team
+
+↓
+
+Backups
+```
+
+If one control fails,
+
+others continue protecting the organization.
+
+---
+
+# 🔴 Network Security Best Practices
+
+### Authentication
+
+✔ MFA
+
+✔ Strong passwords
+
+✔ Password manager
+
+---
+
+### Devices
+
+✔ Patch regularly
+
+✔ Remove unused software
+
+✔ Disable unused ports
+
+✔ Enable disk encryption
+
+---
+
+### Network
+
+✔ WPA3
+
+✔ VLANs
+
+✔ Firewall
+
+✔ VPN
+
+✔ IDS/IPS
+
+✔ NAC
+
+---
+
+### Monitoring
+
+✔ SIEM
+
+✔ Log monitoring
+
+✔ Threat Intelligence
+
+✔ Incident Response Plan
+
+---
+
+### Backups
+
+✔ Offline backups
+
+✔ Regular testing
+
+✔ Multiple copies
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Leaving default router passwords unchanged.
+
+❌ Opening unnecessary ports.
+
+❌ Exposing RDP directly to the internet.
+
+❌ Ignoring firmware updates.
+
+❌ Giving everyone administrator privileges.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Open Ports
+
+Run:
+
+**Windows**
+
+```cmd
+netstat -ano
+```
+
+Identify:
+
+* Listening ports
+* Established connections
+
+---
+
+## Lab 2 – Windows Firewall
+
+Open:
+
+**Windows Defender Firewall with Advanced Security**
+
+Observe:
+
+* Inbound Rules
+* Outbound Rules
+
+Find one rule for:
+
+HTTPS (Port 443)
+
+---
+
+## Lab 3 – Windows Update
+
+Check:
+
+Settings
+
+↓
+
+Windows Update
+
+Verify:
+
+✔ Automatic Updates Enabled
+
+---
+
+## Lab 4 – Password Policy
+
+Research:
+
+How Windows password policies work.
+
+Find:
+
+* Minimum Length
+* Complexity
+* Expiration
+
+---
+
+# 💻 Mini Project
+
+# Enterprise Network Hardening Checklist
+
+Create a checklist with at least **25 items**.
+
+Example:
+
+✔ Firewall Enabled
+
+✔ MFA Enabled
+
+✔ VPN Required
+
+✔ Antivirus Installed
+
+✔ Disk Encryption Enabled
+
+✔ Guest Wi-Fi Separated
+
+✔ Regular Backups
+
+✔ SIEM Monitoring
+
+✔ IDS/IPS Enabled
+
+✔ Patch Management
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Network Hardening?
+2. What is a Security Baseline?
+3. Explain Zero Trust.
+4. What is ZTNA?
+5. Why is SSH preferred over Telnet?
+6. Why should RDP be protected?
+7. What is Defense in Depth?
+8. Why is patch management important?
+9. Why should unused ports be closed?
+10. Explain Least Privilege.
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Network Hardening means:
+
+A. Increasing internet speed
+B. Making systems more secure
+C. Installing games
+D. Formatting drives
+
+---
+
+### Q2. Security Baseline defines:
+
+A. Company profits
+B. Minimum security requirements
+C. Wi-Fi speed
+D. CPU temperature
+
+---
+
+### Q3. Zero Trust means:
+
+A. Trust everyone
+B. Never Trust, Always Verify
+C. Disable firewall
+D. Share passwords
+
+---
+
+### Q4. SSH uses port:
+
+A. 21
+B. 22
+C. 23
+D. 25
+
+---
+
+### Q5. Telnet is considered:
+
+A. Secure
+B. Insecure
+C. Encrypted
+D. Faster than SSH because it's safer
+
+---
+
+### Q6. RDP commonly uses:
+
+A. 22
+B. 80
+C. 3389
+D. 53
+
+---
+
+### Q7. MFA provides:
+
+A. Extra authentication security
+B. More RAM
+C. Faster internet
+D. File compression
+
+---
+
+### Q8. Which is NOT a network hardening practice?
+
+A. Closing unused ports
+B. Disabling updates
+C. Enabling firewalls
+D. Using strong passwords
+
+---
+
+### Q9. Least Privilege means:
+
+A. Everyone is an administrator
+B. Users receive only the permissions they need
+C. No passwords required
+D. Disable logging
+
+---
+
+### Q10. Which tool helps centralize security logs?
+
+A. SIEM
+B. Paint
+C. Calculator
+D. Notepad
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create 10 additional MCQs from today's lesson and answer them.
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+   * SSH vs Telnet
+   * VPN vs ZTNA
+   * Security Baseline vs Network Hardening
+
+2. Draw a Zero Trust Architecture.
+
+3. Explain why patch management is essential.
+
+---
+
+## Practical
+
+Design a **Secure Office Network** for:
+
+* 200 Employees
+* HR
+* Finance
+* Engineering
+* Guest Wi-Fi
+* VPN Users
+* SOC Team
+
+Include:
+
+* Firewall
+* VLANs
+* NAC
+* ZTNA
+* SIEM
+* IDS/IPS
+* EDR
+
+Explain why each component is placed where it is.
+
+---
+
+# 🧩 Level 4 – Security Architect Challenge
+
+## Scenario
+
+You are hired by a company after a security audit.
+
+The audit finds:
+
+* Telnet is enabled.
+* RDP is exposed to the internet.
+* No MFA.
+* Shared administrator accounts.
+* Firewall rules haven't been reviewed for 3 years.
+* Operating systems are missing security patches.
+* No centralized logging.
+
+### Your Tasks
+
+1. Identify **at least seven security risks**.
+2. Prioritize them from **Critical → Low**.
+3. Recommend a remediation plan for each.
+4. Explain how Zero Trust would improve this environment.
+5. Write a one-page executive summary suitable for the company's management.
+
+---
+
+# 📖 Module 6 Revision Cheat Sheet
+
+| Concept           | Key Point                                  |
+| ----------------- | ------------------------------------------ |
+| Firewall          | Controls network traffic                   |
+| IDS               | Detects attacks                            |
+| IPS               | Detects and blocks attacks                 |
+| DMZ               | Isolated network for public-facing systems |
+| VLAN              | Network segmentation                       |
+| NAC               | Controls device and user access            |
+| AAA               | Authentication, Authorization, Accounting  |
+| VPN               | Secure encrypted remote connection         |
+| WPA3              | Latest recommended Wi-Fi security          |
+| SIEM              | Collects and analyzes security logs        |
+| DDoS              | Distributed Denial of Service              |
+| ARP Spoofing      | Fake ARP messages to intercept traffic     |
+| DNS Spoofing      | Redirects users to fake websites           |
+| ZTNA              | Never Trust, Always Verify                 |
+| Network Hardening | Reduce attack surface                      |
+
+---
+
+# 📊 Progress Tracker
+
+## ✅ Completed Modules
+
+* ✔ Module 1 – Introduction to Cybersecurity
+* ✔ Module 2 – Computer & Internet Fundamentals
+* ✔ Module 3 – Networking Fundamentals
+* ✔ Module 4 – Cryptography
+* ✔ Module 5 – Malware & Cyber Threats
+* ✔ **Module 6 – Network Security (Complete)**
+
+**Overall Progress:** **18/50 Days (36%)** 🎉
+
+---
+
+# 🎉 Module 6 Milestone Challenge
+
+Without looking at your notes, answer these five questions:
+
+1. Explain the difference between **IDS and IPS** with a real-world example.
+2. Why is **SSH** preferred over **Telnet**?
+3. What is the difference between **VPN** and **ZTNA**?
+4. Describe how a **DDoS attack** works and list three defenses.
+5. Design a secure network for a small company with 50 employees, including a firewall, VLANs, VPN, SIEM, and EDR.
+
+---
+
+# 🚀 Tomorrow (Day 19)
+
+We'll begin **Module 7: Web Security**, one of the most important modules for ethical hacking and penetration testing.
+
+You'll learn:
+
+* How websites actually work
+* Frontend vs Backend
+* HTTP Request & Response
+* Cookies & Sessions
+* Authentication & Authorization
+* Same-Origin Policy
+* Introduction to the **OWASP Top 10**
+
+This module forms the foundation for understanding vulnerabilities like **SQL Injection (SQLi)**, **Cross-Site Scripting (XSS)**, and **Cross-Site Request Forgery (CSRF)** that you'll study in the following days.
