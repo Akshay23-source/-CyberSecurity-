@@ -1,0 +1,812 @@
+# 🔐 Cybersecurity Bootcamp – Day 19
+
+# Module 7 (Part 1): Web Security Fundamentals – How Websites Work, HTTP/HTTPS, Cookies, Sessions & OWASP Top 10 Introduction
+
+> **Mission:** Today you'll start one of the **most important modules in Cybersecurity**. Almost every company interview for **SOC Analyst, Penetration Tester, Security Engineer, Application Security Engineer, and Bug Bounty Hunter** includes web security questions.
+
+> **Duration:** **3–4 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today, you will:
+
+* ✅ Understand how websites work.
+* ✅ Learn Frontend vs Backend.
+* ✅ Understand Client-Server Architecture.
+* ✅ Learn HTTP Request and Response.
+* ✅ Understand HTTP Methods.
+* ✅ Learn Cookies and Sessions.
+* ✅ Understand Authentication vs Authorization.
+* ✅ Get introduced to the OWASP Top 10.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is a Website?
+
+A website is a collection of web pages hosted on a **Web Server**.
+
+Example:
+
+* amazon.com
+* google.com
+* github.com
+
+When you visit a website:
+
+```text
+You
+
+↓
+
+Browser
+
+↓
+
+Internet
+
+↓
+
+Web Server
+
+↓
+
+Response
+
+↓
+
+Browser Displays Website
+```
+
+---
+
+# Client and Server
+
+## Client
+
+The client is the device requesting information.
+
+Examples:
+
+* Chrome
+* Firefox
+* Edge
+* Mobile App
+
+---
+
+## Server
+
+The server stores:
+
+* Website files
+* Images
+* Databases
+* User accounts
+
+It processes requests from clients.
+
+---
+
+# 🏠 Real-Life Analogy
+
+Restaurant Example
+
+You = Customer
+
+Waiter = Browser
+
+Kitchen = Server
+
+Food = Website Data
+
+You order food.
+
+↓
+
+Waiter takes order.
+
+↓
+
+Kitchen prepares food.
+
+↓
+
+Waiter brings food.
+
+Exactly how websites work.
+
+---
+
+# Frontend vs Backend
+
+## Frontend
+
+Everything the user sees.
+
+Examples:
+
+* Buttons
+* Images
+* Login Page
+* Dashboard
+
+Technologies:
+
+* HTML
+* CSS
+* JavaScript
+
+---
+
+## Backend
+
+Everything behind the scenes.
+
+Examples:
+
+* Login verification
+* Database
+* Payment processing
+* Business logic
+
+Technologies:
+
+* Python
+* Java
+* PHP
+* Node.js
+* C#
+
+---
+
+# Database
+
+Stores:
+
+* Usernames
+* Password hashes
+* Orders
+* Payments
+
+Popular Databases
+
+* MySQL
+* PostgreSQL
+* MongoDB
+* SQL Server
+
+---
+
+# 🟡 Level 2 – HTTP & HTTPS
+
+# What is HTTP?
+
+HTTP = **HyperText Transfer Protocol**
+
+Used for communication between:
+
+Browser
+
+↓
+
+Web Server
+
+Example
+
+```text
+GET /index.html
+```
+
+Server replies
+
+```text
+200 OK
+```
+
+---
+
+# HTTPS
+
+HTTPS = HTTP + TLS Encryption
+
+Benefits
+
+✔ Encryption
+
+✔ Integrity
+
+✔ Authentication
+
+---
+
+# HTTP Request
+
+Example
+
+```http
+GET /login HTTP/1.1
+
+Host: example.com
+```
+
+Contains:
+
+* Method
+* URL
+* Headers
+* Body (if applicable)
+
+---
+
+# HTTP Response
+
+Example
+
+```http
+HTTP/1.1 200 OK
+
+Content-Type: text/html
+```
+
+Contains:
+
+* Status Code
+* Headers
+* Content
+
+---
+
+# HTTP Methods
+
+## GET
+
+Retrieve information.
+
+Example:
+
+```text
+View Products
+```
+
+---
+
+## POST
+
+Send data.
+
+Example:
+
+```text
+Login Form
+
+Registration
+```
+
+---
+
+## PUT
+
+Update an existing resource.
+
+---
+
+## DELETE
+
+Delete a resource.
+
+---
+
+## PATCH
+
+Partially update a resource.
+
+---
+
+# Common HTTP Status Codes
+
+| Code | Meaning                                          |
+| ---- | ------------------------------------------------ |
+| 200  | Success                                          |
+| 201  | Resource Created                                 |
+| 301  | Permanent Redirect                               |
+| 302  | Temporary Redirect                               |
+| 400  | Bad Request                                      |
+| 401  | Unauthorized (authentication required or failed) |
+| 403  | Forbidden (authenticated but not permitted)      |
+| 404  | Not Found                                        |
+| 500  | Internal Server Error                            |
+| 503  | Service Unavailable                              |
+
+---
+
+# 🟠 Level 3 – Cookies & Sessions
+
+# Cookies
+
+A cookie is a small piece of data stored by the browser.
+
+Example:
+
+```text
+Username
+
+Theme
+
+Language
+
+Session ID
+```
+
+---
+
+# Why Cookies?
+
+Without cookies,
+
+every page would behave like a brand-new visitor.
+
+You would need to log in repeatedly.
+
+---
+
+# Sessions
+
+A Session stores user information on the **server**.
+
+Example
+
+```text
+Login
+
+↓
+
+Server Creates Session
+
+↓
+
+Session ID
+
+↓
+
+Browser Cookie
+
+↓
+
+Future Requests
+```
+
+---
+
+# Cookie vs Session
+
+| Cookie                   | Session                                  |
+| ------------------------ | ---------------------------------------- |
+| Stored in browser        | Stored on server                         |
+| Small amount of data     | User state stored securely on server     |
+| May include a session ID | Uses the session ID to identify the user |
+
+---
+
+# Authentication vs Authorization
+
+## Authentication
+
+Question:
+
+> Who are you?
+
+Example:
+
+Username
+
+Password
+
+MFA
+
+---
+
+## Authorization
+
+Question:
+
+> What can you do?
+
+Example:
+
+Admin
+
+↓
+
+Delete User
+
+Employee
+
+↓
+
+View Own Profile
+
+---
+
+# 🌍 Real-World Example
+
+You log into Gmail.
+
+Authentication:
+
+✔ Username
+
+✔ Password
+
+✔ OTP
+
+Authorization:
+
+✔ Read Email
+
+✔ Send Email
+
+✔ Delete Own Email
+
+❌ Cannot read another user's mailbox.
+
+---
+
+# 🔵 OWASP Top 10 Introduction
+
+OWASP = **Open Worldwide Application Security Project**
+
+OWASP publishes a list of the most significant web application security risks.
+
+Some common categories include:
+
+* Broken Access Control
+* Cryptographic Failures
+* Injection
+* Insecure Design
+* Security Misconfiguration
+* Vulnerable and Outdated Components
+* Identification and Authentication Failures
+* Software and Data Integrity Failures
+* Security Logging and Monitoring Failures
+* Server-Side Request Forgery (SSRF)
+
+Over the next several days, you'll study each of these in depth.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Confusing Authentication with Authorization.
+
+❌ Thinking Cookies always store passwords.
+
+❌ Using HTTP instead of HTTPS for sensitive data.
+
+❌ Ignoring HTTP status codes during debugging.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Browser Developer Tools
+
+Open any website.
+
+Press:
+
+```text
+F12
+```
+
+Explore:
+
+* Network Tab
+* Application → Cookies
+* Console
+
+Observe:
+
+* HTTP Requests
+* Responses
+* Cookies
+
+---
+
+## Lab 2 – View Request Headers
+
+Open the Network tab.
+
+Refresh the page.
+
+Inspect:
+
+* Request Method
+* Response Code
+* Headers
+
+---
+
+## Lab 3 – Inspect Cookies
+
+Open:
+
+Developer Tools
+
+↓
+
+Application
+
+↓
+
+Cookies
+
+Observe:
+
+* Cookie names
+* Expiration
+* Secure flag (if present)
+* HttpOnly flag (if present)
+
+---
+
+## Lab 4 – HTTP Status Codes
+
+Visit:
+
+```text
+https://http.cat
+```
+
+Browse different status codes like:
+
+* 200
+* 404
+* 500
+
+Understand what each means.
+
+---
+
+# 💻 Mini Project
+
+## Website Request Analyzer
+
+Choose any public website.
+
+Document:
+
+* URL
+* HTTP Method
+* Status Code
+* Response Headers
+* Cookies
+* Whether HTTPS is used
+
+Save it as:
+
+**Web Security Analysis – Day 19**
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is HTTP?
+2. Difference between HTTP and HTTPS?
+3. What is a Client?
+4. What is a Server?
+5. Frontend vs Backend?
+6. What is a Cookie?
+7. What is a Session?
+8. Authentication vs Authorization?
+9. What is a GET request?
+10. What is OWASP?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. HTTP stands for:
+
+A. HyperText Transfer Protocol
+B. Hyper Transfer Process
+C. High Transfer Protocol
+D. Hyper Terminal Process
+
+---
+
+### Q2. HTTPS adds:
+
+A. Compression
+B. TLS Encryption
+C. Database
+D. Firewall
+
+---
+
+### Q3. GET is mainly used to:
+
+A. Delete data
+B. Retrieve data
+C. Update data
+D. Encrypt data
+
+---
+
+### Q4. POST is commonly used to:
+
+A. Submit data
+B. View images
+C. Restart a server
+D. Resolve DNS
+
+---
+
+### Q5. Which status code means "Not Found"?
+
+A. 200
+B. 301
+C. 404
+D. 500
+
+---
+
+### Q6. Cookies are primarily stored:
+
+A. On the browser
+B. In RAM only
+C. On the monitor
+D. On the printer
+
+---
+
+### Q7. Sessions are typically stored:
+
+A. On the server
+B. In the keyboard
+C. On the GPU
+D. In DNS
+
+---
+
+### Q8. Authentication verifies:
+
+A. Permissions
+B. Identity
+C. IP Address
+D. Domain
+
+---
+
+### Q9. Authorization determines:
+
+A. Identity
+B. Permissions
+C. RAM
+D. CPU
+
+---
+
+### Q10. OWASP focuses on:
+
+A. Network cables
+B. Web application security
+C. Operating systems only
+D. Printer security
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create 10 additional MCQs based on today's lesson and answer them.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare:
+
+   * HTTP vs HTTPS
+   * Cookie vs Session
+   * Authentication vs Authorization
+   * Frontend vs Backend
+
+2. Draw the complete request-response cycle.
+
+3. Explain five common HTTP status codes with examples.
+
+---
+
+### Practical
+
+Open your browser's Developer Tools and analyze the login page of a website (do **not** attempt to bypass security or test systems without permission).
+
+Record:
+
+* Request Method
+* Status Code
+* Headers
+* Cookies
+* Whether HTTPS is used
+
+---
+
+# 🧩 Level 4 – Web Security Analyst Challenge
+
+## Scenario
+
+A company's login page has the following issues:
+
+* Uses **HTTP** instead of **HTTPS**.
+* Session cookies are not marked **Secure**.
+* No **HttpOnly** flag on session cookies.
+* Users stay logged in for 90 days.
+* No Multi-Factor Authentication (MFA).
+
+### Your Tasks
+
+1. Identify **at least five security risks**.
+2. Recommend improvements for each issue.
+3. Explain why the `Secure` and `HttpOnly` cookie flags are important.
+4. Suggest a safer session management policy.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept        | Key Point                                        |
+| -------------- | ------------------------------------------------ |
+| Client         | Requests data                                    |
+| Server         | Provides data                                    |
+| HTTP           | Unencrypted communication                        |
+| HTTPS          | HTTP protected with TLS                          |
+| GET            | Retrieve data                                    |
+| POST           | Submit data                                      |
+| Cookie         | Small data stored in browser                     |
+| Session        | User state stored on server                      |
+| Authentication | Verifies identity                                |
+| Authorization  | Determines permissions                           |
+| OWASP          | Organization focused on web application security |
+
+---
+
+# 📊 Progress Tracker
+
+## ✅ Completed Modules
+
+* ✔ Module 1 – Introduction to Cybersecurity
+* ✔ Module 2 – Computer & Internet Fundamentals
+* ✔ Module 3 – Networking Fundamentals
+* ✔ Module 4 – Cryptography
+* ✔ Module 5 – Malware & Cyber Threats
+* ✔ Module 6 – Network Security (Complete)
+* ✔ Module 7 (Part 1) – Web Security Fundamentals
+
+**Overall Progress:** **19/50 Days (38%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 20)
+
+We'll begin one of the most important vulnerability topics in cybersecurity:
+
+## **SQL Injection (SQLi)**
+
+You will learn:
+
+* What SQL Injection is
+* Why it happens
+* Types of SQL Injection
+* Error-based, Union-based, Blind, and Time-based SQLi
+* Real-world case studies
+* Prevention using parameterized queries and prepared statements
+* Secure coding best practices
+
+> **Important:** The focus will be on understanding vulnerabilities and defenses in authorized learning environments, so you'll learn how to recognize and prevent SQL Injection without practicing attacks on systems you don't own.
