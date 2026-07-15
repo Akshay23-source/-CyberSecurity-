@@ -1,0 +1,718 @@
+# 🔐 Cybersecurity Bootcamp – Day 23
+
+# Module 7 (Part 5): Broken Authentication, Broken Access Control & IDOR (Insecure Direct Object References)
+
+> **Mission:** Today you'll learn two of the **most critical OWASP Top 10 vulnerabilities**: **Broken Authentication** and **Broken Access Control**. These vulnerabilities have caused major data breaches in companies worldwide.
+
+> **Duration:** **3–4 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Broken Authentication.
+* ✅ Learn Broken Access Control.
+* ✅ Understand IDOR (Insecure Direct Object References).
+* ✅ Learn RBAC (Role-Based Access Control).
+* ✅ Understand MFA and password attacks.
+* ✅ Learn secure authentication and authorization.
+* ✅ Analyze real-world security scenarios.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# Authentication vs Authorization (Revision)
+
+Many beginners confuse these.
+
+## Authentication
+
+Question:
+
+> **Who are you?**
+
+Examples:
+
+* Username + Password
+* OTP
+* Fingerprint
+* Face Recognition
+
+---
+
+## Authorization
+
+Question:
+
+> **What are you allowed to do?**
+
+Example:
+
+Employee
+
+✅ View salary slip
+
+❌ Modify company payroll
+
+---
+
+# What is Broken Authentication?
+
+Broken Authentication occurs when attackers can bypass or weaken the login process because authentication is poorly implemented.
+
+Examples:
+
+* Weak passwords
+* No MFA
+* Predictable session IDs
+* Passwords stored insecurely
+* Unlimited login attempts
+
+---
+
+# 🏠 Real-Life Analogy
+
+Imagine a company office.
+
+Security Guard asks:
+
+> "What's your name?"
+
+Anyone answers:
+
+> "Akshay."
+
+Security Guard allows entry without checking ID.
+
+This is Broken Authentication.
+
+---
+
+# 🟡 Level 2 – Authentication Attacks
+
+# Brute Force Attack
+
+The attacker repeatedly tries many passwords for one account.
+
+Example:
+
+```text
+Akshay
+
+↓
+
+password1
+
+↓
+
+password2
+
+↓
+
+password3
+
+↓
+
+...
+
+↓
+
+Correct Password
+```
+
+---
+
+## Defense
+
+✔ MFA
+
+✔ Account Lockout
+
+✔ CAPTCHA
+
+✔ Strong Passwords
+
+✔ Rate Limiting
+
+---
+
+# Password Spraying
+
+Instead of trying many passwords for one account,
+
+the attacker tries **one common password** against many accounts.
+
+Example:
+
+```text
+Password:
+
+Welcome123
+
+↓
+
+User1
+
+↓
+
+User2
+
+↓
+
+User3
+
+↓
+
+User100
+```
+
+This avoids triggering many account lockouts.
+
+---
+
+# Credential Stuffing
+
+Attackers use usernames and passwords leaked from other websites.
+
+Example:
+
+If a user reused the same password across multiple sites,
+
+the attacker tries those credentials elsewhere.
+
+---
+
+## Defense
+
+✔ MFA
+
+✔ Unique passwords
+
+✔ Password managers
+
+✔ Detect unusual login activity
+
+---
+
+# Multi-Factor Authentication (MFA)
+
+Authentication Factors:
+
+### Something You Know
+
+* Password
+* PIN
+
+---
+
+### Something You Have
+
+* Mobile Phone
+* Hardware Security Key
+* Authenticator App
+
+---
+
+### Something You Are
+
+* Fingerprint
+* Face Recognition
+
+---
+
+Using two or more factors significantly improves security.
+
+---
+
+# 🟠 Level 3 – Broken Access Control
+
+# What is Access Control?
+
+Access Control determines:
+
+Who can access
+
+What resource
+
+Under which conditions.
+
+---
+
+# Broken Access Control
+
+Occurs when users gain access to resources they should **not** be able to access.
+
+---
+
+Example
+
+Admin Dashboard
+
+↓
+
+Normal User
+
+↓
+
+Access Granted ❌
+
+This is Broken Access Control.
+
+---
+
+# Insecure Direct Object References (IDOR)
+
+IDOR occurs when an application exposes a reference to an object (such as a record ID) but **fails to verify that the user is authorized** to access that object.
+
+---
+
+## Example
+
+Suppose your profile URL is:
+
+```text
+/profile?id=105
+```
+
+The server should verify:
+
+> Is the logged-in user allowed to access profile 105?
+
+If the server only checks the number and not the user's permissions,
+
+another user's data could become accessible.
+
+---
+
+# Why IDOR Happens
+
+Developers:
+
+❌ Check only whether the user is logged in.
+
+But forget to check:
+
+✔ Whether the user is authorized for that specific resource.
+
+---
+
+# RBAC (Role-Based Access Control)
+
+Users receive permissions based on roles.
+
+Example:
+
+```text
+Admin
+
+↓
+
+Create Users
+
+Delete Users
+
+Manage Servers
+
+↓
+
+Employee
+
+↓
+
+View Own Profile
+
+Update Own Password
+```
+
+---
+
+# Least Privilege
+
+Every user receives only the permissions necessary.
+
+Intern
+
+↓
+
+Read Documents
+
+Not
+
+↓
+
+Delete Database
+
+---
+
+# 🌍 Real-World Example
+
+A university portal.
+
+Student A logs in.
+
+The server verifies:
+
+Student ID = 105.
+
+If Student A attempts to request another student's record,
+
+the application should check ownership before returning any information.
+
+Proper authorization prevents unauthorized access.
+
+---
+
+# Secure Authorization Checklist
+
+✔ Verify permissions on every request.
+
+✔ Never trust hidden form fields.
+
+✔ Never trust URL parameters alone.
+
+✔ Perform server-side authorization checks.
+
+✔ Use RBAC.
+
+✔ Log authorization failures.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Believing login automatically means permission.
+
+❌ Performing authorization only in the frontend.
+
+❌ Giving every employee administrator rights.
+
+❌ Forgetting ownership checks.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1
+
+Open your favorite website.
+
+Observe:
+
+Different users see different menus.
+
+Think:
+
+How does the application know which options to display?
+
+---
+
+## Lab 2
+
+Research:
+
+Role-Based Access Control (RBAC)
+
+Create roles:
+
+* Admin
+* HR
+* Finance
+* Employee
+* Guest
+
+List permissions for each.
+
+---
+
+## Lab 3
+
+Research:
+
+Multi-Factor Authentication.
+
+Compare:
+
+* SMS OTP
+* Authenticator Apps
+* Hardware Security Keys
+
+Write advantages and disadvantages of each.
+
+---
+
+## Lab 4
+
+Research:
+
+Password Managers.
+
+Examples:
+
+* Bitwarden
+* 1Password
+* KeePassXC
+
+Write why password managers improve security.
+
+---
+
+# 💻 Mini Project
+
+# Company Access Management System
+
+Design an access control system.
+
+Roles:
+
+* CEO
+* HR
+* Finance
+* Manager
+* Employee
+* Guest
+
+For each role define:
+
+* View
+* Edit
+* Delete
+* Create
+* Download
+* Manage Users
+
+Create a permission matrix.
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Broken Authentication?
+2. Difference between Authentication and Authorization?
+3. What is Broken Access Control?
+4. What is IDOR?
+5. Why is IDOR dangerous?
+6. Explain RBAC.
+7. What is Least Privilege?
+8. What is Credential Stuffing?
+9. Password Spraying vs Brute Force?
+10. Why is MFA important?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Authentication verifies:
+
+A. Permissions
+B. Identity
+C. IP Address
+D. RAM
+
+---
+
+### Q2. Authorization determines:
+
+A. Identity
+B. Permissions
+C. CPU Speed
+D. Browser
+
+---
+
+### Q3. Broken Authentication mainly affects:
+
+A. Login security
+B. DNS
+C. Switches
+D. Firewalls
+
+---
+
+### Q4. Credential Stuffing relies on:
+
+A. Stolen credentials reused across services
+B. Network cables
+C. Printer settings
+D. DHCP
+
+---
+
+### Q5. Password Spraying targets:
+
+A. One account with many passwords
+B. Many accounts with a common password
+C. Wi-Fi only
+D. Routers
+
+---
+
+### Q6. MFA means:
+
+A. Multi-Factor Authentication
+B. Managed Firewall Access
+C. Multiple File Access
+D. Main Firewall Application
+
+---
+
+### Q7. IDOR is mainly an:
+
+A. Authorization issue
+B. DNS issue
+C. Routing issue
+D. Hardware issue
+
+---
+
+### Q8. RBAC stands for:
+
+A. Role-Based Access Control
+B. Remote Browser Access Control
+C. Router Backup Access Control
+D. Real Browser Access Center
+
+---
+
+### Q9. Least Privilege means:
+
+A. Everyone gets admin rights
+B. Users receive only required permissions
+C. No authentication required
+D. Disable logging
+
+---
+
+### Q10. Which is a recommended defense?
+
+A. Server-side authorization checks
+B. Trust URL parameters alone
+C. Disable MFA
+D. Share passwords
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create 10 additional MCQs based on today's lesson and answer them.
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* Authentication vs Authorization
+* Brute Force vs Password Spraying
+* Password Spraying vs Credential Stuffing
+* RBAC vs Least Privilege
+
+2. Explain why server-side authorization is essential.
+
+3. Research **OWASP Broken Access Control** and summarize its key recommendations.
+
+---
+
+## Practical
+
+Design a **University Portal Access Control System**.
+
+Include roles:
+
+* Student
+* Faculty
+* HOD
+* Principal
+* Administrator
+
+Create a permission table showing who can:
+
+* View Grades
+* Edit Grades
+* View Attendance
+* Edit Attendance
+* Manage Users
+* Generate Reports
+
+---
+
+# 🧩 Level 4 – Security Architect Challenge
+
+## Scenario
+
+An HR management application has these issues:
+
+* No MFA for administrators.
+* Unlimited login attempts.
+* Employees can access salary records by changing a URL parameter because ownership checks are missing.
+* Frontend hides the "Admin" button, but the backend does not verify permissions.
+* All employees share the same administrator account.
+
+### Your Tasks
+
+1. Identify **at least six security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend a secure fix for each issue.
+4. Design an RBAC model for HR, Managers, Employees, and Administrators.
+5. Write a one-page security assessment report.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept               | Key Point                                     |
+| --------------------- | --------------------------------------------- |
+| Authentication        | Verifies identity                             |
+| Authorization         | Determines permissions                        |
+| Broken Authentication | Weak or insecure login mechanisms             |
+| Brute Force           | Many passwords against one account            |
+| Password Spraying     | One common password against many accounts     |
+| Credential Stuffing   | Reusing leaked credentials                    |
+| MFA                   | Multiple authentication factors               |
+| Broken Access Control | Users access unauthorized resources           |
+| IDOR                  | Missing authorization checks on object access |
+| RBAC                  | Permissions based on roles                    |
+| Least Privilege       | Minimum required permissions only             |
+
+---
+
+# 📊 Progress Tracker
+
+## ✅ Completed
+
+* ✔ Module 1 – Introduction to Cybersecurity
+* ✔ Module 2 – Computer & Internet Fundamentals
+* ✔ Module 3 – Networking Fundamentals
+* ✔ Module 4 – Cryptography
+* ✔ Module 5 – Malware & Cyber Threats
+* ✔ Module 6 – Network Security
+* ✔ Module 7 (Part 1–5) – Web Security
+
+**Overall Progress:** **23/50 Days (46%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 24)
+
+We'll continue **Module 7** with:
+
+## **Security Misconfiguration, SSRF, File Upload Vulnerabilities & Directory Traversal**
+
+You'll learn:
+
+* Security Misconfiguration
+* Server-Side Request Forgery (SSRF)
+* File Upload Vulnerabilities
+* Directory Traversal (Path Traversal)
+* Secure file handling
+* Cloud metadata service concepts
+* Secure server configuration
+* OWASP secure deployment best practices
+
+These topics are frequently encountered in application security assessments and are highly valuable for penetration testers, application security engineers, and secure software developers.
