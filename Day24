@@ -1,0 +1,620 @@
+# 🔐 Cybersecurity Bootcamp – Day 24
+
+# Module 7 (Part 6): Security Misconfiguration, SSRF, File Upload Vulnerabilities & Directory Traversal
+
+> **Mission:** Today you'll learn four critical OWASP vulnerabilities that frequently appear in penetration tests and real-world security incidents. The focus is on **understanding risks and learning secure defenses**.
+
+**Duration:** **3–4 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Security Misconfiguration.
+* ✅ Learn Server-Side Request Forgery (SSRF).
+* ✅ Understand File Upload Vulnerabilities.
+* ✅ Learn Directory Traversal (Path Traversal).
+* ✅ Understand secure server configuration.
+* ✅ Learn secure file handling.
+* ✅ Apply OWASP best practices.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Security Misconfiguration?
+
+Security Misconfiguration means:
+
+A system is deployed with **unsafe settings**.
+
+Examples:
+
+❌ Default passwords
+
+❌ Unnecessary services enabled
+
+❌ Debug mode enabled in production
+
+❌ Directory listing enabled
+
+❌ Unpatched software
+
+---
+
+## 🏠 Real-Life Analogy
+
+Imagine buying a new house.
+
+You never change:
+
+* Default lock
+* Default alarm code
+* Wi-Fi password
+
+Anyone who knows the defaults could enter.
+
+That's Security Misconfiguration.
+
+---
+
+# Common Misconfigurations
+
+* Default administrator accounts
+* Weak passwords
+* Open cloud storage
+* Exposed admin panels
+* Unused open ports
+* Outdated software
+* Missing HTTPS
+* Overly permissive file permissions
+
+---
+
+# 🟡 Level 2 – Server-Side Request Forgery (SSRF)
+
+## What is SSRF?
+
+Normally:
+
+```text
+User
+
+↓
+
+Website
+
+↓
+
+External API
+```
+
+Sometimes a website fetches information from another server on behalf of the user.
+
+If the application does not properly validate which destinations are allowed, an attacker may try to make the server send requests to unintended internal or external resources.
+
+---
+
+## Example (Concept)
+
+Image Import Feature
+
+↓
+
+User provides image URL
+
+↓
+
+Server downloads image
+
+↓
+
+Displays image
+
+If validation is missing, the server may be tricked into making unexpected requests.
+
+---
+
+## Why SSRF is Dangerous
+
+A vulnerable server might:
+
+* Reach internal services not accessible from the internet.
+* Access cloud metadata services.
+* Interact with internal APIs.
+
+Proper validation and network controls help prevent this.
+
+---
+
+# File Upload Vulnerabilities
+
+Many websites allow uploads:
+
+* Profile Pictures
+* PDFs
+* Resumes
+* Documents
+
+Problems arise when uploads are **not validated correctly**.
+
+---
+
+## Secure Upload Rules
+
+✔ Allow only expected file types.
+
+✔ Verify the file's actual content (not just its extension).
+
+✔ Rename uploaded files.
+
+✔ Store uploads outside executable directories when appropriate.
+
+✔ Scan files with antivirus or malware detection.
+
+✔ Enforce file size limits.
+
+---
+
+# Directory Traversal (Path Traversal)
+
+Applications often access files.
+
+If user-supplied file paths are not validated,
+
+an attacker may try to request unintended files outside the expected directory.
+
+---
+
+## Secure Design
+
+Applications should:
+
+* Restrict access to approved directories.
+* Normalize file paths.
+* Validate user input.
+* Avoid directly trusting user-supplied paths.
+
+---
+
+# 🟠 Level 3 – Advanced Concepts
+
+# Cloud Metadata Services
+
+Cloud providers expose metadata services for virtual machines.
+
+Applications should prevent unintended access to these services.
+
+Cloud security best practices include:
+
+* Network restrictions
+* Allowlists
+* Secure application design
+
+---
+
+# File Upload Best Practices
+
+After upload:
+
+```text
+User Upload
+
+↓
+
+Validation
+
+↓
+
+Virus Scan
+
+↓
+
+Rename File
+
+↓
+
+Store Safely
+
+↓
+
+Access via Application
+```
+
+Never rely only on:
+
+✔ File extension
+
+Instead verify:
+
+✔ File content
+
+✔ MIME type
+
+✔ File size
+
+---
+
+# Secure Server Configuration
+
+Checklist:
+
+✔ Disable debug mode.
+
+✔ Remove default accounts.
+
+✔ Apply security patches.
+
+✔ Disable unnecessary services.
+
+✔ Use HTTPS.
+
+✔ Enable logging.
+
+✔ Restrict permissions.
+
+✔ Use secure headers.
+
+---
+
+# 🌍 Real-World Example
+
+A company accidentally exposes:
+
+```text
+/admin
+```
+
+No authentication required.
+
+Result:
+
+Anyone can access administrative functions.
+
+Proper authentication and authorization would prevent this.
+
+---
+
+# Defense Against Security Misconfiguration
+
+* Secure configuration baselines
+* Regular patch management
+* Least privilege
+* Security reviews
+* Automated configuration scanning
+* Periodic penetration testing
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Leaving default passwords unchanged.
+
+❌ Trusting only file extensions.
+
+❌ Exposing debugging information.
+
+❌ Forgetting software updates.
+
+❌ Giving uploaded files executable permissions unnecessarily.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – HTTP Security Headers
+
+Open browser Developer Tools.
+
+Visit:
+
+Network →
+
+Headers
+
+Look for:
+
+* Strict-Transport-Security
+* Content-Security-Policy
+* X-Frame-Options
+
+Research what each header does.
+
+---
+
+## Lab 2 – File Upload Research
+
+Research secure file upload practices.
+
+Create a checklist with:
+
+* File validation
+* Virus scanning
+* File size limits
+* Storage location
+* Logging
+
+---
+
+## Lab 3 – Security Headers
+
+Research:
+
+* X-Content-Type-Options
+* Referrer-Policy
+* Permissions-Policy
+
+Write one paragraph explaining each.
+
+---
+
+## Lab 4 – Secure Server Checklist
+
+Create a checklist of at least **20 security settings** that should be verified before deploying a web application.
+
+---
+
+# 💻 Mini Project
+
+## Secure File Upload Architecture
+
+Design a secure upload workflow.
+
+```text
+User
+
+↓
+
+Authentication
+
+↓
+
+Upload
+
+↓
+
+Validation
+
+↓
+
+Virus Scan
+
+↓
+
+Rename
+
+↓
+
+Store Securely
+
+↓
+
+Database Entry
+
+↓
+
+Download
+```
+
+Explain every security step.
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Security Misconfiguration?
+2. Give five examples.
+3. What is SSRF?
+4. Why is SSRF dangerous?
+5. What is Directory Traversal?
+6. What is a File Upload Vulnerability?
+7. Why shouldn't applications trust file extensions?
+8. Why are security headers important?
+9. Why should debug mode be disabled in production?
+10. How can organizations prevent Security Misconfiguration?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Security Misconfiguration mainly results from:
+
+A. Unsafe or incorrect system settings
+B. Fast internet
+C. Large storage
+D. GPU drivers
+
+---
+
+### Q2. Default passwords should:
+
+A. Be kept forever
+B. Be changed immediately
+C. Be shared
+D. Be ignored
+
+---
+
+### Q3. SSRF involves:
+
+A. Making the server send unintended requests if input isn't properly validated
+B. Encrypting Wi-Fi
+C. Formatting a disk
+D. Compressing files
+
+---
+
+### Q4. Which is a secure file upload practice?
+
+A. Validate the file type and content
+B. Trust only the filename extension
+C. Allow unlimited file sizes
+D. Disable antivirus scanning
+
+---
+
+### Q5. Directory Traversal targets:
+
+A. File path handling
+B. CPU usage
+C. DNS resolution
+D. Wi-Fi encryption
+
+---
+
+### Q6. Which should usually be disabled in production?
+
+A. Debug mode
+B. HTTPS
+C. Logging
+D. Authentication
+
+---
+
+### Q7. Which security header helps enforce HTTPS?
+
+A. Strict-Transport-Security (HSTS)
+B. Host
+C. Accept
+D. User-Agent
+
+---
+
+### Q8. Uploaded files should ideally:
+
+A. Be stored securely with validation
+B. Be executed automatically
+C. Skip virus scanning
+D. Be trusted immediately
+
+---
+
+### Q9. Regular patching helps prevent:
+
+A. Known software vulnerabilities
+B. Larger monitors
+C. Faster keyboards
+D. Better graphics
+
+---
+
+### Q10. Least Privilege means:
+
+A. Everyone is an administrator
+B. Users receive only required permissions
+C. No passwords
+D. Disable logging
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create 10 additional MCQs from today's lesson and answer them.
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* Security Misconfiguration vs Broken Access Control
+* SSRF vs CSRF
+* Directory Traversal vs File Upload Vulnerabilities
+
+2. Research the **OWASP Server Security Cheat Sheet**.
+
+3. Create a **30-point Secure Deployment Checklist**.
+
+---
+
+## Practical
+
+Design a secure deployment architecture including:
+
+* HTTPS
+* WAF
+* Reverse Proxy
+* Firewall
+* Logging
+* SIEM
+* Secure File Upload
+* RBAC
+* MFA
+
+Explain why each component is included.
+
+---
+
+# 🧩 Level 4 – Application Security Challenge
+
+## Scenario
+
+You are reviewing a company's web application and discover:
+
+* Default administrator credentials are still active.
+* Debug mode is enabled in production.
+* Users can upload any file type without validation.
+* Uploaded files are stored in a publicly accessible directory.
+* The application accepts arbitrary URLs for server-side fetching without validation.
+* Software updates have not been applied for six months.
+
+### Your Tasks
+
+1. Identify **at least six security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend secure fixes for each.
+4. Explain how secure configuration management would reduce these risks.
+5. Write a one-page security assessment suitable for management.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept                   | Key Point                                                       |
+| ------------------------- | --------------------------------------------------------------- |
+| Security Misconfiguration | Unsafe system or application settings                           |
+| SSRF                      | Server makes unintended requests due to insufficient validation |
+| File Upload Vulnerability | Unsafe handling of uploaded files                               |
+| Directory Traversal       | Improper handling of file paths                                 |
+| Secure File Upload        | Validate, scan, rename, and store safely                        |
+| HSTS                      | Helps enforce HTTPS                                             |
+| CSP                       | Restricts trusted content sources                               |
+| Patch Management          | Fixes known vulnerabilities                                     |
+| Least Privilege           | Minimum permissions required                                    |
+
+---
+
+# 📊 Progress Tracker
+
+## ✅ Completed
+
+* ✔ Module 1 – Introduction to Cybersecurity
+* ✔ Module 2 – Computer & Internet Fundamentals
+* ✔ Module 3 – Networking Fundamentals
+* ✔ Module 4 – Cryptography
+* ✔ Module 5 – Malware & Cyber Threats
+* ✔ Module 6 – Network Security
+* ✔ Module 7 (Part 1–6) – Web Security
+
+**Overall Progress:** **24/50 Days (48%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 25)
+
+We'll complete **Module 7: Web Security** with:
+
+* **Insecure Deserialization**
+* **Software & Data Integrity Failures**
+* **Security Logging & Monitoring Failures**
+* **OWASP Top 10 complete revision**
+* **50-question Web Security Assessment**
+* A **real-world web application case study** where you'll act as an Application Security Engineer reviewing an enterprise application.
+
+This will complete your Web Security foundation and prepare you for the next module: **Linux Security & Operating System Security**.
