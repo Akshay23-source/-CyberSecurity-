@@ -1,0 +1,722 @@
+# 🔐 Cybersecurity Bootcamp – Day 25
+
+# Module 7 (Part 7 – Final): Insecure Deserialization, Software & Data Integrity Failures, Security Logging & Monitoring Failures + OWASP Top 10 Revision
+
+> **Mission:** Today you'll complete **Module 7: Web Security**. By the end of today, you'll understand the remaining OWASP Top 10 categories and perform your first complete application security review like an **Application Security Engineer**.
+
+**Duration:** **4–5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Insecure Deserialization.
+* ✅ Learn Software & Data Integrity Failures.
+* ✅ Understand Security Logging & Monitoring Failures.
+* ✅ Learn Software Supply Chain Security.
+* ✅ Perform a Web Security Assessment.
+* ✅ Revise the complete OWASP Top 10.
+* ✅ Complete a 50-question assessment.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Serialization?
+
+Serialization converts an object into a format that can be stored or transmitted.
+
+Example:
+
+```text
+User Object
+
+↓
+
+JSON
+
+↓
+
+Save to Database
+
+or
+
+Send over Network
+```
+
+---
+
+# What is Deserialization?
+
+Deserialization converts stored data back into an object.
+
+```text
+JSON
+
+↓
+
+Application
+
+↓
+
+User Object
+```
+
+Applications do this every day.
+
+---
+
+# What is Insecure Deserialization?
+
+If an application accepts serialized data from an untrusted source **without proper validation**, it may process unexpected or malicious data.
+
+This can lead to:
+
+* Unexpected application behavior
+* Privilege misuse
+* Data modification
+* Application compromise
+
+---
+
+## 🏠 Real-Life Analogy
+
+You receive a sealed package.
+
+Without checking:
+
+You immediately use its contents.
+
+If the package contained something dangerous,
+
+problems occur.
+
+Applications should always verify incoming data.
+
+---
+
+# 🟡 Level 2 – Software & Data Integrity Failures
+
+Modern applications use thousands of external libraries.
+
+Example:
+
+Your application uses:
+
+* React
+* Spring Boot
+* Express.js
+* NPM packages
+* Maven libraries
+
+If one dependency becomes compromised,
+
+your application could also be affected.
+
+---
+
+# Supply Chain Attack
+
+Instead of attacking you directly,
+
+an attacker compromises software you trust.
+
+Example flow:
+
+```text
+Developer
+
+↓
+
+Downloads Dependency
+
+↓
+
+Dependency Compromised
+
+↓
+
+Application Built
+
+↓
+
+Users Install Application
+```
+
+---
+
+## Famous Example
+
+### SolarWinds (2020)
+
+Attackers compromised the software build process.
+
+A malicious update was distributed to customers.
+
+**Lesson:**
+
+Always verify software integrity and secure build pipelines.
+
+---
+
+# Software Integrity Best Practices
+
+✔ Download software from trusted sources.
+
+✔ Verify digital signatures or checksums when available.
+
+✔ Keep dependencies updated.
+
+✔ Review third-party packages.
+
+✔ Remove unused libraries.
+
+✔ Use Software Composition Analysis (SCA) tools.
+
+---
+
+# 🔵 Security Logging & Monitoring Failures
+
+Logging answers:
+
+**What happened?**
+
+Monitoring answers:
+
+**Is something suspicious happening right now?**
+
+Without logs,
+
+organizations may not detect attacks until much later.
+
+---
+
+# What Should Be Logged?
+
+* Login Success
+* Login Failure
+* Password Reset
+* MFA Events
+* File Uploads
+* Admin Actions
+* Permission Changes
+* API Errors
+
+---
+
+# What Should NOT Be Logged?
+
+❌ Passwords
+
+❌ OTPs
+
+❌ Private encryption keys
+
+❌ Full credit card numbers
+
+Sensitive information should be protected or omitted.
+
+---
+
+# 🟠 Level 3 – Enterprise Perspective
+
+## SOC Workflow
+
+```text
+Firewall
+
+↓
+
+Servers
+
+↓
+
+Applications
+
+↓
+
+SIEM
+
+↓
+
+SOC Analyst
+
+↓
+
+Incident Response
+```
+
+---
+
+## Good Log Example
+
+```text
+Time: 10:25 AM
+
+User: Akshay
+
+Action: Login Success
+
+IP: 192.168.1.15
+```
+
+---
+
+## Bad Log Example
+
+```text
+Password: MyPassword123
+```
+
+Never log sensitive secrets.
+
+---
+
+# Log Retention
+
+Large companies often keep logs for:
+
+* Security investigations
+* Compliance
+* Incident response
+
+Retention periods depend on organizational needs and regulations.
+
+---
+
+# 🌍 Real-World Example
+
+An employee account is compromised.
+
+The attacker:
+
+* Logs in
+* Downloads confidential files
+* Creates a new administrator account
+
+Without logging,
+
+the organization cannot determine:
+
+* Who did it?
+* When it happened?
+* Which systems were affected?
+
+---
+
+# 🛡 Secure Development Lifecycle (SDLC)
+
+```text
+Planning
+
+↓
+
+Design
+
+↓
+
+Development
+
+↓
+
+Testing
+
+↓
+
+Deployment
+
+↓
+
+Monitoring
+
+↓
+
+Maintenance
+```
+
+Security should be included in **every phase**, not just at the end.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Installing random software packages.
+
+❌ Never updating dependencies.
+
+❌ Logging passwords.
+
+❌ Ignoring failed login attempts.
+
+❌ Not monitoring administrator activities.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – Browser Security Headers
+
+Open Developer Tools →
+
+Network →
+
+Headers
+
+Identify:
+
+* Content-Security-Policy
+* HSTS
+* X-Frame-Options
+
+---
+
+## Lab 2 – Dependency Research
+
+Research:
+
+One dependency used in a project.
+
+Find:
+
+* Current version
+* Latest version
+* Recent security advisories (if any)
+
+---
+
+## Lab 3 – Logging Checklist
+
+Create a logging policy.
+
+Include:
+
+✔ Login Events
+
+✔ Admin Actions
+
+✔ File Uploads
+
+✔ Failed Authentication
+
+✔ Permission Changes
+
+---
+
+## Lab 4 – SDLC
+
+Draw the Secure SDLC.
+
+Add one security activity at each phase.
+
+---
+
+# 💻 Mini Project
+
+## Secure Banking Web Application Design
+
+Include:
+
+* HTTPS
+* MFA
+* RBAC
+* Secure Cookies
+* CSP
+* CSRF Protection
+* WAF
+* Logging
+* SIEM
+* Secure File Upload
+* Patch Management
+* Dependency Verification
+
+Explain why each control is necessary.
+
+Upload to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Serialization?
+2. What is Insecure Deserialization?
+3. What is a Supply Chain Attack?
+4. Explain Software Integrity.
+5. What is Security Logging?
+6. Why is Monitoring important?
+7. What should never be logged?
+8. What is Secure SDLC?
+9. What is Software Composition Analysis (SCA)?
+10. Why should dependencies be updated?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Serialization converts:
+
+A. Object → Transferable format
+B. RAM → CPU
+C. HTML → CSS
+D. DNS → IP
+
+---
+
+### Q2. Deserialization converts:
+
+A. JSON → Object
+B. CPU → RAM
+C. Browser → Server
+D. Firewall → Router
+
+---
+
+### Q3. Software Supply Chain Attack targets:
+
+A. Trusted software components or build processes
+B. Printers
+C. Routers
+D. Keyboards
+
+---
+
+### Q4. Which should never be stored in logs?
+
+A. Login time
+B. Username
+C. Password
+D. IP Address
+
+---
+
+### Q5. Monitoring helps:
+
+A. Detect suspicious activity
+B. Increase RAM
+C. Speed up CPU
+D. Compress files
+
+---
+
+### Q6. SCA stands for:
+
+A. Software Composition Analysis
+B. Secure Cloud Access
+C. Server Control API
+D. Security Code Access
+
+---
+
+### Q7. Secure SDLC means:
+
+A. Security integrated throughout development
+B. Security only after deployment
+C. No testing
+D. No monitoring
+
+---
+
+### Q8. Which improves software integrity?
+
+A. Verifying digital signatures
+B. Downloading from unknown websites
+C. Ignoring updates
+D. Disabling antivirus
+
+---
+
+### Q9. Failed login attempts should:
+
+A. Be logged
+B. Be ignored
+C. Delete the database
+D. Disable HTTPS
+
+---
+
+### Q10. Which system commonly aggregates logs?
+
+A. SIEM
+B. Browser
+C. Printer
+D. Calculator
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* Serialization vs Deserialization
+* Logging vs Monitoring
+* Supply Chain Attack vs Security Misconfiguration
+
+2. Explain why sensitive data should never be logged.
+
+3. Research one major software supply chain incident (for example, SolarWinds or Log4Shell) and summarize:
+
+* What happened?
+* Impact
+* Lessons learned
+
+---
+
+## Practical
+
+Create a **Web Application Security Checklist** with **50 security controls**, including:
+
+* Authentication
+* Authorization
+* Session Management
+* Input Validation
+* Output Encoding
+* Logging
+* Monitoring
+* Patch Management
+* Secure Deployment
+* Dependency Management
+
+---
+
+# 🧩 Level 4 – Application Security Engineer Challenge
+
+## Scenario
+
+A company's online banking application has:
+
+* Outdated third-party libraries.
+* No dependency verification process.
+* Debug logs containing sensitive user information.
+* No monitoring for administrator account changes.
+* No centralized log collection.
+* Security testing only before release.
+
+### Your Tasks
+
+1. Identify **at least six security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend fixes for each issue.
+4. Explain how a Secure SDLC would reduce these risks.
+5. Write a professional security assessment report.
+
+---
+
+# 📖 Complete OWASP Top 10 (2021) Revision
+
+| Category                                 | Key Defense                                        |
+| ---------------------------------------- | -------------------------------------------------- |
+| Broken Access Control                    | Server-side authorization checks, RBAC             |
+| Cryptographic Failures                   | Strong encryption, HTTPS, secure key management    |
+| Injection                                | Parameterized queries, input validation            |
+| Insecure Design                          | Threat modeling, secure architecture               |
+| Security Misconfiguration                | Secure defaults, patching, hardening               |
+| Vulnerable Components                    | Dependency management, updates                     |
+| Identification & Authentication Failures | MFA, secure sessions, strong passwords             |
+| Software & Data Integrity Failures       | Trusted dependencies, signature verification       |
+| Security Logging & Monitoring Failures   | Centralized logging, SIEM, alerting                |
+| SSRF                                     | Input validation, network restrictions, allowlists |
+
+---
+
+# 📝 Module 7 Final Assessment (50 Questions)
+
+### Part A – Fundamentals (1–10)
+
+1. What is HTTP?
+2. Difference between HTTP and HTTPS?
+3. GET vs POST?
+4. Cookie vs Session?
+5. Authentication vs Authorization?
+6. What is OWASP?
+7. Name five HTTP status codes.
+8. Why is HTTPS important?
+9. What is a web server?
+10. What is a client?
+
+### Part B – Web Vulnerabilities (11–30)
+
+11. Explain SQL Injection.
+12. Primary defense against SQL Injection?
+13. What is Stored XSS?
+14. What is Reflected XSS?
+15. What is DOM XSS?
+16. What is CSP?
+17. Explain CSRF.
+18. Purpose of SameSite cookies?
+19. What is Clickjacking?
+20. Purpose of X-Frame-Options?
+21. What is Broken Authentication?
+22. What is Credential Stuffing?
+23. Password Spraying vs Brute Force?
+24. What is IDOR?
+25. What is RBAC?
+26. Explain Least Privilege.
+27. What is Security Misconfiguration?
+28. What is SSRF?
+29. What is Directory Traversal?
+30. Secure File Upload best practices?
+
+### Part C – Advanced Topics (31–50)
+
+31. What is Insecure Deserialization?
+32. What is a Supply Chain Attack?
+33. What is Software Integrity?
+34. What is SCA?
+35. Logging vs Monitoring?
+36. Why use SIEM?
+37. What should never be logged?
+38. What is Secure SDLC?
+39. Why is patch management important?
+40. Explain Defense in Depth.
+41. Explain Zero Trust.
+42. What is MFA?
+43. What is HSTS?
+44. What is CSP?
+45. What is HttpOnly?
+46. What is Secure Cookie?
+47. What is SameSite?
+48. Explain secure dependency management.
+49. Describe a secure deployment checklist.
+50. Design a secure banking web application architecture.
+
+---
+
+# 📊 Progress Tracker
+
+## ✅ Completed
+
+* ✔ Module 1 – Introduction to Cybersecurity
+* ✔ Module 2 – Computer & Internet Fundamentals
+* ✔ Module 3 – Networking Fundamentals
+* ✔ Module 4 – Cryptography
+* ✔ Module 5 – Malware & Cyber Threats
+* ✔ Module 6 – Network Security
+* ✔ **Module 7 – Web Security (Complete)**
+
+**Overall Progress:** **25/50 Days (50%)** 🎉
+
+You have now completed the **entire Web Security module**, which forms one of the strongest foundations for cybersecurity interviews, SOC roles, application security, and ethical hacking.
+
+---
+
+# 🚀 Tomorrow (Day 26)
+
+We begin **Module 8: Linux Security & Operating System Security**.
+
+You'll learn:
+
+* Linux architecture
+* Linux file system
+* File permissions (`chmod`, `chown`, `umask`)
+* Users and groups
+* Process management
+* Essential Linux commands
+* Shell scripting basics
+* Linux hardening
+* Windows vs Linux security
+* Linux security tools
+
+This module is essential because Linux powers most web servers, cloud infrastructure, and enterprise environments, making it a must-have skill for SOC Analysts, Security Engineers, Penetration Testers, and Cloud Security professionals.
