@@ -1,0 +1,684 @@
+# 🔐 Cybersecurity Bootcamp – Day 27
+
+# Module 8 (Part 2): Linux Users, Groups, Process Management & System Services
+
+> **Mission:** Today you'll learn how Linux manages users, groups, running processes, and services. These are fundamental skills for **SOC Analysts, Linux Administrators, Cloud Engineers, and Security Engineers**.
+
+**Duration:** **4 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Linux users and groups.
+* ✅ Learn user and group management commands.
+* ✅ Understand Linux processes.
+* ✅ Learn process monitoring and termination.
+* ✅ Understand Linux services and `systemd`.
+* ✅ Learn package management.
+* ✅ Explore Linux logs for security.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What are Users?
+
+Every person or service using Linux operates as a **user**.
+
+Types of users:
+
+* **Root User** – Full administrative privileges.
+* **Regular User** – Limited access.
+* **System User** – Used by applications and background services.
+
+Example:
+
+```text
+Root
+│
+├── Akshay
+├── Rahul
+└── nginx (system user)
+```
+
+---
+
+## What are Groups?
+
+Groups help manage permissions for multiple users.
+
+Example:
+
+```text
+Developers
+├── Alice
+├── Bob
+└── Charlie
+
+HR
+├── David
+└── Emma
+```
+
+Instead of assigning permissions individually, permissions are granted to the group.
+
+---
+
+# Essential User Commands
+
+| Command  | Purpose                 |
+| -------- | ----------------------- |
+| `whoami` | Display current user    |
+| `id`     | Show user and group IDs |
+| `who`    | List logged-in users    |
+| `groups` | Show user's groups      |
+| `passwd` | Change password         |
+
+Example:
+
+```bash
+whoami
+id
+groups
+```
+
+---
+
+# 🟡 Level 2 – User & Group Management
+
+## Create a User
+
+```bash
+sudo useradd john
+```
+
+Set password:
+
+```bash
+sudo passwd john
+```
+
+---
+
+## Delete a User
+
+```bash
+sudo userdel john
+```
+
+---
+
+## Create a Group
+
+```bash
+sudo groupadd developers
+```
+
+---
+
+## Add User to Group
+
+```bash
+sudo usermod -aG developers john
+```
+
+The `-aG` option appends the user to the specified group.
+
+---
+
+# Process Management
+
+A **process** is a running program.
+
+Examples:
+
+* Chrome
+* Firefox
+* VS Code
+* SSH Server
+
+---
+
+## View Running Processes
+
+```bash
+ps
+```
+
+Detailed view:
+
+```bash
+ps -ef
+```
+
+---
+
+## Real-Time Process Monitor
+
+```bash
+top
+```
+
+or (if installed):
+
+```bash
+htop
+```
+
+`top` displays:
+
+* CPU usage
+* Memory usage
+* Running processes
+* Process IDs (PIDs)
+
+---
+
+## Stop a Process
+
+```bash
+kill PID
+```
+
+Example:
+
+```bash
+kill 1234
+```
+
+Force termination:
+
+```bash
+kill -9 1234
+```
+
+⚠️ **Use `kill -9` only when necessary**, as it does not allow the process to shut down gracefully.
+
+---
+
+# 🟠 Level 3 – Services & Systemd
+
+Modern Linux systems use **systemd** to manage services.
+
+Examples of services:
+
+* SSH
+* Apache
+* Nginx
+* MySQL
+* Docker
+
+---
+
+## Check Service Status
+
+```bash
+systemctl status ssh
+```
+
+---
+
+## Start a Service
+
+```bash
+sudo systemctl start ssh
+```
+
+---
+
+## Stop a Service
+
+```bash
+sudo systemctl stop ssh
+```
+
+---
+
+## Restart a Service
+
+```bash
+sudo systemctl restart ssh
+```
+
+---
+
+## Enable Service at Boot
+
+```bash
+sudo systemctl enable ssh
+```
+
+---
+
+## Disable Service
+
+```bash
+sudo systemctl disable ssh
+```
+
+---
+
+# Package Management
+
+Different Linux distributions use different package managers.
+
+| Distribution  | Package Manager               |
+| ------------- | ----------------------------- |
+| Ubuntu/Debian | `apt`                         |
+| Fedora        | `dnf`                         |
+| CentOS/RHEL   | `yum` (older) / `dnf` (newer) |
+
+---
+
+## Update Packages (Ubuntu)
+
+```bash
+sudo apt update
+sudo apt upgrade
+```
+
+Keeping packages updated helps fix known vulnerabilities.
+
+---
+
+# Linux Logging
+
+Logs are critical for cybersecurity investigations.
+
+Common log directory:
+
+```text
+/var/log
+```
+
+Examples:
+
+| File                | Purpose                      |
+| ------------------- | ---------------------------- |
+| `/var/log/auth.log` | Authentication events        |
+| `/var/log/syslog`   | General system logs          |
+| `/var/log/kern.log` | Kernel logs                  |
+| `/var/log/dpkg.log` | Package installation history |
+
+---
+
+## View Logs
+
+```bash
+cat /var/log/syslog
+```
+
+or
+
+```bash
+less /var/log/syslog
+```
+
+---
+
+## Journal Logs
+
+```bash
+journalctl
+```
+
+Recent boot:
+
+```bash
+journalctl -b
+```
+
+SSH logs:
+
+```bash
+journalctl -u ssh
+```
+
+---
+
+# 🌍 Real-World Example
+
+A company discovers suspicious logins at midnight.
+
+The security team checks:
+
+* `/var/log/auth.log`
+* `journalctl`
+* SSH logs
+
+They identify repeated failed login attempts from a single IP address and block it using the firewall.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Running every command with `sudo`.
+
+❌ Using `kill -9` for every process.
+
+❌ Never reviewing logs.
+
+❌ Ignoring software updates.
+
+❌ Giving users unnecessary administrative privileges.
+
+---
+
+# 🛠 Hands-on Lab
+
+## Lab 1 – User Information
+
+Run:
+
+```bash
+whoami
+id
+groups
+who
+```
+
+Record the output.
+
+---
+
+## Lab 2 – Process Monitoring
+
+Run:
+
+```bash
+ps -ef
+top
+```
+
+Identify:
+
+* Highest CPU-consuming process.
+* Highest memory-consuming process.
+
+---
+
+## Lab 3 – Service Management
+
+Check the status of:
+
+```bash
+systemctl status ssh
+```
+
+If installed, also check:
+
+```bash
+systemctl status apache2
+```
+
+or
+
+```bash
+systemctl status nginx
+```
+
+---
+
+## Lab 4 – Log Analysis
+
+Open:
+
+```bash
+journalctl -b
+```
+
+Find:
+
+* System startup messages.
+* Service start events.
+* Authentication-related logs.
+
+---
+
+# 💻 Mini Project
+
+## Linux Server Audit Report
+
+Create a report containing:
+
+* Current user
+* Groups
+* Running services
+* Top 10 processes by CPU
+* Installed package manager
+* Important log files
+* Security recommendations
+
+Save it as **Linux_Server_Audit.md** and upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is the difference between a user and a group?
+2. What does `sudo` do?
+3. Explain the purpose of `systemctl`.
+4. What is a process?
+5. Difference between `ps` and `top`?
+6. What does `kill` do?
+7. Why should software be updated regularly?
+8. What is `journalctl`?
+9. Where are Linux logs stored?
+10. Why is least privilege important?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Which command displays the current user?
+
+A. `whoami`
+B. `pwd`
+C. `ls`
+D. `cat`
+
+**Answer:** A
+
+---
+
+### Q2. Which command displays user and group IDs?
+
+A. `id`
+B. `groups`
+C. `top`
+D. `ps`
+
+**Answer:** A
+
+---
+
+### Q3. Which command shows running processes?
+
+A. `ps`
+B. `pwd`
+C. `touch`
+D. `rm`
+
+**Answer:** A
+
+---
+
+### Q4. Which command provides a real-time process view?
+
+A. `top`
+B. `cp`
+C. `mkdir`
+D. `echo`
+
+**Answer:** A
+
+---
+
+### Q5. Which command manages services?
+
+A. `systemctl`
+B. `chmod`
+C. `find`
+D. `grep`
+
+**Answer:** A
+
+---
+
+### Q6. Ubuntu primarily uses which package manager?
+
+A. `apt`
+B. `yum`
+C. `dnf`
+D. `pacman`
+
+**Answer:** A
+
+---
+
+### Q7. Authentication logs are commonly stored in:
+
+A. `/var/log/auth.log`
+B. `/home`
+C. `/bin`
+D. `/tmp`
+
+**Answer:** A
+
+---
+
+### Q8. Which command displays systemd logs?
+
+A. `journalctl`
+B. `pwd`
+C. `touch`
+D. `nano`
+
+**Answer:** A
+
+---
+
+### Q9. Which option enables a service at startup?
+
+A. `systemctl enable`
+B. `systemctl stop`
+C. `systemctl restart`
+D. `systemctl kill`
+
+**Answer:** A
+
+---
+
+### Q10. Which principle limits permissions to only what is needed?
+
+A. Least Privilege
+B. Maximum Access
+C. Default Allow
+D. Open Access
+
+**Answer:** A
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create and answer 10 additional MCQs based on today's lesson.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Explain the difference between:
+
+   * `ps` vs `top`
+   * `kill` vs `kill -9`
+   * `apt` vs `yum` vs `dnf`
+2. Describe the role of `systemd` in Linux.
+3. Explain why log analysis is important during incident response.
+
+### Practical
+
+Create a **Linux Administration Cheat Sheet** containing:
+
+* 30 essential Linux commands.
+* User and group management commands.
+* Service management commands.
+* Package management commands.
+* Log analysis commands.
+
+---
+
+# 🧩 Level 4 – SOC Analyst Challenge
+
+## Scenario
+
+A Linux server reports:
+
+* High CPU usage.
+* Hundreds of failed SSH login attempts.
+* An unnecessary service is running.
+* Software packages haven't been updated in months.
+* Several users have unnecessary `sudo` privileges.
+
+### Your Tasks
+
+1. Identify **five security issues**.
+2. Rank them from **Critical → Low**.
+3. Recommend specific remediation steps.
+4. Explain which logs and commands you would use to investigate.
+5. Write a one-page incident response summary.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept      | Key Point                                   |
+| ------------ | ------------------------------------------- |
+| User         | Individual account on Linux                 |
+| Group        | Collection of users with shared permissions |
+| `whoami`     | Display current user                        |
+| `id`         | Show UID and GID                            |
+| `ps`         | List processes                              |
+| `top`        | Real-time process monitoring                |
+| `kill`       | Terminate a process                         |
+| `systemctl`  | Manage system services                      |
+| `apt`        | Package manager for Ubuntu/Debian           |
+| `journalctl` | View systemd logs                           |
+| `/var/log`   | Standard log directory                      |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 (Part 1) – Linux Fundamentals
+* ✅ **Module 8 (Part 2) – Users, Processes & Services**
+
+**Overall Progress:** **27/50 Days (54%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 28)
+
+We'll continue **Module 8** with:
+
+* Linux file permissions in depth
+* `chmod`, `chown`, and `umask`
+* Access Control Lists (ACLs)
+* Special permissions: **SUID**, **SGID**, and **Sticky Bit**
+* Secure file ownership
+* Linux hardening techniques
+* Common permission-related vulnerabilities
+
+These topics are essential for Linux system administration, penetration testing, and enterprise security audits.
