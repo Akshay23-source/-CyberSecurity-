@@ -1,0 +1,610 @@
+# 🔐 Cybersecurity Bootcamp – Day 28
+
+# Module 8 (Part 3): Linux File Permissions, ACLs, SUID, SGID & Sticky Bit
+
+> **Mission:** Today you'll master one of the most important Linux security topics: **file permissions and special permissions**. Misconfigured permissions are a common cause of security issues in Linux systems.
+
+**Duration:** **4 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Linux file permissions deeply.
+* ✅ Master `chmod`, `chown`, and `umask`.
+* ✅ Learn Access Control Lists (ACLs).
+* ✅ Understand SUID, SGID, and Sticky Bit.
+* ✅ Learn secure file ownership.
+* ✅ Apply Linux hardening techniques.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## Why are File Permissions Important?
+
+Linux controls **who can read, write, or execute** files.
+
+Think of a file as a **locker**:
+
+* 👤 Owner = Locker owner
+* 👥 Group = Friends with shared access
+* 🌍 Others = Everyone else
+
+Permissions determine who can open or modify the locker.
+
+---
+
+## Understanding Permission Format
+
+Example:
+
+```text
+-rwxr-xr--
+```
+
+Breakdown:
+
+```text
+- rwx r-x r--
+│ │   │   │
+│ │   │   └── Others
+│ │   └────── Group
+│ └────────── Owner
+└──────────── File Type
+```
+
+---
+
+## Permission Meaning
+
+| Symbol | Meaning |
+| ------ | ------- |
+| r      | Read    |
+| w      | Write   |
+| x      | Execute |
+
+---
+
+# 🟡 Level 2 – chmod, chown & umask
+
+## chmod (Change Permissions)
+
+Numeric Method:
+
+| Number | Permission |
+| ------ | ---------- |
+| 7      | rwx        |
+| 6      | rw-        |
+| 5      | r-x        |
+| 4      | r--        |
+| 0      | ---        |
+
+Examples:
+
+```bash
+chmod 755 script.sh
+chmod 644 report.txt
+chmod 600 secret.txt
+```
+
+### Common Permission Values
+
+| Permission | Meaning                         |
+| ---------- | ------------------------------- |
+| 777        | Full access to everyone (avoid) |
+| 755        | Owner full, others read/execute |
+| 644        | Owner read/write, others read   |
+| 600        | Owner only                      |
+
+---
+
+## chown (Change Owner)
+
+```bash
+sudo chown akshay report.txt
+```
+
+Change owner and group:
+
+```bash
+sudo chown akshay:developers report.txt
+```
+
+---
+
+## umask
+
+`umask` sets **default permissions** for newly created files.
+
+Example:
+
+```bash
+umask
+```
+
+Output:
+
+```text
+0022
+```
+
+Meaning:
+
+* New files usually become **644**
+* New directories usually become **755**
+
+---
+
+# 🔵 Level 3 – Access Control Lists (ACLs)
+
+ACLs allow assigning permissions to **specific users** without changing the owner or group.
+
+Example:
+
+```bash
+setfacl -m u:john:r report.txt
+```
+
+View ACL:
+
+```bash
+getfacl report.txt
+```
+
+### Why Use ACLs?
+
+Suppose:
+
+* Owner = Alice
+* Group = HR
+
+You want Bob to read one file without changing ownership.
+
+ACLs make this possible.
+
+---
+
+# Special Permissions
+
+## 1. SUID (Set User ID)
+
+When SUID is set on an executable:
+
+* The program runs with the **owner's privileges**.
+
+Example:
+
+```bash
+chmod u+s program
+```
+
+Display:
+
+```text
+-rwsr-xr-x
+```
+
+---
+
+## 2. SGID (Set Group ID)
+
+When SGID is applied:
+
+* Files inherit the directory's group.
+* Executables run with the group's permissions.
+
+Example:
+
+```bash
+chmod g+s shared_folder
+```
+
+---
+
+## 3. Sticky Bit
+
+Used mainly on shared directories like `/tmp`.
+
+Only the file owner (or root) can delete their own files.
+
+Example:
+
+```bash
+chmod +t /shared
+```
+
+Display:
+
+```text
+drwxrwxrwt
+```
+
+---
+
+# 🌍 Real-World Example
+
+A company stores employee salary files.
+
+Problem:
+
+```bash
+chmod 777 salaries.xlsx
+```
+
+Anyone can modify or delete it.
+
+Better:
+
+```bash
+chmod 600 salaries.xlsx
+```
+
+Only the owner has access.
+
+---
+
+# Linux Hardening Tips
+
+✔ Avoid `777`.
+
+✔ Use Least Privilege.
+
+✔ Remove unused accounts.
+
+✔ Regularly audit permissions.
+
+✔ Monitor privileged files.
+
+✔ Keep software updated.
+
+✔ Restrict access to sensitive directories.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Giving every file `777`.
+
+❌ Running programs as root unnecessarily.
+
+❌ Ignoring ACLs.
+
+❌ Forgetting to review permissions after copying files.
+
+❌ Leaving sensitive files readable by everyone.
+
+---
+
+# 🛠 Hands-on Labs
+
+## Lab 1 – Practice chmod
+
+Create a file:
+
+```bash
+touch demo.txt
+```
+
+Change permissions:
+
+```bash
+chmod 644 demo.txt
+chmod 600 demo.txt
+chmod 755 demo.txt
+```
+
+Observe changes:
+
+```bash
+ls -l
+```
+
+---
+
+## Lab 2 – Change Ownership
+
+```bash
+sudo chown username demo.txt
+```
+
+Verify:
+
+```bash
+ls -l
+```
+
+---
+
+## Lab 3 – View umask
+
+```bash
+umask
+```
+
+Create a new file:
+
+```bash
+touch test.txt
+```
+
+Check its default permissions.
+
+---
+
+## Lab 4 – ACL Practice
+
+Grant read permission:
+
+```bash
+setfacl -m u:john:r demo.txt
+```
+
+Verify:
+
+```bash
+getfacl demo.txt
+```
+
+---
+
+# 💻 Mini Project
+
+## Secure Department File Server
+
+Design a file server with these folders:
+
+```text
+Company/
+├── HR
+├── Finance
+├── IT
+├── Public
+└── Backup
+```
+
+For each folder:
+
+* Assign owner.
+* Assign group.
+* Choose appropriate permissions.
+* Decide where ACLs, SUID, SGID, or Sticky Bit should (or should not) be used.
+* Justify your choices.
+
+---
+
+# 💼 Interview Questions
+
+1. Explain Linux file permissions.
+2. What does `chmod` do?
+3. Difference between `chmod` and `chown`?
+4. What is `umask`?
+5. What are ACLs?
+6. What is SUID?
+7. What is SGID?
+8. What is the Sticky Bit?
+9. Why is `chmod 777` dangerous?
+10. Explain the Principle of Least Privilege.
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Which command changes file permissions?
+
+A. chmod
+B. chown
+C. ls
+D. pwd
+
+**Answer:** A
+
+---
+
+### Q2. Which command changes file ownership?
+
+A. chown
+B. chmod
+C. cp
+D. rm
+
+**Answer:** A
+
+---
+
+### Q3. Which permission gives only the owner read and write access?
+
+A. 600
+B. 777
+C. 755
+D. 644
+
+**Answer:** A
+
+---
+
+### Q4. What does ACL stand for?
+
+A. Access Control List
+B. Active Control Login
+C. Advanced Command Line
+D. Access Configuration Layer
+
+**Answer:** A
+
+---
+
+### Q5. Which special permission allows a program to run with the file owner's privileges?
+
+A. SUID
+B. SGID
+C. Sticky Bit
+D. ACL
+
+**Answer:** A
+
+---
+
+### Q6. Which special permission is commonly used on shared directories?
+
+A. Sticky Bit
+B. SUID
+C. SGID
+D. chmod
+
+**Answer:** A
+
+---
+
+### Q7. Which command displays ACL information?
+
+A. getfacl
+B. chmod
+C. ls
+D. cp
+
+**Answer:** A
+
+---
+
+### Q8. Which permission should generally be avoided for sensitive files?
+
+A. 777
+B. 600
+C. 644
+D. 755
+
+**Answer:** A
+
+---
+
+### Q9. The default permission behavior is influenced by:
+
+A. umask
+B. ls
+C. pwd
+D. echo
+
+**Answer:** A
+
+---
+
+### Q10. Least Privilege means:
+
+A. Give users only the permissions they need.
+B. Everyone should be root.
+C. Every file should be 777.
+D. Disable permissions.
+
+**Answer:** A
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create 10 additional MCQs from today's lesson and answer them.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare:
+
+   * `chmod` vs `chown`
+   * SUID vs SGID
+   * ACLs vs traditional Linux permissions
+
+2. Explain why `chmod 777` is considered insecure.
+
+3. Research how Linux file permissions support enterprise security.
+
+### Practical
+
+Build a **Linux Permission Cheat Sheet** containing:
+
+* Numeric permission values.
+* Symbolic permission notation.
+* Common `chmod` commands.
+* `chown` examples.
+* `umask` examples.
+* ACL commands.
+* SUID, SGID, and Sticky Bit examples.
+
+---
+
+# 🧩 Level 4 – Linux Security Challenge
+
+## Scenario
+
+A Linux server contains confidential company documents.
+
+You discover:
+
+* Sensitive files have **777** permissions.
+* Shared folders lack the Sticky Bit.
+* Developers use the **root** account for daily work.
+* File ownership is inconsistent.
+* ACLs are not used where temporary access is needed.
+
+### Your Tasks
+
+1. Identify **five security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend secure fixes.
+4. Design a secure permission strategy.
+5. Write a one-page Linux hardening report.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept         | Key Point                                     |
+| --------------- | --------------------------------------------- |
+| chmod           | Changes file permissions                      |
+| chown           | Changes owner/group                           |
+| umask           | Sets default permissions                      |
+| ACL             | Grants permissions to specific users          |
+| SUID            | Runs executable with owner's privileges       |
+| SGID            | Inherits group or runs with group privileges  |
+| Sticky Bit      | Restricts file deletion in shared directories |
+| 600             | Owner only                                    |
+| 644             | Owner read/write, others read                 |
+| 755             | Owner full, others read/execute               |
+| Least Privilege | Give only necessary permissions               |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 (Part 1) – Linux Fundamentals
+* ✅ Module 8 (Part 2) – Users, Processes & Services
+* ✅ **Module 8 (Part 3) – Linux Permissions & ACLs**
+
+**Overall Progress:** **28/50 Days (56%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 29)
+
+You'll continue **Module 8** with:
+
+* Linux networking fundamentals
+* Network configuration (`ip`, `ifconfig`, `ss`, `netstat`)
+* DNS troubleshooting
+* SSH security and hardening
+* Firewalls (`iptables`, `ufw`, `firewalld`)
+* Secure remote administration
+* Network monitoring tools (`ping`, `traceroute`, `tcpdump`, `nmap` basics)
+
+These skills are essential for SOC Analysts, Linux Administrators, Cloud Engineers, and Security Engineers.
