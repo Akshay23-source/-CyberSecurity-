@@ -1,0 +1,662 @@
+# 🔐 Cybersecurity Bootcamp – Day 29
+
+# Module 8 (Part 4): Linux Networking, SSH Security & Firewalls
+
+> **Mission:** Today you'll learn how Linux communicates over networks, how to securely manage remote access using **SSH**, and how to protect systems with **Linux firewalls**. These are core skills for **SOC Analysts, Security Engineers, Cloud Engineers, and Linux Administrators**.
+
+**Duration:** **4–5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Linux networking basics.
+* ✅ Learn essential network commands.
+* ✅ Configure and troubleshoot network interfaces.
+* ✅ Secure SSH access.
+* ✅ Understand Linux firewalls (`ufw`, `iptables`, `firewalld`).
+* ✅ Learn basic network monitoring.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is a Computer Network?
+
+A network allows computers to exchange information.
+
+Example:
+
+```text
+Laptop
+    │
+Wi-Fi Router
+    │
+Internet
+    │
+Web Server
+```
+
+Every Linux server connected to the internet has:
+
+* An IP Address
+* A Network Interface
+* A Gateway
+* DNS Servers
+
+---
+
+## Network Interface
+
+A network interface connects your Linux machine to the network.
+
+Examples:
+
+* `eth0` → Ethernet
+* `wlan0` → Wi-Fi
+* `lo` → Loopback (localhost)
+
+---
+
+# Essential Networking Commands
+
+## Show IP Address
+
+```bash
+ip addr
+```
+
+---
+
+## Show Routing Table
+
+```bash
+ip route
+```
+
+---
+
+## Show Network Interfaces
+
+```bash
+ip link
+```
+
+---
+
+## Check Connectivity
+
+```bash
+ping google.com
+```
+
+`ping` helps determine whether another host is reachable and measures round-trip time.
+
+---
+
+# 🟡 Level 2 – Network Troubleshooting
+
+## DNS Lookup
+
+Convert domain names into IP addresses.
+
+```bash
+nslookup google.com
+```
+
+or
+
+```bash
+dig google.com
+```
+
+---
+
+## Trace Packet Route
+
+```bash
+traceroute google.com
+```
+
+Shows the path packets take across networks.
+
+---
+
+## View Listening Ports
+
+```bash
+ss -tuln
+```
+
+This displays:
+
+* TCP ports
+* UDP ports
+* Listening services
+
+---
+
+## View Active Connections
+
+```bash
+ss -tunap
+```
+
+Useful during incident investigations.
+
+---
+
+# SSH (Secure Shell)
+
+SSH allows encrypted remote administration.
+
+Example:
+
+```bash
+ssh user@192.168.1.20
+```
+
+Unlike Telnet, SSH encrypts communication.
+
+---
+
+## SSH Authentication
+
+Two common methods:
+
+### Password Authentication
+
+Simple but weaker if passwords are weak.
+
+---
+
+### SSH Key Authentication
+
+More secure.
+
+Components:
+
+```text
+Private Key
+        │
+Authentication
+        │
+Public Key
+```
+
+The private key stays secret; the public key is placed on the server.
+
+---
+
+# SSH Hardening
+
+✔ Disable root login.
+
+✔ Prefer SSH keys over passwords.
+
+✔ Change default settings only when appropriate and documented.
+
+✔ Limit login attempts.
+
+✔ Use MFA where supported.
+
+✔ Keep OpenSSH updated.
+
+✔ Restrict users who may log in.
+
+---
+
+# 🟠 Level 3 – Linux Firewalls
+
+A firewall controls incoming and outgoing network traffic according to defined rules.
+
+---
+
+## UFW (Ubuntu Firewall)
+
+Check status:
+
+```bash
+sudo ufw status
+```
+
+Enable:
+
+```bash
+sudo ufw enable
+```
+
+Allow SSH:
+
+```bash
+sudo ufw allow ssh
+```
+
+Block a port:
+
+```bash
+sudo ufw deny 23
+```
+
+(Telnet is typically avoided because it is unencrypted.)
+
+---
+
+## iptables
+
+A powerful packet filtering framework used on many Linux systems.
+
+Example:
+
+```bash
+sudo iptables -L
+```
+
+Displays firewall rules.
+
+---
+
+## firewalld
+
+Common on Red Hat–based systems.
+
+Status:
+
+```bash
+sudo firewall-cmd --state
+```
+
+List allowed services:
+
+```bash
+sudo firewall-cmd --list-services
+```
+
+---
+
+# Network Monitoring
+
+Useful commands:
+
+```bash
+ping
+```
+
+```bash
+ss
+```
+
+```bash
+tcpdump
+```
+
+```bash
+ip
+```
+
+These tools help troubleshoot connectivity and observe network activity.
+
+---
+
+# 🌍 Real-World Example
+
+A Linux web server should expose only:
+
+* HTTPS (443)
+* SSH (22) for administrators
+
+Unused services and ports should remain closed to reduce the attack surface.
+
+---
+
+# Linux Network Hardening Checklist
+
+✔ Enable firewall.
+
+✔ Disable unused services.
+
+✔ Keep SSH updated.
+
+✔ Use SSH key authentication.
+
+✔ Restrict administrator access.
+
+✔ Monitor network logs.
+
+✔ Keep systems patched.
+
+✔ Close unnecessary ports.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Leaving every port open.
+
+❌ Allowing remote root login.
+
+❌ Using Telnet instead of SSH.
+
+❌ Ignoring firewall rules.
+
+❌ Not reviewing listening services.
+
+---
+
+# 🛠 Hands-on Labs
+
+## Lab 1 – Network Information
+
+Run:
+
+```bash
+ip addr
+ip route
+ip link
+```
+
+Record:
+
+* IP address
+* Gateway
+* Network interface
+
+---
+
+## Lab 2 – Connectivity Test
+
+Run:
+
+```bash
+ping google.com
+```
+
+Observe:
+
+* Packet loss
+* Response time
+
+---
+
+## Lab 3 – Open Ports
+
+Run:
+
+```bash
+ss -tuln
+```
+
+Identify:
+
+* Open TCP ports
+* Open UDP ports
+
+---
+
+## Lab 4 – Firewall
+
+On Ubuntu:
+
+```bash
+sudo ufw status
+```
+
+If UFW is enabled, identify which ports are allowed.
+
+---
+
+# 💻 Mini Project
+
+## Linux Network Security Audit
+
+Create a report including:
+
+* IP configuration
+* Routing table
+* Listening ports
+* Firewall status
+* SSH configuration summary
+* Security recommendations
+
+Save it as:
+
+**Linux_Network_Audit.md**
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is SSH?
+2. Why is SSH preferred over Telnet?
+3. What does `ip addr` display?
+4. What is the purpose of DNS?
+5. Explain `ping`.
+6. What does `ss -tuln` show?
+7. What is UFW?
+8. What is `iptables`?
+9. Why should unnecessary ports be closed?
+10. How would you secure SSH on a production server?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. SSH stands for:
+
+A. Secure Shell
+B. Secure Server Host
+C. Shell Service Host
+D. System Secure Host
+
+**Answer:** A
+
+---
+
+### Q2. Which command displays IP addresses?
+
+A. `ip addr`
+B. `pwd`
+C. `chmod`
+D. `ls`
+
+**Answer:** A
+
+---
+
+### Q3. Which command tests connectivity?
+
+A. `ping`
+B. `cp`
+C. `mkdir`
+D. `touch`
+
+**Answer:** A
+
+---
+
+### Q4. Which command shows listening ports?
+
+A. `ss -tuln`
+B. `pwd`
+C. `echo`
+D. `rm`
+
+**Answer:** A
+
+---
+
+### Q5. Which protocol provides encrypted remote access?
+
+A. SSH
+B. Telnet
+C. FTP
+D. HTTP
+
+**Answer:** A
+
+---
+
+### Q6. Ubuntu's default firewall tool is:
+
+A. UFW
+B. IIS
+C. Explorer
+D. Finder
+
+**Answer:** A
+
+---
+
+### Q7. Which command shows the routing table?
+
+A. `ip route`
+B. `cat`
+C. `nano`
+D. `touch`
+
+**Answer:** A
+
+---
+
+### Q8. DNS translates:
+
+A. Domain names into IP addresses
+B. Files into folders
+C. Passwords into hashes
+D. HTML into CSS
+
+**Answer:** A
+
+---
+
+### Q9. A firewall is primarily used to:
+
+A. Control network traffic
+B. Increase RAM
+C. Improve CPU speed
+D. Compress files
+
+**Answer:** A
+
+---
+
+### Q10. Which SSH authentication method is generally more secure?
+
+A. SSH Keys
+B. Weak Passwords
+C. Anonymous Login
+D. Telnet
+
+**Answer:** A
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create 10 additional MCQs from today's lesson and answer them.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare:
+
+   * SSH vs Telnet
+   * UFW vs iptables
+   * `ping` vs `traceroute`
+
+2. Explain why Linux firewalls are important.
+
+3. Describe a secure SSH configuration for an enterprise server.
+
+---
+
+### Practical
+
+Create a **Linux Networking Cheat Sheet** containing:
+
+* 25 networking commands
+* SSH security best practices
+* Firewall commands (`ufw`, `iptables`, `firewalld`)
+* Network troubleshooting workflow
+
+---
+
+# 🧩 Level 4 – SOC Investigation Challenge
+
+## Scenario
+
+A Linux server experiences repeated failed SSH login attempts.
+
+You discover:
+
+* SSH allows password authentication only.
+* The firewall allows many unnecessary ports.
+* Several unused network services are running.
+* Administrators have not reviewed logs for weeks.
+* Remote root login is enabled.
+
+### Your Tasks
+
+1. Identify **five security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend practical hardening steps.
+4. List the Linux commands you would use to investigate the issue.
+5. Write a short incident response report.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept            | Key Point                               |
+| ------------------ | --------------------------------------- |
+| `ip addr`          | View IP addresses                       |
+| `ip route`         | View routing table                      |
+| `ping`             | Test connectivity                       |
+| `nslookup` / `dig` | DNS lookup                              |
+| `traceroute`       | Trace network path                      |
+| `ss -tuln`         | Show listening ports                    |
+| SSH                | Secure remote administration            |
+| UFW                | Ubuntu firewall                         |
+| `iptables`         | Linux packet filtering                  |
+| Least Privilege    | Expose only required services and ports |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 (Part 1) – Linux Fundamentals
+* ✅ Module 8 (Part 2) – Users, Processes & Services
+* ✅ Module 8 (Part 3) – Linux Permissions & ACLs
+* ✅ **Module 8 (Part 4) – Linux Networking & SSH Security**
+
+**Overall Progress:** **29/50 Days (58%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 30)
+
+We'll continue **Module 8** with:
+
+* Linux shell scripting
+* Bash variables and loops
+* Conditional statements
+* Functions
+* Cron jobs and task scheduling
+* Automation for security operations
+* Writing simple security administration scripts
+
+These automation skills are highly valuable for SOC Analysts, Linux Administrators, DevSecOps Engineers, and Cloud Security professionals.
