@@ -1,0 +1,676 @@
+# 🔐 Cybersecurity Bootcamp – Day 30
+
+# Module 8 (Part 5): Linux Shell Scripting & Security Automation
+
+> **Mission:** Today you'll learn **Bash Shell Scripting**, one of the most valuable Linux skills. Security professionals automate repetitive tasks such as log analysis, backups, user auditing, and system monitoring using shell scripts.
+
+**Duration:** **4–5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Bash scripting.
+* ✅ Write your first shell script.
+* ✅ Use variables and user input.
+* ✅ Learn conditional statements and loops.
+* ✅ Create functions.
+* ✅ Automate security tasks.
+* ✅ Schedule scripts using Cron.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is a Shell Script?
+
+A shell script is a text file containing Linux commands that are executed automatically.
+
+Instead of typing:
+
+```bash
+date
+pwd
+whoami
+```
+
+every day, you can save them in one script.
+
+Example:
+
+```text
+daily_report.sh
+
+↓
+
+Runs all commands automatically
+```
+
+---
+
+## Your First Script
+
+Create a file:
+
+```bash
+nano hello.sh
+```
+
+Add:
+
+```bash
+#!/bin/bash
+
+echo "Hello, Cybersecurity!"
+```
+
+Save and make it executable:
+
+```bash
+chmod +x hello.sh
+```
+
+Run it:
+
+```bash
+./hello.sh
+```
+
+---
+
+# 🟡 Level 2 – Variables, Input & Conditions
+
+## Variables
+
+```bash
+#!/bin/bash
+
+name="Akshay"
+
+echo "Welcome $name"
+```
+
+---
+
+## User Input
+
+```bash
+#!/bin/bash
+
+echo "Enter your name:"
+read name
+
+echo "Hello $name"
+```
+
+---
+
+## Built-in Variables
+
+| Variable    | Meaning           |
+| ----------- | ----------------- |
+| `$USER`     | Current user      |
+| `$HOME`     | Home directory    |
+| `$PWD`      | Current directory |
+| `$HOSTNAME` | Computer name     |
+
+Example:
+
+```bash
+echo $USER
+echo $HOME
+```
+
+---
+
+## If Statement
+
+```bash
+#!/bin/bash
+
+age=20
+
+if [ $age -ge 18 ]
+then
+    echo "Adult"
+else
+    echo "Minor"
+fi
+```
+
+---
+
+## Case Statement
+
+```bash
+read option
+
+case $option in
+1)
+echo "Start"
+;;
+2)
+echo "Stop"
+;;
+*)
+echo "Invalid"
+;;
+esac
+```
+
+---
+
+# 🟠 Level 3 – Loops & Functions
+
+## For Loop
+
+```bash
+for i in 1 2 3 4 5
+do
+    echo $i
+done
+```
+
+Output:
+
+```text
+1
+2
+3
+4
+5
+```
+
+---
+
+## While Loop
+
+```bash
+count=1
+
+while [ $count -le 5 ]
+do
+    echo $count
+    count=$((count+1))
+done
+```
+
+---
+
+## Functions
+
+```bash
+greet(){
+
+echo "Welcome to Linux"
+
+}
+
+greet
+```
+
+---
+
+# Useful Commands in Scripts
+
+```bash
+date
+```
+
+Current date.
+
+```bash
+uptime
+```
+
+System uptime.
+
+```bash
+df -h
+```
+
+Disk usage.
+
+```bash
+free -h
+```
+
+Memory usage.
+
+```bash
+who
+```
+
+Logged-in users.
+
+---
+
+# Security Automation Examples
+
+## Disk Space Monitor
+
+```bash
+#!/bin/bash
+
+df -h
+```
+
+---
+
+## Logged-in Users
+
+```bash
+#!/bin/bash
+
+who
+```
+
+---
+
+## Failed Login Review
+
+```bash
+grep "Failed" /var/log/auth.log
+```
+
+---
+
+## Backup Script
+
+```bash
+tar -czf backup.tar.gz Documents/
+```
+
+---
+
+# Cron Jobs
+
+Cron automatically runs scripts.
+
+Edit Cron:
+
+```bash
+crontab -e
+```
+
+Example:
+
+```text
+0 9 * * * /home/akshay/backup.sh
+```
+
+Meaning:
+
+Every day at **9:00 AM** run:
+
+```text
+backup.sh
+```
+
+---
+
+## Cron Format
+
+```text
+Minute Hour Day Month Weekday Command
+```
+
+Example:
+
+```text
+30 18 * * 1
+```
+
+Runs every Monday at **6:30 PM**.
+
+---
+
+# 🌍 Real-World Example
+
+A SOC team wants to detect failed SSH logins every hour.
+
+They write a Bash script that:
+
+1. Reads authentication logs.
+2. Counts failed login attempts.
+3. Saves the report.
+4. Runs automatically every hour using Cron.
+
+This reduces manual work and improves monitoring.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Forgetting the shebang (`#!/bin/bash`).
+
+❌ Not making the script executable (`chmod +x`).
+
+❌ Using incorrect variable syntax.
+
+❌ Running scripts as `root` without need.
+
+❌ Not testing scripts before scheduling them with Cron.
+
+---
+
+# 🛠 Hands-on Labs
+
+## Lab 1 – Hello Script
+
+Create:
+
+```bash
+hello.sh
+```
+
+Print:
+
+* Your name
+* Current date
+* Current directory
+
+---
+
+## Lab 2 – User Information Script
+
+Write a script that displays:
+
+* Username
+* Hostname
+* Home directory
+* Disk usage
+
+---
+
+## Lab 3 – Loop Practice
+
+Write a script that prints numbers from **1 to 20** using a `for` loop.
+
+---
+
+## Lab 4 – Cron Practice
+
+Create a simple script that writes the current date to a text file.
+
+Schedule it using `crontab -e` to run every day at **8:00 AM**.
+
+---
+
+# 💻 Mini Project
+
+## Linux Security Health Check Script
+
+Create a script named:
+
+```text
+security_check.sh
+```
+
+The script should display:
+
+* Current user
+* Hostname
+* Date and time
+* Uptime
+* Disk usage
+* Memory usage
+* Logged-in users
+* Running SSH service status
+
+Bonus:
+
+Save the output into a file named:
+
+```text
+system_report.txt
+```
+
+---
+
+# 💼 Interview Questions
+
+1. What is Bash?
+2. What is a shell script?
+3. Explain the purpose of `#!/bin/bash`.
+4. How do you make a script executable?
+5. Difference between a variable and user input?
+6. Explain `if` statements.
+7. Difference between `for` and `while` loops?
+8. What are Bash functions?
+9. What is Cron?
+10. Why is automation important in cybersecurity?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Which line should appear at the beginning of most Bash scripts?
+
+A. `#!/bin/bash`
+B. `echo`
+C. `chmod`
+D. `cron`
+
+**Answer:** A
+
+---
+
+### Q2. Which command makes a script executable?
+
+A. `chmod +x`
+B. `ls`
+C. `pwd`
+D. `cat`
+
+**Answer:** A
+
+---
+
+### Q3. Which command schedules recurring tasks?
+
+A. `crontab`
+B. `mkdir`
+C. `grep`
+D. `touch`
+
+**Answer:** A
+
+---
+
+### Q4. Which variable stores the current user's name?
+
+A. `$USER`
+B. `$PATH`
+C. `$SHELL`
+D. `$PS1`
+
+**Answer:** A
+
+---
+
+### Q5. Which loop is commonly used to iterate over a list?
+
+A. `for`
+B. `case`
+C. `if`
+D. `echo`
+
+**Answer:** A
+
+---
+
+### Q6. Which command displays system uptime?
+
+A. `uptime`
+B. `pwd`
+C. `date`
+D. `hostname`
+
+**Answer:** A
+
+---
+
+### Q7. Which command displays memory usage?
+
+A. `free -h`
+B. `df -h`
+C. `ls`
+D. `rm`
+
+**Answer:** A
+
+---
+
+### Q8. Which command displays disk usage?
+
+A. `df -h`
+B. `free -h`
+C. `whoami`
+D. `echo`
+
+**Answer:** A
+
+---
+
+### Q9. Bash functions are used to:
+
+A. Reuse code
+B. Delete files
+C. Encrypt disks
+D. Install software
+
+**Answer:** A
+
+---
+
+### Q10. Cron is mainly used for:
+
+A. Task automation
+B. Networking
+C. Encryption
+D. File compression
+
+**Answer:** A
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create and answer 10 additional MCQs from today's lesson.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Compare:
+
+* `for` loop vs `while` loop
+* Bash variables vs user input
+* Cron vs manual execution
+
+2. Explain why automation is important for SOC teams.
+
+3. Describe three real-world cybersecurity tasks that can be automated using Bash.
+
+---
+
+### Practical
+
+Create a **Bash Script Cheat Sheet** containing:
+
+* Variables
+* User input
+* Conditions
+* Loops
+* Functions
+* Cron syntax
+* 20 commonly used Linux commands in scripts
+
+---
+
+# 🧩 Level 4 – SOC Automation Challenge
+
+## Scenario
+
+A Linux web server must be monitored automatically.
+
+Requirements:
+
+* Generate a daily system report.
+* Check if disk usage exceeds **80%**.
+* Verify that the SSH service is running.
+* Record failed login attempts.
+* Save all results in a log file.
+* Schedule the script to run every day at **7:00 AM** using Cron.
+
+### Your Tasks
+
+1. Design the Bash script.
+2. Explain each command used.
+3. Describe how Cron automates execution.
+4. Suggest two additional security checks to improve the script.
+5. Write a short operational guide for the system administrator.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept       | Key Point                                 |
+| ------------- | ----------------------------------------- |
+| Bash          | Linux command shell                       |
+| Shell Script  | File containing executable Linux commands |
+| `#!/bin/bash` | Shebang specifying the Bash interpreter   |
+| `chmod +x`    | Makes a script executable                 |
+| `read`        | Accept user input                         |
+| `if`          | Conditional execution                     |
+| `for`         | Loop over a list                          |
+| `while`       | Repeat while a condition is true          |
+| Function      | Reusable block of code                    |
+| `crontab -e`  | Edit scheduled tasks                      |
+| `df -h`       | Disk usage                                |
+| `free -h`     | Memory usage                              |
+| `uptime`      | System uptime                             |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 (Part 1) – Linux Fundamentals
+* ✅ Module 8 (Part 2) – Users, Processes & Services
+* ✅ Module 8 (Part 3) – Linux Permissions & ACLs
+* ✅ Module 8 (Part 4) – Linux Networking & SSH Security
+* ✅ **Module 8 (Part 5) – Bash Scripting & Security Automation**
+
+**Overall Progress:** **30/50 Days (60%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 31)
+
+You'll begin **Module 8 (Part 6): Linux Hardening & System Security**.
+
+Topics include:
+
+* System hardening checklist
+* User account security
+* Password policies
+* File integrity monitoring
+* Auditd
+* SELinux & AppArmor
+* Secure boot concepts
+* Log rotation
+* Linux security best practices
+
+This module will prepare you for Linux administration interviews, SOC Analyst roles, Security Engineering, and cloud security operations.
