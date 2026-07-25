@@ -1,0 +1,626 @@
+# 🔐 Cybersecurity Bootcamp – Day 31
+
+# Module 8 (Part 6): Linux Hardening & System Security
+
+> **Mission:** Today you'll learn how to **secure (harden)** a Linux system. Hardening means reducing the attack surface by removing unnecessary risks and strengthening security controls. This is a critical skill for **SOC Analysts, Linux Administrators, Cloud Engineers, and Security Engineers**.
+
+**Duration:** **4–5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Linux hardening.
+* ✅ Secure user accounts.
+* ✅ Implement strong password policies.
+* ✅ Learn File Integrity Monitoring (FIM).
+* ✅ Understand SELinux & AppArmor.
+* ✅ Configure Auditd.
+* ✅ Learn log rotation and security best practices.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is System Hardening?
+
+System hardening is the process of making a computer **more secure** by reducing vulnerabilities.
+
+### 🏠 Real-Life Analogy
+
+Imagine protecting your house:
+
+❌ Doors unlocked
+
+❌ Windows open
+
+❌ Spare key outside
+
+A hardened house would have:
+
+✔ Strong locks
+
+✔ CCTV
+
+✔ Alarm system
+
+✔ Secure windows
+
+Linux hardening follows the same idea.
+
+---
+
+# Linux Hardening Checklist
+
+✔ Remove unused software
+
+✔ Disable unused services
+
+✔ Keep the system updated
+
+✔ Enable a firewall
+
+✔ Use SSH securely
+
+✔ Apply Least Privilege
+
+✔ Monitor logs
+
+✔ Enable auditing
+
+✔ Regular backups
+
+✔ Multi-Factor Authentication (where available)
+
+---
+
+# 🟡 Level 2 – User & Password Security
+
+## Strong Password Policy
+
+A strong password should have:
+
+* Minimum 12–16 characters
+* Uppercase letters
+* Lowercase letters
+* Numbers
+* Special characters
+
+Example:
+
+```text
+Cyber@2026!Linux#
+```
+
+---
+
+## Password Aging
+
+Linux can force users to change passwords regularly.
+
+Check password policy:
+
+```bash
+sudo chage -l username
+```
+
+Set password expiry:
+
+```bash
+sudo chage -M 90 username
+```
+
+This requires a password change every 90 days.
+
+---
+
+## Lock an Account
+
+```bash
+sudo passwd -l username
+```
+
+Unlock:
+
+```bash
+sudo passwd -u username
+```
+
+---
+
+# Least Privilege
+
+Never give administrator (`sudo`) access unless necessary.
+
+Example:
+
+❌ Intern → Administrator
+
+✔ Intern → Read-only access
+
+---
+
+# 🔵 Level 3 – File Integrity Monitoring (FIM)
+
+## What is FIM?
+
+File Integrity Monitoring detects unexpected changes to important files.
+
+Examples:
+
+* `/etc/passwd`
+* `/etc/shadow`
+* `/etc/ssh/sshd_config`
+
+If these files change unexpectedly, administrators should investigate.
+
+---
+
+## Common FIM Tools
+
+* AIDE (Advanced Intrusion Detection Environment)
+* Tripwire
+* OSSEC/Wazuh (includes integrity monitoring)
+
+---
+
+## Why FIM Matters
+
+If malware changes system files, FIM can alert administrators that a critical file has been modified.
+
+---
+
+# Auditd
+
+`auditd` records security-relevant system events.
+
+Examples:
+
+* File access
+* Permission changes
+* Login events
+* Administrative actions
+
+Check service:
+
+```bash
+sudo systemctl status auditd
+```
+
+Search audit logs:
+
+```bash
+sudo ausearch -k login
+```
+
+Generate report:
+
+```bash
+sudo aureport
+```
+
+---
+
+# SELinux
+
+SELinux (**Security-Enhanced Linux**) provides **Mandatory Access Control (MAC)**.
+
+Instead of only checking user permissions, SELinux also enforces security policies.
+
+Modes:
+
+* Enforcing
+* Permissive
+* Disabled
+
+Check mode:
+
+```bash
+getenforce
+```
+
+---
+
+# AppArmor
+
+AppArmor is another Mandatory Access Control framework.
+
+Instead of labeling every file like SELinux, it uses application profiles.
+
+Check status:
+
+```bash
+sudo aa-status
+```
+
+---
+
+# SELinux vs AppArmor
+
+| SELinux        | AppArmor            |
+| -------------- | ------------------- |
+| Label-based    | Profile-based       |
+| Very powerful  | Easier to configure |
+| Common in RHEL | Common in Ubuntu    |
+
+---
+
+# Log Rotation
+
+Logs grow continuously.
+
+Linux uses **logrotate** to:
+
+* Archive old logs
+* Compress them
+* Delete very old logs
+* Prevent disks from filling up
+
+Configuration:
+
+```text
+/etc/logrotate.conf
+```
+
+---
+
+# 🌍 Real-World Example
+
+A company's SSH configuration file suddenly changes overnight.
+
+AIDE reports the modification.
+
+Auditd identifies:
+
+* User who made the change
+* Time of the change
+
+The security team quickly investigates and restores the correct configuration.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Never updating the system.
+
+❌ Disabling SELinux/AppArmor without understanding the impact.
+
+❌ Giving every user `sudo`.
+
+❌ Ignoring audit logs.
+
+❌ Never checking file integrity.
+
+---
+
+# 🛠 Hands-on Labs
+
+## Lab 1 – Password Policy
+
+Run:
+
+```bash
+sudo chage -l $USER
+```
+
+Observe:
+
+* Password expiry
+* Maximum age
+* Warning period
+
+---
+
+## Lab 2 – Check SELinux/AppArmor
+
+Ubuntu:
+
+```bash
+sudo aa-status
+```
+
+RHEL:
+
+```bash
+getenforce
+```
+
+---
+
+## Lab 3 – Audit Service
+
+Check:
+
+```bash
+sudo systemctl status auditd
+```
+
+If installed:
+
+```bash
+sudo aureport
+```
+
+---
+
+## Lab 4 – Log Rotation
+
+View configuration:
+
+```bash
+cat /etc/logrotate.conf
+```
+
+Identify:
+
+* Rotation frequency
+* Compression settings
+* Number of retained logs
+
+---
+
+# 💻 Mini Project
+
+## Linux Hardening Report
+
+Create a document containing:
+
+* User account policy
+* Password policy
+* SSH hardening checklist
+* Firewall configuration
+* File integrity monitoring plan
+* Audit policy
+* Backup strategy
+* Log management policy
+
+Save it as:
+
+```text
+Linux_Hardening_Report.md
+```
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Linux hardening?
+2. Why is Least Privilege important?
+3. What is File Integrity Monitoring?
+4. Explain AIDE.
+5. What is Auditd?
+6. Difference between SELinux and AppArmor?
+7. What is Mandatory Access Control?
+8. Why is log rotation necessary?
+9. How do you secure user accounts?
+10. What are the first five steps after deploying a new Linux server?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. System hardening means:
+
+A. Making a system more secure
+B. Installing games
+C. Increasing RAM
+D. Formatting disks
+
+**Answer:** A
+
+---
+
+### Q2. Which tool performs File Integrity Monitoring?
+
+A. AIDE
+B. Firefox
+C. Nano
+D. GCC
+
+**Answer:** A
+
+---
+
+### Q3. Which Linux service records security events?
+
+A. auditd
+B. Apache
+C. Docker
+D. SSH
+
+**Answer:** A
+
+---
+
+### Q4. SELinux provides:
+
+A. Mandatory Access Control
+B. File compression
+C. Network routing
+D. Backup services
+
+**Answer:** A
+
+---
+
+### Q5. Ubuntu commonly uses:
+
+A. AppArmor
+B. Active Directory
+C. IIS
+D. Exchange
+
+**Answer:** A
+
+---
+
+### Q6. Password aging is managed using:
+
+A. `chage`
+B. `ping`
+C. `grep`
+D. `cp`
+
+**Answer:** A
+
+---
+
+### Q7. Which file contains logrotate configuration?
+
+A. `/etc/logrotate.conf`
+B. `/etc/passwd`
+C. `/home`
+D. `/tmp`
+
+**Answer:** A
+
+---
+
+### Q8. Least Privilege means:
+
+A. Give only necessary permissions
+B. Give everyone root access
+C. Disable authentication
+D. Share passwords
+
+**Answer:** A
+
+---
+
+### Q9. File Integrity Monitoring detects:
+
+A. Unauthorized file changes
+B. CPU overheating
+C. Network speed
+D. Disk formatting
+
+**Answer:** A
+
+---
+
+### Q10. A strong password should:
+
+A. Be long and complex
+B. Be "123456"
+C. Contain only lowercase letters
+D. Match the username
+
+**Answer:** A
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create and answer 10 additional MCQs from today's lesson.
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* SELinux vs AppArmor
+* DAC (Discretionary Access Control) vs MAC (Mandatory Access Control)
+* Auditd vs File Integrity Monitoring
+
+2. Explain why regular patching is essential for Linux security.
+
+3. Research the **CIS Linux Benchmarks** and summarize five important hardening recommendations.
+
+---
+
+## Practical
+
+Create a **Linux Hardening Checklist** with at least **40 security controls**, including:
+
+* User management
+* Password policies
+* SSH security
+* Firewall configuration
+* Logging
+* Auditing
+* File permissions
+* Updates
+* Backup
+* Monitoring
+
+---
+
+# 🧩 Level 4 – Security Engineer Challenge
+
+## Scenario
+
+You are asked to audit a newly deployed Linux server. You discover:
+
+* Root login via SSH is enabled.
+* Passwords never expire.
+* Auditd is not installed.
+* SELinux/AppArmor has been disabled.
+* No firewall is configured.
+* Important system files are not monitored for integrity.
+
+### Your Tasks
+
+1. Identify **six security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend secure fixes.
+4. Explain how defense-in-depth would improve this server's security.
+5. Write a one-page Linux hardening report for management.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept          | Key Point                              |
+| ---------------- | -------------------------------------- |
+| System Hardening | Reduce attack surface                  |
+| Least Privilege  | Minimum permissions required           |
+| AIDE             | File Integrity Monitoring              |
+| Auditd           | Security event auditing                |
+| SELinux          | Label-based Mandatory Access Control   |
+| AppArmor         | Profile-based Mandatory Access Control |
+| `chage`          | Password aging management              |
+| `logrotate`      | Automatic log rotation                 |
+| Defense in Depth | Multiple layers of security            |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 (Part 1) – Linux Fundamentals
+* ✅ Module 8 (Part 2) – Users, Processes & Services
+* ✅ Module 8 (Part 3) – Linux Permissions & ACLs
+* ✅ Module 8 (Part 4) – Linux Networking & SSH Security
+* ✅ Module 8 (Part 5) – Bash Scripting & Security Automation
+* ✅ **Module 8 (Part 6) – Linux Hardening & System Security**
+
+**Overall Progress:** **31/50 Days (62%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 32)
+
+We'll complete **Module 8: Linux Security** with:
+
+* Linux malware and rootkits
+* Incident response on Linux
+* Memory and disk forensics basics
+* Detecting persistence mechanisms
+* Security monitoring tools
+* Linux security review case study
+* **Module 8 Final Assessment (50 Questions)**
+
+By the end of Day 32, you'll have a strong Linux security foundation suitable for SOC Analyst, Security Engineer, and Cloud Security interviews.
