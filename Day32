@@ -1,0 +1,507 @@
+# 🔐 Cybersecurity Bootcamp – Day 32
+
+# Module 8 (Part 7): Linux Incident Response, Malware Detection & Digital Forensics
+
+> **Mission:** Today you'll learn how security teams investigate compromised Linux systems, detect malware, preserve evidence, and perform basic digital forensics. This concludes **Module 8 – Linux Security**.
+
+**Duration:** **4–5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Linux incident response.
+* ✅ Learn how Linux malware and rootkits work.
+* ✅ Detect suspicious persistence mechanisms.
+* ✅ Perform basic memory and disk forensics.
+* ✅ Use Linux security monitoring tools.
+* ✅ Complete the Module 8 assessment.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is Incident Response (IR)?
+
+Incident Response is the structured process of handling a security incident.
+
+### The 6 Phases of Incident Response
+
+```text
+Preparation
+      ↓
+Identification
+      ↓
+Containment
+      ↓
+Eradication
+      ↓
+Recovery
+      ↓
+Lessons Learned
+```
+
+### Example
+
+An employee reports that a Linux server is unusually slow.
+
+The security team:
+
+1. Confirms suspicious activity.
+2. Isolates the server.
+3. Removes malicious software.
+4. Restores the system.
+5. Documents what happened.
+6. Improves security to prevent recurrence.
+
+---
+
+# 🟡 Level 2 – Linux Malware & Rootkits
+
+## Common Linux Malware
+
+* Rootkits
+* Backdoors
+* Cryptominers
+* Botnet malware
+* Web shells
+* Ransomware (less common than on Windows but still possible)
+
+---
+
+## What is a Rootkit?
+
+A rootkit is malicious software designed to **hide itself** and maintain privileged access.
+
+Signs of compromise may include:
+
+* Unknown processes
+* Unexpected network connections
+* Hidden files
+* Modified system binaries
+* Unexplained CPU usage
+
+---
+
+## Persistence Mechanisms
+
+Attackers often try to remain on a system after a reboot.
+
+Common persistence methods include:
+
+* Cron jobs
+* Startup scripts
+* SSH authorized keys
+* Systemd services
+* Modified user profiles (`.bashrc`, `.profile`)
+
+---
+
+# 🔵 Level 3 – Digital Forensics Basics
+
+## What is Digital Forensics?
+
+Digital forensics is the process of collecting, preserving, analysing, and presenting digital evidence.
+
+### Order of Volatility
+
+Collect the most volatile evidence first:
+
+1. Memory (RAM)
+2. Running processes
+3. Network connections
+4. Disk data
+5. Backups
+
+---
+
+## Memory Forensics
+
+Memory can reveal:
+
+* Running malware
+* Active processes
+* Network sessions
+* Encryption keys
+* Logged-in users
+
+Common tools:
+
+* Volatility
+* LiME (Linux Memory Extractor)
+
+---
+
+## Disk Forensics
+
+Investigators examine:
+
+* Deleted files
+* File timestamps
+* Log files
+* Installed software
+* User activity
+
+Common tools:
+
+* Autopsy
+* Sleuth Kit
+
+---
+
+# Linux Security Monitoring
+
+Useful commands:
+
+```bash
+ps -ef
+```
+
+Shows running processes.
+
+---
+
+```bash
+ss -tunap
+```
+
+Displays active network connections.
+
+---
+
+```bash
+last
+```
+
+Shows login history.
+
+---
+
+```bash
+lastb
+```
+
+Shows failed login attempts (if logging is enabled).
+
+---
+
+```bash
+journalctl
+```
+
+Displays system logs.
+
+---
+
+```bash
+find / -perm -4000
+```
+
+Lists files with the **SUID** bit set for review.
+
+---
+
+# 🌍 Real-World Example
+
+A web server begins making unexpected outbound connections.
+
+The security team:
+
+* Reviews running processes (`ps`)
+* Checks active connections (`ss`)
+* Reviews logs (`journalctl`)
+* Searches for unusual cron jobs
+* Identifies a malicious script added by an attacker
+* Removes the malware
+* Restores the server from a trusted backup
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Restarting a compromised system before collecting evidence.
+
+❌ Deleting suspicious files immediately.
+
+❌ Ignoring log files.
+
+❌ Failing to document investigation steps.
+
+❌ Not preserving forensic evidence.
+
+---
+
+# 🛠 Hands-on Labs
+
+## Lab 1 – Process Investigation
+
+Run:
+
+```bash
+ps -ef
+```
+
+Identify:
+
+* Parent process (PPID)
+* Process ID (PID)
+* Suspicious or unfamiliar processes
+
+---
+
+## Lab 2 – Network Investigation
+
+Run:
+
+```bash
+ss -tunap
+```
+
+Identify:
+
+* Listening ports
+* Active TCP connections
+* Associated processes
+
+---
+
+## Lab 3 – Login Review
+
+Run:
+
+```bash
+last
+```
+
+Review recent logins.
+
+If available:
+
+```bash
+lastb
+```
+
+Review failed login attempts.
+
+---
+
+## Lab 4 – Log Analysis
+
+Run:
+
+```bash
+journalctl -b
+```
+
+Look for:
+
+* Failed service starts
+* Authentication events
+* Unexpected system errors
+
+---
+
+# 💻 Mini Project
+
+## Linux Incident Investigation Report
+
+Create a report containing:
+
+* System information
+* Running processes
+* Network connections
+* Login history
+* Security observations
+* Recommended remediation steps
+
+Save it as:
+
+```text
+Linux_Incident_Report.md
+```
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Incident Response?
+2. Explain the six phases of Incident Response.
+3. What is a rootkit?
+4. Why is memory collected before disk during forensics?
+5. What is digital evidence?
+6. What does `last` show?
+7. Why are logs important in investigations?
+8. What is persistence?
+9. Name two Linux forensic tools.
+10. Why should evidence be preserved?
+
+---
+
+# 📝 Module 8 Final Assessment (20 Sample Questions)
+
+1. What command shows running processes?
+
+   * **Answer:** `ps`
+
+2. Which command displays active network connections?
+
+   * **Answer:** `ss`
+
+3. Which Linux framework provides Mandatory Access Control?
+
+   * **Answer:** SELinux (or AppArmor, depending on the distribution)
+
+4. What does `chmod` do?
+
+   * **Answer:** Changes file permissions.
+
+5. What is the purpose of `systemctl`?
+
+   * **Answer:** Manages system services.
+
+6. Which command displays login history?
+
+   * **Answer:** `last`
+
+7. What is the purpose of `journalctl`?
+
+   * **Answer:** Views systemd logs.
+
+8. What is the Principle of Least Privilege?
+
+   * **Answer:** Grant only the permissions required to perform a task.
+
+9. Why are regular system updates important?
+
+   * **Answer:** They patch security vulnerabilities and improve stability.
+
+10. Name one File Integrity Monitoring tool.
+
+    * **Answer:** AIDE.
+
+11–20. Create and answer 10 additional review questions covering Linux administration, networking, permissions, and hardening.
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Explain the six phases of Incident Response.
+2. Compare:
+
+   * Rootkit vs Backdoor
+   * Memory Forensics vs Disk Forensics
+   * Incident Response vs Digital Forensics
+3. Research the role of a SOC analyst during a Linux security incident.
+
+### Practical
+
+Build a **Linux Security Toolkit Cheat Sheet** containing:
+
+* 30 investigation commands
+* Log locations
+* Monitoring tools
+* Hardening tools
+* Forensic tools
+* Incident response checklist
+
+---
+
+# 🧩 Level 4 – SOC Investigation Challenge
+
+## Scenario
+
+A production Linux server is behaving abnormally.
+
+You observe:
+
+* High CPU usage.
+* Unexpected outbound network connections.
+* New administrator account created overnight.
+* Suspicious cron job.
+* Modified SSH configuration.
+* Multiple failed login attempts before a successful login.
+
+### Your Tasks
+
+1. Identify **six Indicators of Compromise (IOCs)**.
+2. Prioritise the findings from **Critical → Low**.
+3. Describe the immediate containment actions.
+4. List the Linux commands you would use to investigate each finding.
+5. Write a one-page incident response report.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Topic             | Key Point                                                            |
+| ----------------- | -------------------------------------------------------------------- |
+| Incident Response | Prepare → Identify → Contain → Eradicate → Recover → Lessons Learned |
+| Rootkit           | Malware that hides itself and maintains privileged access            |
+| Persistence       | Methods attackers use to survive reboots                             |
+| Memory Forensics  | Analyse volatile memory (RAM)                                        |
+| Disk Forensics    | Analyse stored data and file systems                                 |
+| `ps -ef`          | Running processes                                                    |
+| `ss -tunap`       | Active network connections                                           |
+| `last`            | Login history                                                        |
+| `journalctl`      | System logs                                                          |
+| AIDE              | File Integrity Monitoring                                            |
+
+---
+
+# 🎓 Module 8 Complete!
+
+## Skills You've Gained
+
+* ✅ Linux fundamentals
+* ✅ Users and groups
+* ✅ File permissions & ACLs
+* ✅ Process and service management
+* ✅ Linux networking
+* ✅ SSH security
+* ✅ Firewalls
+* ✅ Bash scripting
+* ✅ System hardening
+* ✅ Incident response
+* ✅ Digital forensics basics
+
+These are core skills expected for **SOC Analyst**, **Linux Administrator**, **Cloud Engineer**, and **Junior Security Engineer** roles.
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ **Module 8 – Linux Security (Completed)** 🎉
+
+**Overall Progress:** **32/50 Days (64%)**
+
+---
+
+# 🚀 Tomorrow (Day 33)
+
+You'll begin **Module 9 – Ethical Hacking & Penetration Testing Fundamentals**.
+
+Topics include:
+
+* What is Ethical Hacking?
+* The Penetration Testing Lifecycle
+* Hacker Methodologies
+* Types of Hackers
+* Rules of Engagement
+* Reconnaissance (Passive vs Active)
+* Open-Source Intelligence (OSINT)
+* Legal and ethical considerations
+
+This module will introduce the mindset and workflow of ethical hackers while focusing on authorised, defensive security practices.
