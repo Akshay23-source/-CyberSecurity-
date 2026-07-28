@@ -1,0 +1,520 @@
+# 🔐 Cybersecurity Bootcamp – Day 33
+
+# Module 9 (Part 1): Introduction to Ethical Hacking & Penetration Testing
+
+> **Mission:** Today you'll begin learning **Ethical Hacking**—the authorised practice of identifying and reporting security weaknesses so organisations can fix them. This course focuses on **legal, defensive, and professional security practices**.
+
+**Duration:** **4–5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand ethical hacking.
+* ✅ Differentiate between hacker types.
+* ✅ Learn the Penetration Testing lifecycle.
+* ✅ Understand Passive and Active Reconnaissance.
+* ✅ Learn the basics of OSINT (Open-Source Intelligence).
+* ✅ Understand legal and ethical responsibilities.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is Ethical Hacking?
+
+Ethical hacking is the **authorised testing of computer systems** to identify security weaknesses before malicious attackers can exploit them.
+
+### 🏠 Real-Life Analogy
+
+Imagine hiring a locksmith to test whether your home's locks are secure. The locksmith has your permission to test them and then tells you how to improve security. Ethical hackers work the same way with computer systems.
+
+---
+
+## Why is Ethical Hacking Important?
+
+* Protects organisations from cyberattacks.
+* Identifies vulnerabilities before criminals do.
+* Helps meet compliance requirements.
+* Improves overall security posture.
+
+---
+
+# Types of Hackers
+
+| Type        | Description                                                                                               |
+| ----------- | --------------------------------------------------------------------------------------------------------- |
+| ⚪ White Hat | Works with permission to improve security.                                                                |
+| ⚫ Black Hat | Conducts illegal attacks for personal gain or disruption.                                                 |
+| ⚪⚫ Grey Hat | May discover vulnerabilities without prior permission but does not necessarily act with malicious intent. |
+
+> **Remember:** As cybersecurity professionals, we always operate as **White Hat** hackers.
+
+---
+
+# 🟡 Level 2 – Penetration Testing Methodology
+
+A penetration test follows a structured process.
+
+```text
+Planning & Scope
+        ↓
+Reconnaissance
+        ↓
+Scanning & Enumeration
+        ↓
+Vulnerability Analysis
+        ↓
+Reporting
+        ↓
+Remediation & Verification
+```
+
+### 1. Planning & Scope
+
+* Obtain written authorisation.
+* Define targets.
+* Define testing rules.
+* Agree on timelines.
+
+---
+
+### 2. Reconnaissance
+
+Gather publicly available information about the target.
+
+Examples:
+
+* Company website
+* Public DNS records
+* Job postings
+* Public documents
+* Technology stack
+
+---
+
+### 3. Scanning & Enumeration
+
+Identify:
+
+* Live hosts
+* Open ports
+* Running services
+* Operating systems
+
+---
+
+### 4. Vulnerability Analysis
+
+Compare discovered services against known vulnerabilities.
+
+---
+
+### 5. Reporting
+
+A professional report includes:
+
+* Executive Summary
+* Findings
+* Risk Ratings
+* Evidence
+* Remediation Recommendations
+
+---
+
+# 🔵 Level 3 – Reconnaissance
+
+Reconnaissance is information gathering.
+
+## Passive Reconnaissance
+
+No direct interaction with the target.
+
+Examples:
+
+* Company website
+* Public news articles
+* WHOIS information
+* Search engines
+* Public GitHub repositories
+
+Advantages:
+
+* Difficult to detect.
+* No direct traffic to the target.
+
+---
+
+## Active Reconnaissance
+
+Directly interacts with the target.
+
+Examples:
+
+* Pinging authorised systems.
+* Checking authorised services.
+* Enumerating systems during an approved penetration test.
+
+Because active reconnaissance touches the target directly, it should only be performed with explicit authorisation.
+
+---
+
+# OSINT (Open-Source Intelligence)
+
+OSINT is the collection of information from **publicly available sources**.
+
+Common sources include:
+
+* Company websites
+* Public documentation
+* Social media
+* Public GitHub repositories
+* Job advertisements
+* Public DNS records
+
+### Why is OSINT Useful?
+
+It helps defenders understand what information about an organisation is publicly exposed so they can reduce unnecessary information leakage.
+
+---
+
+# Legal & Ethical Responsibilities
+
+Before conducting any security testing:
+
+✅ Obtain written permission.
+
+✅ Define the scope.
+
+✅ Respect privacy.
+
+✅ Protect confidential information.
+
+✅ Report findings responsibly.
+
+❌ Never test systems you do not own or do not have permission to assess.
+
+---
+
+# 🌍 Real-World Example
+
+A company hires a security consultancy to assess its external web application.
+
+The consultants:
+
+* Review public information about the company.
+* Confirm the agreed scope.
+* Perform authorised security testing.
+* Document findings.
+* Provide recommendations to improve security.
+
+The company fixes the identified issues before they can be exploited.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Assuming curiosity is permission.
+
+❌ Ignoring the agreed scope.
+
+❌ Failing to document findings clearly.
+
+❌ Forgetting legal and ethical obligations.
+
+❌ Jumping into testing before understanding the target.
+
+---
+
+# 🛠 Hands-on Labs (Safe & Defensive)
+
+## Lab 1 – OSINT on Yourself
+
+Review your own public online presence.
+
+Answer:
+
+* What information about you is publicly available?
+* Are any old accounts still visible?
+* What information would you choose to remove?
+
+---
+
+## Lab 2 – Website Technology Identification
+
+Choose a website **you own or have permission to assess**.
+
+Identify:
+
+* Web server (if visible)
+* Content Management System (CMS), if applicable
+* HTTPS usage
+* Security headers visible in your browser's developer tools
+
+---
+
+## Lab 3 – Security Report
+
+Create a one-page report containing:
+
+* Scope
+* Public information found
+* Security observations
+* Recommendations
+
+---
+
+# 💻 Mini Project
+
+## Public Exposure Assessment
+
+Choose one of your own projects (for example, a GitHub repository or personal portfolio website).
+
+Review it for:
+
+* Exposed email addresses
+* API keys or secrets
+* Sensitive files
+* Personal information
+* Unnecessary documents
+
+Document your findings and recommended improvements.
+
+Save as:
+
+```text
+OSINT_Assessment_Report.md
+```
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is ethical hacking?
+2. What is the difference between a vulnerability assessment and a penetration test?
+3. Explain White Hat, Black Hat, and Grey Hat hackers.
+4. What is OSINT?
+5. What is passive reconnaissance?
+6. What is active reconnaissance?
+7. Why is written authorisation important?
+8. What should a penetration testing report contain?
+9. Why is scope important in penetration testing?
+10. What ethical responsibilities does an ethical hacker have?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Ethical hacking requires:
+
+A. Proper authorisation
+B. Anonymous internet access
+C. No documentation
+D. Secret testing
+
+✅ **Answer:** A
+
+---
+
+### Q2. Which hacker works with permission?
+
+A. White Hat
+B. Black Hat
+C. Grey Hat
+D. Script Kiddie
+
+✅ **Answer:** A
+
+---
+
+### Q3. OSINT stands for:
+
+A. Open-Source Intelligence
+B. Online Security Internet Testing
+C. Open Security Internal Testing
+D. Operating System Intelligence
+
+✅ **Answer:** A
+
+---
+
+### Q4. Which is an example of passive reconnaissance?
+
+A. Reviewing a company's public website
+B. Sending unauthorised traffic to a server
+C. Modifying a system
+D. Installing software on a target
+
+✅ **Answer:** A
+
+---
+
+### Q5. The first phase of a penetration test is:
+
+A. Planning and Scope
+B. Reporting
+C. Recovery
+D. Deployment
+
+✅ **Answer:** A
+
+---
+
+### Q6. Why is scope important?
+
+A. It defines what may be tested.
+B. It increases internet speed.
+C. It disables firewalls.
+D. It installs software.
+
+✅ **Answer:** A
+
+---
+
+### Q7. A penetration test should conclude with:
+
+A. A professional report
+B. Deleting logs
+C. Formatting systems
+D. Installing games
+
+✅ **Answer:** A
+
+---
+
+### Q8. Which activity is part of OSINT?
+
+A. Reviewing publicly available information
+B. Guessing passwords
+C. Installing malware
+D. Disabling security controls
+
+✅ **Answer:** A
+
+---
+
+### Q9. Ethical hackers primarily help organisations to:
+
+A. Improve security
+B. Spread malware
+C. Hide vulnerabilities
+D. Damage systems
+
+✅ **Answer:** A
+
+---
+
+### Q10. Responsible disclosure means:
+
+A. Reporting vulnerabilities to the appropriate organisation so they can be fixed
+B. Posting vulnerabilities publicly immediately
+C. Ignoring discovered issues
+D. Selling vulnerabilities
+
+✅ **Answer:** A
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create 10 additional MCQs covering:
+
+* Ethical hacking
+* Reconnaissance
+* OSINT
+* Legal considerations
+* Penetration testing methodology
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Explain the complete penetration testing lifecycle.
+2. Compare:
+
+   * Passive vs Active Reconnaissance
+   * Vulnerability Assessment vs Penetration Testing
+   * White Hat vs Grey Hat Hackers
+3. Explain why ethics and legal authorisation are essential in cybersecurity.
+
+### Practical
+
+Create an **Ethical Hacking Basics Cheat Sheet** covering:
+
+* Hacker types
+* Penetration testing phases
+* OSINT sources
+* Ethical guidelines
+* Report structure
+
+---
+
+# 🧩 Level 4 – Security Consultant Challenge
+
+## Scenario
+
+A company hires your security team to perform an authorised assessment of its public-facing website.
+
+Your tasks are to:
+
+1. Define the scope of the engagement.
+2. List the public information you would review before testing.
+3. Identify potential business risks from excessive public information exposure.
+4. Outline how you would communicate findings to management.
+5. Recommend five improvements to strengthen the organisation's security posture.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept                | Key Point                                                                   |
+| ---------------------- | --------------------------------------------------------------------------- |
+| Ethical Hacking        | Authorised security testing                                                 |
+| White Hat              | Ethical security professional                                               |
+| Black Hat              | Malicious attacker                                                          |
+| Grey Hat               | Operates without prior permission but not necessarily with malicious intent |
+| OSINT                  | Publicly available information gathering                                    |
+| Passive Recon          | No direct interaction with the target                                       |
+| Active Recon           | Direct interaction with an authorised target                                |
+| Scope                  | Defines what is authorised for testing                                      |
+| Reporting              | Documents findings and recommendations                                      |
+| Responsible Disclosure | Report issues privately so they can be fixed                                |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 – Linux Security
+* ✅ **Module 9 (Part 1) – Introduction to Ethical Hacking**
+
+**Overall Progress:** **33/50 Days (66%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 34)
+
+We'll continue **Module 9 (Part 2): Information Gathering & Network Discovery**, covering:
+
+* Footprinting
+* DNS fundamentals
+* WHOIS records
+* Network mapping concepts
+* Service discovery
+* Banner grabbing (in authorised environments)
+* Defensive uses of reconnaissance
+* Practical blue-team exercises
+
+This will deepen your understanding of how defenders discover and reduce their external attack surface while staying within authorised and ethical boundaries.
