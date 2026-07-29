@@ -1,0 +1,552 @@
+# 🔐 Cybersecurity Bootcamp – Day 35
+
+# Module 9 (Part 3): Vulnerability Assessment, CVE, CVSS & Security Scanning
+
+> **Mission:** Today you'll learn how cybersecurity professionals **identify, assess, prioritise, and report vulnerabilities** so organisations can fix them before they become security incidents. This lesson focuses on **defensive security** and secure remediation.
+
+**Duration:** **4–5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Vulnerability Assessment (VA).
+* ✅ Learn the Vulnerability Management Lifecycle.
+* ✅ Understand CVE and CVSS.
+* ✅ Learn security scanning concepts.
+* ✅ Differentiate false positives and false negatives.
+* ✅ Understand patch management and risk prioritisation.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is a Vulnerability?
+
+A **vulnerability** is a weakness in software, hardware, or a process that could increase security risk if left unaddressed.
+
+### 🏠 Real-Life Analogy
+
+Think of a house:
+
+* 🔓 Unlocked door → Vulnerability
+* 🏠 House → Computer system
+* 🔑 Fixing the lock → Applying a security update
+
+The goal is to **find and fix weaknesses before they lead to problems**.
+
+---
+
+## What is a Vulnerability Assessment?
+
+A Vulnerability Assessment is the process of:
+
+* Identifying weaknesses
+* Evaluating their risk
+* Prioritising them
+* Recommending fixes
+
+Unlike a penetration test, a vulnerability assessment focuses on **finding and reporting** issues rather than attempting to demonstrate their impact.
+
+---
+
+# Vulnerability Management Lifecycle
+
+```text
+Identify
+   ↓
+Assess
+   ↓
+Prioritise
+   ↓
+Remediate
+   ↓
+Verify
+   ↓
+Monitor
+```
+
+This cycle repeats continuously as new vulnerabilities are discovered.
+
+---
+
+# 🟡 Level 2 – CVE & CVSS
+
+## What is CVE?
+
+**CVE (Common Vulnerabilities and Exposures)** is a publicly recognised identifier assigned to disclosed security vulnerabilities.
+
+Example:
+
+```text
+CVE-2025-12345
+```
+
+Each CVE has:
+
+* Unique ID
+* Description
+* Affected software
+* References
+* Fix or mitigation information
+
+---
+
+## What is CVSS?
+
+**CVSS (Common Vulnerability Scoring System)** measures the severity of a vulnerability.
+
+| Score    | Severity |
+| -------- | -------- |
+| 0.0      | None     |
+| 0.1–3.9  | Low      |
+| 4.0–6.9  | Medium   |
+| 7.0–8.9  | High     |
+| 9.0–10.0 | Critical |
+
+### Example
+
+```text
+CVE-XXXX-YYYY
+CVSS Score: 9.8
+Severity: Critical
+```
+
+A high CVSS score indicates a vulnerability that should generally be prioritised for remediation, taking business context into account.
+
+---
+
+# 🔵 Level 3 – Security Scanning Concepts
+
+Security scanners help identify:
+
+* Missing updates
+* Weak configurations
+* Outdated software
+* Exposed services
+* Security policy violations
+
+Common enterprise vulnerability management platforms include:
+
+* Tenable Nessus
+* Qualys VMDR
+* Rapid7 InsightVM
+* Microsoft Defender Vulnerability Management
+
+---
+
+## False Positive
+
+A scanner reports a vulnerability that is **not actually present**.
+
+Example:
+
+The scanner incorrectly identifies outdated software even though it has already been updated.
+
+---
+
+## False Negative
+
+A scanner **fails to detect** an existing vulnerability.
+
+This is why:
+
+* Manual verification
+* Patch reviews
+* Secure configuration reviews
+
+remain important.
+
+---
+
+# Patch Management
+
+A patch fixes:
+
+* Security vulnerabilities
+* Software bugs
+* Stability issues
+
+Good patch management includes:
+
+✔ Testing updates
+
+✔ Scheduling deployments
+
+✔ Verifying installation
+
+✔ Documenting changes
+
+---
+
+# Risk Prioritisation
+
+Not every vulnerability has the same urgency.
+
+Consider:
+
+* CVSS score
+* Business impact
+* Internet exposure
+* Availability of a fix
+* Importance of the affected system
+
+Example:
+
+| Vulnerability                                    | Priority            |
+| ------------------------------------------------ | ------------------- |
+| Critical issue on Internet-facing payment server | Immediate           |
+| Medium issue on internal test server             | Planned maintenance |
+
+---
+
+# 🌍 Real-World Example
+
+A company discovers:
+
+* 500 vulnerabilities.
+
+After reviewing:
+
+* 10 are Critical.
+* 40 are High.
+* 120 are Medium.
+* The remainder are Low.
+
+The security team:
+
+1. Fixes Critical vulnerabilities immediately.
+2. Addresses High vulnerabilities next.
+3. Plans Medium and Low fixes during scheduled maintenance.
+
+This reduces overall organisational risk.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Assuming every vulnerability is equally urgent.
+
+❌ Ignoring Low vulnerabilities indefinitely.
+
+❌ Applying updates directly to production without testing.
+
+❌ Forgetting to verify that patches were successfully installed.
+
+❌ Relying only on automated scanners.
+
+---
+
+# 🛠 Hands-on Labs (Defensive)
+
+## Lab 1 – CVE Research
+
+Choose **one published CVE** from a vendor advisory.
+
+Record:
+
+* CVE ID
+* Affected software
+* Severity
+* Vendor recommendations
+
+---
+
+## Lab 2 – Risk Ranking
+
+Given these findings:
+
+* Critical web server issue
+* Medium workstation issue
+* High VPN issue
+* Low printer firmware issue
+
+Rank them from highest to lowest priority and explain your reasoning.
+
+---
+
+## Lab 3 – Patch Management Plan
+
+Create a spreadsheet containing:
+
+* Asset
+* Software
+* Current Version
+* Latest Version
+* Patch Date
+* Risk Level
+* Verification Status
+
+---
+
+## Lab 4 – Vulnerability Report
+
+Prepare a report containing:
+
+* Executive Summary
+* Findings
+* Risk Rating
+* Recommendations
+* Verification Plan
+
+---
+
+# 💻 Mini Project
+
+## Enterprise Vulnerability Assessment Report
+
+Prepare:
+
+* Executive Summary
+* Asset Inventory
+* Vulnerabilities Identified
+* Risk Prioritisation
+* Patch Recommendations
+* Verification Checklist
+* Lessons Learned
+
+Save as:
+
+```text
+Enterprise_Vulnerability_Report.md
+```
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is a vulnerability?
+2. What is the purpose of a Vulnerability Assessment?
+3. Explain the Vulnerability Management Lifecycle.
+4. What is CVE?
+5. What is CVSS?
+6. Difference between Vulnerability Assessment and Penetration Testing?
+7. What is a False Positive?
+8. What is a False Negative?
+9. Why is patch management important?
+10. How would you prioritise vulnerabilities in a large enterprise?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. CVE stands for:
+
+A. Common Vulnerabilities and Exposures
+B. Cyber Verification Engine
+C. Computer Validation Environment
+D. Common Virus Evaluation
+
+✅ **Answer:** A
+
+---
+
+### Q2. CVSS measures:
+
+A. Vulnerability severity
+B. CPU speed
+C. Network bandwidth
+D. Password strength
+
+✅ **Answer:** A
+
+---
+
+### Q3. Which CVSS range is Critical?
+
+A. 9.0–10.0
+B. 0–2.0
+C. 3–4.0
+D. 5–6.0
+
+✅ **Answer:** A
+
+---
+
+### Q4. A Vulnerability Assessment primarily aims to:
+
+A. Identify and prioritise weaknesses
+B. Increase internet speed
+C. Install operating systems
+D. Replace hardware
+
+✅ **Answer:** A
+
+---
+
+### Q5. Which activity comes after remediation in the vulnerability lifecycle?
+
+A. Verify
+B. Ignore
+C. Delete logs
+D. Reinstall the operating system
+
+✅ **Answer:** A
+
+---
+
+### Q6. A False Positive is:
+
+A. A reported issue that is not actually present
+B. A vulnerability that was exploited
+C. A successful patch
+D. A backup failure
+
+✅ **Answer:** A
+
+---
+
+### Q7. A False Negative means:
+
+A. A real vulnerability was missed
+B. The system is fully secure
+C. A patch failed to install
+D. The report contains spelling errors
+
+✅ **Answer:** A
+
+---
+
+### Q8. Which activity helps reduce vulnerabilities over time?
+
+A. Patch management
+B. Ignoring updates
+C. Disabling logs
+D. Sharing passwords
+
+✅ **Answer:** A
+
+---
+
+### Q9. Which factor should influence vulnerability prioritisation?
+
+A. Business impact
+B. Wallpaper colour
+C. Keyboard layout
+D. Monitor size
+
+✅ **Answer:** A
+
+---
+
+### Q10. Vulnerability management is:
+
+A. A continuous process
+B. A one-time activity
+C. Only needed after a breach
+D. Only for large companies
+
+✅ **Answer:** A
+
+---
+
+### Q11–Q20 (Self-Practice)
+
+Create and answer 10 additional MCQs covering:
+
+* CVE
+* CVSS
+* Patch management
+* Vulnerability lifecycle
+* Risk prioritisation
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Explain the Vulnerability Management Lifecycle.
+2. Compare:
+
+   * CVE vs CVSS
+   * Vulnerability Assessment vs Penetration Testing
+   * False Positive vs False Negative
+3. Explain why organisations should have a formal patch management policy.
+
+### Practical
+
+Create a **Vulnerability Management Cheat Sheet** including:
+
+* CVE
+* CVSS
+* Risk levels
+* Patch management workflow
+* Vulnerability lifecycle
+* Reporting template
+
+---
+
+# 🧩 Level 4 – Blue Team Challenge
+
+## Scenario
+
+A quarterly vulnerability assessment identifies:
+
+* 6 Critical vulnerabilities on public-facing servers.
+* 18 High vulnerabilities on VPN gateways.
+* 40 Medium vulnerabilities on employee workstations.
+* 90 Low vulnerabilities on internal systems.
+
+### Your Tasks
+
+1. Rank the findings by remediation priority.
+2. Justify your prioritisation based on business risk.
+3. Develop a 30-day remediation plan.
+4. Describe how you would verify that remediation was successful.
+5. Prepare an executive summary for senior management.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept                  | Key Point                                    |
+| ------------------------ | -------------------------------------------- |
+| Vulnerability            | A weakness that should be remediated         |
+| Vulnerability Assessment | Identify, assess and prioritise weaknesses   |
+| CVE                      | Public identifier for known vulnerabilities  |
+| CVSS                     | Severity scoring system                      |
+| Patch Management         | Process of applying and verifying updates    |
+| False Positive           | Reported issue that doesn't exist            |
+| False Negative           | Real issue missed by a scanner               |
+| Risk Prioritisation      | Rank issues by technical and business impact |
+| Verification             | Confirm remediation has been successful      |
+| Continuous Monitoring    | Ongoing vulnerability management             |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 – Linux Security
+* ✅ Module 9 (Part 1) – Introduction to Ethical Hacking
+* ✅ Module 9 (Part 2) – Information Gathering & Network Discovery
+* ✅ **Module 9 (Part 3) – Vulnerability Assessment & Security Scanning**
+
+**Overall Progress:** **35/50 Days (70%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 36)
+
+You'll continue **Module 9 (Part 4): Web Application Security Testing**, where you'll learn:
+
+* OWASP Testing Guide overview
+* Authentication and session testing concepts
+* Input validation testing principles
+* Security misconfiguration assessment
+* Secure reporting of web application findings
+* Blue-team remediation strategies
+* Web security assessment case study
+
+This lesson will focus on **authorised, defensive web security assessment techniques** and best practices for improving application security.
