@@ -1,0 +1,623 @@
+# 🔐 Cybersecurity Bootcamp – Day 32
+
+# Module 8 (Part 7): Linux Malware, Rootkits, Incident Response & Security Monitoring (Module Completion)
+
+> **Mission:** Today you'll learn how attackers compromise Linux systems, how defenders detect malicious activity, and how to perform the first steps of a Linux incident response. This completes **Module 8 – Linux Security**.
+
+**Duration:** **5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Linux malware and rootkits.
+* ✅ Learn common persistence mechanisms.
+* ✅ Perform basic Linux incident response.
+* ✅ Understand memory and disk forensics.
+* ✅ Use Linux security monitoring tools.
+* ✅ Complete Module 8 with a final assessment.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+## What is Linux Malware?
+
+Linux malware is malicious software designed to compromise Linux systems.
+
+Common types:
+
+* 🦠 Trojan
+* 🦠 Worm
+* 🦠 Rootkit
+* 🦠 Botnet Malware
+* 🦠 Cryptominer
+* 🦠 Backdoor
+
+---
+
+## What is a Rootkit?
+
+A **rootkit** hides malicious activity and attempts to give an attacker privileged access while avoiding detection.
+
+Example:
+
+Instead of deleting logs, a rootkit may hide malicious processes or files from normal system utilities.
+
+---
+
+## Signs of Compromise
+
+* High CPU usage without explanation
+* Unknown processes
+* Unexpected user accounts
+* Modified system files
+* Strange network connections
+* Unusual scheduled tasks (Cron jobs)
+
+---
+
+# 🟡 Level 2 – Persistence & Detection
+
+## Common Persistence Techniques
+
+Attackers may try to regain access after a reboot.
+
+Examples:
+
+* Cron jobs
+* SSH authorized keys
+* Startup services (`systemd`)
+* Modified shell startup files (`.bashrc`, `.profile`)
+* New user accounts
+
+---
+
+## Detect Suspicious Processes
+
+```bash
+ps -ef
+```
+
+or
+
+```bash
+top
+```
+
+Look for:
+
+* Unknown executable names
+* Processes running from unusual directories
+* Unexpected high CPU or memory usage
+
+---
+
+## Check Network Connections
+
+```bash
+ss -tunap
+```
+
+Investigate unexpected outbound connections or unknown listening ports.
+
+---
+
+## Review Authentication Logs
+
+Ubuntu/Debian:
+
+```bash
+sudo less /var/log/auth.log
+```
+
+RHEL/CentOS:
+
+```bash
+sudo less /var/log/secure
+```
+
+Look for:
+
+* Repeated failed logins
+* Successful logins at unusual times
+* New `sudo` activity
+
+---
+
+# 🔵 Level 3 – Linux Incident Response
+
+## Incident Response Lifecycle
+
+1. Preparation
+2. Identification
+3. Containment
+4. Eradication
+5. Recovery
+6. Lessons Learned
+
+---
+
+## Step 1 – Identify
+
+Questions:
+
+* What happened?
+* Which systems are affected?
+* When did it begin?
+
+---
+
+## Step 2 – Contain
+
+Examples:
+
+* Disconnect affected host from the network.
+* Disable compromised accounts.
+* Block malicious IP addresses using the firewall.
+
+---
+
+## Step 3 – Eradicate
+
+Examples:
+
+* Remove malware.
+* Patch vulnerabilities.
+* Remove attacker persistence mechanisms.
+* Reset compromised credentials.
+
+---
+
+## Step 4 – Recover
+
+* Restore from trusted backups if needed.
+* Monitor the system closely.
+* Verify services operate normally.
+
+---
+
+## Step 5 – Lessons Learned
+
+Document:
+
+* Root cause
+* Timeline
+* Impact
+* Corrective actions
+* Preventive measures
+
+---
+
+# Memory & Disk Forensics Basics
+
+## Memory Forensics
+
+Memory (RAM) may contain:
+
+* Running processes
+* Encryption keys
+* Network connections
+* Malware artifacts
+
+Common tool:
+
+* **Volatility Framework**
+
+---
+
+## Disk Forensics
+
+Focuses on:
+
+* Deleted files
+* Log analysis
+* Browser history
+* Timestamps
+* File system metadata
+
+Common tools:
+
+* Autopsy
+* The Sleuth Kit
+
+---
+
+# Linux Security Monitoring Tools
+
+| Tool       | Purpose                               |
+| ---------- | ------------------------------------- |
+| AIDE       | File Integrity Monitoring             |
+| auditd     | Security auditing                     |
+| journalctl | System logs                           |
+| fail2ban   | Blocks repeated failed login attempts |
+| Wazuh      | Host-based security monitoring        |
+| ClamAV     | Malware scanning                      |
+
+---
+
+## fail2ban
+
+Purpose:
+
+Automatically blocks IP addresses after repeated failed login attempts.
+
+Example:
+
+```bash
+sudo systemctl status fail2ban
+```
+
+---
+
+## ClamAV
+
+Update signatures:
+
+```bash
+sudo freshclam
+```
+
+Run a scan:
+
+```bash
+clamscan -r /home
+```
+
+---
+
+# 🌍 Real-World Example
+
+A Linux web server suddenly becomes slow.
+
+Investigation reveals:
+
+* High CPU usage.
+* Unknown process running from `/tmp`.
+* Repeated outbound network connections.
+* Unauthorized SSH key added to an administrator's account.
+
+Response:
+
+* Disconnect server from the network.
+* Preserve evidence.
+* Remove the malicious SSH key.
+* Patch the vulnerability.
+* Rotate credentials.
+* Restore trusted configurations.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Deleting evidence before investigating.
+
+❌ Rebooting an infected server immediately (which can destroy volatile evidence in memory).
+
+❌ Ignoring authentication logs.
+
+❌ Failing to document actions taken.
+
+❌ Restoring systems before identifying the root cause.
+
+---
+
+# 🛠 Hands-on Labs
+
+## Lab 1 – Review Running Processes
+
+Run:
+
+```bash
+ps -ef
+top
+```
+
+Identify:
+
+* Five system processes.
+* Any process you do not recognise (research it before assuming it is malicious).
+
+---
+
+## Lab 2 – Review Active Network Connections
+
+Run:
+
+```bash
+ss -tunap
+```
+
+Record:
+
+* Listening ports.
+* Established connections.
+
+---
+
+## Lab 3 – Authentication Log Review
+
+Review authentication logs on your distribution and answer:
+
+* Were there failed login attempts?
+* Were there recent `sudo` events?
+
+---
+
+## Lab 4 – File Integrity Monitoring
+
+If AIDE is installed:
+
+```bash
+sudo aide --check
+```
+
+Interpret the output and identify whether any monitored files changed.
+
+---
+
+# 💻 Mini Project
+
+## Linux Incident Response Report
+
+Create **Linux_Incident_Response.md** containing:
+
+* Timeline of the incident.
+* Indicators of Compromise (IOCs).
+* Commands used during investigation.
+* Containment steps.
+* Recovery actions.
+* Lessons learned.
+* Recommendations to prevent recurrence.
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is a Linux rootkit?
+2. What is persistence?
+3. Explain the Linux incident response lifecycle.
+4. What information can memory forensics provide?
+5. What is the purpose of AIDE?
+6. What does `fail2ban` do?
+7. Why are logs important during an investigation?
+8. Why should evidence be preserved?
+9. What is an Indicator of Compromise (IOC)?
+10. Which Linux commands would you use first when investigating a compromised server?
+
+---
+
+# 📝 Module 8 Final Assessment (50 MCQs)
+
+### Q1. Which malware type hides itself from users and administrators?
+
+A. Rootkit
+B. Browser
+C. Compiler
+D. Firewall
+
+**Answer:** A
+
+---
+
+### Q2. Which tool helps detect changes to critical files?
+
+A. AIDE
+B. Nano
+C. GCC
+D. Python
+
+**Answer:** A
+
+---
+
+### Q3. Which command displays active network connections?
+
+A. `ss -tunap`
+B. `pwd`
+C. `echo`
+D. `mkdir`
+
+**Answer:** A
+
+---
+
+### Q4. Which Linux service records audit events?
+
+A. auditd
+B. Docker
+C. Apache
+D. FTP
+
+**Answer:** A
+
+---
+
+### Q5. Which tool automatically blocks repeated failed login attempts?
+
+A. fail2ban
+B. grep
+C. sed
+D. awk
+
+**Answer:** A
+
+---
+
+### Q6. What should generally be done before removing malware?
+
+A. Preserve evidence
+B. Format the disk immediately
+C. Delete all logs
+D. Disable all users
+
+**Answer:** A
+
+---
+
+### Q7. Which framework is commonly used for memory forensics?
+
+A. Volatility
+B. GCC
+C. Git
+D. Docker
+
+**Answer:** A
+
+---
+
+### Q8. Which directory is often abused by malware for temporary files?
+
+A. `/tmp`
+B. `/boot`
+C. `/mnt`
+D. `/media`
+
+**Answer:** A
+
+---
+
+### Q9. The first phase of incident response is:
+
+A. Preparation
+B. Recovery
+C. Eradication
+D. Lessons Learned
+
+**Answer:** A
+
+---
+
+### Q10. Which tool can scan Linux systems for known malware?
+
+A. ClamAV
+B. Nano
+C. Vim
+D. SSH
+
+**Answer:** A
+
+---
+
+### Q11–Q50 (Self-Practice)
+
+Create **40 additional MCQs** covering all topics from **Module 8**, including:
+
+* Linux fundamentals
+* Users and groups
+* Processes
+* Services
+* File permissions
+* ACLs
+* Networking
+* SSH
+* Firewalls
+* Bash scripting
+* Hardening
+* SELinux
+* AppArmor
+* Auditd
+* Malware
+* Incident response
+
+---
+
+# 🏠 Assignment
+
+### Theory
+
+1. Explain the complete Linux incident response process.
+2. Compare memory forensics and disk forensics.
+3. Research three real-world Linux malware families and summarize how defenders detect them.
+
+### Practical
+
+Build a **Linux Security Playbook** including:
+
+* Initial triage checklist.
+* Evidence collection steps.
+* Log review workflow.
+* Process investigation.
+* Network investigation.
+* Recovery checklist.
+* Post-incident documentation template.
+
+---
+
+# 🧩 Level 4 – SOC Analyst Challenge
+
+## Scenario
+
+A production Linux server triggers multiple alerts:
+
+* CPU usage remains above 95%.
+* New administrator account appears unexpectedly.
+* Unknown SSH public key is found in `authorized_keys`.
+* A suspicious service starts automatically at boot.
+* Outbound traffic is observed to an unfamiliar external IP.
+
+### Your Tasks
+
+1. Identify the likely Indicators of Compromise (IOCs).
+2. Prioritise immediate containment actions.
+3. List the Linux commands and logs you would examine.
+4. Describe how you would preserve evidence.
+5. Write a one-page incident response summary.
+
+---
+
+# 📖 Module 8 Revision Cheat Sheet
+
+| Topic              | Key Point                                                   |
+| ------------------ | ----------------------------------------------------------- |
+| Users & Groups     | Control access to the system                                |
+| Processes          | Running programs managed by the kernel                      |
+| `systemctl`        | Manage services                                             |
+| `chmod` / `chown`  | Permissions and ownership                                   |
+| ACLs               | Fine-grained permissions                                    |
+| SSH                | Secure remote administration                                |
+| UFW / iptables     | Host firewall management                                    |
+| Bash               | Automation through scripting                                |
+| AIDE               | File integrity monitoring                                   |
+| Auditd             | Security event auditing                                     |
+| SELinux / AppArmor | Mandatory access control                                    |
+| fail2ban           | Blocks repeated failed logins                               |
+| Incident Response  | Prepare → Identify → Contain → Eradicate → Recover → Review |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ **Module 8 – Linux Security (Completed)** 🎉
+
+**Overall Progress:** **32/50 Days (64%)**
+
+---
+
+# 🚀 Tomorrow (Day 33)
+
+You will begin **Module 9 – Ethical Hacking & Penetration Testing**.
+
+Topics include:
+
+* Ethical hacking methodology
+* Hacker types (White Hat, Black Hat, Grey Hat)
+* Penetration testing phases
+* Rules of engagement
+* Legal and ethical considerations
+* Kali Linux overview
+* Essential penetration testing tools
+* Reconnaissance fundamentals
+
+This module will introduce you to the structured, authorised process of assessing system security and prepare you for advanced cybersecurity and penetration testing concepts.
