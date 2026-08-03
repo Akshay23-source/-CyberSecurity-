@@ -1,0 +1,667 @@
+# 🔐 Cybersecurity Bootcamp – **Day 39/50**
+
+# Module 10 (Part 1): Wireless Security & Enterprise Wi-Fi Security
+
+> **Mission:** Today you'll learn how Wi-Fi networks work, the security mechanisms that protect them, common wireless threats, and how organizations defend enterprise wireless networks. This lesson is **defense-focused** and prepares you for SOC Analyst, Network Security Engineer, and Security Consultant roles.
+
+**Duration:** **4–5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand wireless networking fundamentals.
+* ✅ Learn IEEE 802.11 standards.
+* ✅ Understand WPA2 vs WPA3 security.
+* ✅ Learn enterprise Wi-Fi authentication.
+* ✅ Identify common wireless threats.
+* ✅ Understand Wireless IDS (WIDS) & Wireless IPS (WIPS).
+* ✅ Learn enterprise Wi-Fi security best practices.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Wireless Networking?
+
+A wireless network (Wi-Fi) allows devices to communicate **without cables** using radio waves.
+
+Example:
+
+```text
+Laptop
+      📶
+      │
+Wi-Fi Router
+      │
+Internet
+```
+
+Examples of Wi-Fi devices:
+
+* Laptop
+* Smartphone
+* Smart TV
+* Printer
+* IoT Devices
+* CCTV Cameras
+
+---
+
+# What is IEEE 802.11?
+
+IEEE 802.11 is the family of standards that defines how Wi-Fi works.
+
+| Standard              | Band        | Max Speed (Approx.)       |
+| --------------------- | ----------- | ------------------------- |
+| 802.11a               | 5 GHz       | 54 Mbps                   |
+| 802.11b               | 2.4 GHz     | 11 Mbps                   |
+| 802.11g               | 2.4 GHz     | 54 Mbps                   |
+| 802.11n (Wi-Fi 4)     | 2.4/5 GHz   | Up to 600 Mbps            |
+| 802.11ac (Wi-Fi 5)    | 5 GHz       | Multi-Gbps                |
+| 802.11ax (Wi-Fi 6/6E) | 2.4/5/6 GHz | Higher efficiency & speed |
+
+---
+
+# Wi-Fi Components
+
+```text
+Internet
+    │
+Router
+    │
+Access Point (AP)
+    │
+📶
+Clients
+```
+
+---
+
+# 🟡 Level 2 – Wi-Fi Security
+
+## Open Wi-Fi
+
+* No password.
+* Anyone nearby can connect.
+
+Examples:
+
+* Airports
+* Cafes
+* Hotels
+
+Use caution and prefer HTTPS and VPNs on untrusted networks.
+
+---
+
+## WPA2
+
+Features:
+
+✔ Strong encryption
+
+✔ Widely supported
+
+✔ Personal (Pre-Shared Key)
+
+✔ Enterprise (802.1X)
+
+---
+
+## WPA3
+
+Improvements:
+
+✔ Stronger authentication
+
+✔ Better protection against password guessing
+
+✔ Improved encryption
+
+✔ Better protection on public Wi-Fi
+
+---
+
+## WPA2 vs WPA3
+
+| WPA2             | WPA3                                          |
+| ---------------- | --------------------------------------------- |
+| Older            | Newer                                         |
+| Strong security  | Stronger security                             |
+| Widely supported | Better resistance to offline password attacks |
+
+---
+
+# Enterprise Wi-Fi Authentication
+
+Large organizations typically use:
+
+* WPA2-Enterprise or WPA3-Enterprise
+* RADIUS Server
+* 802.1X Authentication
+
+Flow:
+
+```text
+Employee
+
+↓
+
+Access Point
+
+↓
+
+RADIUS Server
+
+↓
+
+Authentication
+
+↓
+
+Access Granted
+```
+
+---
+
+# 🔵 Level 3 – Wireless Threats
+
+## Rogue Access Point
+
+A rogue access point is an **unauthorized** wireless access point connected to an organization's network.
+
+Risks:
+
+* Unauthorized network access
+* Bypassing security policies
+* Data exposure
+
+---
+
+## Evil Twin (Concept)
+
+An Evil Twin is a **fake Wi-Fi network** designed to imitate a legitimate one.
+
+Example:
+
+Legitimate:
+
+```
+Company_WiFi
+```
+
+Fake:
+
+```
+Company_WiFi_Free
+```
+
+Users may accidentally connect to the wrong network.
+
+**Defense:**
+
+* Verify network names.
+* Use certificate-based enterprise authentication.
+* Train users.
+* Report suspicious networks.
+
+---
+
+## Wireless Jamming (Concept)
+
+Wireless jamming attempts to interfere with radio communications.
+
+Possible effects:
+
+* Connection instability
+* Network outages
+
+Organizations detect this using wireless monitoring and investigate the source.
+
+---
+
+# Wireless IDS (WIDS)
+
+A Wireless Intrusion Detection System monitors wireless networks for suspicious activity.
+
+Detects:
+
+* Rogue access points
+* Unknown devices
+* Suspicious wireless behavior
+* Unauthorized SSIDs
+
+---
+
+# Wireless IPS (WIPS)
+
+Wireless Intrusion Prevention Systems add preventive capabilities, such as:
+
+* Blocking unauthorized devices (where supported)
+* Alerting administrators
+* Enforcing wireless security policies
+
+---
+
+# 🌍 Real-World Example
+
+A company employee notices a Wi-Fi network named:
+
+```
+Office_WiFi_Guest_Free
+```
+
+The official network is:
+
+```
+Office_WiFi
+```
+
+The employee reports it to IT instead of connecting.
+
+The security team investigates and removes the unauthorized device.
+
+---
+
+# Enterprise Wi-Fi Best Practices
+
+✔ WPA3 where supported.
+
+✔ Strong administrator passwords.
+
+✔ Enterprise authentication (802.1X).
+
+✔ Separate Guest Wi-Fi.
+
+✔ Network segmentation.
+
+✔ Regular firmware updates.
+
+✔ Disable unused management interfaces.
+
+✔ Monitor wireless activity.
+
+✔ Enable logging.
+
+✔ Perform periodic wireless security assessments.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Connecting to unknown public Wi-Fi.
+
+❌ Sharing Wi-Fi passwords widely.
+
+❌ Using default router passwords.
+
+❌ Ignoring router firmware updates.
+
+❌ Mixing guest and corporate networks.
+
+---
+
+# 🛠 Hands-on Labs (Safe & Defensive)
+
+## Lab 1 – Home Wi-Fi Review
+
+Review your own router settings.
+
+Check:
+
+* WPA2 or WPA3 enabled?
+* Strong Wi-Fi password?
+* Default admin password changed?
+
+---
+
+## Lab 2 – Device Inventory
+
+List every device connected to your home Wi-Fi:
+
+* Laptop
+* Mobile
+* TV
+* Printer
+* IoT Devices
+
+Remove any device you don't recognize.
+
+---
+
+## Lab 3 – Enterprise Wi-Fi Diagram
+
+Draw:
+
+```text
+Internet
+
+↓
+
+Firewall
+
+↓
+
+Router
+
+↓
+
+Switch
+
+↓
+
+Access Point
+
+↓
+
+RADIUS Server
+
+↓
+
+Employees
+```
+
+Explain the role of each component.
+
+---
+
+## Lab 4 – Security Policy
+
+Write a one-page **Enterprise Wi-Fi Security Policy** covering:
+
+* Password policy
+* Guest access
+* Device registration
+* Firmware updates
+* Incident reporting
+
+---
+
+# 💻 Mini Project
+
+## Secure Enterprise Wireless Network Design
+
+Create:
+
+**Enterprise_WiFi_Security.md**
+
+Include:
+
+* Network architecture
+* WPA3 deployment
+* Guest Wi-Fi
+* RADIUS integration
+* WIDS/WIPS
+* VLAN segmentation
+* Monitoring & logging
+* Incident response plan
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is IEEE 802.11?
+2. Difference between WPA2 and WPA3?
+3. What is WPA3-Enterprise?
+4. What is a RADIUS server?
+5. Explain 802.1X authentication.
+6. What is a Rogue Access Point?
+7. What is an Evil Twin?
+8. Difference between WIDS and WIPS?
+9. Why should guest Wi-Fi be isolated?
+10. How would you secure an enterprise wireless network?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. IEEE 802.11 is related to:
+
+A. Wi-Fi
+
+B. Bluetooth
+
+C. Ethernet cables
+
+D. Databases
+
+**Answer:** A
+
+---
+
+### Q2. Which is newer?
+
+A. WPA3
+
+B. WPA2
+
+C. WEP
+
+D. WPA
+
+**Answer:** A
+
+---
+
+### Q3. Enterprise Wi-Fi commonly uses:
+
+A. RADIUS
+
+B. FTP
+
+C. SMTP
+
+D. DHCP only
+
+**Answer:** A
+
+---
+
+### Q4. Which system detects rogue access points?
+
+A. WIDS
+
+B. BIOS
+
+C. DNS
+
+D. DHCP
+
+**Answer:** A
+
+---
+
+### Q5. WIPS primarily:
+
+A. Helps prevent wireless threats
+
+B. Compresses files
+
+C. Installs software
+
+D. Encrypts hard drives
+
+**Answer:** A
+
+---
+
+### Q6. A Rogue Access Point is:
+
+A. An unauthorized wireless access point
+
+B. A secure firewall
+
+C. A router update
+
+D. A VPN
+
+**Answer:** A
+
+---
+
+### Q7. WPA3 improves:
+
+A. Wireless security
+
+B. Screen resolution
+
+C. CPU speed
+
+D. RAM capacity
+
+**Answer:** A
+
+---
+
+### Q8. Guest Wi-Fi should:
+
+A. Be isolated from internal corporate networks
+
+B. Have administrator access
+
+C. Share the same privileges as employees
+
+D. Disable authentication
+
+**Answer:** A
+
+---
+
+### Q9. Strong Wi-Fi security includes:
+
+A. Firmware updates
+
+B. Default passwords
+
+C. Open networks
+
+D. Shared administrator accounts
+
+**Answer:** A
+
+---
+
+### Q10. Which authentication framework is widely used in enterprise Wi-Fi?
+
+A. 802.1X
+
+B. FTP
+
+C. POP3
+
+D. Telnet
+
+**Answer:** A
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* WPA2 vs WPA3
+* WIDS vs WIPS
+* Open Wi-Fi vs Enterprise Wi-Fi
+
+2. Explain why enterprise organizations use **802.1X authentication**.
+
+3. Research **Wi-Fi 6** and summarize its security and performance improvements.
+
+---
+
+## Practical
+
+Create an **Enterprise Wireless Security Checklist** with at least **40 security controls**, including:
+
+* Authentication
+* Encryption
+* Guest network isolation
+* Firmware updates
+* Logging
+* Monitoring
+* Access Point placement
+* Device inventory
+* Incident response
+
+---
+
+# 🧩 Level 4 – Enterprise Network Security Challenge
+
+## Scenario
+
+A company's wireless network audit reveals:
+
+* WPA2-Personal is used across all offices.
+* Guest and employee devices share the same network.
+* Default administrator passwords remain on several access points.
+* Firmware has not been updated for over a year.
+* No wireless monitoring solution is deployed.
+* Employees connect to unknown public Wi-Fi while traveling.
+
+### Your Tasks
+
+1. Identify **six security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend practical improvements.
+4. Design a secure enterprise wireless architecture.
+5. Write a one-page wireless security assessment for management.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept       | Key Point                                         |
+| ------------- | ------------------------------------------------- |
+| IEEE 802.11   | Wi-Fi standards                                   |
+| WPA2          | Strong wireless encryption                        |
+| WPA3          | Improved wireless security                        |
+| 802.1X        | Enterprise authentication framework               |
+| RADIUS        | Centralized authentication server                 |
+| Rogue AP      | Unauthorized access point                         |
+| Evil Twin     | Fake Wi-Fi network impersonating a legitimate one |
+| WIDS          | Detects wireless threats                          |
+| WIPS          | Helps prevent wireless threats                    |
+| Guest Network | Should be isolated from corporate resources       |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 – Linux Security
+* ✅ Module 9 – Ethical Hacking & Web Security
+* ✅ **Module 10 (Part 1) – Wireless Security**
+
+**Overall Progress:** **Day 39/50 (78%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 40)
+
+We'll begin **Windows Security & Active Directory**.
+
+You'll learn:
+
+* Windows architecture
+* Active Directory fundamentals
+* Domain Controllers
+* Organizational Units (OUs)
+* Group Policy Objects (GPOs)
+* Kerberos authentication
+* LDAP basics
+* Windows security best practices
+
+This module is essential because **over 90% of enterprise environments use Windows Active Directory**, making it one of the highest-priority topics for SOC Analyst, Security Engineer, Incident Responder, and Blue Team interviews.
