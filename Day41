@@ -1,0 +1,660 @@
+# 🔐 Cybersecurity Bootcamp – **Day 40/50**
+
+# Module 10 (Part 2): Windows Security & Active Directory Fundamentals
+
+> **Mission:** Today you'll learn **Active Directory (AD)**, the backbone of enterprise Windows networks. Nearly every SOC Analyst, Security Engineer, Incident Responder, and Blue Team professional is expected to understand AD because most enterprise environments rely on it.
+
+**Duration:** **5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Windows architecture.
+* ✅ Learn Active Directory (AD).
+* ✅ Understand Domains, Forests, Trees, and Organizational Units (OUs).
+* ✅ Learn Domain Controllers (DCs).
+* ✅ Understand Kerberos authentication.
+* ✅ Learn LDAP basics.
+* ✅ Understand Group Policy Objects (GPOs).
+* ✅ Learn enterprise Windows security best practices.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Active Directory (AD)?
+
+**Active Directory** is Microsoft's directory service that stores information about users, computers, printers, and other resources, and controls who can access them.
+
+Think of it as a **digital phonebook + security manager** for an organization.
+
+---
+
+## 🏢 Real-Life Analogy
+
+Imagine a university.
+
+* 👨‍🎓 Students
+* 👨‍🏫 Teachers
+* 🏢 Departments
+* 💻 Computer Labs
+* 📚 Library
+
+Instead of managing everyone individually, the university maintains one central database.
+
+That is exactly what **Active Directory** does for an organization.
+
+---
+
+# What Does AD Manage?
+
+* Users
+* Computers
+* Groups
+* Printers
+* Servers
+* Password Policies
+* Permissions
+* Security Policies
+
+---
+
+# Active Directory Architecture
+
+```text
+                Forest
+                   │
+              Company.com
+                   │
+             Domain Controller
+             /       |       \
+         Users   Computers  Groups
+```
+
+---
+
+# 🟟 Level 2 – Core AD Components
+
+## Domain
+
+A **Domain** is a logical group of computers and users managed together.
+
+Example:
+
+```text
+company.com
+```
+
+Every employee logs into:
+
+```text
+username@company.com
+```
+
+---
+
+## Domain Controller (DC)
+
+A **Domain Controller** is the server that:
+
+* Authenticates users
+* Stores AD database
+* Applies security policies
+* Issues Kerberos tickets
+* Manages users and computers
+
+Without the Domain Controller, users generally cannot authenticate to domain resources in the normal way.
+
+---
+
+## Organizational Units (OU)
+
+OUs organize objects.
+
+Example:
+
+```text
+Company
+
+├── HR
+
+├── Finance
+
+├── IT
+
+├── Sales
+```
+
+Each department can have different policies.
+
+---
+
+## Groups
+
+Groups simplify permission management.
+
+Example:
+
+```text
+Finance Group
+
+↓
+
+Access Finance Folder
+```
+
+Instead of assigning permissions to every employee individually.
+
+---
+
+# Forest
+
+A Forest is the highest level in Active Directory.
+
+Example:
+
+```text
+company.com
+
+subsidiary.com
+```
+
+Both can belong to one Forest.
+
+---
+
+# Tree
+
+A Tree is a hierarchy of domains.
+
+Example:
+
+```text
+company.com
+
+↓
+
+india.company.com
+
+↓
+
+bangalore.india.company.com
+```
+
+---
+
+# 🟠 Level 3 – Authentication & Enterprise Security
+
+# Kerberos Authentication
+
+Kerberos is the default authentication protocol in Active Directory.
+
+Simplified flow:
+
+```text
+User
+
+↓
+
+Login
+
+↓
+
+Domain Controller
+
+↓
+
+Ticket Granted
+
+↓
+
+Access Resources
+```
+
+Instead of sending the password repeatedly, Kerberos uses **time-limited tickets**.
+
+---
+
+## LDAP (Lightweight Directory Access Protocol)
+
+LDAP allows applications to:
+
+* Search users
+* Find groups
+* Query directory information
+
+Example:
+
+An HR application searches AD to verify an employee's department before granting access.
+
+---
+
+# Group Policy Objects (GPO)
+
+GPOs allow administrators to centrally configure Windows systems.
+
+Examples:
+
+✔ Password policy
+
+✔ Screen lock timeout
+
+✔ Disable USB storage
+
+✔ Windows Firewall settings
+
+✔ Windows Update policies
+
+✔ Software deployment
+
+---
+
+# Example GPO
+
+Company policy:
+
+* Minimum password length = 14 characters
+* Password expiry = 90 days
+* Screen locks after 10 minutes
+
+Applied once through GPO → all domain computers receive the policy.
+
+---
+
+# Windows Security Best Practices
+
+✔ Use MFA.
+
+✔ Enable Windows Defender.
+
+✔ Enable BitLocker for disk encryption.
+
+✔ Keep Windows updated.
+
+✔ Apply Least Privilege.
+
+✔ Enable auditing.
+
+✔ Disable unused services.
+
+✔ Use strong password policies.
+
+✔ Monitor logs.
+
+✔ Regular vulnerability assessments.
+
+---
+
+# 🌍 Real-World Example
+
+A new employee joins the Finance department.
+
+Administrator:
+
+* Creates user account.
+* Adds user to Finance OU.
+* Adds user to Finance Group.
+* Finance policies are automatically applied through GPO.
+
+The employee immediately receives the correct permissions without manual configuration.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Giving Domain Admin privileges to everyone.
+
+❌ Weak password policies.
+
+❌ Ignoring Group Policies.
+
+❌ Never reviewing AD audit logs.
+
+❌ Disabling Windows Defender.
+
+---
+
+# 🛠 Hands-on Labs (Safe & Educational)
+
+## Lab 1 – Windows Security Features
+
+Research and summarize:
+
+* Windows Defender
+* BitLocker
+* Windows Firewall
+* Microsoft Defender for Endpoint
+
+---
+
+## Lab 2 – Draw an AD Structure
+
+Create:
+
+```text
+Company
+
+├── HR
+
+├── Finance
+
+├── IT
+
+│     ├── Developers
+
+│     └── SOC
+
+└── Sales
+```
+
+Explain why each OU exists.
+
+---
+
+## Lab 3 – Password Policy
+
+Design a secure enterprise password policy including:
+
+* Minimum length
+* Complexity
+* Expiration
+* Lockout threshold
+
+---
+
+## Lab 4 – Group Policy
+
+Create a table of **10 useful GPOs** and explain what security benefit each provides.
+
+---
+
+# 💻 Mini Project
+
+## Enterprise Active Directory Design
+
+Create:
+
+**Enterprise_AD_Design.md**
+
+Include:
+
+* Forest
+* Domains
+* OUs
+* Groups
+* Domain Controllers
+* GPOs
+* Password Policy
+* MFA Strategy
+* Audit Policy
+* Backup Strategy
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Active Directory?
+2. What is a Domain Controller?
+3. Explain Domain vs Forest vs Tree.
+4. What is an Organizational Unit (OU)?
+5. What is LDAP?
+6. What is Kerberos?
+7. What is a Group Policy Object (GPO)?
+8. Why are groups used?
+9. What is Least Privilege in AD?
+10. How would you secure an enterprise Active Directory environment?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Active Directory is primarily used to:
+
+A. Manage users and resources
+
+B. Edit videos
+
+C. Create websites
+
+D. Compress files
+
+**Answer:** A
+
+---
+
+### Q2. The server responsible for authentication is:
+
+A. Domain Controller
+
+B. Printer
+
+C. Router
+
+D. Switch
+
+**Answer:** A
+
+---
+
+### Q3. Kerberos is used for:
+
+A. Authentication
+
+B. Video streaming
+
+C. Email
+
+D. File compression
+
+**Answer:** A
+
+---
+
+### Q4. LDAP stands for:
+
+A. Lightweight Directory Access Protocol
+
+B. Local Data Access Process
+
+C. Linux Data Administration Program
+
+D. Logical Directory Authentication Protocol
+
+**Answer:** A
+
+---
+
+### Q5. GPO stands for:
+
+A. Group Policy Object
+
+B. Global Password Option
+
+C. General Policy Office
+
+D. Group Password Object
+
+**Answer:** A
+
+---
+
+### Q6. An OU is used to:
+
+A. Organize users and computers
+
+B. Increase internet speed
+
+C. Encrypt disks
+
+D. Install software
+
+**Answer:** A
+
+---
+
+### Q7. The highest logical structure in AD is:
+
+A. Forest
+
+B. Folder
+
+C. Switch
+
+D. Printer
+
+**Answer:** A
+
+---
+
+### Q8. Which principle gives users only the permissions they need?
+
+A. Least Privilege
+
+B. Open Access
+
+C. Shared Accounts
+
+D. Administrator for Everyone
+
+**Answer:** A
+
+---
+
+### Q9. Which Windows feature provides full-disk encryption?
+
+A. BitLocker
+
+B. Paint
+
+C. Notepad
+
+D. Calculator
+
+**Answer:** A
+
+---
+
+### Q10. Which Windows feature provides built-in antivirus protection?
+
+A. Microsoft Defender Antivirus
+
+B. WordPad
+
+C. Internet Explorer
+
+D. Paint
+
+**Answer:** A
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* Domain vs Forest vs Tree
+* Kerberos vs LDAP
+* GPO vs Local Security Policy
+
+2. Explain why Active Directory is critical for enterprise security.
+
+3. Research **Microsoft Entra ID (formerly Azure Active Directory)** and summarize how it differs from traditional on-premises Active Directory.
+
+---
+
+## Practical
+
+Design an **Enterprise Active Directory Security Checklist** with at least **50 security controls**, covering:
+
+* User Management
+* Password Policies
+* MFA
+* GPO Security
+* Auditing
+* Logging
+* Backup
+* Least Privilege
+* Domain Controller Security
+* Incident Response
+
+---
+
+# 🧩 Level 4 – Blue Team Challenge
+
+## Scenario
+
+During a security audit, you discover:
+
+* 15 users are members of the **Domain Admins** group without business justification.
+* Passwords never expire.
+* MFA is disabled for administrators.
+* GPOs are inconsistent across departments.
+* Domain Controller logs are not monitored.
+* Backup of Active Directory has not been tested in over a year.
+
+### Your Tasks
+
+1. Identify the **six security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend practical remediation steps.
+4. Explain how proper AD design reduces risk.
+5. Write a one-page security audit report.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept           | Key Point                                    |
+| ----------------- | -------------------------------------------- |
+| Active Directory  | Centralized identity and resource management |
+| Domain            | Logical group of users and computers         |
+| Domain Controller | Authenticates users and manages AD           |
+| Forest            | Highest AD structure                         |
+| Tree              | Hierarchy of related domains                 |
+| OU                | Organizes objects for management             |
+| Kerberos          | Ticket-based authentication protocol         |
+| LDAP              | Directory query protocol                     |
+| GPO               | Centralized Windows policy management        |
+| Least Privilege   | Users receive only required permissions      |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 – Linux Security
+* ✅ Module 9 – Ethical Hacking
+* ✅ Module 10 (Part 1) – Wireless Security
+* ✅ **Module 10 (Part 2) – Windows Security & Active Directory**
+
+**Overall Progress:** **Day 40/50 (80%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 41)
+
+We'll move into **Digital Forensics Fundamentals**, where you'll learn:
+
+* Digital forensics process
+* Chain of custody
+* Evidence preservation
+* Disk forensics
+* Memory forensics
+* Timeline analysis
+* Common forensic tools (Autopsy, FTK Imager, Volatility)
+* Report writing for investigations
+
+This module is a key skill for **SOC Analysts, Incident Responders, Digital Forensics Analysts, and Cyber Crime Investigators**.
