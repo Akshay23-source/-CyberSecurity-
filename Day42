@@ -1,0 +1,612 @@
+# 🔐 Cybersecurity Bootcamp – **Day 41/50**
+
+# Module 11 (Part 1): Digital Forensics Fundamentals & Evidence Handling
+
+> **Mission:** Today you'll begin **Digital Forensics**, one of the most important disciplines in cybersecurity. Digital forensics focuses on **collecting, preserving, analyzing, and reporting digital evidence** after a security incident in a way that maintains its integrity and supports investigations.
+
+**Duration:** **5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Digital Forensics.
+* ✅ Learn the Digital Forensics Process.
+* ✅ Understand Chain of Custody.
+* ✅ Learn evidence collection and preservation.
+* ✅ Understand volatile vs non-volatile evidence.
+* ✅ Learn basic forensic imaging concepts.
+* ✅ Become familiar with common forensic tools.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Digital Forensics?
+
+Digital Forensics is the process of investigating digital devices to discover what happened during an incident while preserving evidence.
+
+Examples:
+
+* Cyber attacks
+* Data theft
+* Insider threats
+* Ransomware incidents
+* Fraud investigations
+* Policy violations
+
+---
+
+## 🏠 Real-Life Analogy
+
+Imagine a crime scene.
+
+Police officers do **not** immediately move everything.
+
+Instead they:
+
+✔ Take photographs
+
+✔ Collect fingerprints
+
+✔ Preserve evidence
+
+✔ Document every action
+
+Digital forensics works the same way.
+
+---
+
+# Goals of Digital Forensics
+
+* Identify what happened.
+* Determine when it happened.
+* Identify who was involved.
+* Preserve evidence.
+* Support legal or organizational investigations.
+* Recommend preventive measures.
+
+---
+
+# Digital Forensics Process
+
+```text
+Preparation
+      ↓
+Identification
+      ↓
+Preservation
+      ↓
+Collection
+      ↓
+Examination
+      ↓
+Analysis
+      ↓
+Reporting
+```
+
+---
+
+# 🟟 Level 2 – Evidence Handling
+
+## What is Digital Evidence?
+
+Anything stored electronically that helps explain an incident.
+
+Examples:
+
+* Hard disks
+* SSDs
+* USB drives
+* Mobile phones
+* Memory (RAM)
+* Log files
+* Emails
+* Cloud logs
+* Browser history
+* CCTV recordings
+
+---
+
+# Types of Evidence
+
+## Volatile Evidence
+
+Disappears when power is lost.
+
+Examples:
+
+* RAM contents
+* Running processes
+* Active network connections
+* Logged-in users
+
+Collect this first.
+
+---
+
+## Non-Volatile Evidence
+
+Remains after shutdown.
+
+Examples:
+
+* Hard drives
+* SSDs
+* USB drives
+* Documents
+* Event logs
+
+---
+
+# Order of Volatility
+
+Collect evidence in this order:
+
+```text
+CPU Cache
+    ↓
+RAM
+    ↓
+Running Processes
+    ↓
+Network Connections
+    ↓
+Disk
+    ↓
+Backups
+```
+
+---
+
+# Chain of Custody
+
+Chain of Custody documents:
+
+* Who collected evidence.
+* When it was collected.
+* Where it was stored.
+* Who accessed it.
+* Why it was accessed.
+
+Every transfer must be documented.
+
+---
+
+## Example
+
+| Time     | Action                 | Person             |
+| -------- | ---------------------- | ------------------ |
+| 10:15 AM | Laptop seized          | SOC Analyst        |
+| 10:45 AM | Forensic image created | Forensic Analyst   |
+| 11:30 AM | Evidence stored        | Evidence Custodian |
+
+---
+
+# 🔵 Level 3 – Forensic Imaging
+
+## What is a Forensic Image?
+
+A **bit-for-bit copy** of a storage device.
+
+Unlike a normal file copy, it includes:
+
+* Deleted files (if recoverable)
+* Unallocated space
+* File system metadata
+* Hidden information
+
+The original evidence should remain unchanged.
+
+---
+
+# Hashing
+
+Hashing verifies evidence integrity.
+
+Common algorithms:
+
+* SHA-256
+* SHA-512
+
+If the hash before and after analysis is the same:
+
+✔ Evidence has not changed.
+
+---
+
+# Common Forensic Tools
+
+| Tool         | Purpose                              |
+| ------------ | ------------------------------------ |
+| Autopsy      | Disk forensic analysis               |
+| FTK Imager   | Create forensic images               |
+| Volatility   | Memory analysis                      |
+| Magnet AXIOM | Comprehensive digital investigations |
+| Sleuth Kit   | File system analysis                 |
+
+---
+
+# Reporting
+
+A professional forensic report includes:
+
+1. Executive Summary
+2. Incident Description
+3. Evidence Collected
+4. Analysis Performed
+5. Findings
+6. Timeline
+7. Conclusions
+8. Recommendations
+
+---
+
+# 🌍 Real-World Example
+
+A company laptop is suspected of data theft.
+
+The forensic team:
+
+1. Seizes the laptop.
+2. Documents Chain of Custody.
+3. Creates a forensic image.
+4. Calculates SHA-256 hashes.
+5. Analyzes the forensic image (not the original drive).
+6. Reviews browser history, logs, and user activity.
+7. Produces a formal report.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Working directly on the original evidence.
+
+❌ Forgetting to document Chain of Custody.
+
+❌ Ignoring volatile evidence.
+
+❌ Failing to verify hashes.
+
+❌ Drawing conclusions before completing analysis.
+
+---
+
+# 🛠 Hands-on Labs (Safe & Educational)
+
+## Lab 1 – Chain of Custody Form
+
+Create a Chain of Custody template including:
+
+* Evidence ID
+* Description
+* Collector
+* Date & Time
+* Storage Location
+* Transfer History
+
+---
+
+## Lab 2 – Digital Evidence Classification
+
+Categorize the following as **Volatile** or **Non-Volatile**:
+
+* RAM
+* SSD
+* Browser history
+* Active network connections
+* USB drive
+* Running processes
+* Log files
+* Cloud audit logs
+
+---
+
+## Lab 3 – Research Forensic Tools
+
+Research and summarize:
+
+* Autopsy
+* FTK Imager
+* Volatility
+
+For each tool, write:
+
+* Primary purpose
+* Supported evidence
+* Typical use cases
+
+---
+
+## Lab 4 – Incident Timeline
+
+Create a timeline for a fictional ransomware incident:
+
+* Initial infection
+* User reports issue
+* SOC alert
+* Evidence collection
+* Analysis
+* Recovery
+
+---
+
+# 💻 Mini Project
+
+## Digital Forensics Investigation Template
+
+Create:
+
+**Digital_Forensics_Report.md**
+
+Include:
+
+* Incident Summary
+* Chain of Custody
+* Evidence Inventory
+* Timeline
+* Analysis
+* Findings
+* Hash Verification
+* Recommendations
+* Lessons Learned
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Digital Forensics?
+2. What is digital evidence?
+3. What is Chain of Custody?
+4. Why is volatile evidence collected first?
+5. What is forensic imaging?
+6. Why is hashing important?
+7. What is the difference between evidence collection and analysis?
+8. Name three forensic tools.
+9. Why should investigators analyze a forensic image instead of the original drive?
+10. What should every forensic report contain?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Digital Forensics is primarily used to:
+
+A. Investigate digital incidents
+
+B. Increase internet speed
+
+C. Design websites
+
+D. Edit videos
+
+**Answer:** A
+
+---
+
+### Q2. Which evidence is most volatile?
+
+A. RAM
+
+B. Hard Disk
+
+C. USB Drive
+
+D. SSD
+
+**Answer:** A
+
+---
+
+### Q3. Chain of Custody ensures:
+
+A. Evidence integrity and accountability
+
+B. Faster internet
+
+C. Better encryption
+
+D. More storage
+
+**Answer:** A
+
+---
+
+### Q4. A forensic image is:
+
+A. A bit-for-bit copy of storage media
+
+B. A screenshot
+
+C. A compressed file
+
+D. A PDF
+
+**Answer:** A
+
+---
+
+### Q5. SHA-256 is commonly used for:
+
+A. Hash verification
+
+B. Video playback
+
+C. File compression
+
+D. Wi-Fi authentication
+
+**Answer:** A
+
+---
+
+### Q6. Which tool is commonly used for memory forensics?
+
+A. Volatility
+
+B. Wireshark
+
+C. Notepad
+
+D. Excel
+
+**Answer:** A
+
+---
+
+### Q7. Which tool is widely used for disk forensics?
+
+A. Autopsy
+
+B. Paint
+
+C. Calculator
+
+D. FTP
+
+**Answer:** A
+
+---
+
+### Q8. Investigators should normally analyze:
+
+A. A forensic image
+
+B. The original evidence directly
+
+C. A screenshot only
+
+D. Printed copies
+
+**Answer:** A
+
+---
+
+### Q9. Which phase comes after Collection?
+
+A. Examination
+
+B. Preparation
+
+C. Identification
+
+D. Preservation
+
+**Answer:** A
+
+---
+
+### Q10. Every evidence transfer should be:
+
+A. Documented
+
+B. Ignored
+
+C. Deleted
+
+D. Shared publicly
+
+**Answer:** A
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* Volatile vs Non-Volatile Evidence
+* Evidence Collection vs Evidence Analysis
+* Forensic Imaging vs Normal File Copy
+
+2. Explain why maintaining a Chain of Custody is essential.
+
+3. Research one real-world cybercrime investigation where digital forensics played a major role and summarize the investigation.
+
+---
+
+## Practical
+
+Create a **Digital Forensics Cheat Sheet** containing:
+
+* Investigation process
+* Order of volatility
+* Chain of Custody
+* Hashing algorithms
+* Forensic imaging
+* Common forensic tools
+* Reporting checklist
+
+---
+
+# 🧩 Level 4 – Incident Response Challenge
+
+## Scenario
+
+A company's finance department reports that confidential files may have been copied to an unauthorized USB device.
+
+As the Digital Forensics Analyst, you must:
+
+1. List the evidence you would collect first.
+2. Prioritize evidence using the order of volatility.
+3. Design a Chain of Custody record.
+4. Explain how you would verify evidence integrity.
+5. Write an executive summary describing your investigation approach.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept               | Key Point                                     |
+| --------------------- | --------------------------------------------- |
+| Digital Forensics     | Investigation of digital evidence             |
+| Digital Evidence      | Electronic information used in investigations |
+| Volatile Evidence     | Lost when power is removed                    |
+| Non-Volatile Evidence | Persists after shutdown                       |
+| Chain of Custody      | Tracks evidence handling                      |
+| Forensic Image        | Bit-for-bit copy                              |
+| SHA-256               | Integrity verification                        |
+| Autopsy               | Disk forensics                                |
+| FTK Imager            | Evidence imaging                              |
+| Volatility            | Memory forensics                              |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 – Linux Security
+* ✅ Module 9 – Ethical Hacking
+* ✅ Module 10 – Wireless Security & Windows Security
+* ✅ **Module 11 (Part 1) – Digital Forensics Fundamentals**
+
+## **Overall Progress: Day 41/50 (82%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 42)
+
+We'll study **Incident Response & Threat Hunting**, including:
+
+* Incident Response lifecycle (NIST)
+* Indicators of Compromise (IOCs)
+* Indicators of Attack (IOAs)
+* Threat Hunting methodology
+* MITRE ATT&CK basics
+* Detection engineering
+* Building incident playbooks
+* Enterprise SOC workflows
+
+This is one of the **most important modules for SOC Analyst interviews** and will directly prepare you for real-world Blue Team responsibilities.
