@@ -1,0 +1,700 @@
+# 🔐 Cybersecurity Bootcamp – **Day 42/50**
+
+# Module 11 (Part 2): Incident Response (IR) & Threat Hunting
+
+> **Mission:** Today you'll learn how cybersecurity teams respond to attacks in real organizations. This is one of the **highest-priority topics** for SOC Analyst, Incident Responder, Blue Team, and Security Engineer interviews.
+
+**Duration:** **5 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Incident Response (IR).
+* ✅ Learn the NIST Incident Response Lifecycle.
+* ✅ Understand Indicators of Compromise (IOCs) & Indicators of Attack (IOAs).
+* ✅ Learn Threat Hunting methodology.
+* ✅ Understand MITRE ATT&CK basics.
+* ✅ Learn SOC workflows.
+* ✅ Create professional Incident Response playbooks.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Incident Response?
+
+Incident Response (IR) is the structured process of **preparing for, detecting, containing, investigating, recovering from, and learning from cybersecurity incidents**.
+
+Examples:
+
+* Ransomware
+* Phishing
+* Malware infection
+* Data breach
+* Insider threats
+* Unauthorized access
+
+---
+
+## 🏠 Real-Life Analogy
+
+Imagine a fire in an office.
+
+The team:
+
+✔ Detects the fire.
+
+✔ Calls emergency services.
+
+✔ Evacuates employees.
+
+✔ Extinguishes the fire.
+
+✔ Repairs the damage.
+
+✔ Investigates the cause.
+
+Cybersecurity Incident Response follows the same structured approach.
+
+---
+
+# NIST Incident Response Lifecycle
+
+```text
+Preparation
+      ↓
+Detection & Analysis
+      ↓
+Containment
+      ↓
+Eradication
+      ↓
+Recovery
+      ↓
+Lessons Learned
+```
+
+This is one of the most commonly used IR frameworks.
+
+---
+
+# 🟡 Level 2 – NIST Incident Response Phases
+
+## 1. Preparation
+
+Before an attack:
+
+* Security policies
+* Incident Response Team (IRT)
+* Backups
+* Logging
+* SIEM
+* EDR/XDR
+* Playbooks
+* Employee awareness
+
+Preparation reduces response time during real incidents.
+
+---
+
+## 2. Detection & Analysis
+
+Questions:
+
+* What happened?
+* When did it happen?
+* Which systems are affected?
+* How severe is it?
+
+Sources of alerts:
+
+* SIEM
+* Antivirus
+* EDR
+* Firewall
+* IDS/IPS
+* User reports
+
+---
+
+## 3. Containment
+
+Goal:
+
+Stop the attack from spreading.
+
+Examples:
+
+* Isolate infected devices.
+* Disable compromised accounts.
+* Block malicious IP addresses.
+* Disable malicious services.
+
+---
+
+## 4. Eradication
+
+Remove the root cause.
+
+Examples:
+
+* Remove malware.
+* Patch vulnerabilities.
+* Delete unauthorized accounts.
+* Remove persistence mechanisms.
+
+---
+
+## 5. Recovery
+
+Restore operations safely.
+
+Examples:
+
+* Restore from clean backups.
+* Verify systems.
+* Monitor for recurrence.
+* Resume business operations.
+
+---
+
+## 6. Lessons Learned
+
+Document:
+
+* Root cause
+* Timeline
+* Impact
+* Successful actions
+* Improvements
+
+Every incident should improve future defenses.
+
+---
+
+# 🔵 Level 3 – Threat Hunting
+
+## What is Threat Hunting?
+
+Threat Hunting is the **proactive search** for hidden threats that may not have triggered automatic alerts.
+
+Instead of waiting for alarms,
+
+analysts actively investigate suspicious activity.
+
+---
+
+# Threat Hunting Workflow
+
+```text
+Hypothesis
+
+↓
+
+Collect Data
+
+↓
+
+Investigate
+
+↓
+
+Analyze
+
+↓
+
+Confirm or Reject
+
+↓
+
+Improve Detection Rules
+```
+
+---
+
+## Example Hypothesis
+
+"An attacker may have gained access through a phishing email."
+
+The analyst investigates:
+
+* Email logs
+* Login events
+* Endpoint activity
+* Network connections
+
+---
+
+# Indicators of Compromise (IOCs)
+
+IOCs are pieces of evidence that suggest a system **may already be compromised**.
+
+Examples:
+
+* Malicious IP address
+* Malicious domain
+* File hash
+* Suspicious registry key
+* Unauthorized user account
+
+---
+
+# Indicators of Attack (IOAs)
+
+IOAs describe **attacker behavior** rather than specific artifacts.
+
+Examples:
+
+* Multiple failed login attempts followed by success.
+* Privilege escalation attempts.
+* Unexpected execution of administrative tools.
+
+IOAs can help detect new attacks even when specific malware is unknown.
+
+---
+
+# MITRE ATT&CK Framework
+
+MITRE ATT&CK is a knowledge base of attacker tactics and techniques.
+
+Examples of tactics:
+
+* Initial Access
+* Execution
+* Persistence
+* Privilege Escalation
+* Defense Evasion
+* Credential Access
+* Discovery
+* Lateral Movement
+* Collection
+* Exfiltration
+* Impact
+
+SOC teams use ATT&CK to map attacker behavior and improve detection.
+
+---
+
+# SOC Workflow
+
+```text
+Alert
+
+↓
+
+SOC Analyst
+
+↓
+
+Investigation
+
+↓
+
+Containment
+
+↓
+
+Escalation
+
+↓
+
+Incident Response
+
+↓
+
+Recovery
+```
+
+---
+
+# 🌍 Real-World Example
+
+A SOC receives an alert:
+
+Employee clicks a phishing email.
+
+Investigation finds:
+
+* Login from another country.
+* New mailbox forwarding rule.
+* Large number of downloaded files.
+
+Response:
+
+* Disable account.
+* Reset credentials.
+* Remove malicious forwarding rule.
+* Investigate affected systems.
+* Document the incident.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Ignoring small alerts.
+
+❌ Deleting evidence too early.
+
+❌ Failing to notify stakeholders.
+
+❌ Restoring systems before identifying the root cause.
+
+❌ Not documenting the incident.
+
+---
+
+# 🛠 Hands-on Labs
+
+## Lab 1 – IOC vs IOA
+
+Classify the following:
+
+* Malicious IP
+* Repeated failed logins
+* File hash
+* Unauthorized administrator account
+* Suspicious PowerShell execution
+* Unknown domain
+
+Mark each as IOC or IOA.
+
+---
+
+## Lab 2 – Incident Timeline
+
+Create a timeline for:
+
+* Phishing email received
+* User clicks link
+* Malware downloaded
+* SOC alert
+* Containment
+* Recovery
+
+---
+
+## Lab 3 – Threat Hunting Plan
+
+Choose one hypothesis:
+
+Examples:
+
+* Suspicious administrator activity
+* Unusual VPN logins
+* Unexpected software installation
+
+Write:
+
+* Data sources
+* Investigation steps
+* Expected findings
+
+---
+
+## Lab 4 – MITRE ATT&CK Mapping
+
+Map this scenario:
+
+* User opens phishing email.
+* Malware executes.
+* Attacker steals credentials.
+* Attacker moves to another system.
+* Files are encrypted.
+
+Identify the ATT&CK tactics involved.
+
+---
+
+# 💻 Mini Project
+
+## Enterprise Incident Response Playbook
+
+Create:
+
+**Incident_Response_Playbook.md**
+
+Include:
+
+* Incident categories
+* Severity levels
+* Roles & responsibilities
+* Detection process
+* Containment checklist
+* Recovery checklist
+* Communication plan
+* Post-incident review
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Incident Response?
+2. Explain the NIST Incident Response lifecycle.
+3. What is Threat Hunting?
+4. Difference between IOC and IOA?
+5. What is MITRE ATT&CK?
+6. Why is containment important?
+7. What is a playbook?
+8. What information should be included in a post-incident report?
+9. How does a SOC investigate alerts?
+10. Why are lessons learned critical?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. The first phase of the NIST Incident Response lifecycle is:
+
+A. Preparation
+
+B. Recovery
+
+C. Containment
+
+D. Reporting
+
+**Answer:** A
+
+---
+
+### Q2. Which phase focuses on stopping an attack from spreading?
+
+A. Containment
+
+B. Preparation
+
+C. Recovery
+
+D. Lessons Learned
+
+**Answer:** A
+
+---
+
+### Q3. An IOC is:
+
+A. Evidence suggesting compromise
+
+B. A firewall rule
+
+C. A software license
+
+D. A network cable
+
+**Answer:** A
+
+---
+
+### Q4. Threat Hunting is:
+
+A. A proactive search for hidden threats
+
+B. Installing antivirus
+
+C. Formatting disks
+
+D. Updating software
+
+**Answer:** A
+
+---
+
+### Q5. MITRE ATT&CK is:
+
+A. A framework describing attacker tactics and techniques
+
+B. An antivirus
+
+C. A firewall
+
+D. A Linux distribution
+
+**Answer:** A
+
+---
+
+### Q6. Which phase removes malware and closes vulnerabilities?
+
+A. Eradication
+
+B. Preparation
+
+C. Detection
+
+D. Reporting
+
+**Answer:** A
+
+---
+
+### Q7. Which phase restores systems to normal operation?
+
+A. Recovery
+
+B. Preparation
+
+C. Analysis
+
+D. Discovery
+
+**Answer:** A
+
+---
+
+### Q8. A malicious file hash is an example of:
+
+A. IOC
+
+B. IOA
+
+C. Backup
+
+D. Patch
+
+**Answer:** A
+
+---
+
+### Q9. Multiple failed logins followed by a successful login is commonly treated as:
+
+A. An IOA
+
+B. A printer error
+
+C. A software update
+
+D. A backup
+
+**Answer:** A
+
+---
+
+### Q10. The main goal of "Lessons Learned" is to:
+
+A. Improve future security and response
+
+B. Delete all logs
+
+C. Remove backups
+
+D. Ignore the incident
+
+**Answer:** A
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* IOC vs IOA
+* Detection vs Threat Hunting
+* Containment vs Eradication
+* Recovery vs Lessons Learned
+
+2. Research **MITRE ATT&CK** and explain why it is widely used by SOC teams.
+
+3. Explain why every organization should have an Incident Response Playbook.
+
+---
+
+## Practical
+
+Design an **Enterprise Incident Response Plan** covering:
+
+* Preparation
+* Detection
+* Containment
+* Eradication
+* Recovery
+* Communication
+* Evidence Preservation
+* Reporting
+* Lessons Learned
+* Continuous Improvement
+
+---
+
+# 🧩 Level 4 – Senior SOC Analyst Challenge
+
+## Scenario
+
+A multinational company experiences a ransomware incident.
+
+Observations:
+
+* Several employees report encrypted files.
+* EDR detects suspicious PowerShell activity.
+* SIEM shows connections to a known malicious IP.
+* Multiple administrator accounts were created overnight.
+* Sensitive files may have been exfiltrated.
+
+### Your Tasks
+
+1. Identify the likely IOCs and IOAs.
+2. Prioritize the response actions.
+3. Describe the NIST Incident Response phases you would follow.
+4. Map the attacker behavior to MITRE ATT&CK tactics.
+5. Write a professional incident report for senior management.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept           | Key Point                                                                        |
+| ----------------- | -------------------------------------------------------------------------------- |
+| Incident Response | Structured response to cybersecurity incidents                                   |
+| NIST IR           | Preparation → Detection → Containment → Eradication → Recovery → Lessons Learned |
+| Threat Hunting    | Proactive search for hidden threats                                              |
+| IOC               | Evidence suggesting compromise                                                   |
+| IOA               | Suspicious attacker behavior                                                     |
+| MITRE ATT&CK      | Knowledge base of attacker tactics and techniques                                |
+| Containment       | Prevent further spread                                                           |
+| Eradication       | Remove the root cause                                                            |
+| Recovery          | Restore normal operations                                                        |
+| Playbook          | Standardized response procedure                                                  |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 – Linux Security
+* ✅ Module 9 – Ethical Hacking
+* ✅ Module 10 – Wireless Security & Windows Security
+* ✅ Module 11 (Part 1) – Digital Forensics
+* ✅ **Module 11 (Part 2) – Incident Response & Threat Hunting**
+
+## **Overall Progress: Day 42/50 (84%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 43)
+
+You'll begin **Cloud Security (AWS, Microsoft Azure & Google Cloud Platform)**.
+
+You'll learn:
+
+* Cloud computing fundamentals
+* IaaS, PaaS, SaaS
+* Shared Responsibility Model
+* Identity & Access Management (IAM)
+* Virtual Private Cloud (VPC)
+* Security Groups & Network ACLs
+* Data encryption in the cloud
+* Cloud security best practices
+
+This is one of the **fastest-growing domains in cybersecurity** and is highly valued for SOC Analyst, Cloud Security Engineer, DevSecOps, and Security Architect roles.
