@@ -1,0 +1,884 @@
+# 🔐 Cybersecurity Bootcamp – **Day 43/50**
+
+# Module 12 (Part 1): Cloud Security Fundamentals (AWS, Microsoft Azure & Google Cloud)
+
+> **Mission:** Today you'll begin **Cloud Security**, one of the highest-paying and fastest-growing areas in cybersecurity. More than **90% of modern enterprises** use cloud platforms like **AWS, Microsoft Azure, or Google Cloud Platform (GCP)**. As a Security Engineer or SOC Analyst, you'll regularly investigate and secure cloud environments.
+
+**Duration:** **5–6 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand Cloud Computing.
+* ✅ Learn IaaS, PaaS, SaaS.
+* ✅ Understand Public, Private & Hybrid Cloud.
+* ✅ Learn the Shared Responsibility Model.
+* ✅ Understand AWS, Azure & GCP.
+* ✅ Learn Identity & Access Management (IAM).
+* ✅ Understand Virtual Private Cloud (VPC).
+* ✅ Learn Cloud Security Best Practices.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is Cloud Computing?
+
+Cloud computing means **using computing resources (servers, storage, databases, networking, software) over the internet instead of owning physical hardware**.
+
+Instead of buying your own server, you rent computing power from a cloud provider.
+
+---
+
+## 🏠 Real-Life Analogy
+
+Imagine electricity.
+
+Years ago:
+
+Every company needed its own generator.
+
+Today:
+
+Everyone uses electricity from the power grid.
+
+Cloud computing works similarly.
+
+Instead of buying servers:
+
+You rent computing resources whenever you need them.
+
+---
+
+# Traditional vs Cloud
+
+### Traditional
+
+```text
+Company
+
+↓
+
+Own Servers
+
+↓
+
+Own Storage
+
+↓
+
+Own Maintenance
+```
+
+---
+
+### Cloud
+
+```text
+Company
+
+↓
+
+AWS / Azure / GCP
+
+↓
+
+Pay for Usage
+```
+
+---
+
+# Why Companies Use Cloud
+
+✔ Lower upfront cost
+
+✔ High availability
+
+✔ Easy scalability
+
+✔ Faster deployment
+
+✔ Global access
+
+✔ Automatic backups (depending on configuration)
+
+✔ Managed services
+
+---
+
+# Major Cloud Providers
+
+| Provider | Company   |
+| -------- | --------- |
+| AWS      | Amazon    |
+| Azure    | Microsoft |
+| GCP      | Google    |
+
+---
+
+# 🟡 Level 2 – Cloud Service Models
+
+# IaaS (Infrastructure as a Service)
+
+Cloud provider supplies:
+
+* Virtual Machines
+* Storage
+* Networking
+
+Customer manages:
+
+* Operating System
+* Applications
+* Security configuration
+* Data
+
+Examples:
+
+* Amazon EC2
+* Azure Virtual Machines
+* Google Compute Engine
+
+---
+
+# PaaS (Platform as a Service)
+
+Cloud provider manages:
+
+* Infrastructure
+* Operating System
+* Runtime
+
+Customer manages:
+
+* Application
+* Data
+
+Examples:
+
+* Azure App Service
+* Google App Engine
+* AWS Elastic Beanstalk
+
+---
+
+# SaaS (Software as a Service)
+
+Everything is managed by the provider.
+
+Users simply use the application.
+
+Examples:
+
+* Microsoft 365
+* Gmail
+* Salesforce
+* Dropbox
+
+---
+
+# Comparison
+
+| Model | You Manage           | Provider Manages     |
+| ----- | -------------------- | -------------------- |
+| IaaS  | OS, Apps, Data       | Hardware, Networking |
+| PaaS  | Apps, Data           | Infrastructure + OS  |
+| SaaS  | User Settings & Data | Everything else      |
+
+---
+
+# Deployment Models
+
+## Public Cloud
+
+Shared infrastructure.
+
+Examples:
+
+* AWS
+* Azure
+* GCP
+
+---
+
+## Private Cloud
+
+Dedicated infrastructure for one organization.
+
+Used by:
+
+* Banks
+* Governments
+* Defense organizations
+
+---
+
+## Hybrid Cloud
+
+Combination of:
+
+Private Cloud
+
+*
+
+Public Cloud
+
+Many enterprises use this approach.
+
+---
+
+# Multi-Cloud
+
+Using more than one cloud provider.
+
+Example:
+
+AWS
+
+*
+
+Azure
+
+*
+
+Google Cloud
+
+---
+
+# 🔵 Level 3 – Shared Responsibility Model
+
+One of the **most important cloud security concepts**.
+
+## Who Secures What?
+
+### Cloud Provider
+
+Responsible for:
+
+✔ Physical data centers
+
+✔ Physical servers
+
+✔ Hardware
+
+✔ Network infrastructure
+
+✔ Hypervisor
+
+---
+
+### Customer
+
+Responsible for:
+
+✔ User accounts
+
+✔ IAM permissions
+
+✔ Applications
+
+✔ Data
+
+✔ Encryption settings
+
+✔ Network configuration
+
+✔ Operating system (for IaaS)
+
+---
+
+# Real-Life Analogy
+
+Apartment Building
+
+Building owner:
+
+* Maintains the building
+* Security guards
+* Elevators
+
+Tenant:
+
+* Locks apartment
+* Protects valuables
+* Manages guests
+
+Cloud works the same way.
+
+---
+
+# Identity & Access Management (IAM)
+
+IAM controls:
+
+Who can do what.
+
+Example:
+
+```text
+Admin
+
+↓
+
+Full Access
+
+Developer
+
+↓
+
+Deploy Applications
+
+HR
+
+↓
+
+View Employee Data
+
+Finance
+
+↓
+
+Access Financial Reports
+```
+
+---
+
+## IAM Principles
+
+✔ Least Privilege
+
+✔ Role-Based Access Control (RBAC)
+
+✔ Multi-Factor Authentication
+
+✔ Strong passwords
+
+✔ Temporary credentials where appropriate
+
+---
+
+# Cloud Network Basics
+
+## What is a VPC?
+
+A **Virtual Private Cloud** is your own isolated network inside the cloud.
+
+Example:
+
+```text
+Internet
+
+↓
+
+Firewall
+
+↓
+
+VPC
+
+├── Public Subnet
+
+├── Private Subnet
+
+└── Database
+```
+
+---
+
+# Public vs Private Subnet
+
+## Public
+
+Accessible from the internet.
+
+Examples:
+
+* Web Server
+* Load Balancer
+
+---
+
+## Private
+
+Not directly accessible from the internet.
+
+Examples:
+
+* Database
+* Internal Application Server
+
+---
+
+# Security Groups
+
+Think of Security Groups as **virtual firewalls** for cloud resources.
+
+Example:
+
+Allow:
+
+HTTPS (443)
+
+SSH (22) only from trusted administrator IPs
+
+Block everything else.
+
+---
+
+# Network ACL (NACL)
+
+Network ACLs operate at the subnet level.
+
+| Security Group | NACL         |
+| -------------- | ------------ |
+| Instance level | Subnet level |
+| Stateful       | Stateless    |
+
+---
+
+# 🌍 Real-World Example
+
+A company hosts its website on AWS.
+
+Architecture:
+
+```text
+Internet
+
+↓
+
+Load Balancer
+
+↓
+
+Public Web Server
+
+↓
+
+Private Application Server
+
+↓
+
+Private Database
+```
+
+Only the web server is exposed to the internet.
+
+The database remains in a private subnet.
+
+---
+
+# Cloud Security Best Practices
+
+✔ Enable MFA.
+
+✔ Apply Least Privilege.
+
+✔ Encrypt sensitive data.
+
+✔ Rotate access keys.
+
+✔ Monitor logs.
+
+✔ Enable cloud audit logging.
+
+✔ Use secure backups.
+
+✔ Patch virtual machines.
+
+✔ Regular security assessments.
+
+✔ Review IAM permissions regularly.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Giving Administrator access to everyone.
+
+❌ Storing cloud keys in source code.
+
+❌ Making storage publicly accessible by mistake.
+
+❌ Ignoring audit logs.
+
+❌ Forgetting to enable MFA.
+
+---
+
+# 🛠 Hands-on Labs (Safe & Educational)
+
+## Lab 1 – Cloud Comparison
+
+Research and compare:
+
+* AWS
+* Azure
+* GCP
+
+Include:
+
+* Popular services
+* Pricing model
+* Common enterprise use cases
+
+---
+
+## Lab 2 – Shared Responsibility
+
+Create two columns:
+
+Cloud Provider
+
+Customer
+
+List **20 responsibilities** under each.
+
+---
+
+## Lab 3 – Design a Secure VPC
+
+Draw:
+
+```text
+Internet
+
+↓
+
+Internet Gateway
+
+↓
+
+Load Balancer
+
+↓
+
+Public Subnet
+
+↓
+
+Private Subnet
+
+↓
+
+Database
+
+↓
+
+Backup Storage
+```
+
+Explain why each component is placed there.
+
+---
+
+## Lab 4 – IAM Policy Design
+
+Create roles for:
+
+* CEO
+* HR
+* Finance
+* Developer
+* SOC Analyst
+* Intern
+
+Assign permissions using the **Principle of Least Privilege**.
+
+---
+
+# 💻 Mini Project
+
+## Secure Cloud Architecture
+
+Create:
+
+**Cloud_Security_Architecture.md**
+
+Include:
+
+* Cloud Provider
+* VPC Design
+* IAM Roles
+* MFA Policy
+* Encryption Strategy
+* Logging & Monitoring
+* Backup Strategy
+* Disaster Recovery Plan
+* Shared Responsibility Matrix
+* Security Recommendations
+
+Upload it to GitHub.
+
+---
+
+# 💼 Interview Questions
+
+1. What is Cloud Computing?
+2. Explain IaaS, PaaS and SaaS.
+3. Public vs Private vs Hybrid Cloud?
+4. What is the Shared Responsibility Model?
+5. What is IAM?
+6. What is Least Privilege?
+7. What is a VPC?
+8. Difference between Security Groups and NACLs?
+9. Why should databases remain in private subnets?
+10. How would you secure a cloud environment?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. Cloud Computing primarily provides:
+
+A. Computing resources over the internet
+
+B. Antivirus software only
+
+C. Email services only
+
+D. Local networking only
+
+**Answer:** A
+
+---
+
+### Q2. Which cloud model provides virtual machines?
+
+A. IaaS
+
+B. SaaS
+
+C. PaaS
+
+D. DNS
+
+**Answer:** A
+
+---
+
+### Q3. Microsoft Azure is:
+
+A. A cloud platform
+
+B. An operating system
+
+C. A web browser
+
+D. A firewall
+
+**Answer:** A
+
+---
+
+### Q4. In SaaS, who manages the infrastructure?
+
+A. Cloud Provider
+
+B. Customer
+
+C. ISP
+
+D. Employee
+
+**Answer:** A
+
+---
+
+### Q5. IAM stands for:
+
+A. Identity and Access Management
+
+B. Internet Access Manager
+
+C. Internal Authentication Module
+
+D. Identity Audit Monitor
+
+**Answer:** A
+
+---
+
+### Q6. A VPC is:
+
+A. An isolated virtual network
+
+B. A VPN client
+
+C. A firewall rule
+
+D. A programming language
+
+**Answer:** A
+
+---
+
+### Q7. Which principle gives users only the permissions they need?
+
+A. Least Privilege
+
+B. Open Access
+
+C. Shared Credentials
+
+D. Administrator for Everyone
+
+**Answer:** A
+
+---
+
+### Q8. Which subnet should typically host a database?
+
+A. Private Subnet
+
+B. Public Subnet
+
+C. Guest Network
+
+D. DMZ
+
+**Answer:** A
+
+---
+
+### Q9. Security Groups operate primarily at the:
+
+A. Instance level
+
+B. Building level
+
+C. Internet level
+
+D. Application store
+
+**Answer:** A
+
+---
+
+### Q10. The customer is responsible for:
+
+A. IAM configuration and protecting their data
+
+B. Maintaining the cloud provider's physical data center
+
+C. Building the provider's hardware
+
+D. Managing the provider's network backbone
+
+**Answer:** A
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* IaaS vs PaaS vs SaaS
+* Public vs Private vs Hybrid Cloud
+* Security Groups vs Network ACLs
+
+2. Explain why the **Shared Responsibility Model** is one of the most important concepts in cloud security.
+
+3. Research **AWS Well-Architected Framework – Security Pillar** and summarize its main recommendations.
+
+---
+
+## Practical
+
+Design an **Enterprise Cloud Security Checklist** with **50 security controls**, covering:
+
+* IAM
+* MFA
+* Network Security
+* Encryption
+* Logging
+* Monitoring
+* Backup
+* Disaster Recovery
+* Patch Management
+* Compliance
+
+---
+
+# 🧩 Level 4 – Cloud Security Engineer Challenge
+
+## Scenario
+
+A company migrates its customer portal to the cloud.
+
+The audit reveals:
+
+* All developers have administrator permissions.
+* MFA is disabled.
+* The customer database is placed in a public subnet.
+* Storage buckets are publicly accessible.
+* Access keys have not been rotated for two years.
+* Cloud audit logging is disabled.
+
+### Your Tasks
+
+1. Identify **six security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend secure remediation steps.
+4. Design a secure cloud architecture using the Shared Responsibility Model.
+5. Write a one-page executive security assessment.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept               | Key Point                                                           |
+| --------------------- | ------------------------------------------------------------------- |
+| Cloud Computing       | Computing resources delivered over the internet                     |
+| AWS                   | Amazon cloud platform                                               |
+| Azure                 | Microsoft cloud platform                                            |
+| GCP                   | Google Cloud Platform                                               |
+| IaaS                  | Customer manages OS, apps, data                                     |
+| PaaS                  | Customer manages apps and data                                      |
+| SaaS                  | Provider manages almost everything                                  |
+| IAM                   | Identity & Access Management                                        |
+| VPC                   | Isolated cloud network                                              |
+| Security Group        | Stateful virtual firewall at the instance level                     |
+| Network ACL           | Stateless firewall at the subnet level                              |
+| Shared Responsibility | Security responsibilities are divided between provider and customer |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 – Linux Security
+* ✅ Module 9 – Ethical Hacking
+* ✅ Module 10 – Wireless Security & Windows Security
+* ✅ Module 11 – Digital Forensics & Incident Response
+* ✅ **Module 12 (Part 1) – Cloud Security Fundamentals**
+
+## **Overall Progress: Day 43/50 (86%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 44)
+
+We'll continue **Module 12** with:
+
+* AWS Core Security Services
+* Microsoft Azure Security Services
+* Google Cloud Security Services
+* Cloud Identity Federation
+* Encryption at Rest vs In Transit
+* Secrets Management
+* Cloud logging and monitoring
+* Cloud incident response
+
+These topics are essential for **Cloud Security Engineer, DevSecOps Engineer, SOC Analyst, Security Architect, and Solutions Architect** interviews.
