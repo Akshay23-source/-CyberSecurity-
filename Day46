@@ -1,0 +1,935 @@
+# 🔐 Cybersecurity Bootcamp – **Day 45/50**
+
+# Module 13 (Part 1): DevSecOps, CI/CD Pipeline Security & Secure Software Development Lifecycle (SSDLC)
+
+> **Mission:** Today you'll learn one of the **most in-demand skills in cybersecurity**: **DevSecOps**. Modern companies don't treat security as something done after development—they integrate it into every stage of the software development lifecycle. This is called **Shift-Left Security**.
+
+> **Industry Reality:** Companies like Microsoft, Google, Amazon, IBM, Oracle, Cisco, and most startups use DevSecOps practices in their software delivery pipelines.
+
+**Duration:** **5–6 Hours**
+
+---
+
+# 🎯 Learning Outcomes
+
+By the end of today's lesson, you will:
+
+* ✅ Understand DevOps and DevSecOps.
+* ✅ Learn the Secure Software Development Lifecycle (SSDLC).
+* ✅ Understand CI/CD pipelines.
+* ✅ Learn SAST, DAST, SCA, and IaC Security.
+* ✅ Understand container security basics.
+* ✅ Learn software supply chain security.
+* ✅ Learn Shift-Left Security.
+* ✅ Design a secure CI/CD pipeline.
+
+---
+
+# 🟢 Level 1 – Beginner Explanation
+
+# What is DevOps?
+
+DevOps combines:
+
+* **Development (Dev)**
+* **Operations (Ops)**
+
+Goal:
+
+Develop software **faster**, **more reliably**, and **with automation**.
+
+Traditional process:
+
+```text
+Develop
+      ↓
+Test
+      ↓
+Deploy
+```
+
+---
+
+# What is DevSecOps?
+
+DevSecOps adds **Security** to DevOps.
+
+```text
+Development
+
+↓
+
+Security
+
+↓
+
+Operations
+```
+
+Instead of checking security only before release,
+
+security is integrated throughout development.
+
+---
+
+# 🏠 Real-Life Analogy
+
+### Traditional Building Construction
+
+A house is fully built.
+
+Then an engineer inspects it.
+
+If the foundation is weak,
+
+the entire building may need repairs.
+
+---
+
+### DevSecOps
+
+The engineer checks:
+
+✔ Foundation
+
+✔ Walls
+
+✔ Plumbing
+
+✔ Electrical systems
+
+during construction.
+
+Problems are fixed early.
+
+---
+
+# Why DevSecOps?
+
+Benefits:
+
+✔ Faster software delivery
+
+✔ Lower cost
+
+✔ Early vulnerability detection
+
+✔ Continuous monitoring
+
+✔ Better compliance
+
+✔ Fewer security incidents
+
+---
+
+# 🟡 Level 2 – Secure Software Development Lifecycle (SSDLC)
+
+Traditional SDLC:
+
+```text
+Requirements
+
+↓
+
+Design
+
+↓
+
+Development
+
+↓
+
+Testing
+
+↓
+
+Deployment
+
+↓
+
+Maintenance
+```
+
+---
+
+## SSDLC
+
+Security is integrated into every phase.
+
+```text
+Requirements
+
+↓
+
+Security Requirements
+
+↓
+
+Design Review
+
+↓
+
+Secure Coding
+
+↓
+
+Security Testing
+
+↓
+
+Secure Deployment
+
+↓
+
+Continuous Monitoring
+```
+
+---
+
+# Security Activities by Phase
+
+### Requirements
+
+* Identify security requirements.
+* Regulatory compliance.
+* Data classification.
+
+---
+
+### Design
+
+* Threat modeling.
+* Secure architecture.
+* Authentication design.
+* Encryption planning.
+
+---
+
+### Development
+
+* Secure coding practices.
+* Code reviews.
+* Secret management.
+* Dependency management.
+
+---
+
+### Testing
+
+* Functional testing.
+* Security testing.
+* Vulnerability scanning.
+
+---
+
+### Deployment
+
+* Secure configuration.
+* Infrastructure validation.
+* Monitoring enabled.
+
+---
+
+### Maintenance
+
+* Patch management.
+* Vulnerability management.
+* Continuous monitoring.
+
+---
+
+# 🔵 Level 3 – CI/CD Pipeline
+
+## What is CI?
+
+**Continuous Integration**
+
+Developers frequently merge code into a shared repository.
+
+Each change is automatically:
+
+* Built
+* Tested
+* Verified
+
+---
+
+## What is CD?
+
+Depending on the organization:
+
+* **Continuous Delivery** → Software is always ready for deployment, but deployment may require approval.
+* **Continuous Deployment** → Every approved change that passes all checks is automatically released.
+
+---
+
+## CI/CD Pipeline
+
+```text
+Developer
+
+↓
+
+Git Commit
+
+↓
+
+Build
+
+↓
+
+Automated Tests
+
+↓
+
+Security Scans
+
+↓
+
+Package
+
+↓
+
+Deploy
+
+↓
+
+Monitor
+```
+
+---
+
+# Security in Every Stage
+
+| Stage   | Security Activity   |
+| ------- | ------------------- |
+| Code    | Secure Coding       |
+| Build   | Dependency Scanning |
+| Test    | SAST / DAST         |
+| Deploy  | IaC Validation      |
+| Runtime | Monitoring          |
+
+---
+
+# Static Application Security Testing (SAST)
+
+SAST analyzes **source code** without executing it.
+
+Finds issues like:
+
+* Hardcoded secrets
+* SQL Injection risks
+* Buffer overflows
+* Unsafe functions
+
+Example tools:
+
+* SonarQube
+* Semgrep
+* CodeQL
+
+---
+
+# Dynamic Application Security Testing (DAST)
+
+DAST analyzes a **running application** from the outside.
+
+Finds issues like:
+
+* Security misconfigurations
+* Authentication weaknesses
+* Input validation problems
+
+Example tools:
+
+* OWASP ZAP
+* Burp Suite (authorized testing)
+
+---
+
+# SAST vs DAST
+
+| SAST              | DAST                |
+| ----------------- | ------------------- |
+| Source Code       | Running Application |
+| Early Development | Testing Phase       |
+| White-box         | Black-box           |
+
+---
+
+# Software Composition Analysis (SCA)
+
+Modern applications use many third-party libraries.
+
+Example:
+
+Python:
+
+```text
+requirements.txt
+```
+
+Node.js:
+
+```text
+package.json
+```
+
+SCA tools check:
+
+* Known vulnerabilities
+* Outdated packages
+* License issues
+
+Popular tools:
+
+* Snyk
+* OWASP Dependency-Check
+* GitHub Dependabot
+
+---
+
+# Infrastructure as Code (IaC)
+
+Infrastructure is defined using code.
+
+Examples:
+
+* Terraform
+* AWS CloudFormation
+* Bicep
+
+Benefits:
+
+✔ Version control
+
+✔ Automation
+
+✔ Repeatability
+
+Security checks ensure:
+
+* No public databases
+* Secure network rules
+* Encryption enabled
+
+---
+
+# Container Security
+
+Containers package applications with their dependencies.
+
+Popular platform:
+
+**Docker**
+
+Container security includes:
+
+✔ Minimal base images
+
+✔ Patch container images
+
+✔ Scan images for vulnerabilities
+
+✔ Avoid running as root
+
+✔ Verify image sources
+
+---
+
+# Supply Chain Security
+
+Modern applications depend on:
+
+* Open-source libraries
+* Build systems
+* CI/CD pipelines
+* Container images
+
+If one dependency is compromised, many applications can be affected.
+
+Protect by:
+
+* Verifying dependencies
+* Using trusted repositories
+* Signing artifacts
+* Monitoring for vulnerabilities
+
+---
+
+# Shift-Left Security
+
+Security testing moves **earlier** in development.
+
+```text
+Old Model
+
+Development
+
+↓
+
+Deployment
+
+↓
+
+Security
+
+```
+
+```text
+Shift-Left
+
+Requirements
+
+↓
+
+Design
+
+↓
+
+Development
+
+↓
+
+Security
+
+↓
+
+Testing
+
+↓
+
+Deployment
+```
+
+Benefits:
+
+✔ Earlier detection
+
+✔ Lower remediation cost
+
+✔ Better software quality
+
+---
+
+# 🌍 Real-World Example
+
+A developer accidentally commits an API key to a Git repository.
+
+A secure DevSecOps pipeline:
+
+* Detects the secret during the commit or build.
+* Blocks deployment.
+* Alerts the developer.
+* Requires the secret to be rotated.
+* Ensures the code is fixed before release.
+
+This prevents sensitive credentials from reaching production.
+
+---
+
+# 🧠 Common Beginner Mistakes
+
+❌ Hardcoding passwords.
+
+❌ Ignoring dependency updates.
+
+❌ Skipping security scans.
+
+❌ Running containers as root.
+
+❌ Disabling automated tests.
+
+❌ Treating security as a final step.
+
+---
+
+# 🛠 Hands-on Labs
+
+## Lab 1 – DevOps vs DevSecOps
+
+Create a comparison table including:
+
+* Goals
+* Security
+* Speed
+* Automation
+* Responsibility
+
+---
+
+## Lab 2 – CI/CD Pipeline Diagram
+
+Draw:
+
+```text
+Developer
+
+↓
+
+Git Repository
+
+↓
+
+CI Server
+
+↓
+
+Build
+
+↓
+
+SAST
+
+↓
+
+Unit Tests
+
+↓
+
+DAST
+
+↓
+
+Package
+
+↓
+
+Deploy
+
+↓
+
+Monitoring
+```
+
+Explain the purpose of each stage.
+
+---
+
+## Lab 3 – SSDLC Mapping
+
+For each SDLC phase, list:
+
+* Security activities
+* Tools
+* Expected outputs
+
+---
+
+## Lab 4 – Dependency Security
+
+Choose a programming language (Python, JavaScript, Java, etc.) and identify:
+
+* Package manager
+* Dependency file
+* One SCA tool
+* One reason outdated libraries create security risk
+
+---
+
+# 💻 Mini Project
+
+## Enterprise DevSecOps Pipeline
+
+Create:
+
+**Enterprise_DevSecOps.md**
+
+Include:
+
+* SSDLC
+* CI/CD Pipeline
+* SAST
+* DAST
+* SCA
+* IaC Security
+* Container Security
+* Secrets Management
+* Monitoring
+* Incident Response Integration
+
+Upload it to GitHub.
+
+---
+
+# 💼 Top 20 Interview Questions
+
+1. What is DevSecOps?
+2. DevOps vs DevSecOps?
+3. What is SSDLC?
+4. What is CI?
+5. What is CD?
+6. What is Shift-Left Security?
+7. Explain SAST.
+8. Explain DAST.
+9. Difference between SAST and DAST?
+10. What is SCA?
+11. Why is dependency scanning important?
+12. What is Infrastructure as Code?
+13. What is container security?
+14. Why shouldn't secrets be stored in source code?
+15. What is software supply chain security?
+16. How do you secure a CI/CD pipeline?
+17. Why are automated security scans important?
+18. What is a code review?
+19. What are the benefits of automation in security?
+20. How would you design a secure software delivery pipeline?
+
+---
+
+# 📝 Quiz (20 MCQs)
+
+### Q1. DevSecOps integrates:
+
+A. Development, Security, and Operations
+
+B. Development and Marketing
+
+C. Networking and Hardware
+
+D. Databases only
+
+**Answer:** A
+
+---
+
+### Q2. CI stands for:
+
+A. Continuous Integration
+
+B. Continuous Internet
+
+C. Central Infrastructure
+
+D. Cloud Integration
+
+**Answer:** A
+
+---
+
+### Q3. SAST analyzes:
+
+A. Source Code
+
+B. Running Applications
+
+C. Network Traffic
+
+D. Hard Drives
+
+**Answer:** A
+
+---
+
+### Q4. DAST analyzes:
+
+A. Running Applications
+
+B. Source Code
+
+C. RAM
+
+D. BIOS
+
+**Answer:** A
+
+---
+
+### Q5. SCA is primarily used to:
+
+A. Analyze third-party dependencies
+
+B. Manage databases
+
+C. Configure routers
+
+D. Encrypt disks
+
+**Answer:** A
+
+---
+
+### Q6. Shift-Left Security means:
+
+A. Integrating security earlier in development
+
+B. Moving servers left in a rack
+
+C. Removing testing
+
+D. Delaying security until deployment
+
+**Answer:** A
+
+---
+
+### Q7. Docker is primarily associated with:
+
+A. Containers
+
+B. Databases
+
+C. Email
+
+D. Firewalls
+
+**Answer:** A
+
+---
+
+### Q8. Infrastructure as Code allows infrastructure to be:
+
+A. Defined and managed using code
+
+B. Managed only manually
+
+C. Stored in spreadsheets
+
+D. Installed on USB drives
+
+**Answer:** A
+
+---
+
+### Q9. Which is a benefit of DevSecOps?
+
+A. Earlier vulnerability detection
+
+B. Fewer tests
+
+C. More manual deployments
+
+D. Less automation
+
+**Answer:** A
+
+---
+
+### Q10. Which practice helps prevent hardcoded secrets from reaching production?
+
+A. Automated secret scanning
+
+B. Disabling code reviews
+
+C. Using public repositories for secrets
+
+D. Sharing passwords in chat
+
+**Answer:** A
+
+---
+
+# 🏠 Assignment
+
+## Theory
+
+1. Compare:
+
+* DevOps vs DevSecOps
+* SAST vs DAST
+* Continuous Delivery vs Continuous Deployment
+* SDLC vs SSDLC
+
+2. Research **OWASP Software Assurance Maturity Model (SAMM)** and summarize how it helps organizations improve software security.
+
+3. Explain why software supply chain security has become a major focus in recent years.
+
+---
+
+## Practical
+
+Create a **DevSecOps Security Checklist** with at least **60 security controls**, covering:
+
+* Secure coding
+* Code reviews
+* SAST
+* DAST
+* SCA
+* Secret management
+* CI/CD security
+* Container security
+* IaC security
+* Monitoring & logging
+
+---
+
+# 🧩 Level 4 – DevSecOps Engineer Challenge
+
+## Scenario
+
+A fintech company releases new software every day.
+
+A security review finds:
+
+* API keys are stored in source code.
+* Dependency vulnerabilities are not scanned.
+* CI/CD pipeline has no security testing.
+* Containers run as the root user.
+* Infrastructure changes are made manually.
+* No code review process exists.
+
+### Your Tasks
+
+1. Identify the **six security weaknesses**.
+2. Rank them from **Critical → Low**.
+3. Recommend practical remediation steps.
+4. Design a secure DevSecOps pipeline.
+5. Write a one-page executive security assessment.
+
+---
+
+# 📖 Revision Cheat Sheet
+
+| Concept               | Key Point                                          |
+| --------------------- | -------------------------------------------------- |
+| DevOps                | Development + Operations                           |
+| DevSecOps             | Development + Security + Operations                |
+| SSDLC                 | Security integrated into every SDLC phase          |
+| CI                    | Continuous Integration                             |
+| CD                    | Continuous Delivery / Continuous Deployment        |
+| SAST                  | Static source code security testing                |
+| DAST                  | Dynamic testing of running applications            |
+| SCA                   | Dependency vulnerability analysis                  |
+| IaC                   | Infrastructure managed as code                     |
+| Container Security    | Secure images, least privilege, patching           |
+| Shift-Left            | Security earlier in the development lifecycle      |
+| Supply Chain Security | Protect dependencies, build systems, and artifacts |
+
+---
+
+# 📊 Progress Tracker
+
+* ✅ Module 1 – Introduction to Cybersecurity
+* ✅ Module 2 – Computer & Internet Fundamentals
+* ✅ Module 3 – Networking Fundamentals
+* ✅ Module 4 – Cryptography
+* ✅ Module 5 – Malware & Cyber Threats
+* ✅ Module 6 – Network Security
+* ✅ Module 7 – Web Security
+* ✅ Module 8 – Linux Security
+* ✅ Module 9 – Ethical Hacking
+* ✅ Module 10 – Wireless Security & Windows Security
+* ✅ Module 11 – Digital Forensics & Incident Response
+* ✅ Module 12 – Cloud Security
+* ✅ **Module 13 (Part 1) – DevSecOps & CI/CD Security**
+
+## **Overall Progress: Day 45/50 (90%)** 🎉
+
+---
+
+# 🚀 Tomorrow (Day 46)
+
+We'll study **Security Operations Center (SOC) & SIEM Engineering**, including:
+
+* SOC architecture
+* SOC analyst roles (L1, L2, L3)
+* SIEM concepts
+* Log collection & normalization
+* Correlation rules
+* Alert triage
+* False positives vs false negatives
+* Detection engineering
+* Case management
+* Enterprise SOC workflows
+
+This is one of the **most important modules** for campus placements and entry-level cybersecurity jobs, especially **SOC Analyst**, **Blue Team Analyst**, and **Security Monitoring Engineer** roles.
