@@ -1,0 +1,1141 @@
+# 🔐 Cybersecurity Bootcamp — **Day 46/50**
+
+## Module 13 (Part 2): **SOC Operations & SIEM Engineering**
+
+> 🎯 **Today's mission:** Move from *knowing cybersecurity concepts* to thinking like a **real SOC Analyst**. You'll learn how organizations collect security data, detect attacks, investigate alerts, and escalate incidents.
+
+**Duration:** 5–6 hours
+**Career focus:** SOC Analyst L1/L2 • Security Operations • Blue Team • SIEM Analyst
+
+---
+
+# 🧭 Today's Skill Tree
+
+```text
+Cybersecurity Knowledge
+        ↓
+      SOC
+        ↓
+   Collect Logs
+        ↓
+      SIEM
+        ↓
+ Generate Alerts
+        ↓
+   Alert Triage
+        ↓
+ Investigation
+        ↓
+ Incident Response
+        ↓
+   Detection Improvement
+```
+
+By the end of today, you should be able to look at a security alert and answer:
+
+> **What happened? Is it actually malicious? How serious is it? What evidence supports my conclusion? What should I do next?**
+
+---
+
+# 🟢 LEVEL 1 — Understand the SOC
+
+## What is a SOC?
+
+**SOC = Security Operations Center.**
+
+It is the team responsible for continuously monitoring an organization's environment for security threats.
+
+Think of a SOC as the organization's:
+
+> 🏢 **Cybersecurity control room**
+
+A physical security control room watches:
+
+* CCTV
+* Door access
+* Alarms
+* Guards
+
+A SOC watches:
+
+* Computers
+* Servers
+* Networks
+* Cloud environments
+* User accounts
+* Security alerts
+
+---
+
+# What Does a SOC Actually Do?
+
+A SOC typically performs:
+
+1. **Monitoring**
+2. **Detection**
+3. **Alert investigation**
+4. **Incident response**
+5. **Threat hunting**
+6. **Threat intelligence**
+7. **Reporting**
+8. **Detection improvement**
+
+---
+
+# 👨‍💻 SOC Analyst Levels
+
+## L1 — Alert Monitoring & Triage
+
+Usually the first person handling an alert.
+
+Responsibilities:
+
+* Monitor alerts
+* Validate alerts
+* Investigate basic evidence
+* Determine severity
+* Escalate serious incidents
+
+---
+
+## L2 — Incident Investigation
+
+Handles more complex cases.
+
+Responsibilities:
+
+* Deep investigation
+* Correlate multiple events
+* Threat hunting
+* Malware investigation
+* Incident containment
+
+---
+
+## L3 — Advanced Security / Detection
+
+Highly experienced analysts and engineers.
+
+Responsibilities:
+
+* Advanced threat hunting
+* Detection engineering
+* Malware analysis
+* SIEM engineering
+* Security architecture
+* Advanced incident response
+
+---
+
+# 🏠 Simple Example
+
+Imagine:
+
+```text
+Employee
+   ↓
+Phishing Email
+   ↓
+Malicious Link
+   ↓
+Credentials Stolen
+   ↓
+Attacker Login
+   ↓
+SOC Alert
+```
+
+The SOC investigates:
+
+```text
+Who logged in?
+      ↓
+Where from?
+      ↓
+When?
+      ↓
+What device?
+      ↓
+What did they do?
+      ↓
+Is it malicious?
+```
+
+---
+
+# 🟡 LEVEL 2 — What is SIEM?
+
+## SIEM = Security Information and Event Management
+
+A SIEM collects security-related logs from many systems and helps analysts search, correlate, alert on, and investigate them.
+
+Think:
+
+> **SIEM = Security data collection + analysis + detection + investigation platform**
+
+---
+
+# Without SIEM
+
+Imagine 500 servers generating logs.
+
+You would have:
+
+```text
+Server 1 → Logs
+Server 2 → Logs
+Server 3 → Logs
+...
+Server 500 → Logs
+```
+
+An analyst would struggle to investigate an attack.
+
+---
+
+# With SIEM
+
+```text
+Servers
+Endpoints
+Firewalls
+Cloud
+Applications
+Active Directory
+       ↓
+   SIEM Platform
+       ↓
+ Detection Rules
+       ↓
+     Alerts
+       ↓
+ SOC Analyst
+```
+
+---
+
+# Popular SIEM Platforms
+
+You should recognize these names:
+
+* **Splunk**
+* **Microsoft Sentinel**
+* **IBM QRadar**
+* **Google Security Operations**
+* **Elastic Security**
+
+You don't need to master all of them.
+
+The **concepts transfer between platforms**.
+
+---
+
+# 🔵 LEVEL 2 — Understanding Logs
+
+A **log** is a record of an event.
+
+Example:
+
+```text
+2026-08-09 09:31:22
+User: akshay
+Source IP: 192.168.1.50
+Action: Login
+Result: Success
+```
+
+This tells us:
+
+* When?
+* Who?
+* From where?
+* What happened?
+* Was it successful?
+
+These are the building blocks of SOC investigation.
+
+---
+
+# Important Log Sources
+
+## 1. Windows Event Logs
+
+Examples:
+
+* Login events
+* Process creation
+* Account changes
+* Privilege changes
+
+---
+
+## 2. Linux Logs
+
+Examples:
+
+* SSH authentication
+* sudo activity
+* system events
+
+---
+
+## 3. Firewall Logs
+
+Can show:
+
+* Source IP
+* Destination IP
+* Port
+* Protocol
+* Action
+
+---
+
+## 4. DNS Logs
+
+Useful for detecting:
+
+* Malicious domains
+* Suspicious lookups
+* Command-and-control activity
+
+---
+
+## 5. Web Server Logs
+
+Can reveal:
+
+* HTTP requests
+* User agents
+* Source IPs
+* Status codes
+* Suspicious requests
+
+---
+
+## 6. Cloud Logs
+
+Examples:
+
+* AWS CloudTrail
+* Azure activity logs
+* Google Cloud audit logs
+
+---
+
+# 🟠 LEVEL 3 — Alert Triage
+
+This is one of the **most important SOC skills**.
+
+An alert does **not automatically mean an attack happened**.
+
+You must investigate.
+
+---
+
+# Alert → Investigation
+
+Suppose you receive:
+
+> 🚨 "Multiple failed login attempts detected."
+
+Don't immediately say:
+
+> "We're being hacked!"
+
+Instead ask:
+
+### Step 1 — Who?
+
+```text
+Username = admin
+```
+
+### Step 2 — Source?
+
+```text
+IP = 185.x.x.x
+```
+
+### Step 3 — Location?
+
+```text
+India
+```
+
+### Step 4 — Time?
+
+```text
+03:15 AM
+```
+
+### Step 5 — How many attempts?
+
+```text
+157 failures
+```
+
+### Step 6 — Was there a successful login?
+
+```text
+Yes
+```
+
+Now the risk increases significantly.
+
+---
+
+# 🚨 Alert Severity
+
+Organizations commonly categorize incidents using severity levels.
+
+Example:
+
+| Severity    | Meaning                            |
+| ----------- | ---------------------------------- |
+| 🟢 Low      | Minor / informational              |
+| 🔵 Medium   | Suspicious activity                |
+| 🟠 High     | Likely security incident           |
+| 🔴 Critical | Major compromise / business impact |
+
+The exact naming varies between organizations.
+
+---
+
+# False Positive
+
+A security system reports malicious activity, but the activity is actually legitimate.
+
+Example:
+
+```text
+Admin performs 100 login attempts
+        ↓
+SIEM Alert
+        ↓
+Investigation
+        ↓
+Authorized maintenance
+```
+
+False Positive.
+
+---
+
+# True Positive
+
+The alert correctly identifies malicious activity.
+
+Example:
+
+```text
+Impossible Travel
+        ↓
+Investigation
+        ↓
+Unknown device
+        ↓
+Credential theft confirmed
+```
+
+True Positive.
+
+---
+
+# False Negative
+
+A real attack happens but the security system **fails to detect it**.
+
+This is particularly dangerous.
+
+```text
+Attack
+  ↓
+No Alert
+  ↓
+No Investigation
+  ↓
+Attacker continues
+```
+
+---
+
+# 🎯 Remember
+
+```text
+False Positive
+= Alert but no real attack
+
+True Positive
+= Alert + real attack
+
+False Negative
+= Real attack + no alert
+
+True Negative
+= No attack + no alert
+```
+
+---
+
+# 🔥 Detection Engineering
+
+Detection engineering means creating and improving rules that identify suspicious behavior.
+
+Example:
+
+> Detect multiple failed logins followed by a successful login from the same source.
+
+Conceptually:
+
+```text
+5+ failed logins
+       +
+successful login
+       ↓
+Generate Alert
+```
+
+---
+
+# Why Simple Rules Aren't Enough
+
+Suppose:
+
+```text
+100 failed logins
+```
+
+Could be:
+
+* Password mistake
+* Automated scanner
+* Brute-force attack
+
+Context matters.
+
+Better detection:
+
+```text
+Multiple failures
++
+Successful login
++
+New country
++
+New device
++
+Sensitive account
+```
+
+Now confidence is much higher.
+
+---
+
+# 🧠 Correlation
+
+SIEM becomes powerful when it connects separate events.
+
+Example:
+
+```text
+Event 1
+Phishing email
+
+      +
+
+Event 2
+Suspicious login
+
+      +
+
+Event 3
+PowerShell execution
+
+      +
+
+Event 4
+Large file transfer
+
+      ↓
+
+Potential Compromise
+```
+
+One event may look harmless.
+
+The **combination** may reveal the attack.
+
+---
+
+# 🌍 REAL-WORLD SOC INVESTIGATION
+
+Let's simulate an actual case.
+
+## Alert
+
+```text
+🚨 Suspicious PowerShell Execution
+Host: FIN-PC-042
+User: FinanceUser
+Time: 14:32
+```
+
+---
+
+## L1 Analyst Investigation
+
+### Question 1
+
+Who executed it?
+
+```text
+FinanceUser
+```
+
+### Question 2
+
+Which machine?
+
+```text
+FIN-PC-042
+```
+
+### Question 3
+
+What PowerShell command?
+
+You investigate the process logs.
+
+### Question 4
+
+How was PowerShell launched?
+
+```text
+Word → PowerShell
+```
+
+🚨 Suspicious.
+
+---
+
+### Question 5
+
+Did the machine communicate externally?
+
+Network logs show:
+
+```text
+FIN-PC-042
+      ↓
+Unknown external IP
+```
+
+---
+
+### Question 6
+
+Did other machines show similar behavior?
+
+Search SIEM.
+
+```text
+FIN-PC-042
+HR-PC-018
+SALES-PC-021
+```
+
+Now we have possible lateral spread.
+
+---
+
+# Investigation Chain
+
+```text
+Alert
+ ↓
+Validate
+ ↓
+Collect Evidence
+ ↓
+Correlate Events
+ ↓
+Determine Scope
+ ↓
+Determine Severity
+ ↓
+Contain
+ ↓
+Escalate
+```
+
+This is how you should think as a SOC analyst.
+
+---
+
+# 🧩 MITRE ATT&CK Connection
+
+Suppose you observe:
+
+```text
+PowerShell
+```
+
+That behavior can be mapped to an ATT&CK technique related to **Command and Scripting Interpreter: PowerShell**.
+
+This gives analysts a standardized language for describing attacker behavior.
+
+---
+
+# 🛠 LEVEL 3 — Hands-On Practice
+
+## Lab 1 — Analyze These Logs
+
+### Event A
+
+```text
+User: john
+Source: 10.0.0.25
+Action: Login
+Result: Success
+Time: 09:00
+```
+
+### Event B
+
+```text
+User: john
+Source: 185.x.x.x
+Action: Login
+Result: Failed
+Time: 02:13
+```
+
+### Event C
+
+```text
+User: john
+Source: 185.x.x.x
+Action: Login
+Result: Failed
+Time: 02:14
+```
+
+### Event D
+
+```text
+User: john
+Source: 185.x.x.x
+Action: Login
+Result: Success
+Time: 02:15
+```
+
+### Your job:
+
+Determine:
+
+1. Is this suspicious?
+2. What is the potential attack?
+3. What additional evidence would you collect?
+4. What severity would you assign?
+5. What would you do next?
+
+---
+
+# Lab 2 — Build an Investigation Checklist
+
+Create:
+
+```text
+SOC_Alert_Triage_Checklist.md
+```
+
+Include:
+
+```text
+☐ Identify affected user
+☐ Identify affected host
+☐ Identify source IP
+☐ Determine timestamp
+☐ Check authentication history
+☐ Check endpoint activity
+☐ Check network connections
+☐ Search related events
+☐ Determine scope
+☐ Determine severity
+☐ Contain if necessary
+☐ Escalate if necessary
+☐ Document findings
+```
+
+---
+
+# Lab 3 — Create Your First Detection Rule
+
+Design a conceptual rule:
+
+> Detect potential brute-force activity.
+
+Your logic:
+
+```text
+IF
+failed login attempts >= 10
+
+AND
+
+attempts occur within 5 minutes
+
+THEN
+
+generate HIGH severity alert
+```
+
+Then improve it.
+
+What additional conditions would reduce false positives?
+
+---
+
+# 💻 MINI PROJECT
+
+## 🔥 SOC Monitoring & Incident Investigation Lab
+
+This will become part of your **final cybersecurity portfolio**.
+
+Create:
+
+```text
+SOC-Lab/
+│
+├── README.md
+│
+├── logs/
+│   ├── authentication.log
+│   ├── firewall.log
+│   └── endpoint.log
+│
+├── detections/
+│   ├── brute_force.md
+│   ├── suspicious_login.md
+│   └── malware_execution.md
+│
+├── investigations/
+│   └── incident-001.md
+│
+└── reports/
+    └── incident-report.md
+```
+
+Today's objective is to understand the architecture.
+
+In the final project, we'll make this much more realistic.
+
+---
+
+# 💼 TOP SOC INTERVIEW QUESTIONS
+
+You should be able to answer these without memorizing definitions.
+
+### Fundamentals
+
+1. What is a SOC?
+2. What does a SOC analyst do?
+3. Difference between L1, L2 and L3?
+4. What is SIEM?
+5. Why is centralized logging important?
+
+### Investigation
+
+6. What is alert triage?
+7. What is a false positive?
+8. What is a false negative?
+9. How would you investigate a failed-login alert?
+10. How do you determine alert severity?
+
+### Detection
+
+11. What is detection engineering?
+12. What is correlation?
+13. What is an IOC?
+14. What is an IOA?
+15. How does MITRE ATT&CK help SOC analysts?
+
+### Practical
+
+16. What logs would you check after a suspected compromise?
+17. How would you investigate suspicious PowerShell?
+18. How would you investigate a compromised account?
+19. When would you escalate an alert?
+20. What information belongs in an incident ticket?
+
+---
+
+# 🧪 LEVEL 4 — REAL SOC CHALLENGE
+
+You're now the **L1 SOC Analyst**.
+
+Your SIEM generates:
+
+> 🚨 **CRITICAL: Suspicious Administrator Login**
+
+### Available data
+
+```text
+Account: administrator
+Source IP: 185.XX.XX.42
+Location: Russia
+Time: 03:17 AM
+
+Previous login:
+Location: India
+Time: 21:42 PM
+
+Device:
+Unknown
+
+MFA:
+Failed twice
+Then successful
+
+After login:
+PowerShell executed
+
+10 minutes later:
+Large outbound data transfer
+```
+
+---
+
+## 🎯 Your Investigation
+
+Don't just say:
+
+> "It's hacking."
+
+Think like a professional analyst.
+
+Answer:
+
+### 1. What are the suspicious indicators?
+
+### 2. Which events should you correlate?
+
+### 3. What is your initial severity?
+
+### 4. Is this potentially:
+
+* Credential compromise?
+* Account takeover?
+* Malware?
+* Insider threat?
+
+### 5. What evidence would you collect?
+
+### 6. What immediate containment action would you recommend?
+
+### 7. Would you escalate to L2?
+
+### 8. Which MITRE ATT&CK tactics/techniques might be relevant?
+
+### 9. Write a 5–10 line SOC incident summary.
+
+**Do this challenge before looking anything up.**
+
+---
+
+# 📝 QUIZ — 20 QUESTIONS
+
+### Q1. SOC stands for:
+
+A. Security Operations Center
+B. System Operations Control
+C. Security Organization Center
+D. Server Operations Center
+
+**Answer: A**
+
+---
+
+### Q2. SIEM primarily helps organizations:
+
+A. Centralize and analyze security events
+B. Build websites
+C. Replace operating systems
+D. Manufacture hardware
+
+**Answer: A**
+
+---
+
+### Q3. The first-line SOC analyst is commonly:
+
+A. L1
+B. L2
+C. L3
+D. CISO
+
+**Answer: A**
+
+---
+
+### Q4. Which is a log source?
+
+A. Firewall
+B. Keyboard
+C. Monitor
+D. Mouse
+
+**Answer: A**
+
+---
+
+### Q5. A true positive means:
+
+A. Alert correctly identifies malicious activity
+B. No alert occurs
+C. Alert is incorrect
+D. System is offline
+
+**Answer: A**
+
+---
+
+### Q6. A false positive is:
+
+A. Alert without actual malicious activity
+B. Attack without alert
+C. Successful attack
+D. Malware infection
+
+**Answer: A**
+
+---
+
+### Q7. A false negative is:
+
+A. Real malicious activity that wasn't detected
+B. Legitimate activity detected correctly
+C. False alert
+D. Successful backup
+
+**Answer: A**
+
+---
+
+### Q8. SIEM correlation means:
+
+A. Connecting related events to identify patterns
+B. Encrypting logs
+C. Deleting logs
+D. Compressing logs
+
+**Answer: A**
+
+---
+
+### Q9. Which is commonly a SIEM?
+
+A. Splunk
+B. Photoshop
+C. Docker
+D. Git
+
+**Answer: A**
+
+---
+
+### Q10. What should an analyst do after receiving an alert?
+
+A. Investigate and validate it
+B. Immediately delete it
+C. Ignore it
+D. Shut down the entire network
+
+**Answer: A**
+
+---
+
+# 🏠 TODAY'S ASSIGNMENT
+
+## Part 1 — Theory
+
+Explain in your own words:
+
+1. SOC
+2. SIEM
+3. Alert Triage
+4. Correlation
+5. Detection Engineering
+6. False Positive
+7. False Negative
+8. L1 vs L2 vs L3
+
+---
+
+## Part 2 — Practical
+
+Create:
+
+### `SOC_Alert_Triage_Checklist.md`
+
+with at least **30 investigation checks**.
+
+---
+
+## Part 3 — Investigation
+
+Solve the **Critical Administrator Login Challenge** above.
+
+---
+
+# 🧠 GOLDEN SOC MINDSET
+
+From today onward, stop thinking:
+
+> **"What is this cybersecurity term?"**
+
+Start thinking:
+
+> **"What evidence do I have?"**
+
+> **"What happened?"**
+
+> **"Why is it suspicious?"**
+
+> **"What else should I check?"**
+
+> **"What is the scope?"**
+
+> **"What is the business impact?"**
+
+> **"What should happen next?"**
+
+That mindset is what separates someone who has **studied cybersecurity** from someone who can **work in a SOC**.
+
+---
+
+# 📊 YOUR 50-DAY PROGRESS
+
+|    Day | Module                                       |    Status    |
+| -----: | -------------------------------------------- | :----------: |
+|    1–9 | Cybersecurity Fundamentals → Ethical Hacking |       ✅      |
+|     10 | Wireless Security                            |       ✅      |
+|     11 | Windows Security / AD                        |       ✅      |
+|     12 | Digital Forensics                            |       ✅      |
+|     13 | Incident Response                            |       ✅      |
+|     14 | Cloud Security Fundamentals                  |       ✅      |
+|     15 | Advanced Cloud Security                      |       ✅      |
+|     16 | DevSecOps / CI-CD                            |       ✅      |
+| **46** | **SOC & SIEM Engineering**                   | 🟢 **TODAY** |
+|     47 | Threat Intelligence & Advanced Detection     |       ⏳      |
+|     48 | Enterprise Security Case Study               |       ⏳      |
+|     49 | Resume + Portfolio + Interview               |       ⏳      |
+|     50 | Capstone + Final Job Readiness Assessment    |       ⏳      |
+
+## 🎯 **46/50 → 92% COMPLETE**
+
+### ⏳ **Only 4 learning days remain after today.**
+
+And importantly, **Day 50 is not the end of your cybersecurity development**. The 50 days will establish your foundation, portfolio, and job readiness; after that, we'll have a longer-term specialization roadmap toward roles such as **SOC Analyst → Security Engineer → Cloud Security / Detection Engineering**.
