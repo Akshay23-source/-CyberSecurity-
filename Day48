@@ -1,0 +1,1035 @@
+🔐 Cybersecurity Bootcamp — Day 48/50
+
+Enterprise Cybersecurity Case Study & Full Incident Response Simulation
+
+Progress: 48/50 → 96% complete
+Remaining after today: 2 days
+
+> 🎯 Today's mission: Stop learning isolated concepts. Today you will combine everything you've learned into one realistic enterprise security incident and think like a professional SOC Analyst → Incident Responder → Security Engineer.
+
+
+
+Duration: 5–6 hours
+
+
+---
+
+🧠 What You're Learning Today
+
+Today's workflow:
+
+Security Alert
+     ↓
+Initial Triage
+     ↓
+Evidence Collection
+     ↓
+Threat Identification
+     ↓
+Scope Analysis
+     ↓
+MITRE ATT&CK Mapping
+     ↓
+Containment
+     ↓
+Eradication
+     ↓
+Recovery
+     ↓
+Lessons Learned
+     ↓
+Professional Incident Report
+
+This is the kind of thinking you need in a real security job.
+
+
+---
+
+🟢 LEVEL 1 — Understand the Incident Response Lifecycle
+
+An incident is not simply:
+
+> "Someone hacked the computer."
+
+
+
+A security incident is an event that threatens the confidentiality, integrity, or availability of information or systems.
+
+
+---
+
+CIA Triad
+
+Confidentiality
+
+Only authorized people can access information.
+
+Example:
+
+> Customer database leaked.
+
+
+
+
+---
+
+Integrity
+
+Information remains accurate and hasn't been improperly modified.
+
+Example:
+
+> Attacker changes transaction records.
+
+
+
+
+---
+
+Availability
+
+Systems remain accessible when needed.
+
+Example:
+
+> Ransomware makes company files unavailable.
+
+
+
+
+---
+
+The Incident Response Lifecycle
+
+A practical model is:
+
+1. Preparation
+       ↓
+2. Detection & Analysis
+       ↓
+3. Containment
+       ↓
+4. Eradication
+       ↓
+5. Recovery
+       ↓
+6. Lessons Learned
+
+
+---
+
+🟡 LEVEL 2 — Enterprise Scenario
+
+🏢 Company: FinSecure Technologies
+
+A financial services company has:
+
+2,000 employees
+
+Windows endpoints
+
+Linux servers
+
+Active Directory
+
+Cloud infrastructure
+
+Web applications
+
+Corporate VPN
+
+Central SIEM
+
+EDR
+
+Firewall
+
+Email security gateway
+
+
+At 02:17 AM, the SOC receives an alert.
+
+
+---
+
+🚨 ALERT #001
+
+Severity: HIGH
+
+User: finance.admin
+Host: FIN-LAP-042
+
+Event:
+Successful authentication from unusual
+geographical location.
+
+Source IP:
+185.XX.XX.42
+
+Location:
+Unknown foreign location
+
+Time:
+02:17 AM
+
+The user's normal working location is India.
+
+
+---
+
+Your First Thought Should NOT Be:
+
+> "The account is hacked."
+
+
+
+Instead:
+
+> "This is suspicious. I need evidence."
+
+
+
+That's the SOC mindset.
+
+
+---
+
+🔍 Investigation — Step 1
+
+Check authentication history.
+
+You discover:
+
+21:43
+India
+Successful Login
+
+02:11
+Foreign IP
+Failed Login
+
+02:13
+Foreign IP
+Failed Login
+
+02:17
+Foreign IP
+Successful Login
+
+🚨 Suspicious.
+
+
+---
+
+Step 2 — MFA
+
+SIEM shows:
+
+02:15 → MFA failure
+02:16 → MFA failure
+02:17 → MFA successful
+
+This increases the risk.
+
+Possible explanations include:
+
+Credential compromise
+
+MFA fatigue/social engineering
+
+Session/token compromise
+
+Legitimate travel
+
+
+You still need evidence.
+
+
+---
+
+Step 3 — Endpoint Investigation
+
+EDR reports:
+
+WINWORD.EXE
+      ↓
+powershell.exe
+      ↓
+Encoded command
+
+🚨 Highly suspicious.
+
+A document spawning PowerShell deserves investigation, particularly when correlated with an unusual login.
+
+
+---
+
+Step 4 — Network Investigation
+
+Firewall logs show:
+
+FIN-LAP-042
+      ↓
+185.XX.XX.42
+      ↓
+HTTPS
+
+Then:
+
+FIN-LAP-042
+      ↓
+Unknown external server
+      ↓
+Large outbound transfer
+
+
+---
+
+🚨 Your Incident Picture
+
+We now have:
+
+Unusual Login
+     +
+MFA Anomaly
+     +
+Suspicious PowerShell
+     +
+External Communication
+     +
+Large Data Transfer
+
+The probability of compromise is now much higher.
+
+
+---
+
+🧩 LEVEL 3 — Build the Attack Timeline
+
+A professional analyst should build a timeline.
+
+Timeline
+
+Time	Event
+
+21:43	Normal user login
+02:11	Failed login
+02:13	Failed login
+02:15	MFA failure
+02:16	MFA failure
+02:17	Successful login
+02:18	Word launches PowerShell
+02:19	PowerShell contacts external host
+02:25	Large outbound transfer
+
+
+
+---
+
+🎯 What Could Have Happened?
+
+One possible attack chain:
+
+Credential Theft
+      ↓
+Account Access
+      ↓
+MFA Manipulation / Bypass
+      ↓
+Malicious Document
+      ↓
+PowerShell Execution
+      ↓
+Command & Control
+      ↓
+Data Collection
+      ↓
+Data Exfiltration
+
+Notice the language:
+
+"Possible"
+
+A professional analyst should distinguish:
+
+FACT
+
+What the evidence directly shows.
+
+INFERENCE
+
+What the evidence suggests.
+
+HYPOTHESIS
+
+What might have happened but still needs confirmation.
+
+This distinction is extremely important in professional incident reports.
+
+
+---
+
+🔴 MITRE ATT&CK MAPPING
+
+Now map observed behavior to attacker techniques.
+
+Potential techniques include:
+
+Initial Access
+
+Possible:
+
+Phishing
+
+if evidence shows the malicious document came through email.
+
+
+---
+
+Execution
+
+Command and Scripting Interpreter: PowerShell
+
+because PowerShell was executed.
+
+
+---
+
+Credential Access
+
+Potential credential theft.
+
+But don't claim this unless evidence supports it.
+
+
+---
+
+Command & Control
+
+The endpoint communicated with a suspicious external system.
+
+
+---
+
+Exfiltration
+
+Large outbound transfer may indicate possible data exfiltration.
+
+Again:
+
+> Investigate before declaring it confirmed.
+
+
+
+
+---
+
+🛡️ STEP 5 — Containment
+
+Now you're the incident responder.
+
+What should happen?
+
+Potential actions:
+
+Account
+
+Disable compromised account.
+
+Revoke active sessions.
+
+Reset credentials.
+
+Re-register MFA if necessary.
+
+
+Endpoint
+
+Isolate the endpoint from the network.
+
+Preserve forensic evidence.
+
+Prevent further execution.
+
+
+Network
+
+Block confirmed malicious indicators where appropriate.
+
+Investigate other hosts communicating with the same infrastructure.
+
+
+
+---
+
+⚠️ Important Professional Rule
+
+Don't immediately:
+
+❌ Shut down every server.
+
+❌ Delete files.
+
+❌ Wipe the machine.
+
+❌ Delete logs.
+
+Why?
+
+Because you may destroy evidence and increase business impact.
+
+
+---
+
+🔥 STEP 6 — Eradication
+
+After confirming the compromise:
+
+Remove malicious files
+       ↓
+Remove persistence
+       ↓
+Patch exploited vulnerabilities
+       ↓
+Reset compromised credentials
+       ↓
+Remove malicious accounts
+       ↓
+Validate endpoint
+
+
+---
+
+🟢 STEP 7 — Recovery
+
+Return systems to normal operation.
+
+But don't simply reconnect the machine.
+
+First:
+
+Clean
+ ↓
+Patch
+ ↓
+Verify
+ ↓
+Monitor
+ ↓
+Reconnect
+
+Then increase monitoring for recurrence.
+
+
+---
+
+📊 STEP 8 — Determine Scope
+
+This is where professional investigation becomes much deeper.
+
+Ask:
+
+Was only one machine affected?
+
+Search SIEM for:
+
+185.XX.XX.42
+
+If 20 systems contacted it:
+
+🚨 Scope has increased.
+
+
+---
+
+Was the same account used elsewhere?
+
+Search:
+
+finance.admin
+
+
+---
+
+Did other accounts show similar activity?
+
+Search for:
+
+PowerShell
++
+Suspicious external connection
+
+
+---
+
+🔎 Threat Hunting
+
+Threat hunting means proactively searching for malicious activity instead of waiting for alerts.
+
+Example hypothesis:
+
+> "If the attacker compromised one endpoint using PowerShell, they may have attempted the same technique elsewhere."
+
+
+
+Search for:
+
+PowerShell execution
++
+External network connection
++
+Unusual user
+
+
+---
+
+🟣 Evidence Collection
+
+Potential evidence:
+
+Identity
+
+Authentication logs
+
+MFA logs
+
+Active Directory logs
+
+
+Endpoint
+
+Process creation
+
+PowerShell logs
+
+EDR telemetry
+
+File activity
+
+
+Network
+
+Firewall logs
+
+DNS logs
+
+Proxy logs
+
+NetFlow/network telemetry
+
+
+Cloud
+
+Cloud audit logs
+
+IAM activity
+
+API activity
+
+
+Email
+
+Sender
+
+Attachment
+
+URL
+
+Message headers
+
+
+
+---
+
+🧠 IOC vs IOA
+
+IOC — Indicator of Compromise
+
+Evidence that may indicate compromise.
+
+Examples:
+
+Malicious IP
+
+Malicious domain
+
+File hash
+
+Suspicious filename
+
+
+
+---
+
+IOA — Indicator of Attack
+
+Behavior suggesting an attack.
+
+Examples:
+
+Suspicious PowerShell execution
+
+Credential dumping behavior
+
+Abnormal privilege escalation
+
+Unusual lateral movement
+
+
+Remember:
+
+IOC = What is associated with the attack?
+
+IOA = What behavior suggests the attack?
+
+
+---
+
+🧩 Level 4 — YOUR REAL INCIDENT RESPONSE CHALLENGE
+
+You are now the L1 SOC Analyst.
+
+You receive this alert:
+
+
+---
+
+🚨 INCIDENT #FS-2026-0047
+
+Alert:
+Possible Account Compromise
+
+User:
+finance.admin
+
+Host:
+FIN-LAP-042
+
+Time:
+02:17 AM
+
+Source:
+185.XX.XX.42
+
+MFA:
+2 failures → 1 success
+
+Process:
+WINWORD.EXE
+    ↓
+powershell.exe
+
+Network:
+FIN-LAP-042
+    ↓
+External IP
+
+Data:
+2.7 GB outbound traffic
+
+
+---
+
+🎯 Your Tasks
+
+Task 1 — Identify the Indicators
+
+List at least 10 suspicious indicators.
+
+
+---
+
+Task 2 — Build the Timeline
+
+Create a chronological sequence of events.
+
+
+---
+
+Task 3 — Determine Severity
+
+Choose:
+
+Low
+Medium
+High
+Critical
+
+And explain why.
+
+
+---
+
+Task 4 — Identify Possible Attack Stages
+
+Map the activity to:
+
+Initial Access
+
+Execution
+
+Persistence
+
+Credential Access
+
+Discovery
+
+Lateral Movement
+
+Command & Control
+
+Collection
+
+Exfiltration
+
+
+Only mark techniques that are supported or reasonably suspected by the evidence.
+
+
+---
+
+Task 5 — Immediate Actions
+
+What should the SOC do during the first 15 minutes?
+
+
+---
+
+Task 6 — Evidence
+
+List at least 15 pieces of evidence you would collect.
+
+
+---
+
+Task 7 — Containment
+
+What would you isolate, disable, block, or revoke?
+
+
+---
+
+Task 8 — Eradication
+
+What needs to be removed or remediated?
+
+
+---
+
+Task 9 — Recovery
+
+How would you safely return the system to production?
+
+
+---
+
+Task 10 — Threat Hunting
+
+Write 5 searches/hypotheses you would perform to determine whether the attacker affected other systems.
+
+
+---
+
+📝 PROFESSIONAL INCIDENT REPORT
+
+Create:
+
+Incident_Report_FS-2026-0047.md
+
+Use this structure:
+
+1. Executive Summary
+
+2. Incident Classification
+
+3. Detection Source
+
+4. Affected Assets
+
+5. Timeline
+
+6. Indicators of Compromise
+
+7. Indicators of Attack
+
+8. Evidence Collected
+
+9. Attack Analysis
+
+10. MITRE ATT&CK Mapping
+
+11. Scope Assessment
+
+12. Containment Actions
+
+13. Eradication Actions
+
+14. Recovery Actions
+
+15. Business Impact
+
+16. Root Cause
+
+17. Lessons Learned
+
+18. Recommendations
+
+19. Incident Status
+
+This is the type of document you can eventually show in your cybersecurity portfolio.
+
+
+---
+
+💼 INTERVIEW PREPARATION
+
+You should now be able to answer these without memorized definitions:
+
+1.
+
+A user account is compromised. What do you do first?
+
+2.
+
+How do you investigate suspicious PowerShell activity?
+
+3.
+
+How do you determine whether an alert is a true positive?
+
+4.
+
+What logs would you collect during an investigation?
+
+5.
+
+How do you determine incident severity?
+
+6.
+
+What is the difference between containment and eradication?
+
+7.
+
+Why shouldn't you immediately wipe a compromised machine?
+
+8.
+
+What is threat hunting?
+
+9.
+
+IOC vs IOA?
+
+10.
+
+How does MITRE ATT&CK help incident responders?
+
+
+---
+
+🧪 QUICK KNOWLEDGE TEST
+
+Q1
+
+What should happen before declaring an alert a confirmed incident?
+
+Answer: Validate and investigate the available evidence.
+
+Q2
+
+What is the primary purpose of containment?
+
+Answer: Limit the attacker's ability to continue causing harm.
+
+Q3
+
+What is eradication?
+
+Answer: Removing the cause/presence of the compromise and addressing the underlying vulnerabilities.
+
+Q4
+
+Why preserve forensic evidence?
+
+Answer: To support investigation, root-cause analysis, detection of additional compromise, and potentially legal/compliance needs.
+
+Q5
+
+What does a timeline help investigators understand?
+
+Answer: The sequence and relationships between events.
+
+
+---
+
+🧠 THE MOST IMPORTANT LESSON TODAY
+
+A junior analyst often thinks:
+
+> "I found malware."
+
+
+
+A good analyst thinks:
+
+> "I found suspicious PowerShell execution."
+
+
+
+A strong analyst thinks:
+
+> "I found PowerShell execution launched by Word, followed by an external connection and abnormal outbound transfer. I need to determine whether these events are related, establish scope, preserve evidence, and contain the affected identity and endpoint."
+
+
+
+That's the level of thinking we're building.
+
+
+---
+
+📁 YOUR PORTFOLIO OUTPUT TODAY
+
+By the end of Day 48, you should have:
+
+Cybersecurity-Portfolio/
+│
+├── SOC-Lab/
+│
+├── Incident-Response/
+│   └── Incident_Report_FS-2026-0047.md
+│
+├── Threat-Hunting/
+│
+├── Cloud-Security/
+│
+├── DevSecOps/
+│
+└── README.md
+
+These won't just be "college projects."
+
+We'll turn them into professional portfolio evidence during Day 49.
+
+
+---
+
+📊 50-DAY BOOTCAMP STATUS
+
+Day	Focus	Status
+
+1–45	Cybersecurity curriculum	✅
+46	SOC & SIEM	✅
+47	Threat Intelligence / Detection	✅
+48	Enterprise Incident Simulation	🟢 TODAY
+49	Resume + Portfolio + LinkedIn + Interviews	⏳
+50	Capstone + Final Job Readiness Assessment	⏳
+
+
+🔥 48 / 50 — 96% COMPLETE
+
+Only 2 days remain.
+
+Day 49: We'll turn your accumulated learning into a job-ready cybersecurity profile — resume, GitHub portfolio, projects, LinkedIn positioning, ATS optimization, and role targeting.
+
+Day 50: You'll face a final cybersecurity assessment + capstone + mock interview, and we'll identify exactly what you should continue learning after the 50-day program.
