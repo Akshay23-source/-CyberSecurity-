@@ -1,0 +1,967 @@
+# 🔐 Cybersecurity Bootcamp — DAY 50/50
+
+## 🏆 Final Capstone + Job-Readiness Assessment
+
+**🎉 50/50 — 100% of the structured bootcamp completed**
+
+Today is **not just another lesson**. This is your final assessment day.
+
+The goal is to determine whether you can **apply** what you've learned—not whether you can memorize definitions.
+
+---
+
+# 🎯 TODAY'S MISSION
+
+You will work through a complete enterprise attack:
+
+```text
+Reconnaissance
+      ↓
+Initial Access
+      ↓
+Execution
+      ↓
+Persistence
+      ↓
+Credential Access
+      ↓
+Discovery
+      ↓
+Lateral Movement
+      ↓
+Command & Control
+      ↓
+Collection
+      ↓
+Exfiltration
+      ↓
+Detection
+      ↓
+Incident Response
+```
+
+You will act as:
+
+> **SOC Analyst → Incident Responder → Security Engineer**
+
+---
+
+# 🧠 PART 1 — FINAL KNOWLEDGE MAP
+
+Before the challenge, understand how everything connects.
+
+```text
+                    CYBERSECURITY
+                         │
+        ┌────────────────┼────────────────┐
+        ↓                ↓                ↓
+    OFFENSIVE          DEFENSIVE       SECURITY
+    SECURITY           SECURITY        ENGINEERING
+        │                │                │
+   Recon/Scanning      SOC/SIEM        Hardening
+   Web Security        Detection       IAM
+   Pentesting          IR              Cloud
+   Exploitation        Threat Intel    DevSecOps
+        │                │                │
+        └────────────────┼────────────────┘
+                         ↓
+                   RISK MANAGEMENT
+```
+
+You don't need to become an expert in every branch immediately.
+
+Your foundation should now allow you to **understand how they interact**.
+
+---
+
+# 🔴 PART 2 — FINAL CAPSTONE
+
+## 🏢 Company: SecureBank Technologies
+
+### Infrastructure
+
+```text
+                         INTERNET
+                            │
+                     ┌──────┴──────┐
+                     │   FIREWALL  │
+                     └──────┬──────┘
+                            │
+             ┌──────────────┼──────────────┐
+             ↓              ↓              ↓
+          Web Server     VPN Gateway     Email
+             │              │              │
+             └──────────────┼──────────────┘
+                            ↓
+                    INTERNAL NETWORK
+                            │
+             ┌──────────────┼──────────────┐
+             ↓              ↓              ↓
+        Active Directory   Endpoints    Database
+             │
+             ↓
+          Cloud IAM
+```
+
+---
+
+# 🚨 08:42 AM — ALERT 1
+
+SIEM reports:
+
+```text
+Multiple failed VPN logins
+
+Account:
+finance.admin
+
+Attempts:
+43
+
+Duration:
+4 minutes
+
+Source:
+203.XX.XX.17
+
+Location:
+Unknown
+```
+
+### Your first task:
+
+Determine:
+
+* Is this suspicious?
+* What attack could this represent?
+* What evidence would you collect?
+
+---
+
+# 🚨 08:47 AM — ALERT 2
+
+Another event appears:
+
+```text
+finance.admin
+Successful VPN login
+
+Source:
+203.XX.XX.17
+
+MFA:
+Successful
+```
+
+The account normally logs in from India.
+
+---
+
+# 🚨 08:51 AM — ALERT 3
+
+Endpoint telemetry:
+
+```text
+Host:
+FIN-PC-07
+
+Process:
+
+WINWORD.EXE
+      ↓
+powershell.exe
+      ↓
+Encoded command
+```
+
+---
+
+# 🚨 08:54 AM — ALERT 4
+
+DNS logs:
+
+```text
+FIN-PC-07
+      ↓
+suspicious-domain.example
+```
+
+Multiple DNS requests occur every 30 seconds.
+
+---
+
+# 🚨 09:03 AM — ALERT 5
+
+EDR reports:
+
+```text
+Credential dumping behavior
+detected
+```
+
+---
+
+# 🚨 09:12 AM — ALERT 6
+
+Active Directory:
+
+```text
+New privileged account created
+
+Username:
+backup-admin2
+
+Created by:
+finance.admin
+```
+
+🚨 **Critical escalation.**
+
+---
+
+# 🚨 09:19 AM — ALERT 7
+
+Internal network activity:
+
+```text
+FIN-PC-07
+      ↓
+10.0.20.15
+      ↓
+10.0.20.22
+      ↓
+10.0.20.31
+```
+
+Multiple internal systems are being accessed.
+
+---
+
+# 🚨 09:37 AM — ALERT 8
+
+Database monitoring reports:
+
+```text
+Large query volume
+
+User:
+backup-admin2
+
+Database:
+CustomerDB
+```
+
+---
+
+# 🚨 09:52 AM — ALERT 9
+
+Network monitoring:
+
+```text
+CustomerDB
+      ↓
+External IP
+
+Outbound:
+3.8 GB
+```
+
+---
+
+# 🔥 YOU ARE NOW THE INCIDENT RESPONDER
+
+You have discovered a potential:
+
+```text
+Account Compromise
+        ↓
+Endpoint Compromise
+        ↓
+Credential Theft
+        ↓
+Privilege Escalation
+        ↓
+Lateral Movement
+        ↓
+Database Access
+        ↓
+Possible Data Exfiltration
+```
+
+---
+
+# 🧪 PART 3 — FINAL CHALLENGE
+
+## Challenge 1 — Attack Timeline
+
+Create a timeline from:
+
+**08:42 → 09:52**
+
+Explain what happened at every stage.
+
+---
+
+# Challenge 2 — Attack Classification
+
+Identify which stages may correspond to:
+
+* Reconnaissance
+* Initial Access
+* Execution
+* Persistence
+* Credential Access
+* Privilege Escalation
+* Discovery
+* Lateral Movement
+* Command & Control
+* Collection
+* Exfiltration
+
+Don't force a technique where the evidence isn't sufficient.
+
+---
+
+# Challenge 3 — MITRE ATT&CK
+
+Map the observed behaviors to relevant MITRE ATT&CK techniques.
+
+For example:
+
+```text
+PowerShell
+→ Command and Scripting Interpreter: PowerShell
+```
+
+But distinguish between:
+
+**Observed**
+
+and
+
+**Suspected**
+
+behavior.
+
+---
+
+# Challenge 4 — IOC Identification
+
+Find potential:
+
+### Network IOCs
+
+* Source IP
+* Destination IP
+* Suspicious domain
+
+### Host IOCs
+
+* Suspicious processes
+* Files
+* Hashes if available
+
+### Identity IOCs
+
+* Compromised account
+* Newly created privileged account
+
+---
+
+# Challenge 5 — Immediate Response
+
+You're the SOC L1 analyst.
+
+What do you do in the:
+
+### First 5 minutes?
+
+Then:
+
+### First 30 minutes?
+
+Then:
+
+### First 2 hours?
+
+---
+
+# Challenge 6 — Containment
+
+Decide what you would:
+
+* Isolate
+* Disable
+* Revoke
+* Block
+* Preserve
+* Monitor
+
+And **explain why**.
+
+---
+
+# Challenge 7 — Eradication
+
+What must be removed?
+
+Consider:
+
+* Malware
+* Persistence
+* Compromised accounts
+* Unauthorized privileges
+* Malicious scheduled tasks
+* Stolen credentials
+* Vulnerabilities
+
+---
+
+# Challenge 8 — Recovery
+
+How would you safely return the environment to normal?
+
+Use:
+
+```text
+Validate
+   ↓
+Patch
+   ↓
+Reset
+   ↓
+Restore
+   ↓
+Monitor
+   ↓
+Reconnect
+```
+
+---
+
+# Challenge 9 — Root Cause
+
+What could have allowed this attack to succeed?
+
+Consider:
+
+* Weak credentials
+* MFA weaknesses
+* Phishing
+* Endpoint vulnerabilities
+* Excessive privileges
+* Poor network segmentation
+* Weak monitoring
+* Cloud IAM misconfiguration
+
+Don't assume the root cause without evidence.
+
+---
+
+# Challenge 10 — Business Impact
+
+Assess potential impact on:
+
+### Confidentiality
+
+Could customer information have been exposed?
+
+### Integrity
+
+Could database records have been modified?
+
+### Availability
+
+Could systems become unavailable?
+
+### Compliance
+
+Could regulatory reporting obligations arise?
+
+---
+
+# 🧠 PART 4 — SECURITY ENGINEER RESPONSE
+
+Now move beyond incident response.
+
+Suppose you're asked:
+
+> **"How do we prevent this from happening again?"**
+
+Build recommendations across:
+
+### Identity
+
+* MFA
+* Least privilege
+* Privileged Access Management
+* Conditional access
+* Account monitoring
+
+### Endpoint
+
+* EDR
+* Application control
+* PowerShell logging
+* Patch management
+
+### Network
+
+* Segmentation
+* Firewall controls
+* DNS monitoring
+* Zero Trust principles
+
+### Cloud
+
+* IAM
+* Logging
+* Security monitoring
+* Key management
+
+### SOC
+
+* SIEM correlation
+* Detection rules
+* Threat hunting
+* Incident playbooks
+
+### People
+
+* Phishing awareness
+* Security training
+* Incident reporting
+
+---
+
+# 💻 PART 5 — YOUR CAPSTONE PORTFOLIO PROJECT
+
+Your final project should become:
+
+## 🛡️ Enterprise SOC & Incident Response Lab
+
+Your GitHub project should demonstrate:
+
+```text
+                    SOC PROJECT
+                         │
+        ┌────────────────┼────────────────┐
+        ↓                ↓                ↓
+      SIEM           Detection        Threat Intel
+        │                │                │
+        ↓                ↓                ↓
+     Logging         MITRE ATT&CK     IOC/IOA
+        │                │                │
+        └────────────────┼────────────────┘
+                         ↓
+                 Incident Response
+                         │
+            ┌────────────┼────────────┐
+            ↓            ↓            ↓
+       Containment   Eradication   Recovery
+                         │
+                         ↓
+                 Final Report
+```
+
+---
+
+# 📁 Recommended Repository
+
+```text
+enterprise-soc-lab/
+│
+├── README.md
+│
+├── architecture/
+│   └── architecture.md
+│
+├── logs/
+│   ├── authentication.log
+│   ├── firewall.log
+│   ├── endpoint.log
+│   └── dns.log
+│
+├── detections/
+│   ├── brute-force.md
+│   ├── suspicious-powershell.md
+│   └── privilege-escalation.md
+│
+├── threat-intelligence/
+│   └── ioc-analysis.md
+│
+├── incident-response/
+│   ├── timeline.md
+│   ├── containment.md
+│   └── recovery.md
+│
+├── mitre/
+│   └── attack-mapping.md
+│
+└── reports/
+    └── final-incident-report.md
+```
+
+---
+
+# 🎤 PART 6 — FINAL TECHNICAL INTERVIEW
+
+Answer these **without notes**.
+
+### Networking
+
+1. Explain TCP vs UDP.
+2. What happens when you enter a URL?
+3. What is DNS?
+4. IDS vs IPS?
+5. What does a firewall do?
+
+### Security
+
+6. Explain the CIA Triad.
+7. Authentication vs authorization.
+8. Encryption vs hashing.
+9. Symmetric vs asymmetric encryption.
+10. What is Zero Trust?
+
+### SOC
+
+11. What is SIEM?
+12. How do you investigate an alert?
+13. What is alert triage?
+14. True positive vs false positive?
+15. What is threat hunting?
+
+### Incident Response
+
+16. Explain incident-response phases.
+17. What is containment?
+18. Containment vs eradication?
+19. IOC vs IOA?
+20. How would you investigate a compromised account?
+
+### Cloud
+
+21. Explain the Shared Responsibility Model.
+22. What is IAM?
+23. How would you secure an AWS/Azure environment?
+
+### Offensive Security
+
+24. What is reconnaissance?
+25. Vulnerability vs exploit?
+26. What is SQL injection?
+27. What is XSS?
+28. What is privilege escalation?
+
+### Advanced
+
+29. Explain MITRE ATT&CK.
+30. Explain a complete attack chain from phishing to exfiltration.
+
+---
+
+# 🧪 PART 7 — HR INTERVIEW
+
+You should prepare answers for:
+
+### "Tell me about yourself."
+
+Use:
+
+```text
+Education
+   ↓
+Cybersecurity interest
+   ↓
+Technical skills
+   ↓
+Projects
+   ↓
+Practical experience
+   ↓
+Target role
+```
+
+---
+
+### "Why cybersecurity?"
+
+Don't answer:
+
+> "Cybersecurity is a growing field."
+
+Instead explain:
+
+* Why security interests you
+* What you've actually explored
+* What problems you enjoy solving
+* Why you're pursuing a security career
+
+---
+
+### "Why should we hire you?"
+
+Focus on:
+
+```text
+Strong fundamentals
++
+Hands-on projects
++
+Problem-solving
++
+Continuous learning
++
+Ability to investigate
++
+Willingness to learn
+```
+
+---
+
+# ⚠️ FINAL SELF-ASSESSMENT
+
+Score yourself honestly:
+
+| Skill               | 1–5 |
+| ------------------- | --: |
+| Networking          |  /5 |
+| Linux               |  /5 |
+| Windows             |  /5 |
+| Active Directory    |  /5 |
+| Web Security        |  /5 |
+| Ethical Hacking     |  /5 |
+| SOC                 |  /5 |
+| SIEM                |  /5 |
+| Incident Response   |  /5 |
+| Threat Intelligence |  /5 |
+| Digital Forensics   |  /5 |
+| Cloud Security      |  /5 |
+| DevSecOps           |  /5 |
+| Python/Scripting    |  /5 |
+| Communication       |  /5 |
+
+### Scoring
+
+**60–75:** Strong foundation
+
+**45–59:** Good entry-level foundation
+
+**30–44:** Need targeted improvement
+
+**<30:** Revisit fundamentals before aggressive job applications
+
+---
+
+# 🏆 WHAT 50 DAYS HAVE GIVEN YOU
+
+You have now covered a **broad cybersecurity foundation** across:
+
+### 🔐 Core Security
+
+* CIA Triad
+* Authentication
+* Authorization
+* Cryptography
+* Risk
+* Vulnerabilities
+* Threats
+
+### 🌐 Networking
+
+* TCP/IP
+* DNS
+* HTTP/HTTPS
+* Ports
+* Firewalls
+* VPN
+* Network attacks
+
+### 🖥️ Systems
+
+* Linux
+* Windows
+* Active Directory
+* PowerShell
+* Hardening
+
+### 🕵️ Offensive Security
+
+* Reconnaissance
+* Scanning
+* Vulnerability assessment
+* Web security
+* Exploitation concepts
+* Privilege escalation
+
+### 🛡️ Defensive Security
+
+* SOC
+* SIEM
+* Alert triage
+* Detection
+* Threat hunting
+* Incident response
+
+### 🔎 Investigation
+
+* Logs
+* IOCs
+* IOAs
+* Digital forensics
+* Incident timelines
+* MITRE ATT&CK
+
+### ☁️ Cloud
+
+* AWS
+* Azure
+* GCP
+* IAM
+* Cloud networking
+* Cloud security
+
+### ⚙️ DevSecOps
+
+* CI/CD
+* SAST
+* DAST
+* SCA
+* Container security
+* IaC security
+* Secrets management
+
+---
+
+# 🚨 BUT ONE IMPORTANT TRUTH
+
+**50 days does not make anyone an advanced cybersecurity professional.**
+
+It gives you a **structured foundation**.
+
+To become genuinely job-ready, you now need to convert this knowledge into:
+
+> **Hands-on labs + repeated investigation + projects + tools + interview practice + real-world scenarios.**
+
+That's why your next phase matters more than simply finishing Day 50.
+
+---
+
+# 🚀 YOUR POST-50 ROADMAP
+
+## Phase 1 — SOC Specialization
+
+**4–6 weeks**
+
+Focus deeply on:
+
+* Splunk
+* Microsoft Sentinel
+* Windows Event Logs
+* Sysmon
+* Active Directory
+* EDR
+* Detection engineering
+* Sigma
+* YARA
+* Threat hunting
+
+---
+
+## Phase 2 — Offensive Security
+
+**4–6 weeks**
+
+* Nmap
+* Burp Suite
+* OWASP Top 10
+* Web exploitation
+* Active Directory attacks
+* Privilege escalation
+* Metasploit
+* CTFs
+
+---
+
+## Phase 3 — Cloud Security
+
+**4–6 weeks**
+
+Choose **one cloud first**.
+
+I'd recommend:
+
+**AWS → Security Specialty concepts**
+
+Then:
+
+* IAM
+* VPC
+* CloudTrail
+* GuardDuty
+* Security Hub
+* KMS
+* S3 security
+* Incident response
+
+---
+
+## Phase 4 — Advanced Security Engineering
+
+Then move toward:
+
+```text
+Detection Engineering
+        OR
+Cloud Security
+        OR
+DevSecOps Security
+        OR
+Digital Forensics
+        OR
+Penetration Testing
+```
+
+---
+
+# 🎯 YOUR FINAL CAREER PATH
+
+For your current stage, I'd recommend:
+
+```text
+                 YOU
+                  ↓
+          SOC Analyst L1
+                  ↓
+        SOC Analyst L2
+                  ↓
+      Detection / Threat Hunting
+                  ↓
+       Security Engineer
+                  ↓
+       Cloud / Detection /
+       Security Engineering
+```
+
+---
+
+# 🎓 FINAL DAY STATUS
+
+## 🔥 **50 / 50 COMPLETE — 100%**
+
+But remember:
+
+**The 50-day course is complete. Your cybersecurity career is not.**
+
+From this point forward, the goal changes from:
+
+> **"Learn cybersecurity."**
+
+to:
+
+> **"Build, investigate, defend, document, and prove cybersecurity skills."**
+
+### 🛡️ Your next milestone
+
+**Become genuinely employable for an entry-level SOC/Cybersecurity Analyst role through hands-on labs and a strong portfolio—not merely by completing a syllabus.**
